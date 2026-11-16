@@ -1,0 +1,15 @@
+metric,value
+property_ids,400
+availability_property_ids,400
+price_property_ids,400
+properties_missing_from_availability,0
+availability_ids_not_in_properties,0
+properties_missing_from_prices,0
+price_ids_not_in_properties,0
+availability_rows,36000
+availability_duplicate_property_date,0
+price_duplicate_property_observation_stay,0
+booking_negative_adr_rows,1
+booking_zero_guest_rows,180
+reviews_rows,0
+occupancy_rows,0

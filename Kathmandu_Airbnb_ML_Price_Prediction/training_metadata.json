@@ -1,0 +1,57 @@
+{
+  "model_name": "Ridge Regression",
+  "target": "base_price_npr",
+  "training_rows": 808,
+  "test_rows": 192,
+  "training_unique_properties": 320,
+  "test_unique_properties": 80,
+  "property_overlap_between_train_test": 0,
+  "features": [
+    "city",
+    "neighbourhood",
+    "property_type",
+    "room_type",
+    "capacity",
+    "bedrooms",
+    "bathrooms",
+    "stay_month",
+    "stay_day_of_week",
+    "lead_days",
+    "amenities"
+  ],
+  "split_method": "GroupShuffleSplit by property_id, test_size=0.20, random_state=42",
+  "provenance": "Synthetic Sample Data (as stated in source_name column)",
+  "primary_selection_reason": "Ridge Regression achieved the lowest RMSE and highest R2 among tested candidates; Random Forest achieved the lowest MAE.",
+  "metrics": [
+    {
+      "model": "Random Forest",
+      "MAE_NPR": 1357.9945324712905,
+      "RMSE_NPR": 2113.917142776285,
+      "R2": 0.4587127409428706
+    },
+    {
+      "model": "Ridge Regression",
+      "MAE_NPR": 1460.836525619472,
+      "RMSE_NPR": 2071.4205602020224,
+      "R2": 0.48025723978008616
+    },
+    {
+      "model": "Gradient Boosting",
+      "MAE_NPR": 1462.2999601262381,
+      "RMSE_NPR": 2240.396952624991,
+      "R2": 0.39200244908322357
+    },
+    {
+      "model": "Linear Regression",
+      "MAE_NPR": 1820.535647836515,
+      "RMSE_NPR": 2502.393658264398,
+      "R2": 0.24148679670579098
+    },
+    {
+      "model": "Dummy Median Baseline",
+      "MAE_NPR": 1933.8541666666667,
+      "RMSE_NPR": 2877.584888698623,
+      "R2": -0.00301671777990542
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+property_id,property_name,neighbourhood,property_type,room_type,capacity,bedrooms,nightly_price_npr,rating,review_count,amenities,relevance_score
+KTM054,Heritage Crown Lodge 054,Thamel,Hotel,Entire place,6,4,4150,4.9,749,Air conditioning;24-hour reception;TV;Free parking;Heating;Daily housekeeping;Airport shuttle,0.4873324050494198
+KTM334,Hillside Retreat 334,Thamel,Apartment,Entire place,7,2,3350,3.5,545,Kitchen;TV;24-hour reception;Air conditioning;Garden,0.4515726896631766
+KTM089,Quiet Corner Place 089,Thamel,Guesthouse,Private room,2,1,3650,3.4,871,Breakfast;TV;Balcony;Airport shuttle;Free parking;Kitchen;Laundry,0.4227411416842932
+KTM265,Garden Path Residence 265,Thamel,Guesthouse,Private room,2,1,3600,4.6,181,Balcony;24-hour reception;Free parking;Hot water;Airport shuttle;Workspace;Breakfast;Garden,0.4106666666666667
+KTM335,Himalayan View Lodge 335,Thamel,Hotel,Private room,2,1,3550,4.6,849,24-hour reception;Laundry;Garden;Breakfast;TV;Airport shuttle,0.4086666666666667
+KTM048,Heritage Crown Retreat 048,Thamel,Hotel,Private room,2,1,1700,4.8,60,Paid parking;Wi-Fi;Security;Workspace;Kitchenette;Heating;Daily housekeeping,0.388552034149343
+KTM314,Warm Hearth Place 314,Thamel,Homestay,Private room,2,1,2350,4.6,594,Hot water;Luggage storage;Paid parking;Security;Workspace;Air conditioning;Garden;Airport shuttle;24-hour reception,0.386949651803653
+KTM086,Mountain Gate Residence 086,Thamel,Hotel,Private room,2,1,2650,4.9,646,Free parking;Heating;Security;Kitchenette;Airport shuttle;24-hour reception;Balcony;Kitchen;Garden,0.38240210718355566
+KTM374,Family Nest Suites 374,Thamel,Guesthouse,Shared room,8,1,2150,3.1,790,Laundry;Garden;Heating;TV;Wi-Fi;Paid parking,0.3809250558088005
+KTM266,City Residence Stay 266,Maharajgunj,Serviced apartment,Entire place,4,1,4850,3.9,912,Heating;Kitchen;Air conditioning;Balcony;Free parking;24-hour reception;TV;Workspace,0.36707053427839803

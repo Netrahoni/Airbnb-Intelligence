@@ -1,0 +1,193 @@
+property_id,neighbourhood,property_type,room_type,stay_date,base_price_npr,predicted_price_npr,absolute_error_npr
+KTM032,Boudha,Apartment,Entire place,2027-01-10 00:00:00+00:00,4100,6515.38,2415.38
+KTM117,Kalimati,Hostel,Private room,2027-01-16 00:00:00+00:00,1000,1397.05,397.05
+KTM074,Kupondole,Apartment,Entire place,2027-02-12 00:00:00+00:00,3250,6690.48,3440.48
+KTM322,Thamel,Guesthouse,Private room,2026-12-10 00:00:00+00:00,3450,4313.06,863.06
+KTM389,Baneshwor,Guesthouse,Private room,2027-01-31 00:00:00+00:00,2900,2624.75,275.25
+KTM125,Thamel,Apartment,Private room,2027-01-12 00:00:00+00:00,2550,5542.34,2992.34
+KTM127,Patan,Apartment,Shared room,2027-01-28 00:00:00+00:00,2900,2587.96,312.04
+KTM023,Kalimati,Hotel,Private room,2027-01-24 00:00:00+00:00,8750,5146.42,3603.58
+KTM046,New Road,Homestay,Private room,2027-01-03 00:00:00+00:00,3000,2682.18,317.82
+KTM078,Swayambhu,Guesthouse,Shared room,2027-01-29 00:00:00+00:00,1900,-1427.15,3327.15
+KTM330,Lazimpat,Apartment,Entire place,2026-11-23 00:00:00+00:00,4450,6782.83,2332.83
+KTM133,Thamel,Serviced apartment,Private room,2027-01-04 00:00:00+00:00,7350,8236.94,886.94
+KTM330,Lazimpat,Apartment,Entire place,2026-12-15 00:00:00+00:00,4750,6778.13,2028.13
+KTM058,Kirtipur,Hostel,Shared room,2026-11-23 00:00:00+00:00,800,1307.42,507.42
+KTM040,Maharajgunj,Apartment,Entire place,2026-11-24 00:00:00+00:00,3650,5322.91,1672.91
+KTM117,Kalimati,Hostel,Private room,2027-02-08 00:00:00+00:00,950,1477.19,527.19
+KTM211,Swayambhu,Apartment,Shared room,2027-01-11 00:00:00+00:00,1850,907.55,942.45
+KTM370,Swayambhu,Guesthouse,Private room,2027-02-11 00:00:00+00:00,4350,1275.92,3074.08
+KTM034,Boudha,Hostel,Private room,2026-12-10 00:00:00+00:00,1650,2706.29,1056.29
+KTM079,Patan,Guesthouse,Shared room,2027-01-03 00:00:00+00:00,1400,500.75,899.25
+KTM397,Lazimpat,Guesthouse,Private room,2026-12-22 00:00:00+00:00,2050,3210.09,1160.09
+KTM272,Boudha,Hotel,Shared room,2027-01-01 00:00:00+00:00,4600,4632.43,32.43
+KTM159,Dillibazar,Hostel,Shared room,2027-01-10 00:00:00+00:00,650,-268.86,918.86
+KTM290,Chabahil,Hotel,Shared room,2026-12-10 00:00:00+00:00,1100,4587.52,3487.52
+KTM127,Patan,Apartment,Shared room,2026-12-22 00:00:00+00:00,3200,3170.26,29.74
+KTM031,Baneshwor,Hotel,Shared room,2026-12-09 00:00:00+00:00,4050,3938.59,111.41
+KTM210,Lazimpat,Homestay,Private room,2026-12-03 00:00:00+00:00,5300,3566.33,1733.67
+KTM031,Baneshwor,Hotel,Shared room,2027-01-12 00:00:00+00:00,3950,3417.91,532.09
+KTM269,New Road,Hostel,Entire place,2026-11-16 00:00:00+00:00,2050,3312.17,1262.17
+KTM074,Kupondole,Apartment,Entire place,2026-12-02 00:00:00+00:00,3250,7250.54,4000.54
+KTM010,Baluwatar,Guesthouse,Shared room,2026-11-20 00:00:00+00:00,850,1064.4,214.4
+KTM343,Boudha,Guesthouse,Private room,2027-02-12 00:00:00+00:00,4650,3790.72,859.28
+KTM085,Dillibazar,Guesthouse,Private room,2027-01-19 00:00:00+00:00,2700,3099.11,399.11
+KTM272,Boudha,Hotel,Shared room,2026-12-09 00:00:00+00:00,4500,5184.86,684.86
+KTM159,Dillibazar,Hostel,Shared room,2026-12-13 00:00:00+00:00,700,325.69,374.31
+KTM114,Swayambhu,Guesthouse,Private room,2026-11-23 00:00:00+00:00,3800,2301.01,1498.99
+KTM074,Kupondole,Apartment,Entire place,2027-01-06 00:00:00+00:00,3100,6696.52,3596.52
+KTM047,Boudha,Hotel,Private room,2026-12-09 00:00:00+00:00,9700,7076.63,2623.37
+KTM056,Patan,Hostel,Shared room,2026-11-18 00:00:00+00:00,900,2194.45,1294.45
+KTM010,Baluwatar,Guesthouse,Shared room,2027-01-10 00:00:00+00:00,850,579.02,270.98
+KTM279,Dillibazar,Hostel,Shared room,2026-12-31 00:00:00+00:00,600,563.28,36.72
+KTM032,Boudha,Apartment,Entire place,2026-12-27 00:00:00+00:00,4400,7063.0,2663.0
+KTM330,Lazimpat,Apartment,Entire place,2027-02-08 00:00:00+00:00,4350,6217.82,1867.82
+KTM016,Swayambhu,Hotel,Private room,2026-12-05 00:00:00+00:00,6400,4848.95,1551.05
+KTM034,Boudha,Hostel,Private room,2027-02-02 00:00:00+00:00,1650,2140.92,490.92
+KTM047,Boudha,Hotel,Private room,2026-11-16 00:00:00+00:00,9550,7072.0,2478.0
+KTM073,Patan,Serviced apartment,Entire place,2027-01-21 00:00:00+00:00,15100,8738.49,6361.51
+KTM362,New Road,Hotel,Shared room,2026-12-26 00:00:00+00:00,4600,4416.39,183.61
+KTM057,Boudha,Homestay,Private room,2026-11-26 00:00:00+00:00,3900,3625.12,274.88
+KTM228,Gaushala,Homestay,Private room,2026-11-22 00:00:00+00:00,2900,3846.0,946.0
+KTM339,Gaushala,Apartment,Private room,2027-01-02 00:00:00+00:00,5500,4050.07,1449.93
+KTM071,Boudha,Serviced apartment,Entire place,2026-11-26 00:00:00+00:00,17050,9626.71,7423.29
+KTM149,Baneshwor,Apartment,Entire place,2027-02-05 00:00:00+00:00,3150,6335.89,3185.89
+KTM077,Lazimpat,Homestay,Shared room,2026-12-08 00:00:00+00:00,1850,2795.14,945.14
+KTM233,New Road,Hotel,Private room,2026-11-20 00:00:00+00:00,2150,6787.66,4637.66
+KTM383,Maharajgunj,Homestay,Private room,2026-12-22 00:00:00+00:00,2650,3116.62,466.62
+KTM392,Thamel,Hostel,Shared room,2027-01-27 00:00:00+00:00,800,1915.81,1115.81
+KTM247,Lazimpat,Hostel,Private room,2027-02-10 00:00:00+00:00,1650,2266.26,616.26
+KTM073,Patan,Serviced apartment,Entire place,2027-01-18 00:00:00+00:00,14900,8727.57,6172.43
+KTM267,Kalimati,Hotel,Private room,2027-01-15 00:00:00+00:00,5500,4128.52,1371.48
+KTM032,Boudha,Apartment,Entire place,2026-11-28 00:00:00+00:00,4650,7089.03,2439.03
+KTM226,Gaushala,Hotel,Entire place,2026-11-17 00:00:00+00:00,7900,8060.69,160.69
+KTM321,Chabahil,Hotel,Shared room,2027-01-11 00:00:00+00:00,3200,3461.43,261.43
+KTM370,Swayambhu,Guesthouse,Private room,2027-01-22 00:00:00+00:00,4800,1295.01,3504.99
+KTM375,Kalimati,Hotel,Shared room,2027-01-20 00:00:00+00:00,3150,3127.32,22.68
+KTM026,New Road,Hostel,Private room,2026-11-20 00:00:00+00:00,450,1431.7,981.7
+KTM006,Kupondole,Hotel,Private room,2027-02-01 00:00:00+00:00,4350,5804.89,1454.89
+KTM006,Kupondole,Hotel,Private room,2027-02-05 00:00:00+00:00,4400,5754.72,1354.72
+KTM247,Lazimpat,Hostel,Private room,2027-01-24 00:00:00+00:00,1500,2260.01,760.01
+KTM058,Kirtipur,Hostel,Shared room,2026-12-16 00:00:00+00:00,750,1305.65,555.65
+KTM043,Maharajgunj,Hostel,Private room,2026-12-06 00:00:00+00:00,950,1832.67,882.67
+KTM395,Lazimpat,Homestay,Private room,2026-12-11 00:00:00+00:00,3400,3628.57,228.57
+KTM094,Lazimpat,Apartment,Entire place,2026-12-21 00:00:00+00:00,3100,6069.96,2969.96
+KTM267,Kalimati,Hotel,Private room,2026-11-19 00:00:00+00:00,5400,4700.04,699.96
+KTM321,Chabahil,Hotel,Shared room,2027-01-15 00:00:00+00:00,3250,3402.74,152.74
+KTM389,Baneshwor,Guesthouse,Private room,2027-01-07 00:00:00+00:00,2700,2767.45,67.45
+KTM377,Patan,Hotel,Shared room,2026-12-06 00:00:00+00:00,3000,4870.28,1870.28
+KTM046,New Road,Homestay,Private room,2026-11-27 00:00:00+00:00,3550,3240.1,309.9
+KTM006,Kupondole,Hotel,Private room,2026-12-09 00:00:00+00:00,4300,6404.39,2104.39
+KTM269,New Road,Hostel,Entire place,2027-01-23 00:00:00+00:00,2100,2707.56,607.56
+KTM362,New Road,Hotel,Shared room,2026-12-19 00:00:00+00:00,4950,4480.4,469.6
+KTM023,Kalimati,Hotel,Private room,2026-12-21 00:00:00+00:00,8000,5791.68,2208.32
+KTM149,Baneshwor,Apartment,Entire place,2026-11-19 00:00:00+00:00,3250,6827.56,3577.56
+KTM263,Baneshwor,Guesthouse,Private room,2027-01-02 00:00:00+00:00,3100,2831.68,268.32
+KTM040,Maharajgunj,Apartment,Entire place,2026-12-31 00:00:00+00:00,3650,5282.73,1632.73
+KTM279,Dillibazar,Hostel,Shared room,2027-02-08 00:00:00+00:00,550,118.73,431.27
+KTM321,Chabahil,Hotel,Shared room,2026-12-06 00:00:00+00:00,3000,4024.49,1024.49
+KTM026,New Road,Hostel,Private room,2027-01-10 00:00:00+00:00,450,777.76,327.76
+KTM232,Maharajgunj,Hostel,Private room,2027-01-23 00:00:00+00:00,1200,1317.36,117.36
+KTM016,Swayambhu,Hotel,Private room,2027-01-10 00:00:00+00:00,6300,4366.14,1933.86
+KTM353,Swayambhu,Homestay,Entire place,2027-01-27 00:00:00+00:00,3050,3084.04,34.04
+KTM210,Lazimpat,Homestay,Private room,2027-02-06 00:00:00+00:00,4800,2978.54,1821.46
+KTM182,Gaushala,Homestay,Private room,2026-12-25 00:00:00+00:00,3200,3638.21,438.21
+KTM247,Lazimpat,Hostel,Private room,2026-12-11 00:00:00+00:00,1700,2823.1,1123.1
+KTM343,Boudha,Guesthouse,Private room,2026-11-20 00:00:00+00:00,4600,4404.81,195.19
+KTM141,Dillibazar,Serviced apartment,Entire place,2027-01-06 00:00:00+00:00,5700,9107.12,3407.12
+KTM047,Boudha,Hotel,Private room,2027-02-05 00:00:00+00:00,10600,6456.83,4143.17
+KTM392,Thamel,Hostel,Shared room,2026-11-23 00:00:00+00:00,750,2588.95,1838.95
+KTM141,Dillibazar,Serviced apartment,Entire place,2026-12-28 00:00:00+00:00,6100,9612.6,3512.6
+KTM173,Lazimpat,Apartment,Entire place,2026-12-21 00:00:00+00:00,9700,5722.32,3977.68
+KTM211,Swayambhu,Apartment,Shared room,2026-12-06 00:00:00+00:00,1850,1453.53,396.47
+KTM174,Dillibazar,Hotel,Private room,2026-11-16 00:00:00+00:00,5300,6176.17,876.17
+KTM396,Kirtipur,Guesthouse,Entire place,2027-01-11 00:00:00+00:00,4800,5249.74,449.74
+KTM173,Lazimpat,Apartment,Entire place,2027-01-15 00:00:00+00:00,9550,5186.42,4363.58
+KTM177,Kalimati,Homestay,Private room,2026-12-31 00:00:00+00:00,2650,2302.98,347.02
+KTM263,Baneshwor,Guesthouse,Private room,2027-01-22 00:00:00+00:00,3150,2769.01,380.99
+KTM073,Patan,Serviced apartment,Entire place,2027-02-02 00:00:00+00:00,15550,8786.88,6763.12
+KTM114,Swayambhu,Guesthouse,Private room,2027-01-27 00:00:00+00:00,3750,1676.94,2073.06
+KTM142,Kirtipur,Homestay,Private room,2026-12-30 00:00:00+00:00,1950,2417.75,467.75
+KTM269,New Road,Hostel,Entire place,2026-11-15 00:00:00+00:00,2000,3242.26,1242.26
+KTM262,Boudha,Apartment,Entire place,2026-12-18 00:00:00+00:00,6100,7060.98,960.98
+KTM295,Boudha,Guesthouse,Private room,2027-02-09 00:00:00+00:00,3350,2777.39,572.61
+KTM256,Kirtipur,Guesthouse,Private room,2026-12-17 00:00:00+00:00,1650,2970.8,1320.8
+KTM115,Boudha,Homestay,Shared room,2026-12-10 00:00:00+00:00,2900,2684.65,215.35
+KTM071,Boudha,Serviced apartment,Entire place,2027-01-08 00:00:00+00:00,16600,9021.05,7578.95
+KTM194,Dillibazar,Hotel,Private room,2026-12-26 00:00:00+00:00,5800,5663.62,136.38
+KTM353,Swayambhu,Homestay,Entire place,2027-01-21 00:00:00+00:00,2900,3063.5,163.5
+KTM031,Baneshwor,Hotel,Shared room,2027-01-11 00:00:00+00:00,4100,3427.79,672.21
+KTM094,Lazimpat,Apartment,Entire place,2027-02-06 00:00:00+00:00,2850,5510.16,2660.16
+KTM182,Gaushala,Homestay,Private room,2027-01-26 00:00:00+00:00,3150,3150.08,0.08
+KTM386,Kalimati,Hostel,Shared room,2026-11-30 00:00:00+00:00,850,-733.52,1583.52
+KTM142,Kirtipur,Homestay,Private room,2027-02-05 00:00:00+00:00,2100,1932.38,167.62
+KTM226,Gaushala,Hotel,Entire place,2027-01-31 00:00:00+00:00,7850,7477.42,372.58
+KTM382,Maharajgunj,Apartment,Entire place,2027-01-21 00:00:00+00:00,4200,5279.85,1079.85
+KTM046,New Road,Homestay,Private room,2027-02-12 00:00:00+00:00,3200,2730.56,469.44
+KTM153,Boudha,Apartment,Entire place,2027-01-01 00:00:00+00:00,2800,7375.06,4575.06
+KTM174,Dillibazar,Hotel,Private room,2026-12-21 00:00:00+00:00,5900,6087.46,187.46
+KTM125,Thamel,Apartment,Private room,2027-01-21 00:00:00+00:00,2550,5482.06,2932.06
+KTM382,Maharajgunj,Apartment,Entire place,2026-11-20 00:00:00+00:00,4500,5835.89,1335.89
+KTM370,Swayambhu,Guesthouse,Private room,2027-01-13 00:00:00+00:00,4500,1338.23,3161.77
+KTM375,Kalimati,Hotel,Shared room,2026-12-04 00:00:00+00:00,3350,3650.92,300.92
+KTM224,Dillibazar,Apartment,Entire place,2027-01-26 00:00:00+00:00,3850,5789.73,1939.73
+KTM232,Maharajgunj,Hostel,Private room,2026-12-23 00:00:00+00:00,1100,1903.13,803.13
+KTM077,Lazimpat,Homestay,Shared room,2026-11-18 00:00:00+00:00,2000,2724.62,724.62
+KTM102,Patan,Apartment,Entire place,2027-01-21 00:00:00+00:00,4900,5815.44,915.44
+KTM396,Kirtipur,Guesthouse,Entire place,2027-01-28 00:00:00+00:00,4600,5230.79,630.79
+KTM397,Lazimpat,Guesthouse,Private room,2027-01-11 00:00:00+00:00,1750,2753.43,1003.43
+KTM226,Gaushala,Hotel,Entire place,2027-02-06 00:00:00+00:00,7850,7468.99,381.01
+KTM141,Dillibazar,Serviced apartment,Entire place,2026-12-11 00:00:00+00:00,6750,9660.59,2910.59
+KTM085,Dillibazar,Guesthouse,Private room,2026-12-16 00:00:00+00:00,3050,3645.39,595.39
+KTM382,Maharajgunj,Apartment,Entire place,2026-12-07 00:00:00+00:00,4150,5891.22,1741.22
+KTM125,Thamel,Apartment,Private room,2026-12-14 00:00:00+00:00,2550,6023.02,3473.02
+KTM281,Gaushala,Apartment,Private room,2027-02-12 00:00:00+00:00,2650,5079.09,2429.09
+KTM083,New Road,Homestay,Private room,2026-11-25 00:00:00+00:00,1200,2687.6,1487.6
+KTM182,Gaushala,Homestay,Private room,2026-12-13 00:00:00+00:00,3150,3691.0,541.0
+KTM043,Maharajgunj,Hostel,Private room,2027-01-30 00:00:00+00:00,1000,1265.05,265.05
+KTM078,Swayambhu,Guesthouse,Shared room,2027-02-11 00:00:00+00:00,1800,-1461.18,3261.18
+KTM322,Thamel,Guesthouse,Private room,2027-02-03 00:00:00+00:00,3050,3825.29,775.29
+KTM233,New Road,Hotel,Private room,2026-11-23 00:00:00+00:00,2100,6807.95,4707.95
+KTM228,Gaushala,Homestay,Private room,2026-11-18 00:00:00+00:00,3050,3908.96,858.96
+KTM095,Chabahil,Hostel,Shared room,2026-11-25 00:00:00+00:00,350,987.16,637.16
+KTM079,Patan,Guesthouse,Shared room,2027-01-14 00:00:00+00:00,1300,447.16,852.84
+KTM281,Gaushala,Apartment,Private room,2026-12-15 00:00:00+00:00,2900,5634.08,2734.08
+KTM095,Chabahil,Hostel,Shared room,2026-12-26 00:00:00+00:00,400,862.43,462.43
+KTM153,Boudha,Apartment,Entire place,2027-02-12 00:00:00+00:00,2800,7341.82,4541.82
+KTM083,New Road,Homestay,Private room,2027-02-08 00:00:00+00:00,1150,2180.74,1030.74
+KTM102,Patan,Apartment,Entire place,2026-11-28 00:00:00+00:00,5350,6272.0,922.0
+KTM272,Boudha,Hotel,Shared room,2027-01-05 00:00:00+00:00,4650,4615.11,34.89
+KTM343,Boudha,Guesthouse,Private room,2027-01-06 00:00:00+00:00,4600,3875.71,724.29
+KTM194,Dillibazar,Hotel,Private room,2027-02-05 00:00:00+00:00,5500,5192.93,307.07
+KTM383,Maharajgunj,Homestay,Private room,2027-01-12 00:00:00+00:00,2600,2588.21,11.79
+KTM267,Kalimati,Hotel,Private room,2027-01-10 00:00:00+00:00,5650,4095.97,1554.03
+KTM133,Thamel,Serviced apartment,Private room,2027-02-10 00:00:00+00:00,7950,8203.17,253.17
+KTM105,Thamel,Guesthouse,Shared room,2026-12-18 00:00:00+00:00,650,2368.42,1718.42
+KTM224,Dillibazar,Apartment,Entire place,2027-02-06 00:00:00+00:00,4300,5768.21,1468.21
+KTM256,Kirtipur,Guesthouse,Private room,2027-01-26 00:00:00+00:00,1550,2468.53,918.53
+KTM211,Swayambhu,Apartment,Shared room,2026-11-22 00:00:00+00:00,1950,1365.15,584.85
+KTM177,Kalimati,Homestay,Private room,2027-01-07 00:00:00+00:00,2500,1761.76,738.24
+KTM057,Boudha,Homestay,Private room,2027-01-18 00:00:00+00:00,3500,3086.69,413.31
+KTM016,Swayambhu,Hotel,Private room,2026-12-30 00:00:00+00:00,6500,4833.77,1666.23
+KTM102,Patan,Apartment,Entire place,2027-02-09 00:00:00+00:00,5100,5825.42,725.42
+KTM386,Kalimati,Hostel,Shared room,2026-12-06 00:00:00+00:00,900,-744.92,1644.92
+KTM105,Thamel,Guesthouse,Shared room,2027-02-04 00:00:00+00:00,550,1791.05,1241.05
+KTM339,Gaushala,Apartment,Private room,2027-01-19 00:00:00+00:00,5350,4034.08,1315.92
+KTM142,Kirtipur,Homestay,Private room,2027-02-07 00:00:00+00:00,1900,1829.42,70.58
+KTM094,Lazimpat,Apartment,Entire place,2026-12-11 00:00:00+00:00,3200,6013.4,2813.4
+KTM290,Chabahil,Hotel,Shared room,2027-01-31 00:00:00+00:00,900,3942.01,3042.01
+KTM262,Boudha,Apartment,Entire place,2026-11-29 00:00:00+00:00,5900,7042.47,1142.47
+KTM115,Boudha,Homestay,Shared room,2026-12-02 00:00:00+00:00,2900,2730.79,169.21
+KTM001,Baneshwor,Apartment,Private room,2027-01-22 00:00:00+00:00,2650,3456.51,806.51
+KTM392,Thamel,Hostel,Shared room,2027-01-14 00:00:00+00:00,750,1963.54,1213.54
+KTM001,Baneshwor,Apartment,Private room,2026-12-12 00:00:00+00:00,2650,4021.99,1371.99
+KTM295,Boudha,Guesthouse,Private room,2027-02-09 00:00:00+00:00,3500,2781.65,718.35
+KTM233,New Road,Hotel,Private room,2027-01-03 00:00:00+00:00,2050,6236.14,4186.14
+KTM133,Thamel,Serviced apartment,Private room,2026-11-20 00:00:00+00:00,8550,8733.49,183.49
+KTM177,Kalimati,Homestay,Private room,2026-12-28 00:00:00+00:00,2550,2364.6,185.4
+KTM377,Patan,Hotel,Shared room,2026-12-27 00:00:00+00:00,2550,4793.47,2243.47
+KTM395,Lazimpat,Homestay,Private room,2027-02-07 00:00:00+00:00,2850,3015.18,165.18
+KTM295,Boudha,Guesthouse,Private room,2026-11-23 00:00:00+00:00,3650,3377.87,272.13
+KTM056,Patan,Hostel,Shared room,2026-11-25 00:00:00+00:00,850,2153.92,1303.92
+KTM034,Boudha,Hostel,Private room,2026-12-31 00:00:00+00:00,1650,2640.15,990.15
+KTM396,Kirtipur,Guesthouse,Entire place,2026-11-29 00:00:00+00:00,4950,5732.95,782.95

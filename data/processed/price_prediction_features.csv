@@ -1,0 +1,1001 @@
+property_id,city,neighbourhood,property_type,room_type,capacity,bedrooms,bathrooms,amenities,lead_time_days,stay_month,stay_day,stay_day_of_week,base_price_npr
+KTM032,Kathmandu,Boudha,Apartment,Entire place,4,1,1,Kitchenette;Airport shuttle;Garden;Rooftop terrace;Luggage storage;Kitchen;Daily housekeeping;Security,98,1,10,6,4100
+KTM027,Kathmandu,Kirtipur,Homestay,Shared room,4,1,1,Kitchen;Security;Free parking;Paid parking;Airport shuttle;Hot water,45,12,10,3,1850
+KTM076,Kathmandu,Baluwatar,Hostel,Shared room,7,1,3,Hot water;Heating;Air conditioning;Balcony;Security;Garden,18,11,25,2,350
+KTM011,Kathmandu,Kalimati,Guesthouse,Private room,1,1,2,Laundry;Heating;Hot water;Garden;Kitchen;24-hour reception;Workspace;Rooftop terrace;Paid parking,78,1,6,2,1100
+KTM223,Kathmandu,New Road,Guesthouse,Private room,2,1,2,Garden;Workspace;Daily housekeeping;Wi-Fi,50,11,28,5,3000
+KTM018,Kathmandu,Baneshwor,Apartment,Entire place,1,1,2,Airport shuttle;Kitchen;Security;Kitchenette;Balcony,39,12,24,3,3450
+KTM212,Kathmandu,Maharajgunj,Hotel,Private room,2,1,1,Heating;Wi-Fi;TV;Air conditioning;Breakfast,116,2,11,3,3300
+KTM372,Kathmandu,Boudha,Homestay,Private room,2,1,1,Kitchen;Breakfast;Garden;Wi-Fi;Free parking;Heating;Luggage storage;Hot water;Daily housekeeping,131,2,10,2,4450
+KTM117,Kathmandu,Kalimati,Hostel,Private room,3,1,1,Garden;Wi-Fi;Kitchenette;Rooftop terrace;Free parking;Balcony;Security;Laundry,88,1,16,5,1000
+KTM074,Kathmandu,Kupondole,Apartment,Entire place,2,1,1,Free parking;Breakfast;Hot water;24-hour reception;Airport shuttle,94,2,12,4,3250
+KTM280,Kathmandu,Chabahil,Homestay,Private room,2,1,1,Balcony;Workspace;Kitchen;Paid parking;TV;Wi-Fi;Rooftop terrace;Daily housekeeping,44,11,30,0,2650
+KTM037,Kathmandu,New Road,Guesthouse,Entire place,5,4,2,Heating;Workspace;Luggage storage;Laundry;Kitchen;Garden;Kitchenette,83,1,7,3,5800
+KTM137,Kathmandu,Baneshwor,Hostel,Shared room,12,1,2,Security;Workspace;Airport shuttle;Balcony,47,12,23,2,1100
+KTM106,Kathmandu,Boudha,Hostel,Shared room,12,2,2,Laundry;Kitchen;Garden;Luggage storage,63,1,2,5,650
+KTM156,Kathmandu,Kalimati,Guesthouse,Shared room,7,1,1,Free parking;Kitchenette;Garden;Paid parking;Laundry;Workspace;Air conditioning;Wi-Fi;Luggage storage,112,2,7,6,750
+KTM322,Kathmandu,Thamel,Guesthouse,Private room,1,1,1,Free parking;Breakfast;Kitchenette;Heating;Laundry;Daily housekeeping,63,12,10,3,3450
+KTM108,Kathmandu,Patan,Hotel,Shared room,6,2,1,Kitchenette;24-hour reception;Luggage storage;Balcony,47,12,10,3,3350
+KTM338,Kathmandu,Chabahil,Guesthouse,Shared room,10,1,1,Paid parking;Kitchen;Airport shuttle;Rooftop terrace;Security;Hot water;Kitchenette;Workspace;TV;Daily housekeeping,88,2,9,1,1050
+KTM356,Kathmandu,Maharajgunj,Serviced apartment,Private room,2,1,1,Air conditioning;Free parking;Wi-Fi;Security;Daily housekeeping;Breakfast;Kitchenette;TV,64,12,6,6,7450
+KTM384,Kathmandu,New Road,Hotel,Shared room,11,1,1,Wi-Fi;Airport shuttle;24-hour reception;Workspace;Breakfast;Hot water;Daily housekeeping;Paid parking;Luggage storage,95,2,3,2,2100
+KTM300,Kathmandu,Boudha,Apartment,Entire place,7,3,1,Air conditioning;Free parking;Kitchen;TV,75,1,20,2,2850
+KTM059,Kathmandu,Kirtipur,Hostel,Shared room,7,1,2,Kitchenette;Heating;Paid parking;Balcony;Workspace;Wi-Fi;Luggage storage;Laundry,124,2,3,2,400
+KTM055,Kathmandu,Dillibazar,Apartment,Entire place,4,3,1,Airport shuttle;Luggage storage;Paid parking;Balcony;Laundry;Heating;Daily housekeeping;Security,77,1,5,1,6100
+KTM208,Kathmandu,Thamel,Serviced apartment,Entire place,4,1,1,Balcony;Laundry;Workspace;Daily housekeeping;Free parking;24-hour reception,42,12,19,5,15100
+KTM389,Kathmandu,Baneshwor,Guesthouse,Private room,2,1,1,Rooftop terrace;TV;Laundry;Kitchenette;Air conditioning;Breakfast;Garden;Hot water;Kitchen,121,1,31,6,2900
+KTM315,Kathmandu,Kupondole,Apartment,Entire place,1,1,1,TV;Rooftop terrace;24-hour reception;Balcony;Free parking;Heating,19,12,4,4,6700
+KTM125,Kathmandu,Thamel,Apartment,Private room,1,1,1,Luggage storage;Air conditioning;Garden;Wi-Fi;Balcony;Airport shuttle;TV;Heating;Breakfast,68,1,12,1,2550
+KTM127,Kathmandu,Patan,Apartment,Shared room,11,1,1,Security;Breakfast;Air conditioning;Rooftop terrace,91,1,28,3,2900
+KTM011,Kathmandu,Kalimati,Guesthouse,Private room,1,1,2,Laundry;Heating;Hot water;Garden;Kitchen;24-hour reception;Workspace;Rooftop terrace;Paid parking,59,1,13,2,1000
+KTM023,Kathmandu,Kalimati,Hotel,Private room,2,1,1,Air conditioning;Garden;Airport shuttle;Paid parking;Free parking;Hot water;Kitchenette;Balcony;Daily housekeeping,94,1,24,6,8750
+KTM289,Kathmandu,Kupondole,Guesthouse,Private room,1,1,1,Laundry;Free parking;Heating;Airport shuttle;Wi-Fi;Paid parking;Kitchenette;Daily housekeeping,36,11,21,5,3800
+KTM212,Kathmandu,Maharajgunj,Hotel,Private room,2,1,1,Heating;Wi-Fi;TV;Air conditioning;Breakfast,63,12,16,2,3650
+KTM081,Kathmandu,Gaushala,Hostel,Shared room,11,2,3,Heating;Rooftop terrace;Workspace;Breakfast;Kitchenette;Kitchen;Free parking;Luggage storage,28,11,25,2,1000
+KTM051,Kathmandu,Baluwatar,Hostel,Private room,2,1,1,Laundry;Rooftop terrace;Airport shuttle;Balcony;Luggage storage,52,11,30,0,750
+KTM298,Kathmandu,New Road,Apartment,Entire place,2,1,3,Laundry;TV;Heating;24-hour reception;Daily housekeeping;Kitchenette;Rooftop terrace;Kitchen,52,1,4,0,4650
+KTM046,Kathmandu,New Road,Homestay,Private room,1,1,1,Luggage storage;Kitchen;Free parking;Wi-Fi,82,1,3,6,3000
+KTM334,Kathmandu,Thamel,Apartment,Entire place,7,2,2,Kitchen;TV;24-hour reception;Air conditioning;Garden,90,1,10,6,3350
+KTM163,Kathmandu,Baluwatar,Homestay,Private room,2,1,1,Breakfast;Rooftop terrace;Wi-Fi;Air conditioning;Balcony;Free parking,86,1,30,5,2300
+KTM240,Kathmandu,Dillibazar,Guesthouse,Shared room,7,1,1,Hot water;Breakfast;Garden;Daily housekeeping;Rooftop terrace;Kitchen;Free parking,47,12,7,0,1900
+KTM254,Kathmandu,Chabahil,Hotel,Entire place,6,3,1,Rooftop terrace;24-hour reception;Workspace;Wi-Fi,22,11,23,0,6950
+KTM243,Kathmandu,Boudha,Guesthouse,Private room,2,1,1,Luggage storage;Kitchenette;Heating;TV;Rooftop terrace;Daily housekeeping,41,11,24,1,1550
+KTM027,Kathmandu,Kirtipur,Homestay,Shared room,4,1,1,Kitchen;Security;Free parking;Paid parking;Airport shuttle;Hot water,92,2,5,4,1950
+KTM007,Kathmandu,Kalimati,Apartment,Entire place,4,1,2,Luggage storage;Kitchen;Rooftop terrace;Kitchenette;Workspace;Paid parking;Balcony,108,2,11,3,2500
+KTM078,Kathmandu,Swayambhu,Guesthouse,Shared room,11,2,3,24-hour reception;Rooftop terrace;TV;Security;Wi-Fi;Kitchen;Daily housekeeping,91,1,29,4,1900
+KTM055,Kathmandu,Dillibazar,Apartment,Entire place,4,3,1,Airport shuttle;Luggage storage;Paid parking;Balcony;Laundry;Heating;Daily housekeeping;Security,28,11,20,4,7200
+KTM391,Kathmandu,New Road,Apartment,Private room,2,1,1,Hot water;Balcony;24-hour reception;Breakfast;Workspace;Garden;Air conditioning,90,1,30,5,2000
+KTM157,Kathmandu,New Road,Hostel,Shared room,11,1,1,Daily housekeeping;Kitchenette;Heating;Free parking;Paid parking;Luggage storage,48,12,22,1,700
+KTM039,Kathmandu,Lazimpat,Homestay,Entire place,2,1,2,Balcony;Breakfast;24-hour reception;Kitchen;Airport shuttle;TV;Garden;Luggage storage;Security,67,12,9,2,2250
+KTM239,Kathmandu,Thamel,Hostel,Shared room,10,2,1,24-hour reception;Free parking;Heating;Hot water;Airport shuttle;Breakfast,85,2,3,2,1250
+KTM330,Kathmandu,Lazimpat,Apartment,Entire place,1,1,2,Garden;Daily housekeeping;24-hour reception;Air conditioning;Workspace;Airport shuttle;Free parking,15,11,23,0,4450
+KTM398,Kathmandu,Baneshwor,Serviced apartment,Entire place,9,4,1,Air conditioning;Breakfast;Paid parking;Airport shuttle;Hot water;Daily housekeeping,81,1,26,1,3650
+KTM163,Kathmandu,Baluwatar,Homestay,Private room,2,1,1,Breakfast;Rooftop terrace;Wi-Fi;Air conditioning;Balcony;Free parking,80,12,27,6,2300
+KTM133,Kathmandu,Thamel,Serviced apartment,Private room,2,1,1,Laundry;Hot water;TV;Paid parking,64,1,4,0,7350
+KTM197,Kathmandu,Patan,Guesthouse,Private room,2,1,1,Hot water;Heating;Kitchenette;Air conditioning;Garden;24-hour reception,127,2,5,4,1800
+KTM144,Kathmandu,Lazimpat,Guesthouse,Private room,1,1,1,Luggage storage;Paid parking;Hot water;Breakfast;Daily housekeeping,49,11,30,0,6750
+KTM249,Kathmandu,Gaushala,Apartment,Private room,2,1,1,Breakfast;Kitchenette;Paid parking;Rooftop terrace;Heating;Garden;Daily housekeeping;Air conditioning;Wi-Fi,43,12,7,0,6000
+KTM360,Kathmandu,Kalimati,Hostel,Private room,1,1,1,Breakfast;Rooftop terrace;Free parking;Luggage storage,46,12,14,0,1450
+KTM128,Kathmandu,Maharajgunj,Apartment,Private room,1,1,1,Airport shuttle;Air conditioning;Workspace;Hot water;Kitchen,90,1,14,3,4400
+KTM024,Kathmandu,Gaushala,Homestay,Private room,2,1,1,Free parking;Wi-Fi;Hot water;Rooftop terrace;TV;Breakfast,42,12,9,2,2800
+KTM330,Kathmandu,Lazimpat,Apartment,Entire place,1,1,2,Garden;Daily housekeeping;24-hour reception;Air conditioning;Workspace;Airport shuttle;Free parking,33,12,15,1,4750
+KTM220,Kathmandu,Kalimati,Apartment,Private room,2,1,2,Workspace;Garden;Heating;Security,88,1,11,0,1850
+KTM373,Kathmandu,Thamel,Hostel,Shared room,6,1,3,Breakfast;Airport shuttle;Garden;TV;Hot water;Balcony;Heating;Kitchenette;24-hour reception,62,12,3,3,500
+KTM020,Kathmandu,Baneshwor,Homestay,Private room,2,1,2,Garden;Paid parking;Breakfast;Workspace;Wi-Fi,125,2,8,0,3250
+KTM181,Kathmandu,Boudha,Hostel,Shared room,4,2,2,Heating;TV;Rooftop terrace;Workspace;Wi-Fi;Free parking;Air conditioning;Kitchenette,27,11,26,3,700
+KTM058,Kathmandu,Kirtipur,Hostel,Shared room,4,1,2,Daily housekeeping;Balcony;Air conditioning;Free parking;Garden;Heating;Laundry,45,11,23,0,800
+KTM021,Kathmandu,Kupondole,Apartment,Entire place,7,2,1,Air conditioning;Free parking;Rooftop terrace;Daily housekeeping;Breakfast,85,2,6,5,4800
+KTM160,Kathmandu,Maharajgunj,Hostel,Entire place,4,1,2,Heating;Daily housekeeping;Balcony;Breakfast;Security;Rooftop terrace;Hot water;Luggage storage,36,11,23,0,1350
+KTM146,Kathmandu,Gaushala,Homestay,Private room,3,1,2,Paid parking;Hot water;Airport shuttle;Luggage storage,88,1,5,1,1650
+KTM314,Kathmandu,Thamel,Homestay,Private room,2,1,2,Hot water;Luggage storage;Paid parking;Security;Workspace;Air conditioning;Garden;Airport shuttle;24-hour reception,60,12,26,5,2600
+KTM040,Kathmandu,Maharajgunj,Apartment,Entire place,3,1,3,Air conditioning;Daily housekeeping;Kitchen;Free parking;Heating;Breakfast;Luggage storage;24-hour reception;Airport shuttle,46,11,24,1,3650
+KTM294,Kathmandu,Dillibazar,Guesthouse,Shared room,5,1,1,Laundry;Wi-Fi;Hot water;Garden;Paid parking;Heating;Luggage storage;Kitchenette;Daily housekeeping,73,1,9,5,2100
+KTM117,Kathmandu,Kalimati,Hostel,Private room,3,1,1,Garden;Wi-Fi;Kitchenette;Rooftop terrace;Free parking;Balcony;Security;Laundry,94,2,8,0,950
+KTM211,Kathmandu,Swayambhu,Apartment,Shared room,12,1,2,Air conditioning;Rooftop terrace;Luggage storage;Garden;Wi-Fi;Heating;Daily housekeeping,83,1,11,0,1850
+KTM185,Kathmandu,Kalimati,Homestay,Private room,3,1,2,Security;TV;Airport shuttle;Hot water;Kitchenette;Breakfast;Heating;Garden;Rooftop terrace,75,12,24,3,1000
+KTM289,Kathmandu,Kupondole,Guesthouse,Private room,1,1,1,Laundry;Free parking;Heating;Airport shuttle;Wi-Fi;Paid parking;Kitchenette;Daily housekeeping,1,11,15,6,3450
+KTM203,Kathmandu,Patan,Hotel,Private room,3,1,1,Free parking;Garden;Workspace;Balcony;Rooftop terrace,17,11,21,5,6250
+KTM144,Kathmandu,Lazimpat,Guesthouse,Private room,1,1,1,Luggage storage;Paid parking;Hot water;Breakfast;Daily housekeeping,90,1,7,3,5950
+KTM044,Kathmandu,New Road,Guesthouse,Private room,2,1,1,Laundry;Kitchenette;Air conditioning;24-hour reception;Daily housekeeping,81,12,31,3,2150
+KTM216,Kathmandu,Lazimpat,Homestay,Private room,2,1,1,Wi-Fi;Daily housekeeping;Luggage storage;Breakfast,35,12,10,3,2500
+KTM235,Kathmandu,Kalimati,Serviced apartment,Entire place,5,2,2,Free parking;Garden;Kitchen;TV;Heating;Wi-Fi;Security;24-hour reception,69,1,6,2,11450
+KTM370,Kathmandu,Swayambhu,Guesthouse,Private room,2,1,2,Workspace;Heating;Garden;Airport shuttle;TV,124,2,11,3,4350
+KTM151,Kathmandu,Chabahil,Hotel,Private room,3,1,1,Heating;Rooftop terrace;Air conditioning;Balcony;Laundry,94,1,27,2,2350
+KTM245,Kathmandu,Kalimati,Guesthouse,Private room,2,1,2,24-hour reception;TV;Garden;Paid parking;Luggage storage;Rooftop terrace;Air conditioning;Free parking;Daily housekeeping,35,12,13,6,3500
+KTM109,Kathmandu,Chabahil,Guesthouse,Private room,2,1,1,Security;Heating;Free parking;Luggage storage;Air conditioning;Wi-Fi;Daily housekeeping;TV;Laundry,15,11,27,4,2400
+KTM251,Kathmandu,Kalimati,Hostel,Shared room,7,1,3,Garden;Luggage storage;Airport shuttle;Kitchen;Workspace;TV;Daily housekeeping;Paid parking;Air conditioning,64,12,10,3,350
+KTM027,Kathmandu,Kirtipur,Homestay,Shared room,4,1,1,Kitchen;Security;Free parking;Paid parking;Airport shuttle;Hot water,83,1,2,5,1950
+KTM034,Kathmandu,Boudha,Hostel,Private room,2,1,1,Hot water;Air conditioning;Daily housekeeping;Airport shuttle;24-hour reception;Security;Workspace;Luggage storage,28,12,10,3,1650
+KTM331,Kathmandu,New Road,Guesthouse,Shared room,12,1,2,Rooftop terrace;Free parking;Balcony;Kitchenette;TV;Heating,106,1,19,1,950
+KTM364,Kathmandu,New Road,Hotel,Private room,2,1,1,24-hour reception;Garden;Luggage storage;TV;Kitchen;Hot water;Free parking,65,12,8,1,8400
+KTM079,Kathmandu,Patan,Guesthouse,Shared room,11,1,2,Laundry;Daily housekeeping;Rooftop terrace;Kitchenette,60,1,3,6,1400
+KTM373,Kathmandu,Thamel,Hostel,Shared room,6,1,3,Breakfast;Airport shuttle;Garden;TV;Hot water;Balcony;Heating;Kitchenette;24-hour reception,77,12,30,2,550
+KTM193,Kathmandu,Chabahil,Homestay,Private room,3,1,1,TV;Workspace;24-hour reception;Paid parking;Breakfast;Security;Luggage storage;Daily housekeeping,12,11,22,6,3500
+KTM167,Kathmandu,Baneshwor,Hotel,Private room,2,1,2,Balcony;Free parking;Breakfast;Heating;TV;Laundry;Rooftop terrace;Security;Daily housekeeping,58,12,10,3,5900
+KTM164,Kathmandu,Maharajgunj,Guesthouse,Entire place,3,2,2,Kitchenette;Paid parking;Hot water;Laundry;Garden;24-hour reception,89,1,24,6,2250
+KTM097,Kathmandu,Boudha,Guesthouse,Private room,1,1,2,Daily housekeeping;Kitchenette;Free parking;Breakfast;Hot water;24-hour reception;Balcony;Luggage storage,114,1,31,6,1150
+KTM164,Kathmandu,Maharajgunj,Guesthouse,Entire place,3,2,2,Kitchenette;Paid parking;Hot water;Laundry;Garden;24-hour reception,62,1,6,2,2350
+KTM061,Kathmandu,Baluwatar,Hotel,Shared room,5,1,2,Breakfast;Air conditioning;TV;Paid parking;Heating,92,1,1,4,1400
+KTM314,Kathmandu,Thamel,Homestay,Private room,2,1,2,Hot water;Luggage storage;Paid parking;Security;Workspace;Air conditioning;Garden;Airport shuttle;24-hour reception,73,1,25,0,2350
+KTM193,Kathmandu,Chabahil,Homestay,Private room,3,1,1,TV;Workspace;24-hour reception;Paid parking;Breakfast;Security;Luggage storage;Daily housekeeping,119,2,8,0,3200
+KTM227,Kathmandu,Kupondole,Apartment,Entire place,3,1,1,Garden;Security;Hot water;Balcony;Wi-Fi,114,1,26,1,8050
+KTM120,Kathmandu,Kirtipur,Guesthouse,Private room,1,1,1,Paid parking;Heating;Laundry;Security,2,11,15,6,2450
+KTM030,Kathmandu,Baneshwor,Homestay,Private room,2,1,1,Paid parking;Daily housekeeping;Wi-Fi;Security;Air conditioning;Rooftop terrace;Balcony;Free parking,41,12,3,3,2000
+KTM305,Kathmandu,Swayambhu,Apartment,Entire place,2,1,1,Luggage storage;Garden;Air conditioning;Kitchenette;TV;Security,98,1,13,2,5650
+KTM206,Kathmandu,Dillibazar,Serviced apartment,Entire place,7,2,2,Workspace;Kitchenette;Airport shuttle;Kitchen;Hot water;Paid parking;Laundry,26,11,23,0,12950
+KTM049,Kathmandu,Kalimati,Apartment,Entire place,4,1,1,Breakfast;Heating;Airport shuttle;Air conditioning;24-hour reception;Free parking;Kitchenette,44,12,7,0,4900
+KTM397,Kathmandu,Lazimpat,Guesthouse,Private room,2,1,1,Rooftop terrace;Free parking;Laundry;Daily housekeeping;Balcony;Kitchen;Heating;Security;TV,78,12,22,1,2050
+KTM242,Kathmandu,Baluwatar,Guesthouse,Private room,2,1,1,Luggage storage;Airport shuttle;Laundry;Workspace;Paid parking;Garden;Balcony,53,12,9,2,2000
+KTM029,Kathmandu,New Road,Apartment,Entire place,4,1,1,Airport shuttle;Wi-Fi;Balcony;Free parking;Daily housekeeping;Kitchenette;24-hour reception;Air conditioning,25,11,30,0,5800
+KTM299,Kathmandu,Lazimpat,Guesthouse,Private room,1,1,1,Kitchenette;Wi-Fi;Rooftop terrace;Paid parking;Kitchen;Balcony;Workspace;Air conditioning,44,11,20,4,4050
+KTM372,Kathmandu,Boudha,Homestay,Private room,2,1,1,Kitchen;Breakfast;Garden;Wi-Fi;Free parking;Heating;Luggage storage;Hot water;Daily housekeeping,78,1,29,4,4500
+KTM272,Kathmandu,Boudha,Hotel,Shared room,6,1,1,Kitchen;Wi-Fi;Rooftop terrace;Laundry,62,1,1,4,4600
+KTM159,Kathmandu,Dillibazar,Hostel,Shared room,11,1,2,Hot water;Security;Air conditioning;Heating;Laundry;Luggage storage;Rooftop terrace;Airport shuttle;Breakfast,93,1,10,6,650
+KTM265,Kathmandu,Thamel,Guesthouse,Private room,2,1,1,Balcony;24-hour reception;Free parking;Hot water;Airport shuttle;Workspace;Breakfast;Garden,47,12,22,1,3900
+KTM363,Kathmandu,Swayambhu,Hotel,Private room,3,1,1,Air conditioning;Kitchen;Heating;Free parking;Balcony;24-hour reception;Wi-Fi;Rooftop terrace;Hot water;Daily housekeeping,37,11,18,2,1100
+KTM365,Kathmandu,Chabahil,Hotel,Private room,2,1,2,Paid parking;Wi-Fi;24-hour reception;Garden;TV;Kitchenette;Workspace;Kitchen,50,11,27,4,2450
+KTM137,Kathmandu,Baneshwor,Hostel,Shared room,12,1,2,Security;Workspace;Airport shuttle;Balcony,78,1,19,1,1150
+KTM306,Kathmandu,Patan,Hotel,Private room,2,1,1,TV;Airport shuttle;Heating;24-hour reception;Daily housekeeping;Laundry;Wi-Fi,80,1,15,4,1850
+KTM066,Kathmandu,New Road,Apartment,Private room,1,1,1,Kitchenette;Workspace;Garden;Heating;Airport shuttle;Luggage storage,85,1,22,4,5250
+KTM367,Kathmandu,New Road,Homestay,Private room,2,1,1,Rooftop terrace;Workspace;Luggage storage;Hot water;Kitchen;Free parking;Airport shuttle,87,2,2,1,3650
+KTM287,Kathmandu,Kalimati,Homestay,Private room,3,1,1,Kitchen;Security;Laundry;Air conditioning;Wi-Fi;Airport shuttle;Paid parking;Balcony,37,12,9,2,2500
+KTM290,Kathmandu,Chabahil,Hotel,Shared room,9,1,2,Kitchen;Security;Balcony;Garden;Kitchenette;Hot water;Paid parking;Air conditioning;Rooftop terrace;Daily housekeeping,30,12,10,3,1100
+KTM028,Kathmandu,Dillibazar,Hostel,Shared room,4,1,1,Daily housekeeping;Security;TV;Rooftop terrace;Luggage storage;Breakfast;Laundry;Free parking,107,2,6,5,350
+KTM127,Kathmandu,Patan,Apartment,Shared room,11,1,1,Security;Breakfast;Air conditioning;Rooftop terrace,52,12,22,1,3200
+KTM206,Kathmandu,Dillibazar,Serviced apartment,Entire place,7,2,2,Workspace;Kitchenette;Airport shuttle;Kitchen;Hot water;Paid parking;Laundry,64,1,5,1,12200
+KTM220,Kathmandu,Kalimati,Apartment,Private room,2,1,2,Workspace;Garden;Heating;Security,69,1,3,6,1850
+KTM219,Kathmandu,Swayambhu,Apartment,Entire place,7,2,1,Breakfast;Daily housekeeping;Hot water;Paid parking;Wi-Fi,89,1,28,3,3650
+KTM031,Kathmandu,Baneshwor,Hotel,Shared room,9,1,3,Garden;TV;Daily housekeeping;Workspace;Kitchenette;Airport shuttle;Balcony;Heating;Hot water,57,12,9,2,4050
+KTM103,Kathmandu,Baluwatar,Serviced apartment,Private room,1,1,1,Heating;Rooftop terrace;TV;Hot water,28,12,2,2,4850
+KTM292,Kathmandu,Boudha,Apartment,Entire place,4,1,2,Security;Breakfast;Laundry;Hot water;Garden;Wi-Fi;Balcony;Workspace,105,1,24,6,7850
+KTM323,Kathmandu,Kupondole,Serviced apartment,Entire place,7,2,1,Workspace;Hot water;Security;Laundry;Garden;Balcony,87,12,31,3,5650
+KTM022,Kathmandu,Boudha,Guesthouse,Private room,3,1,1,Garden;Security;Heating;Hot water;Daily housekeeping,39,11,22,6,5950
+KTM193,Kathmandu,Chabahil,Homestay,Private room,3,1,1,TV;Workspace;24-hour reception;Paid parking;Breakfast;Security;Luggage storage;Daily housekeeping,47,12,27,6,3500
+KTM210,Kathmandu,Lazimpat,Homestay,Private room,3,1,1,Laundry;Garden;Workspace;Airport shuttle;Luggage storage,21,12,3,3,5300
+KTM234,Kathmandu,Swayambhu,Hotel,Private room,2,1,1,Free parking;Laundry;Kitchenette;Airport shuttle;Security;Wi-Fi;Hot water;Daily housekeeping;Breakfast,77,1,25,0,5600
+KTM033,Kathmandu,Kupondole,Homestay,Private room,2,1,1,Airport shuttle;Paid parking;TV;24-hour reception;Luggage storage;Free parking,109,2,3,2,3700
+KTM014,Kathmandu,Boudha,Apartment,Private room,2,1,2,Workspace;Hot water;24-hour reception;Laundry;Breakfast;Heating;Paid parking;Wi-Fi,106,2,11,3,6850
+KTM318,Kathmandu,Baneshwor,Guesthouse,Private room,2,1,2,TV;Airport shuttle;Kitchen;Luggage storage;24-hour reception;Heating;Kitchenette,75,12,20,6,900
+KTM031,Kathmandu,Baneshwor,Hotel,Shared room,9,1,3,Garden;TV;Daily housekeeping;Workspace;Kitchenette;Airport shuttle;Balcony;Heating;Hot water,81,1,12,1,3950
+KTM374,Kathmandu,Thamel,Guesthouse,Shared room,8,1,1,Laundry;Garden;Heating;TV;Wi-Fi;Paid parking,46,12,18,4,2450
+KTM291,Kathmandu,New Road,Apartment,Private room,2,1,1,Airport shuttle;Kitchen;Hot water;TV;Heating,57,12,25,4,5850
+KTM269,Kathmandu,New Road,Hostel,Entire place,7,2,3,Airport shuttle;Rooftop terrace;24-hour reception;Free parking;Wi-Fi;Hot water;Garden;Balcony;Paid parking,32,11,16,0,2050
+KTM344,Kathmandu,Kalimati,Hostel,Shared room,7,1,1,Airport shuttle;Wi-Fi;Daily housekeeping;Rooftop terrace;Kitchen;Luggage storage,30,12,5,5,600
+KTM195,Kathmandu,Kirtipur,Apartment,Private room,2,1,1,Heating;Kitchenette;Luggage storage;Daily housekeeping;Hot water;Air conditioning;Airport shuttle;TV;Breakfast,109,1,23,5,2900
+KTM004,Kathmandu,Baluwatar,Hotel,Shared room,12,1,3,Free parking;Security;Rooftop terrace;Laundry;24-hour reception,80,1,10,6,4500
+KTM200,Kathmandu,Thamel,Hotel,Entire place,3,2,2,Kitchen;Paid parking;Daily housekeeping;Garden,78,12,24,3,17400
+KTM188,Kathmandu,Baluwatar,Apartment,Entire place,6,2,2,Air conditioning;Free parking;Airport shuttle;Daily housekeeping;Breakfast;Kitchen;Wi-Fi,88,12,29,1,8250
+KTM005,Kathmandu,Dillibazar,Hotel,Shared room,12,1,1,Kitchenette;Daily housekeeping;Airport shuttle;Wi-Fi,36,11,19,3,2300
+KTM361,Kathmandu,Chabahil,Hotel,Private room,2,1,1,24-hour reception;Air conditioning;Laundry;Wi-Fi;Airport shuttle;Hot water,57,1,7,3,5950
+KTM266,Kathmandu,Maharajgunj,Serviced apartment,Entire place,4,1,3,Heating;Kitchen;Air conditioning;Balcony;Free parking;24-hour reception;TV;Workspace,45,11,26,3,4750
+KTM074,Kathmandu,Kupondole,Apartment,Entire place,2,1,1,Free parking;Breakfast;Hot water;24-hour reception;Airport shuttle,45,12,2,2,3250
+KTM384,Kathmandu,New Road,Hotel,Shared room,11,1,1,Wi-Fi;Airport shuttle;24-hour reception;Workspace;Breakfast;Hot water;Daily housekeeping;Paid parking;Luggage storage,104,1,27,2,2150
+KTM248,Kathmandu,Kirtipur,Homestay,Private room,2,1,1,Garden;Daily housekeeping;Kitchen;24-hour reception;Airport shuttle,86,2,8,0,2550
+KTM069,Kathmandu,Kalimati,Hotel,Private room,2,1,2,Kitchenette;Hot water;Kitchen;Workspace;Garden;Breakfast;Rooftop terrace;Laundry,88,1,6,2,5800
+KTM363,Kathmandu,Swayambhu,Hotel,Private room,3,1,1,Air conditioning;Kitchen;Heating;Free parking;Balcony;24-hour reception;Wi-Fi;Rooftop terrace;Hot water;Daily housekeeping,55,12,14,0,1200
+KTM092,Kathmandu,Kupondole,Apartment,Entire place,2,1,1,Garden;Laundry;Wi-Fi;Workspace;Airport shuttle;Security;Kitchenette,77,12,25,4,7550
+KTM334,Kathmandu,Thamel,Apartment,Entire place,7,2,2,Kitchen;TV;24-hour reception;Air conditioning;Garden,78,1,9,5,3650
+KTM323,Kathmandu,Kupondole,Serviced apartment,Entire place,7,2,1,Workspace;Hot water;Security;Laundry;Garden;Balcony,56,12,24,3,5050
+KTM010,Kathmandu,Baluwatar,Guesthouse,Shared room,12,1,3,Airport shuttle;TV;Paid parking;Free parking;Luggage storage;Security;Wi-Fi;Daily housekeeping,46,11,20,4,850
+KTM052,Kathmandu,Patan,Guesthouse,Private room,3,1,1,Wi-Fi;Daily housekeeping;Workspace;Kitchen;Breakfast;Security;Laundry;Airport shuttle;TV,93,1,24,6,1450
+KTM369,Kathmandu,Patan,Hotel,Entire place,3,2,1,Kitchen;Kitchenette;Heating;24-hour reception;Air conditioning;Breakfast;Wi-Fi;Garden;Daily housekeeping,74,1,27,2,2500
+KTM107,Kathmandu,New Road,Serviced apartment,Private room,3,1,1,Kitchenette;Air conditioning;Breakfast;Hot water,111,1,31,6,11000
+KTM126,Kathmandu,Dillibazar,Homestay,Private room,2,1,1,Heating;Luggage storage;Wi-Fi;Balcony;Security;Air conditioning;Laundry;Workspace,99,2,4,3,3600
+KTM343,Kathmandu,Boudha,Guesthouse,Private room,2,1,1,Workspace;Kitchenette;Heating;Kitchen;Hot water;Garden;Laundry;Security;Daily housekeeping,120,2,12,4,4650
+KTM042,Kathmandu,Swayambhu,Apartment,Entire place,7,2,1,Free parking;TV;24-hour reception;Hot water,75,1,7,3,5000
+KTM265,Kathmandu,Thamel,Guesthouse,Private room,2,1,1,Balcony;24-hour reception;Free parking;Hot water;Airport shuttle;Workspace;Breakfast;Garden,52,1,3,6,3500
+KTM053,Kathmandu,New Road,Serviced apartment,Entire place,5,3,2,Air conditioning;Paid parking;Airport shuttle;Kitchen,23,11,19,3,11050
+KTM085,Kathmandu,Dillibazar,Guesthouse,Private room,2,1,1,Luggage storage;Kitchen;Airport shuttle;Breakfast,102,1,19,1,2700
+KTM293,Kathmandu,Kirtipur,Homestay,Private room,2,1,1,Free parking;Kitchen;Air conditioning;Security;Balcony;Wi-Fi;Heating,47,11,20,4,3950
+KTM272,Kathmandu,Boudha,Hotel,Shared room,6,1,1,Kitchen;Wi-Fi;Rooftop terrace;Laundry,37,12,9,2,4500
+KTM084,Kathmandu,Gaushala,Serviced apartment,Private room,2,1,2,Laundry;Wi-Fi;Hot water;Breakfast;Security;Free parking;Rooftop terrace;Workspace,46,12,10,3,9450
+KTM038,Kathmandu,Gaushala,Apartment,Entire place,2,1,1,Garden;Breakfast;Paid parking;Workspace;Wi-Fi;Security;Balcony,45,12,13,6,4950
+KTM159,Kathmandu,Dillibazar,Hostel,Shared room,11,1,2,Hot water;Security;Air conditioning;Heating;Laundry;Luggage storage;Rooftop terrace;Airport shuttle;Breakfast,39,12,13,6,700
+KTM165,Kathmandu,Kupondole,Apartment,Entire place,3,1,1,Luggage storage;Wi-Fi;Balcony;Breakfast;24-hour reception;Heating;Security,74,12,26,5,8450
+KTM021,Kathmandu,Kupondole,Apartment,Entire place,7,2,1,Air conditioning;Free parking;Rooftop terrace;Daily housekeeping;Breakfast,41,12,13,6,4900
+KTM069,Kathmandu,Kalimati,Hotel,Private room,2,1,2,Kitchenette;Hot water;Kitchen;Workspace;Garden;Breakfast;Rooftop terrace;Laundry,28,12,13,6,5900
+KTM297,Kathmandu,Boudha,Hostel,Shared room,4,2,2,Laundry;Breakfast;Luggage storage;Balcony;Security;Paid parking;Airport shuttle;Free parking,101,1,22,4,450
+KTM114,Kathmandu,Swayambhu,Guesthouse,Private room,1,1,1,Kitchen;Rooftop terrace;Security;Airport shuttle,20,11,23,0,3800
+KTM381,Kathmandu,Boudha,Guesthouse,Private room,1,1,2,Hot water;Free parking;Kitchen;Rooftop terrace;Security;Wi-Fi;Workspace;Breakfast;Daily housekeeping,56,12,24,3,6450
+KTM315,Kathmandu,Kupondole,Apartment,Entire place,1,1,1,TV;Rooftop terrace;24-hour reception;Balcony;Free parking;Heating,97,1,24,6,6150
+KTM311,Kathmandu,Thamel,Hotel,Entire place,4,2,1,Laundry;Balcony;Security;Breakfast;Luggage storage;TV;Air conditioning;Rooftop terrace;Paid parking,62,12,24,3,7450
+KTM201,Kathmandu,Lazimpat,Hostel,Shared room,8,1,3,Hot water;Security;Wi-Fi;24-hour reception;Free parking;Luggage storage,1,11,15,6,400
+KTM074,Kathmandu,Kupondole,Apartment,Entire place,2,1,1,Free parking;Breakfast;Hot water;24-hour reception;Airport shuttle,80,1,6,2,3100
+KTM378,Kathmandu,Lazimpat,Serviced apartment,Entire place,1,1,1,Free parking;Workspace;Air conditioning;Wi-Fi;Balcony;Daily housekeeping;Garden;Breakfast;24-hour reception,64,12,18,4,16350
+KTM113,Kathmandu,Kalimati,Hostel,Shared room,5,1,2,Heating;24-hour reception;Wi-Fi;Free parking;Laundry;Kitchen;Luggage storage,76,12,28,0,350
+KTM239,Kathmandu,Thamel,Hostel,Shared room,10,2,1,24-hour reception;Free parking;Heating;Hot water;Airport shuttle;Breakfast,39,12,4,4,1400
+KTM349,Kathmandu,Kirtipur,Hotel,Private room,2,1,1,Airport shuttle;Daily housekeeping;Workspace;Paid parking;Garden;Heating;Kitchenette,47,12,15,1,6750
+KTM259,Kathmandu,Boudha,Guesthouse,Private room,1,1,1,Daily housekeeping;Kitchen;TV;Garden,48,12,29,1,6100
+KTM260,Kathmandu,Dillibazar,Apartment,Entire place,7,2,1,Paid parking;Workspace;Balcony;Hot water;Heating,58,12,18,4,7200
+KTM089,Kathmandu,Thamel,Guesthouse,Private room,2,1,1,Breakfast;TV;Balcony;Airport shuttle;Free parking;Kitchen;Laundry,13,11,23,0,4100
+KTM400,Kathmandu,New Road,Apartment,Entire place,4,3,2,Free parking;Heating;Airport shuttle;Paid parking;Daily housekeeping;Hot water;Rooftop terrace,62,12,27,6,4250
+KTM213,Kathmandu,New Road,Guesthouse,Private room,2,1,1,Heating;Garden;Rooftop terrace;Breakfast,75,12,17,3,1250
+KTM119,Kathmandu,Maharajgunj,Homestay,Private room,2,1,1,Kitchen;Hot water;24-hour reception;Wi-Fi;Free parking;Security,80,1,21,3,1350
+KTM244,Kathmandu,New Road,Apartment,Entire place,1,1,3,Rooftop terrace;24-hour reception;Hot water;Balcony;Airport shuttle;Garden;Free parking,86,12,27,6,7400
+KTM337,Kathmandu,New Road,Guesthouse,Private room,2,1,2,Breakfast;Workspace;Kitchen;Hot water;Air conditioning;Kitchenette,50,12,13,6,1200
+KTM101,Kathmandu,Kirtipur,Serviced apartment,Entire place,2,2,1,Paid parking;Kitchenette;Security;Air conditioning,84,1,19,1,10050
+KTM364,Kathmandu,New Road,Hotel,Private room,2,1,1,24-hour reception;Garden;Luggage storage;TV;Kitchen;Hot water;Free parking,79,1,14,3,7850
+KTM112,Kathmandu,Thamel,Apartment,Private room,1,1,1,Wi-Fi;Workspace;Laundry;TV;Paid parking;Air conditioning;Kitchen;Heating;Breakfast,67,12,13,6,5350
+KTM292,Kathmandu,Boudha,Apartment,Entire place,4,1,2,Security;Breakfast;Laundry;Hot water;Garden;Wi-Fi;Balcony;Workspace,17,11,19,3,7800
+KTM223,Kathmandu,New Road,Guesthouse,Private room,2,1,2,Garden;Workspace;Daily housekeeping;Wi-Fi,68,12,23,2,2900
+KTM198,Kathmandu,Kupondole,Hotel,Private room,2,1,1,Balcony;Free parking;Rooftop terrace;Kitchen;Kitchenette;Heating,109,1,29,4,4100
+KTM288,Kathmandu,Baluwatar,Apartment,Private room,3,1,1,Paid parking;Air conditioning;TV;Garden;Breakfast;Kitchen;Hot water;Free parking,83,1,9,5,4350
+KTM009,Kathmandu,Maharajgunj,Homestay,Shared room,6,1,1,Air conditioning;Security;Garden;Laundry;Daily housekeeping,104,1,24,6,2000
+KTM292,Kathmandu,Boudha,Apartment,Entire place,4,1,2,Security;Breakfast;Laundry;Hot water;Garden;Wi-Fi;Balcony;Workspace,11,11,25,2,8350
+KTM154,Kathmandu,Patan,Homestay,Private room,3,1,1,Kitchen;Airport shuttle;Free parking;Hot water,62,1,16,5,2450
+KTM189,Kathmandu,Maharajgunj,Hotel,Private room,2,1,1,24-hour reception;Air conditioning;Daily housekeeping;Rooftop terrace;Kitchenette,80,1,16,5,2150
+KTM189,Kathmandu,Maharajgunj,Hotel,Private room,2,1,1,24-hour reception;Air conditioning;Daily housekeeping;Rooftop terrace;Kitchenette,39,11,23,0,2400
+KTM047,Kathmandu,Boudha,Hotel,Private room,3,1,1,Air conditioning;Daily housekeeping;Laundry;Free parking;Security;Kitchen,41,12,9,2,9700
+KTM274,Kathmandu,New Road,Homestay,Shared room,3,2,3,Wi-Fi;Airport shuttle;Hot water;Air conditioning;Free parking;Kitchenette;TV,71,1,20,2,1200
+KTM306,Kathmandu,Patan,Hotel,Private room,2,1,1,TV;Airport shuttle;Heating;24-hour reception;Daily housekeeping;Laundry;Wi-Fi,104,1,27,2,1800
+KTM317,Kathmandu,Maharajgunj,Guesthouse,Private room,2,1,1,Workspace;Wi-Fi;Balcony;Paid parking;Kitchen;Rooftop terrace;Laundry;Breakfast;Daily housekeeping,5,11,19,3,1500
+KTM348,Kathmandu,Boudha,Hotel,Private room,2,1,2,Laundry;Heating;Workspace;Paid parking;Airport shuttle;Free parking;Daily housekeeping,56,12,17,3,8950
+KTM056,Kathmandu,Patan,Hostel,Shared room,7,1,2,Garden;Kitchen;Daily housekeeping;Security;Hot water;Free parking,11,11,18,2,900
+KTM254,Kathmandu,Chabahil,Hotel,Entire place,6,3,1,Rooftop terrace;24-hour reception;Workspace;Wi-Fi,46,12,9,2,7300
+KTM246,Kathmandu,Boudha,Hotel,Private room,1,1,1,Security;Rooftop terrace;24-hour reception;Breakfast;Luggage storage;Laundry;TV;Wi-Fi;Workspace,17,11,28,5,7400
+KTM035,Kathmandu,Kalimati,Hotel,Shared room,4,1,2,Heating;24-hour reception;Balcony;Garden;Luggage storage;Daily housekeeping,78,12,18,4,3800
+KTM340,Kathmandu,Kirtipur,Hotel,Shared room,9,1,3,Free parking;Wi-Fi;TV;Luggage storage;Security;Breakfast;Workspace;Daily housekeeping,131,2,10,2,800
+KTM112,Kathmandu,Thamel,Apartment,Private room,1,1,1,Wi-Fi;Workspace;Laundry;TV;Paid parking;Air conditioning;Kitchen;Heating;Breakfast,19,11,15,6,5400
+KTM010,Kathmandu,Baluwatar,Guesthouse,Shared room,12,1,3,Airport shuttle;TV;Paid parking;Free parking;Luggage storage;Security;Wi-Fi;Daily housekeeping,60,1,10,6,850
+KTM279,Kathmandu,Dillibazar,Hostel,Shared room,8,1,2,Heating;Air conditioning;Kitchenette;Luggage storage,89,12,31,3,600
+KTM336,Kathmandu,Baneshwor,Hotel,Private room,1,1,1,Luggage storage;Airport shuttle;Daily housekeeping;Workspace;Laundry;Rooftop terrace;Hot water;Kitchenette,26,11,25,2,4150
+KTM020,Kathmandu,Baneshwor,Homestay,Private room,2,1,2,Garden;Paid parking;Breakfast;Workspace;Wi-Fi,110,1,29,4,3150
+KTM005,Kathmandu,Dillibazar,Hotel,Shared room,12,1,1,Kitchenette;Daily housekeeping;Airport shuttle;Wi-Fi,92,2,12,4,2050
+KTM032,Kathmandu,Boudha,Apartment,Entire place,4,1,1,Kitchenette;Airport shuttle;Garden;Rooftop terrace;Luggage storage;Kitchen;Daily housekeeping;Security,66,12,27,6,4400
+KTM157,Kathmandu,New Road,Hostel,Shared room,11,1,1,Daily housekeeping;Kitchenette;Heating;Free parking;Paid parking;Luggage storage,81,12,22,1,700
+KTM351,Kathmandu,Kirtipur,Apartment,Private room,2,1,2,Heating;TV;Kitchenette;Luggage storage;Daily housekeeping;Workspace;Garden,112,1,29,4,4700
+KTM009,Kathmandu,Maharajgunj,Homestay,Shared room,6,1,1,Air conditioning;Security;Garden;Laundry;Daily housekeeping,50,11,24,1,2250
+KTM330,Kathmandu,Lazimpat,Apartment,Entire place,1,1,2,Garden;Daily housekeeping;24-hour reception;Air conditioning;Workspace;Airport shuttle;Free parking,96,2,8,0,4350
+KTM240,Kathmandu,Dillibazar,Guesthouse,Shared room,7,1,1,Hot water;Breakfast;Garden;Daily housekeeping;Rooftop terrace;Kitchen;Free parking,74,1,28,3,1750
+KTM104,Kathmandu,Patan,Hostel,Shared room,8,1,1,Breakfast;Garden;Luggage storage;Daily housekeeping;Rooftop terrace;Paid parking;Kitchenette,89,1,28,3,350
+KTM235,Kathmandu,Kalimati,Serviced apartment,Entire place,5,2,2,Free parking;Garden;Kitchen;TV;Heating;Wi-Fi;Security;24-hour reception,65,1,2,5,10750
+KTM016,Kathmandu,Swayambhu,Hotel,Private room,3,1,1,Breakfast;Daily housekeeping;Security;Laundry;Airport shuttle;Rooftop terrace;Wi-Fi,62,12,5,5,6400
+KTM379,Kathmandu,Kalimati,Hostel,Shared room,3,2,1,Kitchenette;Air conditioning;Paid parking;Airport shuttle;Rooftop terrace;Garden;Luggage storage,68,1,8,4,650
+KTM107,Kathmandu,New Road,Serviced apartment,Private room,3,1,1,Kitchenette;Air conditioning;Breakfast;Hot water,34,11,16,0,11800
+KTM034,Kathmandu,Boudha,Hostel,Private room,2,1,1,Hot water;Air conditioning;Daily housekeeping;Airport shuttle;24-hour reception;Security;Workspace;Luggage storage,98,2,2,1,1650
+KTM307,Kathmandu,Chabahil,Guesthouse,Shared room,12,1,1,Heating;Hot water;Air conditioning;Balcony;Paid parking;Wi-Fi,32,11,28,5,1200
+KTM291,Kathmandu,New Road,Apartment,Private room,2,1,1,Airport shuttle;Kitchen;Hot water;TV;Heating,46,12,20,6,5950
+KTM047,Kathmandu,Boudha,Hotel,Private room,3,1,1,Air conditioning;Daily housekeeping;Laundry;Free parking;Security;Kitchen,32,11,16,0,9550
+KTM073,Kathmandu,Patan,Serviced apartment,Entire place,5,4,1,Hot water;Laundry;Air conditioning;Luggage storage;Workspace;TV;Garden;Kitchen,88,1,21,3,15100
+KTM179,Kathmandu,Dillibazar,Hostel,Private room,2,1,2,Security;Kitchenette;Rooftop terrace;Laundry;Kitchen;Luggage storage,92,1,17,6,1450
+KTM054,Kathmandu,Thamel,Hotel,Entire place,6,4,1,Air conditioning;24-hour reception;TV;Free parking;Heating;Daily housekeeping;Airport shuttle,43,11,23,0,4500
+KTM098,Kathmandu,Baluwatar,Homestay,Private room,1,1,2,Wi-Fi;Security;Paid parking;Kitchenette;24-hour reception;Air conditioning;Daily housekeeping,87,1,3,6,1900
+KTM183,Kathmandu,Kirtipur,Serviced apartment,Entire place,2,1,1,Rooftop terrace;Heating;Security;24-hour reception;Kitchenette;Kitchen,46,12,16,2,7000
+KTM390,Kathmandu,Kirtipur,Apartment,Private room,2,1,1,Balcony;Breakfast;Paid parking;Laundry;Workspace,105,2,1,0,3000
+KTM220,Kathmandu,Kalimati,Apartment,Private room,2,1,2,Workspace;Garden;Heating;Security,31,12,6,6,2050
+KTM155,Kathmandu,Dillibazar,Serviced apartment,Entire place,3,2,1,24-hour reception;Hot water;Garden;Kitchen;Luggage storage;Workspace;Daily housekeeping,95,1,12,1,9750
+KTM394,Kathmandu,Gaushala,Hostel,Shared room,8,1,3,Workspace;Security;Airport shuttle;Paid parking;Laundry;TV;Rooftop terrace;24-hour reception;Breakfast,28,11,21,5,400
+KTM200,Kathmandu,Thamel,Hotel,Entire place,3,2,2,Kitchen;Paid parking;Daily housekeeping;Garden,22,11,21,5,16200
+KTM264,Kathmandu,Dillibazar,Hostel,Shared room,11,2,3,TV;Laundry;Garden;Luggage storage,39,11,26,3,850
+KTM338,Kathmandu,Chabahil,Guesthouse,Shared room,10,1,1,Paid parking;Kitchen;Airport shuttle;Rooftop terrace;Security;Hot water;Kitchenette;Workspace;TV;Daily housekeeping,64,12,20,6,1150
+KTM076,Kathmandu,Baluwatar,Hostel,Shared room,7,1,3,Hot water;Heating;Air conditioning;Balcony;Security;Garden,53,12,13,6,350
+KTM351,Kathmandu,Kirtipur,Apartment,Private room,2,1,2,Heating;TV;Kitchenette;Luggage storage;Daily housekeeping;Workspace;Garden,106,1,21,3,4450
+KTM044,Kathmandu,New Road,Guesthouse,Private room,2,1,1,Laundry;Kitchenette;Air conditioning;24-hour reception;Daily housekeeping,61,12,18,4,2250
+KTM035,Kathmandu,Kalimati,Hotel,Shared room,4,1,2,Heating;24-hour reception;Balcony;Garden;Luggage storage;Daily housekeeping,125,2,10,2,3350
+KTM171,Kathmandu,Gaushala,Hostel,Shared room,7,1,1,Kitchenette;Airport shuttle;Paid parking;Balcony;Workspace;Luggage storage,60,1,3,6,800
+KTM362,Kathmandu,New Road,Hotel,Shared room,10,1,3,Kitchen;Kitchenette;Hot water;Security;Garden;Paid parking;Air conditioning,79,12,26,5,4600
+KTM203,Kathmandu,Patan,Hotel,Private room,3,1,1,Free parking;Garden;Workspace;Balcony;Rooftop terrace,32,11,21,5,5650
+KTM088,Kathmandu,New Road,Hotel,Private room,2,1,1,Balcony;Luggage storage;Paid parking;TV;Rooftop terrace,78,1,10,6,4650
+KTM136,Kathmandu,Thamel,Hostel,Shared room,3,2,1,Breakfast;TV;24-hour reception;Luggage storage,94,1,25,0,1150
+KTM148,Kathmandu,Lazimpat,Homestay,Shared room,4,1,3,Luggage storage;Daily housekeeping;Free parking;Airport shuttle;Balcony;Garden;Hot water;Rooftop terrace;Workspace,46,12,24,3,2650
+KTM388,Kathmandu,Patan,Homestay,Private room,2,1,1,Laundry;Workspace;Heating;Air conditioning;Kitchen;Paid parking;Security,40,12,16,2,800
+KTM132,Kathmandu,Kirtipur,Serviced apartment,Private room,1,1,1,Laundry;Paid parking;Balcony;24-hour reception;Wi-Fi;Heating;Workspace;Hot water;Security,43,11,20,4,9500
+KTM221,Kathmandu,Baneshwor,Hotel,Private room,2,1,1,Laundry;Airport shuttle;Wi-Fi;Free parking,39,11,24,1,10100
+KTM145,Kathmandu,Patan,Hotel,Private room,2,1,1,TV;24-hour reception;Airport shuttle;Free parking;Air conditioning;Rooftop terrace;Heating;Hot water;Daily housekeeping,64,1,18,0,3850
+KTM015,Kathmandu,Kupondole,Hostel,Shared room,10,1,1,Laundry;TV;Air conditioning;Luggage storage,86,1,3,6,650
+KTM186,Kathmandu,Swayambhu,Hotel,Private room,2,1,1,Daily housekeeping;Kitchenette;Workspace;Breakfast;24-hour reception;Free parking;Garden;Kitchen;Air conditioning,115,2,8,0,7500
+KTM057,Kathmandu,Boudha,Homestay,Private room,2,1,1,Heating;Kitchenette;Air conditioning;Balcony;Breakfast;Airport shuttle;Security,22,11,26,3,3900
+KTM308,Kathmandu,Kupondole,Hotel,Private room,3,1,1,Free parking;Wi-Fi;Airport shuttle;Balcony;Workspace;24-hour reception;Laundry;Daily housekeeping,25,11,16,0,6500
+KTM302,Kathmandu,New Road,Apartment,Private room,2,1,2,Luggage storage;Laundry;Kitchen;Workspace;Paid parking,91,2,1,0,4600
+KTM157,Kathmandu,New Road,Hostel,Shared room,11,1,1,Daily housekeeping;Kitchenette;Heating;Free parking;Paid parking;Luggage storage,105,1,27,2,650
+KTM050,Kathmandu,Kalimati,Hostel,Shared room,9,1,1,Breakfast;Laundry;Workspace;Garden;TV,86,1,16,5,350
+KTM324,Kathmandu,Kirtipur,Guesthouse,Private room,1,1,1,Laundry;Air conditioning;Wi-Fi;Free parking;Daily housekeeping;Kitchenette;Luggage storage;Paid parking;Security,108,1,24,6,2300
+KTM065,Kathmandu,Kalimati,Apartment,Entire place,2,1,2,Security;Kitchen;24-hour reception;Free parking;Workspace;Wi-Fi;Rooftop terrace;Paid parking,90,2,7,6,6600
+KTM228,Kathmandu,Gaushala,Homestay,Private room,3,1,1,Balcony;Hot water;Workspace;Laundry,22,11,22,6,2900
+KTM339,Kathmandu,Gaushala,Apartment,Private room,1,1,1,Luggage storage;Airport shuttle;24-hour reception;Security;Air conditioning;TV,67,1,2,5,5500
+KTM063,Kathmandu,Swayambhu,Serviced apartment,Entire place,7,2,1,Heating;Workspace;TV;Kitchenette;Wi-Fi,119,2,11,3,2900
+KTM326,Kathmandu,Gaushala,Hostel,Private room,2,1,1,Paid parking;Kitchen;Security;Garden;Airport shuttle;Luggage storage,87,1,8,4,800
+KTM355,Kathmandu,Kalimati,Hostel,Private room,3,1,2,Workspace;Free parking;Breakfast;Balcony;TV;Luggage storage;Laundry;Air conditioning,70,1,16,5,650
+KTM071,Kathmandu,Boudha,Serviced apartment,Entire place,3,1,1,Free parking;Kitchenette;24-hour reception;Balcony;Rooftop terrace;Heating;Hot water;Air conditioning,23,11,26,3,17050
+KTM332,Kathmandu,Boudha,Serviced apartment,Entire place,7,2,3,Luggage storage;TV;Paid parking;Hot water;Heating;Laundry,109,1,26,1,5850
+KTM280,Kathmandu,Chabahil,Homestay,Private room,2,1,1,Balcony;Workspace;Kitchen;Paid parking;TV;Wi-Fi;Rooftop terrace;Daily housekeeping,100,1,9,5,2650
+KTM349,Kathmandu,Kirtipur,Hotel,Private room,2,1,1,Airport shuttle;Daily housekeeping;Workspace;Paid parking;Garden;Heating;Kitchenette,128,2,10,2,5650
+KTM152,Kathmandu,Thamel,Hotel,Shared room,9,1,3,Daily housekeeping;Workspace;24-hour reception;Luggage storage;Security,51,1,1,4,4600
+KTM155,Kathmandu,Dillibazar,Serviced apartment,Entire place,3,2,1,24-hour reception;Hot water;Garden;Kitchen;Luggage storage;Workspace;Daily housekeeping,89,1,12,1,9700
+KTM149,Kathmandu,Baneshwor,Apartment,Entire place,2,2,1,Free parking;Breakfast;Workspace;Heating;Hot water;Wi-Fi,82,2,5,4,3150
+KTM077,Kathmandu,Lazimpat,Homestay,Shared room,5,1,1,Wi-Fi;TV;Hot water;Garden;Kitchenette;Paid parking;Workspace;Laundry,23,12,8,1,1850
+KTM015,Kathmandu,Kupondole,Hostel,Shared room,10,1,1,Laundry;TV;Air conditioning;Luggage storage,75,1,25,0,650
+KTM373,Kathmandu,Thamel,Hostel,Shared room,6,1,3,Breakfast;Airport shuttle;Garden;TV;Hot water;Balcony;Heating;Kitchenette;24-hour reception,90,2,10,2,500
+KTM368,Kathmandu,Thamel,Apartment,Private room,2,1,1,Paid parking;Balcony;Kitchen;Heating;Kitchenette;Breakfast;Hot water;Luggage storage,38,11,16,0,8850
+KTM169,Kathmandu,Patan,Hotel,Private room,2,1,1,Balcony;Paid parking;Luggage storage;24-hour reception;Garden,38,11,26,3,5600
+KTM214,Kathmandu,Kirtipur,Homestay,Private room,2,1,1,Kitchen;Balcony;Breakfast;Workspace;Paid parking,75,1,27,2,900
+KTM385,Kathmandu,Baneshwor,Guesthouse,Private room,2,1,1,Workspace;Rooftop terrace;Garden;Paid parking;Breakfast;Wi-Fi;Daily housekeeping;Laundry;Hot water,52,11,26,3,4800
+KTM253,Kathmandu,Lazimpat,Guesthouse,Private room,2,1,1,Air conditioning;Luggage storage;Balcony;Free parking;Wi-Fi,74,1,1,4,1250
+KTM217,Kathmandu,Kirtipur,Hotel,Private room,1,1,1,Garden;Balcony;Breakfast;Rooftop terrace;24-hour reception;Security;Hot water,83,1,9,5,5750
+KTM357,Kathmandu,Kirtipur,Hostel,Private room,2,1,1,Wi-Fi;Free parking;Workspace;TV;Luggage storage,73,1,25,0,850
+KTM341,Kathmandu,New Road,Homestay,Private room,3,1,2,Heating;Kitchenette;Air conditioning;Security;Free parking;Paid parking;Laundry;Kitchen;Daily housekeeping,84,1,18,0,1950
+KTM138,Kathmandu,Patan,Serviced apartment,Private room,3,1,1,Wi-Fi;Balcony;Airport shuttle;Rooftop terrace,74,12,20,6,10700
+KTM393,Kathmandu,New Road,Guesthouse,Shared room,8,2,3,Garden;Security;Kitchen;Workspace;Breakfast;Wi-Fi;Daily housekeeping,78,12,25,4,1450
+KTM286,Kathmandu,Thamel,Guesthouse,Private room,1,1,1,TV;24-hour reception;Security;Paid parking;Breakfast;Daily housekeeping;Balcony;Garden,79,1,8,4,1950
+KTM233,Kathmandu,New Road,Hotel,Private room,2,1,1,Airport shuttle;Kitchenette;Paid parking;Daily housekeeping;Free parking,36,11,20,4,2150
+KTM331,Kathmandu,New Road,Guesthouse,Shared room,12,1,2,Rooftop terrace;Free parking;Balcony;Kitchenette;TV;Heating,59,1,2,5,1000
+KTM383,Kathmandu,Maharajgunj,Homestay,Private room,1,1,2,Breakfast;Luggage storage;Kitchen;Air conditioning;Paid parking;Hot water;Rooftop terrace;Workspace,61,12,22,1,2650
+KTM110,Kathmandu,Baluwatar,Hostel,Shared room,7,1,1,Breakfast;Garden;Kitchen;Free parking;Luggage storage,66,1,7,3,1000
+KTM180,Kathmandu,Kirtipur,Serviced apartment,Private room,1,1,1,Airport shuttle;Wi-Fi;TV;Free parking,109,1,31,6,7300
+KTM371,Kathmandu,Chabahil,Apartment,Private room,3,1,1,Workspace;Laundry;Free parking;Kitchenette;Rooftop terrace;Airport shuttle,84,2,5,4,5800
+KTM392,Kathmandu,Thamel,Hostel,Shared room,5,1,2,Laundry;Workspace;TV;Free parking;Paid parking;Hot water;Security;Garden;Balcony,111,1,27,2,800
+KTM287,Kathmandu,Kalimati,Homestay,Private room,3,1,1,Kitchen;Security;Laundry;Air conditioning;Wi-Fi;Airport shuttle;Paid parking;Balcony,77,1,26,1,2250
+KTM247,Kathmandu,Lazimpat,Hostel,Private room,2,1,1,Daily housekeeping;TV;Kitchen;Luggage storage;Free parking,114,2,10,2,1650
+KTM171,Kathmandu,Gaushala,Hostel,Shared room,7,1,1,Kitchenette;Airport shuttle;Paid parking;Balcony;Workspace;Luggage storage,89,12,29,1,800
+KTM025,Kathmandu,Gaushala,Hotel,Private room,2,1,1,Free parking;Hot water;Kitchenette;Heating;Paid parking,53,12,12,5,9900
+KTM195,Kathmandu,Kirtipur,Apartment,Private room,2,1,1,Heating;Kitchenette;Luggage storage;Daily housekeeping;Hot water;Air conditioning;Airport shuttle;TV;Breakfast,50,11,25,2,2850
+KTM178,Kathmandu,Kalimati,Hostel,Shared room,8,1,3,Wi-Fi;TV;Rooftop terrace;Balcony;Airport shuttle;Paid parking;Luggage storage;Daily housekeeping,57,1,11,0,350
+KTM273,Kathmandu,Dillibazar,Guesthouse,Private room,1,1,1,Workspace;Airport shuttle;Laundry;Free parking;Heating;Wi-Fi;Daily housekeeping,67,12,14,0,900
+KTM118,Kathmandu,Kirtipur,Serviced apartment,Entire place,4,1,1,24-hour reception;Kitchenette;Workspace;Balcony;Heating;Paid parking;Air conditioning;Wi-Fi,120,2,3,2,5350
+KTM138,Kathmandu,Patan,Serviced apartment,Private room,3,1,1,Wi-Fi;Balcony;Airport shuttle;Rooftop terrace,26,12,11,4,11700
+KTM333,Kathmandu,Kupondole,Homestay,Shared room,6,1,1,Breakfast;Kitchenette;Garden;Hot water;Security;Wi-Fi;24-hour reception;Airport shuttle,32,11,30,0,2250
+KTM242,Kathmandu,Baluwatar,Guesthouse,Private room,2,1,1,Luggage storage;Airport shuttle;Laundry;Workspace;Paid parking;Garden;Balcony,119,2,4,3,2000
+KTM135,Kathmandu,New Road,Hostel,Shared room,9,2,3,Kitchenette;24-hour reception;Air conditioning;Balcony;Workspace;Security;Garden;Breakfast;Luggage storage,121,1,31,6,850
+KTM073,Kathmandu,Patan,Serviced apartment,Entire place,5,4,1,Hot water;Laundry;Air conditioning;Luggage storage;Workspace;TV;Garden;Kitchen,107,1,18,0,14900
+KTM208,Kathmandu,Thamel,Serviced apartment,Entire place,4,1,1,Balcony;Laundry;Workspace;Daily housekeeping;Free parking;24-hour reception,90,1,12,1,13650
+KTM072,Kathmandu,Baluwatar,Apartment,Entire place,2,2,1,Security;Balcony;Rooftop terrace;Paid parking;Hot water;Luggage storage;Heating;Workspace,108,1,25,0,7200
+KTM136,Kathmandu,Thamel,Hostel,Shared room,3,2,1,Breakfast;TV;24-hour reception;Luggage storage,67,1,21,3,1100
+KTM162,Kathmandu,Boudha,Hotel,Private room,1,1,1,TV;24-hour reception;Air conditioning;Balcony;Heating;Breakfast;Luggage storage,51,12,8,1,7650
+KTM239,Kathmandu,Thamel,Hostel,Shared room,10,2,1,24-hour reception;Free parking;Heating;Hot water;Airport shuttle;Breakfast,102,1,22,4,1200
+KTM267,Kathmandu,Kalimati,Hotel,Private room,2,1,1,Garden;Kitchenette;Luggage storage;Airport shuttle;Kitchen;Balcony;24-hour reception;Daily housekeeping,95,1,15,4,5500
+KTM036,Kathmandu,Boudha,Guesthouse,Private room,2,1,1,Security;Garden;Free parking;Workspace;Heating,53,11,25,2,4550
+KTM032,Kathmandu,Boudha,Apartment,Entire place,4,1,1,Kitchenette;Airport shuttle;Garden;Rooftop terrace;Luggage storage;Kitchen;Daily housekeeping;Security,38,11,28,5,4650
+KTM261,Kathmandu,Chabahil,Guesthouse,Shared room,6,1,2,Daily housekeeping;Heating;Security;Paid parking;Airport shuttle,48,11,18,2,1000
+KTM376,Kathmandu,Kirtipur,Hotel,Private room,1,1,1,Paid parking;Laundry;Security;Free parking;Workspace;Daily housekeeping;Airport shuttle,68,1,14,3,4400
+KTM258,Kathmandu,Baneshwor,Homestay,Entire place,9,4,1,Wi-Fi;Workspace;Airport shuttle;24-hour reception;Security;Luggage storage;Paid parking;Kitchen;Garden,45,12,10,3,3100
+KTM059,Kathmandu,Kirtipur,Hostel,Shared room,7,1,2,Kitchenette;Heating;Paid parking;Balcony;Workspace;Wi-Fi;Luggage storage;Laundry,55,12,28,0,400
+KTM278,Kathmandu,Kalimati,Guesthouse,Private room,2,1,1,Luggage storage;Security;Air conditioning;Airport shuttle;Daily housekeeping,66,12,18,4,4950
+KTM017,Kathmandu,Kalimati,Hostel,Shared room,7,1,3,Airport shuttle;Daily housekeeping;Heating;Rooftop terrace;TV;Paid parking;Luggage storage,58,12,23,2,600
+KTM109,Kathmandu,Chabahil,Guesthouse,Private room,2,1,1,Security;Heating;Free parking;Luggage storage;Air conditioning;Wi-Fi;Daily housekeeping;TV;Laundry,49,12,6,6,2100
+KTM313,Kathmandu,Swayambhu,Homestay,Private room,2,1,1,Garden;Rooftop terrace;Breakfast;24-hour reception;Wi-Fi;Kitchenette;TV;Security;Paid parking,12,11,16,0,1050
+KTM147,Kathmandu,Dillibazar,Serviced apartment,Entire place,8,4,2,Security;Airport shuttle;Wi-Fi;Garden;Rooftop terrace;Air conditioning;Workspace,32,12,11,4,7000
+KTM013,Kathmandu,Baluwatar,Guesthouse,Private room,2,1,1,Kitchen;Air conditioning;Breakfast;TV;Balcony;Rooftop terrace;Wi-Fi,41,12,19,5,5550
+KTM050,Kathmandu,Kalimati,Hostel,Shared room,9,1,1,Breakfast;Laundry;Workspace;Garden;TV,39,12,23,2,350
+KTM184,Kathmandu,Lazimpat,Apartment,Private room,2,1,1,Kitchen;Daily housekeeping;Rooftop terrace;Hot water;TV;Garden,74,12,31,3,5050
+KTM324,Kathmandu,Kirtipur,Guesthouse,Private room,1,1,1,Laundry;Air conditioning;Wi-Fi;Free parking;Daily housekeeping;Kitchenette;Luggage storage;Paid parking;Security,36,11,19,3,2350
+KTM226,Kathmandu,Gaushala,Hotel,Entire place,6,2,1,Wi-Fi;Air conditioning;Breakfast;Workspace;Kitchenette;Daily housekeeping,37,11,17,1,7900
+KTM321,Kathmandu,Chabahil,Hotel,Shared room,8,2,1,Airport shuttle;Daily housekeeping;Kitchenette;24-hour reception;Balcony;Hot water;Workspace;Air conditioning,96,1,11,0,3200
+KTM385,Kathmandu,Baneshwor,Guesthouse,Private room,2,1,1,Workspace;Rooftop terrace;Garden;Paid parking;Breakfast;Wi-Fi;Daily housekeeping;Laundry;Hot water,35,12,8,1,4550
+KTM048,Kathmandu,Thamel,Hotel,Private room,2,1,1,Paid parking;Wi-Fi;Security;Workspace;Kitchenette;Heating;Daily housekeeping,50,11,28,5,1850
+KTM054,Kathmandu,Thamel,Hotel,Entire place,6,4,1,Air conditioning;24-hour reception;TV;Free parking;Heating;Daily housekeeping;Airport shuttle,77,12,23,2,4200
+KTM244,Kathmandu,New Road,Apartment,Entire place,1,1,3,Rooftop terrace;24-hour reception;Hot water;Balcony;Airport shuttle;Garden;Free parking,70,1,17,6,7200
+KTM300,Kathmandu,Boudha,Apartment,Entire place,7,3,1,Air conditioning;Free parking;Kitchen;TV,74,1,12,1,2950
+KTM104,Kathmandu,Patan,Hostel,Shared room,8,1,1,Breakfast;Garden;Luggage storage;Daily housekeeping;Rooftop terrace;Paid parking;Kitchenette,44,12,29,1,350
+KTM370,Kathmandu,Swayambhu,Guesthouse,Private room,2,1,2,Workspace;Heating;Garden;Airport shuttle;TV,90,1,22,4,4800
+KTM158,Kathmandu,Swayambhu,Apartment,Entire place,2,1,3,Laundry;Kitchenette;Balcony;Paid parking;TV,64,12,15,1,5650
+KTM140,Kathmandu,Lazimpat,Apartment,Entire place,7,2,1,Free parking;Heating;Paid parking;Breakfast;Hot water;Balcony,88,2,5,4,10300
+KTM357,Kathmandu,Kirtipur,Hostel,Private room,2,1,1,Wi-Fi;Free parking;Workspace;TV;Luggage storage,112,2,12,4,850
+KTM375,Kathmandu,Kalimati,Hotel,Shared room,11,1,1,Daily housekeeping;Free parking;Hot water;Paid parking;Luggage storage;Kitchen,69,1,20,2,3150
+KTM026,Kathmandu,New Road,Hostel,Private room,1,1,2,Workspace;Rooftop terrace;TV;Heating;Luggage storage,8,11,20,4,450
+KTM257,Kathmandu,Baluwatar,Hotel,Private room,2,1,1,Wi-Fi;Paid parking;Free parking;Breakfast;Workspace;Kitchenette;Garden;Laundry,51,11,28,5,11050
+KTM006,Kathmandu,Kupondole,Hotel,Private room,2,1,1,Breakfast;Laundry;Free parking;Hot water;Daily housekeeping,113,2,1,0,4350
+KTM163,Kathmandu,Baluwatar,Homestay,Private room,2,1,1,Breakfast;Rooftop terrace;Wi-Fi;Air conditioning;Balcony;Free parking,36,11,26,3,2350
+KTM025,Kathmandu,Gaushala,Hotel,Private room,2,1,1,Free parking;Hot water;Kitchenette;Heating;Paid parking,90,1,10,6,8500
+KTM090,Kathmandu,Patan,Hotel,Entire place,2,1,1,Laundry;Security;Air conditioning;Breakfast;Wi-Fi,71,1,21,3,12450
+KTM283,Kathmandu,Gaushala,Hostel,Shared room,8,1,2,Heating;Security;Paid parking;Airport shuttle;Rooftop terrace;Daily housekeeping;Free parking;Breakfast;Luggage storage,56,1,5,1,450
+KTM329,Kathmandu,Patan,Hostel,Shared room,6,1,2,Paid parking;Hot water;Workspace;Airport shuttle;Luggage storage,50,11,27,4,1250
+KTM006,Kathmandu,Kupondole,Hotel,Private room,2,1,1,Breakfast;Laundry;Free parking;Hot water;Daily housekeeping,118,2,5,4,4400
+KTM209,Kathmandu,Lazimpat,Apartment,Private room,2,1,1,24-hour reception;Garden;Rooftop terrace;Kitchenette;Hot water;Security;Daily housekeeping;Wi-Fi,34,12,7,0,2250
+KTM028,Kathmandu,Dillibazar,Hostel,Shared room,4,1,1,Daily housekeeping;Security;TV;Rooftop terrace;Luggage storage;Breakfast;Laundry;Free parking,67,1,9,5,350
+KTM190,Kathmandu,Boudha,Homestay,Private room,1,1,1,Kitchen;Kitchenette;24-hour reception;TV,88,1,2,5,2750
+KTM247,Kathmandu,Lazimpat,Hostel,Private room,2,1,1,Daily housekeeping;TV;Kitchen;Luggage storage;Free parking,78,1,24,6,1500
+KTM061,Kathmandu,Baluwatar,Hotel,Shared room,5,1,2,Breakfast;Air conditioning;TV;Paid parking;Heating,90,1,28,3,1450
+KTM148,Kathmandu,Lazimpat,Homestay,Shared room,4,1,3,Luggage storage;Daily housekeeping;Free parking;Airport shuttle;Balcony;Garden;Hot water;Rooftop terrace;Workspace,107,2,3,2,2500
+KTM080,Kathmandu,Maharajgunj,Apartment,Private room,3,1,1,Air conditioning;Wi-Fi;Daily housekeeping;Kitchenette,36,11,22,6,4200
+KTM109,Kathmandu,Chabahil,Guesthouse,Private room,2,1,1,Security;Heating;Free parking;Luggage storage;Air conditioning;Wi-Fi;Daily housekeeping;TV;Laundry,98,1,16,5,2250
+KTM192,Kathmandu,Lazimpat,Serviced apartment,Private room,2,1,1,Paid parking;Wi-Fi;Balcony;Rooftop terrace;Luggage storage;Kitchen;TV,90,1,25,0,10050
+KTM323,Kathmandu,Kupondole,Serviced apartment,Entire place,7,2,1,Workspace;Hot water;Security;Laundry;Garden;Balcony,46,12,6,6,5450
+KTM139,Kathmandu,Chabahil,Homestay,Shared room,12,1,1,Workspace;Free parking;Heating;Laundry;Rooftop terrace;Airport shuttle;Hot water;Kitchen;Security,74,12,18,4,1750
+KTM092,Kathmandu,Kupondole,Apartment,Entire place,2,1,1,Garden;Laundry;Wi-Fi;Workspace;Airport shuttle;Security;Kitchenette,97,2,10,2,6900
+KTM013,Kathmandu,Baluwatar,Guesthouse,Private room,2,1,1,Kitchen;Air conditioning;Breakfast;TV;Balcony;Rooftop terrace;Wi-Fi,91,1,23,5,5250
+KTM058,Kathmandu,Kirtipur,Hostel,Shared room,4,1,2,Daily housekeeping;Balcony;Air conditioning;Free parking;Garden;Heating;Laundry,57,12,16,2,750
+KTM385,Kathmandu,Baneshwor,Guesthouse,Private room,2,1,1,Workspace;Rooftop terrace;Garden;Paid parking;Breakfast;Wi-Fi;Daily housekeeping;Laundry;Hot water,13,11,28,5,5000
+KTM121,Kathmandu,Dillibazar,Serviced apartment,Entire place,4,3,1,Kitchenette;Air conditioning;Wi-Fi;Airport shuttle;Garden;TV;Security,71,1,6,2,8200
+KTM221,Kathmandu,Baneshwor,Hotel,Private room,2,1,1,Laundry;Airport shuttle;Wi-Fi;Free parking,36,11,30,0,10150
+KTM196,Kathmandu,Dillibazar,Serviced apartment,Private room,2,1,1,Air conditioning;Kitchenette;Security;Balcony,53,12,18,4,11100
+KTM205,Kathmandu,New Road,Hotel,Private room,2,1,1,Security;Daily housekeeping;Heating;Kitchen,55,12,5,5,1850
+KTM399,Kathmandu,New Road,Serviced apartment,Private room,1,1,2,Kitchen;Hot water;Wi-Fi;Breakfast;Daily housekeeping;Heating;Balcony;Free parking,42,12,5,5,10650
+KTM033,Kathmandu,Kupondole,Homestay,Private room,2,1,1,Airport shuttle;Paid parking;TV;24-hour reception;Luggage storage;Free parking,99,1,12,1,3900
+KTM043,Kathmandu,Maharajgunj,Hostel,Private room,2,1,1,Luggage storage;Hot water;Kitchen;Wi-Fi;Heating;Airport shuttle;Garden,33,12,6,6,950
+KTM395,Kathmandu,Lazimpat,Homestay,Private room,2,1,1,Security;Air conditioning;Kitchen;Free parking;Laundry;24-hour reception;Daily housekeeping;Garden;Airport shuttle,30,12,11,4,3400
+KTM154,Kathmandu,Patan,Homestay,Private room,3,1,1,Kitchen;Airport shuttle;Free parking;Hot water,100,2,4,3,2450
+KTM131,Kathmandu,Chabahil,Guesthouse,Shared room,12,1,3,24-hour reception;Hot water;Air conditioning;Airport shuttle;Heating,97,2,8,0,650
+KTM235,Kathmandu,Kalimati,Serviced apartment,Entire place,5,2,2,Free parking;Garden;Kitchen;TV;Heating;Wi-Fi;Security;24-hour reception,50,11,22,6,11000
+KTM274,Kathmandu,New Road,Homestay,Shared room,3,2,3,Wi-Fi;Airport shuttle;Hot water;Air conditioning;Free parking;Kitchenette;TV,68,1,19,1,1150
+KTM345,Kathmandu,Maharajgunj,Homestay,Private room,2,1,1,Workspace;Balcony;Rooftop terrace;Airport shuttle;Garden;Luggage storage,41,11,15,6,3450
+KTM266,Kathmandu,Maharajgunj,Serviced apartment,Entire place,4,1,3,Heating;Kitchen;Air conditioning;Balcony;Free parking;24-hour reception;TV;Workspace,58,1,9,5,4950
+KTM094,Kathmandu,Lazimpat,Apartment,Entire place,4,2,1,Breakfast;Workspace;Balcony;Laundry;Airport shuttle;Daily housekeeping;24-hour reception;Hot water,53,12,21,0,3100
+KTM340,Kathmandu,Kirtipur,Hotel,Shared room,9,1,3,Free parking;Wi-Fi;TV;Luggage storage;Security;Breakfast;Workspace;Daily housekeeping,25,11,28,5,900
+KTM112,Kathmandu,Thamel,Apartment,Private room,1,1,1,Wi-Fi;Workspace;Laundry;TV;Paid parking;Air conditioning;Kitchen;Heating;Breakfast,87,1,3,6,4900
+KTM166,Kathmandu,Lazimpat,Homestay,Private room,3,1,2,Paid parking;Garden;TV;Kitchenette;Wi-Fi,57,1,10,6,3650
+KTM358,Kathmandu,Patan,Serviced apartment,Entire place,9,4,1,Air conditioning;TV;Free parking;Balcony;Paid parking;Rooftop terrace;Wi-Fi;Laundry,58,12,2,2,10550
+KTM215,Kathmandu,Patan,Apartment,Entire place,3,1,2,Laundry;Heating;Rooftop terrace;Daily housekeeping;Free parking,104,2,4,3,3850
+KTM229,Kathmandu,Dillibazar,Hostel,Shared room,3,1,1,Garden;Luggage storage;Airport shuttle;Paid parking,77,1,11,0,1000
+KTM267,Kathmandu,Kalimati,Hotel,Private room,2,1,1,Garden;Kitchenette;Luggage storage;Airport shuttle;Kitchen;Balcony;24-hour reception;Daily housekeeping,36,11,19,3,5400
+KTM199,Kathmandu,Kalimati,Guesthouse,Private room,2,1,2,Laundry;Free parking;Hot water;TV;Daily housekeeping,54,12,11,4,4150
+KTM321,Kathmandu,Chabahil,Hotel,Shared room,8,2,1,Airport shuttle;Daily housekeeping;Kitchenette;24-hour reception;Balcony;Hot water;Workspace;Air conditioning,105,1,15,4,3250
+KTM029,Kathmandu,New Road,Apartment,Entire place,4,1,1,Airport shuttle;Wi-Fi;Balcony;Free parking;Daily housekeeping;Kitchenette;24-hour reception;Air conditioning,75,1,10,6,5400
+KTM035,Kathmandu,Kalimati,Hotel,Shared room,4,1,2,Heating;24-hour reception;Balcony;Garden;Luggage storage;Daily housekeeping,17,11,18,2,3700
+KTM096,Kathmandu,Baluwatar,Hostel,Private room,2,1,1,Heating;Kitchenette;Wi-Fi;Hot water;Luggage storage;Security;Laundry;Paid parking,68,1,16,5,1500
+KTM289,Kathmandu,Kupondole,Guesthouse,Private room,1,1,1,Laundry;Free parking;Heating;Airport shuttle;Wi-Fi;Paid parking;Kitchenette;Daily housekeeping,88,12,29,1,3550
+KTM011,Kathmandu,Kalimati,Guesthouse,Private room,1,1,2,Laundry;Heating;Hot water;Garden;Kitchen;24-hour reception;Workspace;Rooftop terrace;Paid parking,106,1,18,0,1050
+KTM328,Kathmandu,Baneshwor,Hostel,Private room,2,1,2,Wi-Fi;Luggage storage;Airport shuttle;Daily housekeeping;Free parking,73,1,4,0,1500
+KTM238,Kathmandu,Kalimati,Hotel,Private room,1,1,1,Airport shuttle;Workspace;Hot water;Heating;Wi-Fi;Paid parking;Rooftop terrace,84,1,31,6,1750
+KTM060,Kathmandu,Baluwatar,Hostel,Shared room,9,1,1,Wi-Fi;Breakfast;Laundry;Luggage storage,23,11,27,4,950
+KTM048,Kathmandu,Thamel,Hotel,Private room,2,1,1,Paid parking;Wi-Fi;Security;Workspace;Kitchenette;Heating;Daily housekeeping,93,2,6,5,1750
+KTM389,Kathmandu,Baneshwor,Guesthouse,Private room,2,1,1,Rooftop terrace;TV;Laundry;Kitchenette;Air conditioning;Breakfast;Garden;Hot water;Kitchen,68,1,7,3,2700
+KTM072,Kathmandu,Baluwatar,Apartment,Entire place,2,2,1,Security;Balcony;Rooftop terrace;Paid parking;Hot water;Luggage storage;Heating;Workspace,79,12,26,5,7700
+KTM377,Kathmandu,Patan,Hotel,Shared room,5,2,1,Kitchenette;Workspace;Free parking;Breakfast;Heating;Daily housekeeping;Air conditioning;TV,44,12,6,6,3000
+KTM236,Kathmandu,Maharajgunj,Hotel,Private room,2,1,2,TV;Hot water;Workspace;Kitchen;Garden;Luggage storage;Heating;Rooftop terrace;Paid parking;Daily housekeeping,120,2,2,1,9750
+KTM046,Kathmandu,New Road,Homestay,Private room,1,1,1,Luggage storage;Kitchen;Free parking;Wi-Fi,34,11,27,4,3550
+KTM252,Kathmandu,Kirtipur,Guesthouse,Private room,2,1,1,Breakfast;TV;Security;Garden,23,12,6,6,3850
+KTM101,Kathmandu,Kirtipur,Serviced apartment,Entire place,2,2,1,Paid parking;Kitchenette;Security;Air conditioning,88,1,23,5,11150
+KTM288,Kathmandu,Baluwatar,Apartment,Private room,3,1,1,Paid parking;Air conditioning;TV;Garden;Breakfast;Kitchen;Hot water;Free parking,34,12,3,3,4200
+KTM301,Kathmandu,Kupondole,Serviced apartment,Private room,2,1,1,Breakfast;Wi-Fi;Paid parking;Airport shuttle;Daily housekeeping;Workspace;Heating;Free parking;24-hour reception,101,1,13,2,2850
+KTM093,Kathmandu,Lazimpat,Apartment,Entire place,4,1,1,Breakfast;Daily housekeeping;Garden;Balcony;Air conditioning,42,11,23,0,8900
+KTM204,Kathmandu,Patan,Apartment,Private room,3,1,1,Garden;Airport shuttle;Rooftop terrace;Laundry;Breakfast;Hot water,61,12,5,5,7750
+KTM080,Kathmandu,Maharajgunj,Apartment,Private room,3,1,1,Air conditioning;Wi-Fi;Daily housekeeping;Kitchenette,121,1,31,6,4150
+KTM250,Kathmandu,Dillibazar,Serviced apartment,Entire place,4,2,1,Workspace;Balcony;Wi-Fi;24-hour reception;Hot water,97,1,26,1,3350
+KTM007,Kathmandu,Kalimati,Apartment,Entire place,4,1,2,Luggage storage;Kitchen;Rooftop terrace;Kitchenette;Workspace;Paid parking;Balcony,5,11,15,6,2550
+KTM268,Kathmandu,Kirtipur,Hotel,Private room,1,1,1,Garden;Daily housekeeping;Luggage storage;Kitchen,46,12,23,2,9150
+KTM008,Kathmandu,Baneshwor,Hotel,Private room,1,1,1,Workspace;Heating;Garden;Balcony;Paid parking;Laundry;Luggage storage,88,12,28,0,9100
+KTM151,Kathmandu,Chabahil,Hotel,Private room,3,1,1,Heating;Rooftop terrace;Air conditioning;Balcony;Laundry,68,1,15,4,2600
+KTM003,Kathmandu,Patan,Serviced apartment,Entire place,7,3,2,Balcony;Security;Kitchen;Rooftop terrace;Workspace,57,12,7,0,10600
+KTM006,Kathmandu,Kupondole,Hotel,Private room,2,1,1,Breakfast;Laundry;Free parking;Hot water;Daily housekeeping,27,12,9,2,4300
+KTM269,Kathmandu,New Road,Hostel,Entire place,7,2,3,Airport shuttle;Rooftop terrace;24-hour reception;Free parking;Wi-Fi;Hot water;Garden;Balcony;Paid parking,88,1,23,5,2100
+KTM362,Kathmandu,New Road,Hotel,Shared room,10,1,3,Kitchen;Kitchenette;Hot water;Security;Garden;Paid parking;Air conditioning,49,12,19,5,4950
+KTM218,Kathmandu,Kalimati,Apartment,Entire place,1,1,1,Laundry;Airport shuttle;Paid parking;Kitchen,84,12,30,2,2650
+KTM023,Kathmandu,Kalimati,Hotel,Private room,2,1,1,Air conditioning;Garden;Airport shuttle;Paid parking;Free parking;Hot water;Kitchenette;Balcony;Daily housekeeping,44,12,21,0,8000
+KTM149,Kathmandu,Baneshwor,Apartment,Entire place,2,2,1,Free parking;Breakfast;Workspace;Heating;Hot water;Wi-Fi,40,11,19,3,3250
+KTM065,Kathmandu,Kalimati,Apartment,Entire place,2,1,2,Security;Kitchen;24-hour reception;Free parking;Workspace;Wi-Fi;Rooftop terrace;Paid parking,37,11,28,5,7350
+KTM206,Kathmandu,Dillibazar,Serviced apartment,Entire place,7,2,2,Workspace;Kitchenette;Airport shuttle;Kitchen;Hot water;Paid parking;Laundry,76,1,9,5,13000
+KTM275,Kathmandu,Baneshwor,Serviced apartment,Entire place,2,1,2,Paid parking;Laundry;Wi-Fi;Breakfast;Daily housekeeping,54,12,27,6,5650
+KTM129,Kathmandu,Dillibazar,Hotel,Private room,2,1,1,Breakfast;Kitchen;Security;24-hour reception;Daily housekeeping,49,12,10,3,10450
+KTM225,Kathmandu,Boudha,Homestay,Private room,1,1,2,Garden;Free parking;Daily housekeeping;Wi-Fi;Balcony;Kitchen;Heating;Rooftop terrace;Laundry,96,1,10,6,1300
+KTM147,Kathmandu,Dillibazar,Serviced apartment,Entire place,8,4,2,Security;Airport shuttle;Wi-Fi;Garden;Rooftop terrace;Air conditioning;Workspace,77,1,22,4,6750
+KTM137,Kathmandu,Baneshwor,Hostel,Shared room,12,1,2,Security;Workspace;Airport shuttle;Balcony,51,12,27,6,1100
+KTM312,Kathmandu,Kalimati,Apartment,Entire place,3,1,1,Daily housekeeping;Luggage storage;Free parking;Air conditioning;Heating;Wi-Fi;Laundry;Hot water,63,12,13,6,2200
+KTM263,Kathmandu,Baneshwor,Guesthouse,Private room,1,1,1,Paid parking;Breakfast;Security;Airport shuttle;Wi-Fi;Daily housekeeping;TV,74,1,2,5,3100
+KTM387,Kathmandu,Kalimati,Apartment,Entire place,1,1,2,Breakfast;TV;Air conditioning;Hot water;Wi-Fi,32,11,24,1,8150
+KTM040,Kathmandu,Maharajgunj,Apartment,Entire place,3,1,3,Air conditioning;Daily housekeeping;Kitchen;Free parking;Heating;Breakfast;Luggage storage;24-hour reception;Airport shuttle,76,12,31,3,3650
+KTM045,Kathmandu,Dillibazar,Serviced apartment,Private room,2,1,1,Kitchen;Garden;Wi-Fi;Balcony;24-hour reception;TV;Free parking;Luggage storage;Laundry,58,12,19,5,6200
+KTM012,Kathmandu,Lazimpat,Apartment,Private room,1,1,1,Security;Luggage storage;TV;Workspace;24-hour reception;Airport shuttle;Paid parking,91,1,23,5,3900
+KTM270,Kathmandu,Baluwatar,Hotel,Private room,2,1,1,Rooftop terrace;Workspace;Breakfast;Laundry;Hot water;Garden;Daily housekeeping,59,1,6,2,9250
+KTM187,Kathmandu,New Road,Hostel,Shared room,5,1,2,Free parking;Rooftop terrace;Wi-Fi;Kitchenette;Workspace;Breakfast,67,1,19,1,800
+KTM279,Kathmandu,Dillibazar,Hostel,Shared room,8,1,2,Heating;Air conditioning;Kitchenette;Luggage storage,107,2,8,0,550
+KTM321,Kathmandu,Chabahil,Hotel,Shared room,8,2,1,Airport shuttle;Daily housekeeping;Kitchenette;24-hour reception;Balcony;Hot water;Workspace;Air conditioning,29,12,6,6,3000
+KTM026,Kathmandu,New Road,Hostel,Private room,1,1,2,Workspace;Rooftop terrace;TV;Heating;Luggage storage,101,1,10,6,450
+KTM161,Kathmandu,Chabahil,Apartment,Entire place,1,1,1,Wi-Fi;Daily housekeeping;Luggage storage;24-hour reception;TV;Workspace;Rooftop terrace,71,1,12,1,7250
+KTM241,Kathmandu,Lazimpat,Apartment,Private room,2,1,2,Free parking;Airport shuttle;24-hour reception;Balcony;Workspace,20,12,1,1,5250
+KTM303,Kathmandu,Kirtipur,Guesthouse,Private room,1,1,1,Garden;Kitchenette;Rooftop terrace;Laundry;TV;24-hour reception;Airport shuttle;Breakfast,51,1,4,0,2450
+KTM380,Kathmandu,Swayambhu,Homestay,Private room,2,1,2,TV;Balcony;Kitchen;Heating;Airport shuttle;Air conditioning;Rooftop terrace;Security;Daily housekeeping,87,2,9,1,4100
+KTM242,Kathmandu,Baluwatar,Guesthouse,Private room,2,1,1,Luggage storage;Airport shuttle;Laundry;Workspace;Paid parking;Garden;Balcony,12,11,23,0,2000
+KTM232,Kathmandu,Maharajgunj,Hostel,Private room,2,1,2,Garden;Security;Heating;Laundry;Free parking;Luggage storage,90,1,23,5,1200
+KTM184,Kathmandu,Lazimpat,Apartment,Private room,2,1,1,Kitchen;Daily housekeeping;Rooftop terrace;Hot water;TV;Garden,18,11,30,0,5150
+KTM304,Kathmandu,Kirtipur,Apartment,Private room,2,1,2,Free parking;Airport shuttle;Rooftop terrace;Breakfast;Heating;Kitchenette;Daily housekeeping,68,1,17,6,2100
+KTM347,Kathmandu,Dillibazar,Guesthouse,Private room,2,1,1,Free parking;Kitchen;Rooftop terrace;Daily housekeeping;Security;Kitchenette;Heating,50,12,21,0,2950
+KTM202,Kathmandu,Thamel,Hotel,Private room,2,1,1,Airport shuttle;Daily housekeeping;Hot water;Heating;Free parking,78,1,26,1,5450
+KTM218,Kathmandu,Kalimati,Apartment,Entire place,1,1,1,Laundry;Airport shuttle;Paid parking;Kitchen,80,1,21,3,2500
+KTM052,Kathmandu,Patan,Guesthouse,Private room,3,1,1,Wi-Fi;Daily housekeeping;Workspace;Kitchen;Breakfast;Security;Laundry;Airport shuttle;TV,61,1,3,6,1400
+KTM296,Kathmandu,Boudha,Homestay,Private room,3,1,1,Security;TV;Luggage storage;Workspace;Free parking;Balcony;Kitchenette,93,1,8,4,2650
+KTM284,Kathmandu,Boudha,Hotel,Private room,2,1,1,Balcony;24-hour reception;Kitchen;Rooftop terrace;Security;Breakfast;Heating,88,2,8,0,5450
+KTM365,Kathmandu,Chabahil,Hotel,Private room,2,1,2,Paid parking;Wi-Fi;24-hour reception;Garden;TV;Kitchenette;Workspace;Kitchen,83,12,30,2,2300
+KTM016,Kathmandu,Swayambhu,Hotel,Private room,3,1,1,Breakfast;Daily housekeeping;Security;Laundry;Airport shuttle;Rooftop terrace;Wi-Fi,59,1,10,6,6300
+KTM366,Kathmandu,Maharajgunj,Guesthouse,Private room,2,1,1,Daily housekeeping;Air conditioning;Luggage storage;Airport shuttle;Heating;Workspace;Paid parking,41,11,20,4,2400
+KTM229,Kathmandu,Dillibazar,Hostel,Shared room,3,1,1,Garden;Luggage storage;Airport shuttle;Paid parking,50,11,26,3,1100
+KTM331,Kathmandu,New Road,Guesthouse,Shared room,12,1,2,Rooftop terrace;Free parking;Balcony;Kitchenette;TV;Heating,60,12,11,4,1100
+KTM353,Kathmandu,Swayambhu,Homestay,Entire place,1,1,1,Airport shuttle;24-hour reception;Workspace;Kitchenette;Free parking;Kitchen;Daily housekeeping,90,1,27,2,3050
+KTM307,Kathmandu,Chabahil,Guesthouse,Shared room,12,1,1,Heating;Hot water;Air conditioning;Balcony;Paid parking;Wi-Fi,12,11,19,3,1150
+KTM296,Kathmandu,Boudha,Homestay,Private room,3,1,1,Security;TV;Luggage storage;Workspace;Free parking;Balcony;Kitchenette,110,1,26,1,2600
+KTM320,Kathmandu,Patan,Serviced apartment,Entire place,4,1,1,Daily housekeeping;Workspace;Heating;Security;Air conditioning;Kitchenette;Kitchen;Airport shuttle,103,1,28,3,13050
+KTM003,Kathmandu,Patan,Serviced apartment,Entire place,7,3,2,Balcony;Security;Kitchen;Rooftop terrace;Workspace,95,1,27,2,10050
+KTM381,Kathmandu,Boudha,Guesthouse,Private room,1,1,2,Hot water;Free parking;Kitchen;Rooftop terrace;Security;Wi-Fi;Workspace;Breakfast;Daily housekeeping,73,12,24,3,6100
+KTM210,Kathmandu,Lazimpat,Homestay,Private room,3,1,1,Laundry;Garden;Workspace;Airport shuttle;Luggage storage,83,2,6,5,4800
+KTM147,Kathmandu,Dillibazar,Serviced apartment,Entire place,8,4,2,Security;Airport shuttle;Wi-Fi;Garden;Rooftop terrace;Air conditioning;Workspace,85,2,5,4,6500
+KTM325,Kathmandu,Boudha,Guesthouse,Private room,1,1,1,Kitchenette;Breakfast;Security;Balcony;Heating;TV;Garden;Wi-Fi;Workspace;Daily housekeeping,48,11,24,1,2100
+KTM116,Kathmandu,Kalimati,Hotel,Shared room,5,1,1,Air conditioning;Laundry;Kitchen;Garden;Airport shuttle;Hot water;Daily housekeeping;Breakfast,133,2,11,3,2850
+KTM314,Kathmandu,Thamel,Homestay,Private room,2,1,2,Hot water;Luggage storage;Paid parking;Security;Workspace;Air conditioning;Garden;Airport shuttle;24-hour reception,83,1,5,1,2350
+KTM302,Kathmandu,New Road,Apartment,Private room,2,1,2,Luggage storage;Laundry;Kitchen;Workspace;Paid parking,62,1,16,5,5200
+KTM140,Kathmandu,Lazimpat,Apartment,Entire place,7,2,1,Free parking;Heating;Paid parking;Breakfast;Hot water;Balcony,73,1,25,0,9600
+KTM399,Kathmandu,New Road,Serviced apartment,Private room,1,1,2,Kitchen;Hot water;Wi-Fi;Breakfast;Daily housekeeping;Heating;Balcony;Free parking,71,1,10,6,9400
+KTM008,Kathmandu,Baneshwor,Hotel,Private room,1,1,1,Workspace;Heating;Garden;Balcony;Paid parking;Laundry;Luggage storage,105,2,3,2,9450
+KTM238,Kathmandu,Kalimati,Hotel,Private room,1,1,1,Airport shuttle;Workspace;Hot water;Heating;Wi-Fi;Paid parking;Rooftop terrace,24,12,9,2,1950
+KTM138,Kathmandu,Patan,Serviced apartment,Private room,3,1,1,Wi-Fi;Balcony;Airport shuttle;Rooftop terrace,62,12,30,2,10750
+KTM182,Kathmandu,Gaushala,Homestay,Private room,1,1,1,Air conditioning;Security;Balcony;Luggage storage;Airport shuttle;Free parking,80,12,25,4,3200
+KTM319,Kathmandu,Lazimpat,Serviced apartment,Private room,1,1,1,Free parking;Kitchenette;Garden;TV,27,12,7,0,4150
+KTM277,Kathmandu,Gaushala,Serviced apartment,Entire place,2,2,1,Free parking;Airport shuttle;Luggage storage;Heating;Garden;Workspace;Balcony;Security,57,11,27,4,12500
+KTM161,Kathmandu,Chabahil,Apartment,Entire place,1,1,1,Wi-Fi;Daily housekeeping;Luggage storage;24-hour reception;TV;Workspace;Rooftop terrace,86,1,6,2,7300
+KTM333,Kathmandu,Kupondole,Homestay,Shared room,6,1,1,Breakfast;Kitchenette;Garden;Hot water;Security;Wi-Fi;24-hour reception;Airport shuttle,28,11,28,5,2300
+KTM247,Kathmandu,Lazimpat,Hostel,Private room,2,1,1,Daily housekeeping;TV;Kitchen;Luggage storage;Free parking,48,12,11,4,1700
+KTM093,Kathmandu,Lazimpat,Apartment,Entire place,4,1,1,Breakfast;Daily housekeeping;Garden;Balcony;Air conditioning,43,12,8,1,8450
+KTM379,Kathmandu,Kalimati,Hostel,Shared room,3,2,1,Kitchenette;Air conditioning;Paid parking;Airport shuttle;Rooftop terrace;Garden;Luggage storage,29,11,25,2,650
+KTM398,Kathmandu,Baneshwor,Serviced apartment,Entire place,9,4,1,Air conditioning;Breakfast;Paid parking;Airport shuttle;Hot water;Daily housekeeping,35,11,20,4,4050
+KTM067,Kathmandu,Gaushala,Hotel,Private room,2,1,1,Free parking;Security;Kitchen;Daily housekeeping;Airport shuttle;Air conditioning;Luggage storage;TV,41,12,8,1,8350
+KTM008,Kathmandu,Baneshwor,Hotel,Private room,1,1,1,Workspace;Heating;Garden;Balcony;Paid parking;Laundry;Luggage storage,45,12,15,1,9600
+KTM302,Kathmandu,New Road,Apartment,Private room,2,1,2,Luggage storage;Laundry;Kitchen;Workspace;Paid parking,68,1,8,4,4850
+KTM227,Kathmandu,Kupondole,Apartment,Entire place,3,1,1,Garden;Security;Hot water;Balcony;Wi-Fi,89,1,2,5,8450
+KTM325,Kathmandu,Boudha,Guesthouse,Private room,1,1,1,Kitchenette;Breakfast;Security;Balcony;Heating;TV;Garden;Wi-Fi;Workspace;Daily housekeeping,69,12,28,0,2150
+KTM391,Kathmandu,New Road,Apartment,Private room,2,1,1,Hot water;Balcony;24-hour reception;Breakfast;Workspace;Garden;Air conditioning,71,12,31,3,2050
+KTM343,Kathmandu,Boudha,Guesthouse,Private room,2,1,1,Workspace;Kitchenette;Heating;Kitchen;Hot water;Garden;Laundry;Security;Daily housekeeping,16,11,20,4,4600
+KTM096,Kathmandu,Baluwatar,Hostel,Private room,2,1,1,Heating;Kitchenette;Wi-Fi;Hot water;Luggage storage;Security;Laundry;Paid parking,104,1,25,0,1450
+KTM009,Kathmandu,Maharajgunj,Homestay,Shared room,6,1,1,Air conditioning;Security;Garden;Laundry;Daily housekeeping,75,12,29,1,2150
+KTM196,Kathmandu,Dillibazar,Serviced apartment,Private room,2,1,1,Air conditioning;Kitchenette;Security;Balcony,16,11,19,3,10000
+KTM361,Kathmandu,Chabahil,Hotel,Private room,2,1,1,24-hour reception;Air conditioning;Laundry;Wi-Fi;Airport shuttle;Hot water,26,12,8,1,5800
+KTM350,Kathmandu,Lazimpat,Homestay,Shared room,8,1,2,Wi-Fi;Kitchenette;Air conditioning;Breakfast;Security;24-hour reception;Hot water,113,2,12,4,1300
+KTM318,Kathmandu,Baneshwor,Guesthouse,Private room,2,1,2,TV;Airport shuttle;Kitchen;Luggage storage;24-hour reception;Heating;Kitchenette,103,1,21,3,900
+KTM141,Kathmandu,Dillibazar,Serviced apartment,Entire place,2,1,1,Luggage storage;Security;Airport shuttle;TV;Balcony;Breakfast,86,1,6,2,5700
+KTM121,Kathmandu,Dillibazar,Serviced apartment,Entire place,4,3,1,Kitchenette;Air conditioning;Wi-Fi;Airport shuttle;Garden;TV;Security,73,1,20,2,8250
+KTM190,Kathmandu,Boudha,Homestay,Private room,1,1,1,Kitchen;Kitchenette;24-hour reception;TV,80,1,11,0,2750
+KTM047,Kathmandu,Boudha,Hotel,Private room,3,1,1,Air conditioning;Daily housekeeping;Laundry;Free parking;Security;Kitchen,118,2,5,4,10600
+KTM392,Kathmandu,Thamel,Hostel,Shared room,5,1,2,Laundry;Workspace;TV;Free parking;Paid parking;Hot water;Security;Garden;Balcony,9,11,23,0,750
+KTM039,Kathmandu,Lazimpat,Homestay,Entire place,2,1,2,Balcony;Breakfast;24-hour reception;Kitchen;Airport shuttle;TV;Garden;Luggage storage;Security,62,1,8,4,2100
+KTM055,Kathmandu,Dillibazar,Apartment,Entire place,4,3,1,Airport shuttle;Luggage storage;Paid parking;Balcony;Laundry;Heating;Daily housekeeping;Security,7,11,15,6,6900
+KTM037,Kathmandu,New Road,Guesthouse,Entire place,5,4,2,Heating;Workspace;Luggage storage;Laundry;Kitchen;Garden;Kitchenette,52,11,22,6,6100
+KTM152,Kathmandu,Thamel,Hotel,Shared room,9,1,3,Daily housekeeping;Workspace;24-hour reception;Luggage storage;Security,77,1,20,2,3800
+KTM316,Kathmandu,New Road,Hotel,Private room,2,1,1,Balcony;Wi-Fi;Air conditioning;Laundry;Workspace;TV;24-hour reception;Rooftop terrace,61,1,9,5,4550
+KTM245,Kathmandu,Kalimati,Guesthouse,Private room,2,1,2,24-hour reception;TV;Garden;Paid parking;Luggage storage;Rooftop terrace;Air conditioning;Free parking;Daily housekeeping,98,1,15,4,3100
+KTM287,Kathmandu,Kalimati,Homestay,Private room,3,1,1,Kitchen;Security;Laundry;Air conditioning;Wi-Fi;Airport shuttle;Paid parking;Balcony,47,12,25,4,2450
+KTM201,Kathmandu,Lazimpat,Hostel,Shared room,8,1,3,Hot water;Security;Wi-Fi;24-hour reception;Free parking;Luggage storage,2,11,17,1,400
+KTM033,Kathmandu,Kupondole,Homestay,Private room,2,1,1,Airport shuttle;Paid parking;TV;24-hour reception;Luggage storage;Free parking,61,1,10,6,3900
+KTM141,Kathmandu,Dillibazar,Serviced apartment,Entire place,2,1,1,Luggage storage;Security;Airport shuttle;TV;Balcony;Breakfast,83,12,28,0,6100
+KTM146,Kathmandu,Gaushala,Homestay,Private room,3,1,2,Paid parking;Hot water;Airport shuttle;Luggage storage,73,1,10,6,1700
+KTM312,Kathmandu,Kalimati,Apartment,Entire place,3,1,1,Daily housekeeping;Luggage storage;Free parking;Air conditioning;Heating;Wi-Fi;Laundry;Hot water,106,2,1,0,2050
+KTM131,Kathmandu,Chabahil,Guesthouse,Shared room,12,1,3,24-hour reception;Hot water;Air conditioning;Airport shuttle;Heating,44,11,28,5,750
+KTM068,Kathmandu,Patan,Serviced apartment,Private room,2,1,1,Airport shuttle;Balcony;Rooftop terrace;Kitchen;Luggage storage,96,1,14,3,7300
+KTM257,Kathmandu,Baluwatar,Hotel,Private room,2,1,1,Wi-Fi;Paid parking;Free parking;Breakfast;Workspace;Kitchenette;Garden;Laundry,48,12,8,1,11250
+KTM128,Kathmandu,Maharajgunj,Apartment,Private room,1,1,1,Airport shuttle;Air conditioning;Workspace;Hot water;Kitchen,106,1,20,2,4350
+KTM219,Kathmandu,Swayambhu,Apartment,Entire place,7,2,1,Breakfast;Daily housekeeping;Hot water;Paid parking;Wi-Fi,28,12,6,6,4050
+KTM293,Kathmandu,Kirtipur,Homestay,Private room,2,1,1,Free parking;Kitchen;Air conditioning;Security;Balcony;Wi-Fi;Heating,46,12,24,3,3900
+KTM345,Kathmandu,Maharajgunj,Homestay,Private room,2,1,1,Workspace;Balcony;Rooftop terrace;Airport shuttle;Garden;Luggage storage,79,1,12,1,3200
+KTM162,Kathmandu,Boudha,Hotel,Private room,1,1,1,TV;24-hour reception;Air conditioning;Balcony;Heating;Breakfast;Luggage storage,62,1,16,5,7500
+KTM037,Kathmandu,New Road,Guesthouse,Entire place,5,4,2,Heating;Workspace;Luggage storage;Laundry;Kitchen;Garden;Kitchenette,59,12,20,6,6800
+KTM173,Kathmandu,Lazimpat,Apartment,Entire place,8,4,1,Hot water;Air conditioning;Balcony;Daily housekeeping;Paid parking;Wi-Fi;Airport shuttle;Kitchenette,59,12,21,0,9700
+KTM211,Kathmandu,Swayambhu,Apartment,Shared room,12,1,2,Air conditioning;Rooftop terrace;Luggage storage;Garden;Wi-Fi;Heating;Daily housekeeping,24,12,6,6,1850
+KTM311,Kathmandu,Thamel,Hotel,Entire place,4,2,1,Laundry;Balcony;Security;Breakfast;Luggage storage;TV;Air conditioning;Rooftop terrace;Paid parking,56,1,5,1,6350
+KTM119,Kathmandu,Maharajgunj,Homestay,Private room,2,1,1,Kitchen;Hot water;24-hour reception;Wi-Fi;Free parking;Security,44,12,2,2,1400
+KTM270,Kathmandu,Baluwatar,Hotel,Private room,2,1,1,Rooftop terrace;Workspace;Breakfast;Laundry;Hot water;Garden;Daily housekeeping,75,1,28,3,9500
+KTM084,Kathmandu,Gaushala,Serviced apartment,Private room,2,1,2,Laundry;Wi-Fi;Hot water;Breakfast;Security;Free parking;Rooftop terrace;Workspace,28,12,4,4,10500
+KTM286,Kathmandu,Thamel,Guesthouse,Private room,1,1,1,TV;24-hour reception;Security;Paid parking;Breakfast;Daily housekeeping;Balcony;Garden,23,11,22,6,2100
+KTM306,Kathmandu,Patan,Hotel,Private room,2,1,1,TV;Airport shuttle;Heating;24-hour reception;Daily housekeeping;Laundry;Wi-Fi,57,12,7,0,1900
+KTM393,Kathmandu,New Road,Guesthouse,Shared room,8,2,3,Garden;Security;Kitchen;Workspace;Breakfast;Wi-Fi;Daily housekeeping,45,12,20,6,1400
+KTM192,Kathmandu,Lazimpat,Serviced apartment,Private room,2,1,1,Paid parking;Wi-Fi;Balcony;Rooftop terrace;Luggage storage;Kitchen;TV,72,12,25,4,10250
+KTM246,Kathmandu,Boudha,Hotel,Private room,1,1,1,Security;Rooftop terrace;24-hour reception;Breakfast;Luggage storage;Laundry;TV;Wi-Fi;Workspace,41,12,26,5,7000
+KTM100,Kathmandu,Gaushala,Homestay,Entire place,2,1,1,24-hour reception;Kitchen;Paid parking;Kitchenette;Luggage storage;Laundry;Workspace;Garden,100,2,5,4,3400
+KTM342,Kathmandu,New Road,Guesthouse,Private room,3,1,1,Kitchenette;Balcony;Daily housekeeping;Paid parking;Heating;Laundry;Kitchen;Air conditioning;Workspace,47,11,25,2,1800
+KTM356,Kathmandu,Maharajgunj,Serviced apartment,Private room,2,1,1,Air conditioning;Free parking;Wi-Fi;Security;Daily housekeeping;Breakfast;Kitchenette;TV,94,1,16,5,7550
+KTM060,Kathmandu,Baluwatar,Hostel,Shared room,9,1,1,Wi-Fi;Breakfast;Laundry;Luggage storage,76,1,26,1,900
+KTM376,Kathmandu,Kirtipur,Hotel,Private room,1,1,1,Paid parking;Laundry;Security;Free parking;Workspace;Daily housekeeping;Airport shuttle,97,1,27,2,5000
+KTM156,Kathmandu,Kalimati,Guesthouse,Shared room,7,1,1,Free parking;Kitchenette;Garden;Paid parking;Laundry;Workspace;Air conditioning;Wi-Fi;Luggage storage,45,12,16,2,800
+KTM216,Kathmandu,Lazimpat,Homestay,Private room,2,1,1,Wi-Fi;Daily housekeeping;Luggage storage;Breakfast,38,11,21,5,2550
+KTM174,Kathmandu,Dillibazar,Hotel,Private room,2,1,2,Wi-Fi;Free parking;Air conditioning;Rooftop terrace;Workspace;Heating;Daily housekeeping,5,11,16,0,5300
+KTM203,Kathmandu,Patan,Hotel,Private room,3,1,1,Free parking;Garden;Workspace;Balcony;Rooftop terrace,102,1,28,3,5600
+KTM352,Kathmandu,Dillibazar,Homestay,Private room,2,1,1,TV;Workspace;Balcony;Rooftop terrace;Paid parking;Wi-Fi,70,12,30,2,2050
+KTM387,Kathmandu,Kalimati,Apartment,Entire place,1,1,2,Breakfast;TV;Air conditioning;Hot water;Wi-Fi,17,11,27,4,8550
+KTM250,Kathmandu,Dillibazar,Serviced apartment,Entire place,4,2,1,Workspace;Balcony;Wi-Fi;24-hour reception;Hot water,128,2,11,3,3350
+KTM286,Kathmandu,Thamel,Guesthouse,Private room,1,1,1,TV;24-hour reception;Security;Paid parking;Breakfast;Daily housekeeping;Balcony;Garden,59,12,9,2,2050
+KTM319,Kathmandu,Lazimpat,Serviced apartment,Private room,1,1,1,Free parking;Kitchenette;Garden;TV,70,1,4,0,3850
+KTM320,Kathmandu,Patan,Serviced apartment,Entire place,4,1,1,Daily housekeeping;Workspace;Heating;Security;Air conditioning;Kitchenette;Kitchen;Airport shuttle,72,1,21,3,13600
+KTM053,Kathmandu,New Road,Serviced apartment,Entire place,5,3,2,Air conditioning;Paid parking;Airport shuttle;Kitchen,124,2,4,3,9950
+KTM237,Kathmandu,Kupondole,Guesthouse,Private room,2,1,1,Garden;Airport shuttle;Wi-Fi;Rooftop terrace;Security;Kitchenette;Kitchen;24-hour reception;Laundry,19,12,3,3,1400
+KTM396,Kathmandu,Kirtipur,Guesthouse,Entire place,1,1,1,Wi-Fi;Balcony;Airport shuttle;Breakfast;Hot water,82,1,11,0,4800
+KTM123,Kathmandu,Dillibazar,Hostel,Shared room,10,1,1,Security;Daily housekeeping;Rooftop terrace;Workspace;Kitchen;Hot water;Garden;Luggage storage,56,12,15,1,350
+KTM252,Kathmandu,Kirtipur,Guesthouse,Private room,2,1,1,Breakfast;TV;Security;Garden,13,11,20,4,3800
+KTM091,Kathmandu,Kirtipur,Hostel,Private room,2,1,1,Breakfast;Heating;Rooftop terrace;Luggage storage,93,2,4,3,750
+KTM173,Kathmandu,Lazimpat,Apartment,Entire place,8,4,1,Hot water;Air conditioning;Balcony;Daily housekeeping;Paid parking;Wi-Fi;Airport shuttle;Kitchenette,67,1,15,4,9550
+KTM371,Kathmandu,Chabahil,Apartment,Private room,3,1,1,Workspace;Laundry;Free parking;Kitchenette;Rooftop terrace;Airport shuttle,71,12,16,2,5750
+KTM298,Kathmandu,New Road,Apartment,Entire place,2,1,3,Laundry;TV;Heating;24-hour reception;Daily housekeeping;Kitchenette;Rooftop terrace;Kitchen,69,1,20,2,4700
+KTM177,Kathmandu,Kalimati,Homestay,Private room,3,1,1,Breakfast;Wi-Fi;Rooftop terrace;Kitchen;Balcony;Security,68,12,31,3,2650
+KTM202,Kathmandu,Thamel,Hotel,Private room,2,1,1,Airport shuttle;Daily housekeeping;Hot water;Heating;Free parking,75,1,7,3,5650
+KTM278,Kathmandu,Kalimati,Guesthouse,Private room,2,1,1,Luggage storage;Security;Air conditioning;Airport shuttle;Daily housekeeping,62,12,12,5,4900
+KTM309,Kathmandu,Baluwatar,Homestay,Private room,2,1,2,Heating;Balcony;Airport shuttle;Kitchen,106,2,12,4,3600
+KTM260,Kathmandu,Dillibazar,Apartment,Entire place,7,2,1,Paid parking;Workspace;Balcony;Hot water;Heating,87,1,15,4,6600
+KTM103,Kathmandu,Baluwatar,Serviced apartment,Private room,1,1,1,Heating;Rooftop terrace;TV;Hot water,60,12,20,6,4850
+KTM263,Kathmandu,Baneshwor,Guesthouse,Private room,1,1,1,Paid parking;Breakfast;Security;Airport shuttle;Wi-Fi;Daily housekeeping;TV,108,1,22,4,3150
+KTM333,Kathmandu,Kupondole,Homestay,Shared room,6,1,1,Breakfast;Kitchenette;Garden;Hot water;Security;Wi-Fi;24-hour reception;Airport shuttle,38,12,6,6,2100
+KTM099,Kathmandu,Kirtipur,Guesthouse,Private room,1,1,1,Breakfast;Hot water;Daily housekeeping;Workspace;Rooftop terrace;Kitchenette;24-hour reception,27,11,26,3,2750
+KTM277,Kathmandu,Gaushala,Serviced apartment,Entire place,2,2,1,Free parking;Airport shuttle;Luggage storage;Heating;Garden;Workspace;Balcony;Security,100,1,15,4,12000
+KTM081,Kathmandu,Gaushala,Hostel,Shared room,11,2,3,Heating;Rooftop terrace;Workspace;Breakfast;Kitchenette;Kitchen;Free parking;Luggage storage,58,12,3,3,1050
+KTM073,Kathmandu,Patan,Serviced apartment,Entire place,5,4,1,Hot water;Laundry;Air conditioning;Luggage storage;Workspace;TV;Garden;Kitchen,95,2,2,1,15550
+KTM045,Kathmandu,Dillibazar,Serviced apartment,Private room,2,1,1,Kitchen;Garden;Wi-Fi;Balcony;24-hour reception;TV;Free parking;Luggage storage;Laundry,44,12,5,5,5650
+KTM270,Kathmandu,Baluwatar,Hotel,Private room,2,1,1,Rooftop terrace;Workspace;Breakfast;Laundry;Hot water;Garden;Daily housekeeping,91,2,2,1,9800
+KTM178,Kathmandu,Kalimati,Hostel,Shared room,8,1,3,Wi-Fi;TV;Rooftop terrace;Balcony;Airport shuttle;Paid parking;Luggage storage;Daily housekeeping,76,12,18,4,350
+KTM038,Kathmandu,Gaushala,Apartment,Entire place,2,1,1,Garden;Breakfast;Paid parking;Workspace;Wi-Fi;Security;Balcony,88,1,12,1,4850
+KTM316,Kathmandu,New Road,Hotel,Private room,2,1,1,Balcony;Wi-Fi;Air conditioning;Laundry;Workspace;TV;24-hour reception;Rooftop terrace,108,2,4,3,4300
+KTM332,Kathmandu,Boudha,Serviced apartment,Entire place,7,2,3,Luggage storage;TV;Paid parking;Hot water;Heating;Laundry,78,1,31,6,6200
+KTM312,Kathmandu,Kalimati,Apartment,Entire place,3,1,1,Daily housekeeping;Luggage storage;Free parking;Air conditioning;Heating;Wi-Fi;Laundry;Hot water,29,11,20,4,2400
+KTM130,Kathmandu,Kalimati,Serviced apartment,Entire place,4,2,1,Air conditioning;Workspace;Hot water;Rooftop terrace;Kitchen;TV;Kitchenette;Luggage storage;Breakfast,99,1,19,1,8250
+KTM164,Kathmandu,Maharajgunj,Guesthouse,Entire place,3,2,2,Kitchenette;Paid parking;Hot water;Laundry;Garden;24-hour reception,63,1,12,1,2150
+KTM114,Kathmandu,Swayambhu,Guesthouse,Private room,1,1,1,Kitchen;Rooftop terrace;Security;Airport shuttle,99,1,27,2,3750
+KTM142,Kathmandu,Kirtipur,Homestay,Private room,2,1,1,Rooftop terrace;Paid parking;Wi-Fi;Laundry,73,12,30,2,1950
+KTM161,Kathmandu,Chabahil,Apartment,Entire place,1,1,1,Wi-Fi;Daily housekeeping;Luggage storage;24-hour reception;TV;Workspace;Rooftop terrace,80,12,26,5,7700
+KTM255,Kathmandu,Maharajgunj,Homestay,Shared room,11,1,1,Laundry;Kitchen;Hot water;Heating;Daily housekeeping;Free parking;Garden;Airport shuttle,15,11,21,5,1600
+KTM222,Kathmandu,Gaushala,Apartment,Entire place,3,2,3,Workspace;Paid parking;Wi-Fi;Airport shuttle;Balcony;Kitchen,40,11,25,2,8500
+KTM394,Kathmandu,Gaushala,Hostel,Shared room,8,1,3,Workspace;Security;Airport shuttle;Paid parking;Laundry;TV;Rooftop terrace;24-hour reception;Breakfast,32,12,17,3,350
+KTM269,Kathmandu,New Road,Hostel,Entire place,7,2,3,Airport shuttle;Rooftop terrace;24-hour reception;Free parking;Wi-Fi;Hot water;Garden;Balcony;Paid parking,37,11,15,6,2000
+KTM327,Kathmandu,Kalimati,Hotel,Private room,2,1,1,Laundry;Luggage storage;Air conditioning;Paid parking;Breakfast;Balcony;Kitchenette;24-hour reception;Kitchen;Daily housekeeping,35,11,20,4,8250
+KTM262,Kathmandu,Boudha,Apartment,Entire place,6,2,1,Free parking;Garden;Daily housekeeping;Luggage storage;Airport shuttle;Air conditioning;Security,59,12,18,4,6100
+KTM120,Kathmandu,Kirtipur,Guesthouse,Private room,1,1,1,Paid parking;Heating;Laundry;Security,36,12,19,5,2300
+KTM168,Kathmandu,Chabahil,Hotel,Shared room,10,1,2,Free parking;Luggage storage;Wi-Fi;Breakfast;Rooftop terrace;Heating;24-hour reception;Paid parking;Daily housekeeping,41,11,26,3,2000
+KTM166,Kathmandu,Lazimpat,Homestay,Private room,3,1,2,Paid parking;Garden;TV;Kitchenette;Wi-Fi,32,12,16,2,3950
+KTM295,Kathmandu,Boudha,Guesthouse,Private room,2,1,1,Workspace;Balcony;24-hour reception;Paid parking;TV;Garden;Security,123,2,9,1,3350
+KTM378,Kathmandu,Lazimpat,Serviced apartment,Entire place,1,1,1,Free parking;Workspace;Air conditioning;Wi-Fi;Balcony;Daily housekeeping;Garden;Breakfast;24-hour reception,96,1,9,5,14550
+KTM256,Kathmandu,Kirtipur,Guesthouse,Private room,2,1,1,Garden;Laundry;Kitchen;Security;Luggage storage;TV;Free parking;Rooftop terrace,58,12,17,3,1650
+KTM183,Kathmandu,Kirtipur,Serviced apartment,Entire place,2,1,1,Rooftop terrace;Heating;Security;24-hour reception;Kitchenette;Kitchen,71,1,24,6,6750
+KTM253,Kathmandu,Lazimpat,Guesthouse,Private room,2,1,1,Air conditioning;Luggage storage;Balcony;Free parking;Wi-Fi,71,12,25,4,1250
+KTM115,Kathmandu,Boudha,Homestay,Shared room,12,2,1,Balcony;Hot water;Laundry;Free parking;Daily housekeeping;Garden;Breakfast,68,12,10,3,2900
+KTM071,Kathmandu,Boudha,Serviced apartment,Entire place,3,1,1,Free parking;Kitchenette;24-hour reception;Balcony;Rooftop terrace;Heating;Hot water;Air conditioning,98,1,8,4,16600
+KTM172,Kathmandu,Gaushala,Hostel,Shared room,7,1,2,Balcony;Breakfast;Air conditioning;Airport shuttle;Luggage storage;Workspace;Garden;Paid parking;Heating,15,11,18,2,400
+KTM187,Kathmandu,New Road,Hostel,Shared room,5,1,2,Free parking;Rooftop terrace;Wi-Fi;Kitchenette;Workspace;Breakfast,26,12,2,2,850
+KTM320,Kathmandu,Patan,Serviced apartment,Entire place,4,1,1,Daily housekeeping;Workspace;Heating;Security;Air conditioning;Kitchenette;Kitchen;Airport shuttle,95,1,18,0,13050
+KTM064,Kathmandu,Kirtipur,Apartment,Entire place,4,1,2,Kitchenette;Laundry;Airport shuttle;Heating,83,1,3,6,5150
+KTM194,Kathmandu,Dillibazar,Hotel,Private room,2,1,2,Daily housekeeping;24-hour reception;Hot water;Kitchenette;Garden;Balcony;Luggage storage;Security;Heating,61,12,26,5,5800
+KTM087,Kathmandu,Boudha,Hotel,Shared room,6,1,2,Daily housekeeping;Breakfast;Hot water;Kitchenette;24-hour reception;Heating;Kitchen;Laundry;Rooftop terrace,114,2,3,2,2800
+KTM199,Kathmandu,Kalimati,Guesthouse,Private room,2,1,2,Laundry;Free parking;Hot water;TV;Daily housekeeping,55,1,6,2,3850
+KTM399,Kathmandu,New Road,Serviced apartment,Private room,1,1,2,Kitchen;Hot water;Wi-Fi;Breakfast;Daily housekeeping;Heating;Balcony;Free parking,70,12,29,1,9900
+KTM353,Kathmandu,Swayambhu,Homestay,Entire place,1,1,1,Airport shuttle;24-hour reception;Workspace;Kitchenette;Free parking;Kitchen;Daily housekeeping,95,1,21,3,2900
+KTM338,Kathmandu,Chabahil,Guesthouse,Shared room,10,1,1,Paid parking;Kitchen;Airport shuttle;Rooftop terrace;Security;Hot water;Kitchenette;Workspace;TV;Daily housekeeping,105,1,17,6,1000
+KTM259,Kathmandu,Boudha,Guesthouse,Private room,1,1,1,Daily housekeeping;Kitchen;TV;Garden,16,11,28,5,5800
+KTM002,Kathmandu,Gaushala,Apartment,Entire place,3,1,2,TV;Daily housekeeping;Workspace;Heating;Free parking;24-hour reception;Luggage storage;Hot water,106,1,22,4,4850
+KTM106,Kathmandu,Boudha,Hostel,Shared room,12,2,2,Laundry;Kitchen;Garden;Luggage storage,59,12,30,2,650
+KTM118,Kathmandu,Kirtipur,Serviced apartment,Entire place,4,1,1,24-hour reception;Kitchenette;Workspace;Balcony;Heating;Paid parking;Air conditioning;Wi-Fi,77,12,27,6,6100
+KTM100,Kathmandu,Gaushala,Homestay,Entire place,2,1,1,24-hour reception;Kitchen;Paid parking;Kitchenette;Luggage storage;Laundry;Workspace;Garden,79,1,24,6,3300
+KTM060,Kathmandu,Baluwatar,Hostel,Shared room,9,1,1,Wi-Fi;Breakfast;Laundry;Luggage storage,67,12,28,0,900
+KTM098,Kathmandu,Baluwatar,Homestay,Private room,1,1,2,Wi-Fi;Security;Paid parking;Kitchenette;24-hour reception;Air conditioning;Daily housekeeping,30,11,24,1,2000
+KTM345,Kathmandu,Maharajgunj,Homestay,Private room,2,1,1,Workspace;Balcony;Rooftop terrace;Airport shuttle;Garden;Luggage storage,72,12,14,0,3350
+KTM319,Kathmandu,Lazimpat,Serviced apartment,Private room,1,1,1,Free parking;Kitchenette;Garden;TV,104,2,7,6,3800
+KTM276,Kathmandu,Lazimpat,Hostel,Shared room,4,2,2,Laundry;Wi-Fi;Garden;Daily housekeeping,94,1,21,3,350
+KTM082,Kathmandu,Kalimati,Apartment,Entire place,2,1,1,Rooftop terrace;Airport shuttle;24-hour reception;Heating;Workspace;Security;Free parking,69,12,20,6,5000
+KTM099,Kathmandu,Kirtipur,Guesthouse,Private room,1,1,1,Breakfast;Hot water;Daily housekeeping;Workspace;Rooftop terrace;Kitchenette;24-hour reception,60,12,24,3,2700
+KTM087,Kathmandu,Boudha,Hotel,Shared room,6,1,2,Daily housekeeping;Breakfast;Hot water;Kitchenette;24-hour reception;Heating;Kitchen;Laundry;Rooftop terrace,34,12,17,3,2950
+KTM217,Kathmandu,Kirtipur,Hotel,Private room,1,1,1,Garden;Balcony;Breakfast;Rooftop terrace;24-hour reception;Security;Hot water,71,1,25,0,5600
+KTM031,Kathmandu,Baneshwor,Hotel,Shared room,9,1,3,Garden;TV;Daily housekeeping;Workspace;Kitchenette;Airport shuttle;Balcony;Heating;Hot water,81,1,11,0,4100
+KTM213,Kathmandu,New Road,Guesthouse,Private room,2,1,1,Heating;Garden;Rooftop terrace;Breakfast,90,1,22,4,1400
+KTM094,Kathmandu,Lazimpat,Apartment,Entire place,4,2,1,Breakfast;Workspace;Balcony;Laundry;Airport shuttle;Daily housekeeping;24-hour reception;Hot water,88,2,6,5,2850
+KTM182,Kathmandu,Gaushala,Homestay,Private room,1,1,1,Air conditioning;Security;Balcony;Luggage storage;Airport shuttle;Free parking,98,1,26,1,3150
+KTM350,Kathmandu,Lazimpat,Homestay,Shared room,8,1,2,Wi-Fi;Kitchenette;Air conditioning;Breakfast;Security;24-hour reception;Hot water,55,12,19,5,1400
+KTM257,Kathmandu,Baluwatar,Hotel,Private room,2,1,1,Wi-Fi;Paid parking;Free parking;Breakfast;Workspace;Kitchenette;Garden;Laundry,46,12,14,0,9900
+KTM039,Kathmandu,Lazimpat,Homestay,Entire place,2,1,2,Balcony;Breakfast;24-hour reception;Kitchen;Airport shuttle;TV;Garden;Luggage storage;Security,94,1,14,3,2200
+KTM098,Kathmandu,Baluwatar,Homestay,Private room,1,1,2,Wi-Fi;Security;Paid parking;Kitchenette;24-hour reception;Air conditioning;Daily housekeeping,106,2,9,1,1800
+KTM348,Kathmandu,Boudha,Hotel,Private room,2,1,2,Laundry;Heating;Workspace;Paid parking;Airport shuttle;Free parking;Daily housekeeping,101,1,10,6,8350
+KTM369,Kathmandu,Patan,Hotel,Entire place,3,2,1,Kitchen;Kitchenette;Heating;24-hour reception;Air conditioning;Breakfast;Wi-Fi;Garden;Daily housekeeping,104,1,22,4,2400
+KTM101,Kathmandu,Kirtipur,Serviced apartment,Entire place,2,2,1,Paid parking;Kitchenette;Security;Air conditioning,81,1,17,6,9600
+KTM386,Kathmandu,Kalimati,Hostel,Shared room,9,1,2,Kitchen;Balcony;Luggage storage;Rooftop terrace;Kitchenette;Heating,27,11,30,0,850
+KTM122,Kathmandu,Boudha,Serviced apartment,Entire place,10,3,2,Wi-Fi;Kitchenette;Breakfast;Garden,39,12,16,2,16550
+KTM142,Kathmandu,Kirtipur,Homestay,Private room,2,1,1,Rooftop terrace;Paid parking;Wi-Fi;Laundry,87,2,5,4,2100
+KTM282,Kathmandu,Dillibazar,Homestay,Private room,2,1,1,Rooftop terrace;Balcony;Security;Breakfast;Laundry;Air conditioning;Wi-Fi;Daily housekeeping;TV,90,1,15,4,3450
+KTM217,Kathmandu,Kirtipur,Hotel,Private room,1,1,1,Garden;Balcony;Breakfast;Rooftop terrace;24-hour reception;Security;Hot water,13,11,20,4,6750
+KTM036,Kathmandu,Boudha,Guesthouse,Private room,2,1,1,Security;Garden;Free parking;Workspace;Heating,34,11,17,1,4650
+KTM070,Kathmandu,Baluwatar,Apartment,Entire place,3,1,1,Workspace;Daily housekeeping;Heating;Wi-Fi;24-hour reception;Paid parking,43,12,24,3,4800
+KTM049,Kathmandu,Kalimati,Apartment,Entire place,4,1,1,Breakfast;Heating;Airport shuttle;Air conditioning;24-hour reception;Free parking;Kitchenette,47,11,20,4,4750
+KTM371,Kathmandu,Chabahil,Apartment,Private room,3,1,1,Workspace;Laundry;Free parking;Kitchenette;Rooftop terrace;Airport shuttle,124,2,2,1,5800
+KTM226,Kathmandu,Gaushala,Hotel,Entire place,6,2,1,Wi-Fi;Air conditioning;Breakfast;Workspace;Kitchenette;Daily housekeeping,83,1,31,6,7850
+KTM329,Kathmandu,Patan,Hostel,Shared room,6,1,2,Paid parking;Hot water;Workspace;Airport shuttle;Luggage storage,62,12,30,2,1200
+KTM086,Kathmandu,Thamel,Hotel,Private room,2,1,1,Free parking;Heating;Security;Kitchenette;Airport shuttle;24-hour reception;Balcony;Kitchen;Garden,22,11,25,2,2900
+KTM398,Kathmandu,Baneshwor,Serviced apartment,Entire place,9,4,1,Air conditioning;Breakfast;Paid parking;Airport shuttle;Hot water;Daily housekeeping,72,12,24,3,3850
+KTM086,Kathmandu,Thamel,Hotel,Private room,2,1,1,Free parking;Heating;Security;Kitchenette;Airport shuttle;24-hour reception;Balcony;Kitchen;Garden,76,12,20,6,3000
+KTM253,Kathmandu,Lazimpat,Guesthouse,Private room,2,1,1,Air conditioning;Luggage storage;Balcony;Free parking;Wi-Fi,70,12,13,6,1300
+KTM388,Kathmandu,Patan,Homestay,Private room,2,1,1,Laundry;Workspace;Heating;Air conditioning;Kitchen;Paid parking;Security,119,2,9,1,750
+KTM382,Kathmandu,Maharajgunj,Apartment,Entire place,3,2,2,TV;Wi-Fi;Heating;Free parking;Kitchenette;Hot water;Breakfast;Garden,82,1,21,3,4200
+KTM046,Kathmandu,New Road,Homestay,Private room,1,1,1,Luggage storage;Kitchen;Free parking;Wi-Fi,89,2,12,4,3200
+KTM301,Kathmandu,Kupondole,Serviced apartment,Private room,2,1,1,Breakfast;Wi-Fi;Paid parking;Airport shuttle;Daily housekeeping;Workspace;Heating;Free parking;24-hour reception,42,11,18,2,3200
+KTM153,Kathmandu,Boudha,Apartment,Entire place,3,1,1,Laundry;Air conditioning;Wi-Fi;Breakfast;Hot water;Daily housekeeping;Paid parking;Free parking,91,1,1,4,2800
+KTM248,Kathmandu,Kirtipur,Homestay,Private room,2,1,1,Garden;Daily housekeeping;Kitchen;24-hour reception;Airport shuttle,93,2,9,1,2550
+KTM068,Kathmandu,Patan,Serviced apartment,Private room,2,1,1,Airport shuttle;Balcony;Rooftop terrace;Kitchen;Luggage storage,86,2,7,6,7650
+KTM308,Kathmandu,Kupondole,Hotel,Private room,3,1,1,Free parking;Wi-Fi;Airport shuttle;Balcony;Workspace;24-hour reception;Laundry;Daily housekeeping,66,1,5,1,6500
+KTM176,Kathmandu,Baluwatar,Hotel,Private room,1,1,1,Heating;Hot water;Workspace;Kitchen;Luggage storage,83,1,17,6,3900
+KTM174,Kathmandu,Dillibazar,Hotel,Private room,2,1,2,Wi-Fi;Free parking;Air conditioning;Rooftop terrace;Workspace;Heating;Daily housekeeping,67,12,21,0,5900
+KTM176,Kathmandu,Baluwatar,Hotel,Private room,1,1,1,Heating;Hot water;Workspace;Kitchen;Luggage storage,93,2,11,3,3500
+KTM125,Kathmandu,Thamel,Apartment,Private room,1,1,1,Luggage storage;Air conditioning;Garden;Wi-Fi;Balcony;Airport shuttle;TV;Heating;Breakfast,87,1,21,3,2550
+KTM382,Kathmandu,Maharajgunj,Apartment,Entire place,3,2,2,TV;Wi-Fi;Heating;Free parking;Kitchenette;Hot water;Breakfast;Garden,21,11,20,4,4500
+KTM370,Kathmandu,Swayambhu,Guesthouse,Private room,2,1,2,Workspace;Heating;Garden;Airport shuttle;TV,79,1,13,2,4500
+KTM024,Kathmandu,Gaushala,Homestay,Private room,2,1,1,Free parking;Wi-Fi;Hot water;Rooftop terrace;TV;Breakfast,19,12,1,1,2650
+KTM394,Kathmandu,Gaushala,Hostel,Shared room,8,1,3,Workspace;Security;Airport shuttle;Paid parking;Laundry;TV;Rooftop terrace;24-hour reception;Breakfast,92,1,21,3,350
+KTM359,Kathmandu,Maharajgunj,Homestay,Private room,1,1,1,Luggage storage;Kitchenette;Heating;Balcony;Paid parking,92,1,7,3,1650
+KTM375,Kathmandu,Kalimati,Hotel,Shared room,11,1,1,Daily housekeeping;Free parking;Hot water;Paid parking;Luggage storage;Kitchen,39,12,4,4,3350
+KTM379,Kathmandu,Kalimati,Hostel,Shared room,3,2,1,Kitchenette;Air conditioning;Paid parking;Airport shuttle;Rooftop terrace;Garden;Luggage storage,55,1,8,4,700
+KTM110,Kathmandu,Baluwatar,Hostel,Shared room,7,1,1,Breakfast;Garden;Kitchen;Free parking;Luggage storage,122,2,8,0,950
+KTM224,Kathmandu,Dillibazar,Apartment,Entire place,2,2,2,TV;Workspace;Kitchenette;Security;Breakfast;Heating,99,1,26,1,3850
+KTM303,Kathmandu,Kirtipur,Guesthouse,Private room,1,1,1,Garden;Kitchenette;Rooftop terrace;Laundry;TV;24-hour reception;Airport shuttle;Breakfast,106,1,23,5,2550
+KTM259,Kathmandu,Boudha,Guesthouse,Private room,1,1,1,Daily housekeeping;Kitchen;TV;Garden,116,1,28,3,5700
+KTM341,Kathmandu,New Road,Homestay,Private room,3,1,2,Heating;Kitchenette;Air conditioning;Security;Free parking;Paid parking;Laundry;Kitchen;Daily housekeeping,111,1,22,4,2050
+KTM002,Kathmandu,Gaushala,Apartment,Entire place,3,1,2,TV;Daily housekeeping;Workspace;Heating;Free parking;24-hour reception;Luggage storage;Hot water,93,2,3,2,4500
+KTM113,Kathmandu,Kalimati,Hostel,Shared room,5,1,2,Heating;24-hour reception;Wi-Fi;Free parking;Laundry;Kitchen;Luggage storage,36,12,19,5,400
+KTM232,Kathmandu,Maharajgunj,Hostel,Private room,2,1,2,Garden;Security;Heating;Laundry;Free parking;Luggage storage,54,12,23,2,1100
+KTM168,Kathmandu,Chabahil,Hotel,Shared room,10,1,2,Free parking;Luggage storage;Wi-Fi;Breakfast;Rooftop terrace;Heating;24-hour reception;Paid parking;Daily housekeeping,19,11,21,5,2350
+KTM255,Kathmandu,Maharajgunj,Homestay,Shared room,11,1,1,Laundry;Kitchen;Hot water;Heating;Daily housekeeping;Free parking;Garden;Airport shuttle,30,12,11,4,1500
+KTM077,Kathmandu,Lazimpat,Homestay,Shared room,5,1,1,Wi-Fi;TV;Hot water;Garden;Kitchenette;Paid parking;Workspace;Laundry,31,11,18,2,2000
+KTM316,Kathmandu,New Road,Hotel,Private room,2,1,1,Balcony;Wi-Fi;Air conditioning;Laundry;Workspace;TV;24-hour reception;Rooftop terrace,55,12,21,0,5100
+KTM119,Kathmandu,Maharajgunj,Homestay,Private room,2,1,1,Kitchen;Hot water;24-hour reception;Wi-Fi;Free parking;Security,57,1,3,6,1350
+KTM310,Kathmandu,Thamel,Apartment,Entire place,5,2,1,Wi-Fi;Workspace;Paid parking;Free parking;TV,95,2,8,0,9000
+KTM123,Kathmandu,Dillibazar,Hostel,Shared room,10,1,1,Security;Daily housekeeping;Rooftop terrace;Workspace;Kitchen;Hot water;Garden;Luggage storage,58,1,11,0,350
+KTM271,Kathmandu,Kirtipur,Serviced apartment,Private room,2,1,2,Heating;Balcony;Daily housekeeping;Laundry;Airport shuttle;Workspace;Kitchen,52,12,14,0,2850
+KTM146,Kathmandu,Gaushala,Homestay,Private room,3,1,2,Paid parking;Hot water;Airport shuttle;Luggage storage,101,2,5,4,1800
+KTM102,Kathmandu,Patan,Apartment,Entire place,1,1,1,Rooftop terrace;Airport shuttle;Balcony;TV;Heating;Workspace,70,1,21,3,4900
+KTM396,Kathmandu,Kirtipur,Guesthouse,Entire place,1,1,1,Wi-Fi;Balcony;Airport shuttle;Breakfast;Hot water,77,1,28,3,4600
+KTM088,Kathmandu,New Road,Hotel,Private room,2,1,1,Balcony;Luggage storage;Paid parking;TV;Rooftop terrace,93,2,9,1,4800
+KTM130,Kathmandu,Kalimati,Serviced apartment,Entire place,4,2,1,Air conditioning;Workspace;Hot water;Rooftop terrace;Kitchen;TV;Kitchenette;Luggage storage;Breakfast,31,12,9,2,8450
+KTM091,Kathmandu,Kirtipur,Hostel,Private room,2,1,1,Breakfast;Heating;Rooftop terrace;Luggage storage,97,2,9,1,750
+KTM384,Kathmandu,New Road,Hotel,Shared room,11,1,1,Wi-Fi;Airport shuttle;24-hour reception;Workspace;Breakfast;Hot water;Daily housekeeping;Paid parking;Luggage storage,21,12,3,3,2600
+KTM275,Kathmandu,Baneshwor,Serviced apartment,Entire place,2,1,2,Paid parking;Laundry;Wi-Fi;Breakfast;Daily housekeeping,95,1,30,5,5850
+KTM143,Kathmandu,Kalimati,Hotel,Shared room,6,1,3,Rooftop terrace;Paid parking;Security;Hot water;24-hour reception;Kitchenette;Daily housekeeping,93,2,3,2,5250
+KTM397,Kathmandu,Lazimpat,Guesthouse,Private room,2,1,1,Rooftop terrace;Free parking;Laundry;Daily housekeeping;Balcony;Kitchen;Heating;Security;TV,72,1,11,0,1750
+KTM145,Kathmandu,Patan,Hotel,Private room,2,1,1,TV;24-hour reception;Airport shuttle;Free parking;Air conditioning;Rooftop terrace;Heating;Hot water;Daily housekeeping,55,11,30,0,3900
+KTM215,Kathmandu,Patan,Apartment,Entire place,3,1,2,Laundry;Heating;Rooftop terrace;Daily housekeeping;Free parking,38,12,13,6,4450
+KTM139,Kathmandu,Chabahil,Homestay,Shared room,12,1,1,Workspace;Free parking;Heating;Laundry;Rooftop terrace;Airport shuttle;Hot water;Kitchen;Security,60,12,2,2,1600
+KTM226,Kathmandu,Gaushala,Hotel,Entire place,6,2,1,Wi-Fi;Air conditioning;Breakfast;Workspace;Kitchenette;Daily housekeeping,112,2,6,5,7850
+KTM284,Kathmandu,Boudha,Hotel,Private room,2,1,1,Balcony;24-hour reception;Kitchen;Rooftop terrace;Security;Breakfast;Heating,81,1,31,6,5750
+KTM294,Kathmandu,Dillibazar,Guesthouse,Shared room,5,1,1,Laundry;Wi-Fi;Hot water;Garden;Paid parking;Heating;Luggage storage;Kitchenette;Daily housekeeping,65,12,9,2,2050
+KTM053,Kathmandu,New Road,Serviced apartment,Entire place,5,3,2,Air conditioning;Paid parking;Airport shuttle;Kitchen,71,12,19,5,10700
+KTM165,Kathmandu,Kupondole,Apartment,Entire place,3,1,1,Luggage storage;Wi-Fi;Balcony;Breakfast;24-hour reception;Heating;Security,33,12,14,0,8800
+KTM328,Kathmandu,Baneshwor,Hostel,Private room,2,1,2,Wi-Fi;Luggage storage;Airport shuttle;Daily housekeeping;Free parking,64,1,15,4,1700
+KTM198,Kathmandu,Kupondole,Hotel,Private room,2,1,1,Balcony;Free parking;Rooftop terrace;Kitchen;Kitchenette;Heating,59,1,2,5,4450
+KTM300,Kathmandu,Boudha,Apartment,Entire place,7,3,1,Air conditioning;Free parking;Kitchen;TV,83,12,24,3,3050
+KTM344,Kathmandu,Kalimati,Hostel,Shared room,7,1,1,Airport shuttle;Wi-Fi;Daily housekeeping;Rooftop terrace;Kitchen;Luggage storage,32,12,13,6,600
+KTM268,Kathmandu,Kirtipur,Hotel,Private room,1,1,1,Garden;Daily housekeeping;Luggage storage;Kitchen,81,2,1,0,8200
+KTM116,Kathmandu,Kalimati,Hotel,Shared room,5,1,1,Air conditioning;Laundry;Kitchen;Garden;Airport shuttle;Hot water;Daily housekeeping;Breakfast,27,11,17,1,3350
+KTM019,Kathmandu,Gaushala,Apartment,Entire place,1,1,1,Air conditioning;Rooftop terrace;Workspace;Kitchenette,95,1,8,4,8500
+KTM141,Kathmandu,Dillibazar,Serviced apartment,Entire place,2,1,1,Luggage storage;Security;Airport shuttle;TV;Balcony;Breakfast,42,12,11,4,6750
+KTM150,Kathmandu,Chabahil,Serviced apartment,Entire place,4,1,2,Air conditioning;Paid parking;Laundry;Security;Breakfast;Kitchenette;Airport shuttle;Heating,57,11,28,5,11100
+KTM352,Kathmandu,Dillibazar,Homestay,Private room,2,1,1,TV;Workspace;Balcony;Rooftop terrace;Paid parking;Wi-Fi,81,1,27,2,2100
+KTM209,Kathmandu,Lazimpat,Apartment,Private room,2,1,1,24-hour reception;Garden;Rooftop terrace;Kitchenette;Hot water;Security;Daily housekeeping;Wi-Fi,47,11,25,2,2150
+KTM304,Kathmandu,Kirtipur,Apartment,Private room,2,1,2,Free parking;Airport shuttle;Rooftop terrace;Breakfast;Heating;Kitchenette;Daily housekeeping,81,1,2,5,2300
+KTM120,Kathmandu,Kirtipur,Guesthouse,Private room,1,1,1,Paid parking;Heating;Laundry;Security,75,1,21,3,2250
+KTM129,Kathmandu,Dillibazar,Hotel,Private room,2,1,1,Breakfast;Kitchen;Security;24-hour reception;Daily housekeeping,100,1,16,5,10450
+KTM062,Kathmandu,Chabahil,Apartment,Entire place,3,2,1,Hot water;Heating;Kitchen;Breakfast,99,1,23,5,7550
+KTM170,Kathmandu,Kupondole,Apartment,Entire place,6,2,1,Breakfast;Daily housekeeping;24-hour reception;Balcony;TV;Air conditioning;Rooftop terrace,102,2,12,4,5100
+KTM189,Kathmandu,Maharajgunj,Hotel,Private room,2,1,1,24-hour reception;Air conditioning;Daily housekeeping;Rooftop terrace;Kitchenette,90,2,7,6,2200
+KTM180,Kathmandu,Kirtipur,Serviced apartment,Private room,1,1,1,Airport shuttle;Wi-Fi;TV;Free parking,97,2,11,3,6500
+KTM062,Kathmandu,Chabahil,Apartment,Entire place,3,2,1,Hot water;Heating;Kitchen;Breakfast,67,1,8,4,7800
+KTM221,Kathmandu,Baneshwor,Hotel,Private room,2,1,1,Laundry;Airport shuttle;Wi-Fi;Free parking,72,1,15,4,9750
+KTM044,Kathmandu,New Road,Guesthouse,Private room,2,1,1,Laundry;Kitchenette;Air conditioning;24-hour reception;Daily housekeeping,99,1,27,2,2000
+KTM085,Kathmandu,Dillibazar,Guesthouse,Private room,2,1,1,Luggage storage;Kitchen;Airport shuttle;Breakfast,66,12,16,2,3050
+KTM382,Kathmandu,Maharajgunj,Apartment,Entire place,3,2,2,TV;Wi-Fi;Heating;Free parking;Kitchenette;Hot water;Breakfast;Garden,34,12,7,0,4150
+KTM125,Kathmandu,Thamel,Apartment,Private room,1,1,1,Luggage storage;Air conditioning;Garden;Wi-Fi;Balcony;Airport shuttle;TV;Heating;Breakfast,72,12,14,0,2550
+KTM038,Kathmandu,Gaushala,Apartment,Entire place,2,1,1,Garden;Breakfast;Paid parking;Workspace;Wi-Fi;Security;Balcony,98,2,12,4,4950
+KTM249,Kathmandu,Gaushala,Apartment,Private room,2,1,1,Breakfast;Kitchenette;Paid parking;Rooftop terrace;Heating;Garden;Daily housekeeping;Air conditioning;Wi-Fi,28,11,28,5,6400
+KTM124,Kathmandu,Gaushala,Guesthouse,Private room,1,1,1,Kitchenette;Heating;Air conditioning;Hot water;Luggage storage;Paid parking,107,2,7,6,3850
+KTM281,Kathmandu,Gaushala,Apartment,Private room,1,1,1,Airport shuttle;Free parking;Balcony;Security;Heating;Workspace;Kitchenette;Hot water,96,2,12,4,2650
+KTM083,Kathmandu,New Road,Homestay,Private room,2,1,1,Kitchenette;Rooftop terrace;Heating;Wi-Fi;Breakfast;Air conditioning;TV;Hot water;Security,45,11,25,2,1200
+KTM325,Kathmandu,Boudha,Guesthouse,Private room,1,1,1,Kitchenette;Breakfast;Security;Balcony;Heating;TV;Garden;Wi-Fi;Workspace;Daily housekeeping,92,1,2,5,2150
+KTM030,Kathmandu,Baneshwor,Homestay,Private room,2,1,1,Paid parking;Daily housekeeping;Wi-Fi;Security;Air conditioning;Rooftop terrace;Balcony;Free parking,36,12,13,6,2000
+KTM041,Kathmandu,Swayambhu,Apartment,Entire place,1,1,1,Security;Hot water;Luggage storage;Free parking;Workspace;Paid parking,72,1,6,2,5450
+KTM143,Kathmandu,Kalimati,Hotel,Shared room,6,1,3,Rooftop terrace;Paid parking;Security;Hot water;24-hour reception;Kitchenette;Daily housekeeping,90,1,14,3,5100
+KTM182,Kathmandu,Gaushala,Homestay,Private room,1,1,1,Air conditioning;Security;Balcony;Luggage storage;Airport shuttle;Free parking,46,12,13,6,3150
+KTM043,Kathmandu,Maharajgunj,Hostel,Private room,2,1,1,Luggage storage;Hot water;Kitchen;Wi-Fi;Heating;Airport shuttle;Garden,79,1,30,5,1000
+KTM111,Kathmandu,Kupondole,Apartment,Entire place,2,2,1,Airport shuttle;Free parking;Hot water;Heating;Security;Luggage storage,97,1,12,1,3700
+KTM185,Kathmandu,Kalimati,Homestay,Private room,3,1,2,Security;TV;Airport shuttle;Hot water;Kitchenette;Breakfast;Heating;Garden;Rooftop terrace,84,1,10,6,900
+KTM078,Kathmandu,Swayambhu,Guesthouse,Shared room,11,2,3,24-hour reception;Rooftop terrace;TV;Security;Wi-Fi;Kitchen;Daily housekeeping,132,2,11,3,1800
+KTM400,Kathmandu,New Road,Apartment,Entire place,4,3,2,Free parking;Heating;Airport shuttle;Paid parking;Daily housekeeping;Hot water;Rooftop terrace,18,11,24,1,4350
+KTM084,Kathmandu,Gaushala,Serviced apartment,Private room,2,1,2,Laundry;Wi-Fi;Hot water;Breakfast;Security;Free parking;Rooftop terrace;Workspace,116,1,28,3,9900
+KTM337,Kathmandu,New Road,Guesthouse,Private room,2,1,2,Breakfast;Workspace;Kitchen;Hot water;Air conditioning;Kitchenette,88,12,29,1,1250
+KTM158,Kathmandu,Swayambhu,Apartment,Entire place,2,1,3,Laundry;Kitchenette;Balcony;Paid parking;TV,76,12,17,3,5750
+KTM354,Kathmandu,Dillibazar,Apartment,Private room,3,1,2,Luggage storage;Free parking;Rooftop terrace;Hot water;Kitchen;Balcony;TV,5,11,20,4,7150
+KTM122,Kathmandu,Boudha,Serviced apartment,Entire place,10,3,2,Wi-Fi;Kitchenette;Breakfast;Garden,108,2,10,2,17050
+KTM087,Kathmandu,Boudha,Hotel,Shared room,6,1,2,Daily housekeeping;Breakfast;Hot water;Kitchenette;24-hour reception;Heating;Kitchen;Laundry;Rooftop terrace,31,11,16,0,2950
+KTM022,Kathmandu,Boudha,Guesthouse,Private room,3,1,1,Garden;Security;Heating;Hot water;Daily housekeeping,95,1,5,1,6300
+KTM322,Kathmandu,Thamel,Guesthouse,Private room,1,1,1,Free parking;Breakfast;Kitchenette;Heating;Laundry;Daily housekeeping,92,2,3,2,3050
+KTM237,Kathmandu,Kupondole,Guesthouse,Private room,2,1,1,Garden;Airport shuttle;Wi-Fi;Rooftop terrace;Security;Kitchenette;Kitchen;24-hour reception;Laundry,54,1,7,3,1300
+KTM310,Kathmandu,Thamel,Apartment,Entire place,5,2,1,Wi-Fi;Workspace;Paid parking;Free parking;TV,22,11,15,6,9600
+KTM166,Kathmandu,Lazimpat,Homestay,Private room,3,1,2,Paid parking;Garden;TV;Kitchenette;Wi-Fi,69,1,1,4,3750
+KTM305,Kathmandu,Swayambhu,Apartment,Entire place,2,1,1,Luggage storage;Garden;Air conditioning;Kitchenette;TV;Security,106,2,6,5,5800
+KTM175,Kathmandu,Patan,Apartment,Private room,2,1,1,Workspace;Security;TV;Air conditioning;Rooftop terrace;Hot water;Breakfast,77,12,24,3,7950
+KTM336,Kathmandu,Baneshwor,Hotel,Private room,1,1,1,Luggage storage;Airport shuttle;Daily housekeeping;Workspace;Laundry;Rooftop terrace;Hot water;Kitchenette,42,11,19,3,4300
+KTM233,Kathmandu,New Road,Hotel,Private room,2,1,1,Airport shuttle;Kitchenette;Paid parking;Daily housekeeping;Free parking,45,11,23,0,2100
+KTM354,Kathmandu,Dillibazar,Apartment,Private room,3,1,2,Luggage storage;Free parking;Rooftop terrace;Hot water;Kitchen;Balcony;TV,48,12,3,3,6950
+KTM380,Kathmandu,Swayambhu,Homestay,Private room,2,1,2,TV;Balcony;Kitchen;Heating;Airport shuttle;Air conditioning;Rooftop terrace;Security;Daily housekeeping,12,11,16,0,4550
+KTM201,Kathmandu,Lazimpat,Hostel,Shared room,8,1,3,Hot water;Security;Wi-Fi;24-hour reception;Free parking;Luggage storage,60,12,20,6,400
+KTM186,Kathmandu,Swayambhu,Hotel,Private room,2,1,1,Daily housekeeping;Kitchenette;Workspace;Breakfast;24-hour reception;Free parking;Garden;Kitchen;Air conditioning,44,11,20,4,7350
+KTM020,Kathmandu,Baneshwor,Homestay,Private room,2,1,2,Garden;Paid parking;Breakfast;Workspace;Wi-Fi,31,11,19,3,3200
+KTM318,Kathmandu,Baneshwor,Guesthouse,Private room,2,1,2,TV;Airport shuttle;Kitchen;Luggage storage;24-hour reception;Heating;Kitchenette,110,1,26,1,900
+KTM234,Kathmandu,Swayambhu,Hotel,Private room,2,1,1,Free parking;Laundry;Kitchenette;Airport shuttle;Security;Wi-Fi;Hot water;Daily housekeeping;Breakfast,112,2,11,3,6000
+KTM258,Kathmandu,Baneshwor,Homestay,Entire place,9,4,1,Wi-Fi;Workspace;Airport shuttle;24-hour reception;Security;Luggage storage;Paid parking;Kitchen;Garden,117,2,3,2,3000
+KTM181,Kathmandu,Boudha,Hostel,Shared room,4,2,2,Heating;TV;Rooftop terrace;Workspace;Wi-Fi;Free parking;Air conditioning;Kitchenette,64,12,5,5,700
+KTM168,Kathmandu,Chabahil,Hotel,Shared room,10,1,2,Free parking;Luggage storage;Wi-Fi;Breakfast;Rooftop terrace;Heating;24-hour reception;Paid parking;Daily housekeeping,107,2,5,4,1950
+KTM160,Kathmandu,Maharajgunj,Hostel,Entire place,4,1,2,Heating;Daily housekeeping;Balcony;Breakfast;Security;Rooftop terrace;Hot water;Luggage storage,103,2,7,6,1150
+KTM228,Kathmandu,Gaushala,Homestay,Private room,3,1,1,Balcony;Hot water;Workspace;Laundry,11,11,18,2,3050
+KTM004,Kathmandu,Baluwatar,Hotel,Shared room,12,1,3,Free parking;Security;Rooftop terrace;Laundry;24-hour reception,43,11,20,4,4850
+KTM152,Kathmandu,Thamel,Hotel,Shared room,9,1,3,Daily housekeeping;Workspace;24-hour reception;Luggage storage;Security,75,1,11,0,4250
+KTM076,Kathmandu,Baluwatar,Hostel,Shared room,7,1,3,Hot water;Heating;Air conditioning;Balcony;Security;Garden,39,12,19,5,350
+KTM089,Kathmandu,Thamel,Guesthouse,Private room,2,1,1,Breakfast;TV;Balcony;Airport shuttle;Free parking;Kitchen;Laundry,50,12,30,2,3950
+KTM095,Kathmandu,Chabahil,Hostel,Shared room,10,2,2,Wi-Fi;Laundry;Balcony;Garden;Security;Heating;Free parking,19,11,25,2,350
+KTM167,Kathmandu,Baneshwor,Hotel,Private room,2,1,2,Balcony;Free parking;Breakfast;Heating;TV;Laundry;Rooftop terrace;Security;Daily housekeeping,44,11,19,3,5550
+KTM197,Kathmandu,Patan,Guesthouse,Private room,2,1,1,Hot water;Heating;Kitchenette;Air conditioning;Garden;24-hour reception,79,1,19,1,1950
+KTM249,Kathmandu,Gaushala,Apartment,Private room,2,1,1,Breakfast;Kitchenette;Paid parking;Rooftop terrace;Heating;Garden;Daily housekeeping;Air conditioning;Wi-Fi,68,1,4,0,6050
+KTM136,Kathmandu,Thamel,Hostel,Shared room,3,2,1,Breakfast;TV;24-hour reception;Luggage storage,18,11,27,4,1250
+KTM018,Kathmandu,Baneshwor,Apartment,Entire place,1,1,2,Airport shuttle;Kitchen;Security;Kitchenette;Balcony,112,1,25,0,3150
+KTM204,Kathmandu,Patan,Apartment,Private room,3,1,1,Garden;Airport shuttle;Rooftop terrace;Laundry;Breakfast;Hot water,56,12,28,0,7300
+KTM135,Kathmandu,New Road,Hostel,Shared room,9,2,3,Kitchenette;24-hour reception;Air conditioning;Balcony;Workspace;Security;Garden;Breakfast;Luggage storage,58,12,30,2,850
+KTM283,Kathmandu,Gaushala,Hostel,Shared room,8,1,2,Heating;Security;Paid parking;Airport shuttle;Rooftop terrace;Daily housekeeping;Free parking;Breakfast;Luggage storage,86,1,25,0,450
+KTM299,Kathmandu,Lazimpat,Guesthouse,Private room,1,1,1,Kitchenette;Wi-Fi;Rooftop terrace;Paid parking;Kitchen;Balcony;Workspace;Air conditioning,26,12,10,3,3800
+KTM188,Kathmandu,Baluwatar,Apartment,Entire place,6,2,2,Air conditioning;Free parking;Airport shuttle;Daily housekeeping;Breakfast;Kitchen;Wi-Fi,44,12,5,5,9300
+KTM207,Kathmandu,Gaushala,Hostel,Shared room,5,1,3,Rooftop terrace;Heating;Laundry;Free parking;Breakfast;Daily housekeeping,78,1,27,2,1000
+KTM358,Kathmandu,Patan,Serviced apartment,Entire place,9,4,1,Air conditioning;TV;Free parking;Balcony;Paid parking;Rooftop terrace;Wi-Fi;Laundry,91,1,8,4,11250
+KTM376,Kathmandu,Kirtipur,Hotel,Private room,1,1,1,Paid parking;Laundry;Security;Free parking;Workspace;Daily housekeeping;Airport shuttle,56,11,30,0,4900
+KTM252,Kathmandu,Kirtipur,Guesthouse,Private room,2,1,1,Breakfast;TV;Security;Garden,94,2,12,4,3750
+KTM363,Kathmandu,Swayambhu,Hotel,Private room,3,1,1,Air conditioning;Kitchen;Heating;Free parking;Balcony;24-hour reception;Wi-Fi;Rooftop terrace;Hot water;Daily housekeeping,52,12,26,5,1250
+KTM079,Kathmandu,Patan,Guesthouse,Shared room,11,1,2,Laundry;Daily housekeeping;Rooftop terrace;Kitchenette,99,1,14,3,1300
+KTM236,Kathmandu,Maharajgunj,Hotel,Private room,2,1,2,TV;Hot water;Workspace;Kitchen;Garden;Luggage storage;Heating;Rooftop terrace;Paid parking;Daily housekeeping,83,12,28,0,9050
+KTM366,Kathmandu,Maharajgunj,Guesthouse,Private room,2,1,1,Daily housekeeping;Air conditioning;Luggage storage;Airport shuttle;Heating;Workspace;Paid parking,49,12,14,0,2150
+KTM291,Kathmandu,New Road,Apartment,Private room,2,1,1,Airport shuttle;Kitchen;Hot water;TV;Heating,49,11,30,0,5600
+KTM172,Kathmandu,Gaushala,Hostel,Shared room,7,1,2,Balcony;Breakfast;Air conditioning;Airport shuttle;Luggage storage;Workspace;Garden;Paid parking;Heating,69,12,24,3,400
+KTM281,Kathmandu,Gaushala,Apartment,Private room,1,1,1,Airport shuttle;Free parking;Balcony;Security;Heating;Workspace;Kitchenette;Hot water,54,12,15,1,2900
+KTM095,Kathmandu,Chabahil,Hostel,Shared room,10,2,2,Wi-Fi;Laundry;Balcony;Garden;Security;Heating;Free parking,84,12,26,5,400
+KTM356,Kathmandu,Maharajgunj,Serviced apartment,Private room,2,1,1,Air conditioning;Free parking;Wi-Fi;Security;Daily housekeeping;Breakfast;Kitchenette;TV,52,11,22,6,7750
+KTM153,Kathmandu,Boudha,Apartment,Entire place,3,1,1,Laundry;Air conditioning;Wi-Fi;Breakfast;Hot water;Daily housekeeping;Paid parking;Free parking,127,2,12,4,2800
+KTM028,Kathmandu,Dillibazar,Hostel,Shared room,4,1,1,Daily housekeeping;Security;TV;Rooftop terrace;Luggage storage;Breakfast;Laundry;Free parking,59,12,5,5,400
+KTM332,Kathmandu,Boudha,Serviced apartment,Entire place,7,2,3,Luggage storage;TV;Paid parking;Hot water;Heating;Laundry,5,11,18,2,6650
+KTM245,Kathmandu,Kalimati,Guesthouse,Private room,2,1,2,24-hour reception;TV;Garden;Paid parking;Luggage storage;Rooftop terrace;Air conditioning;Free parking;Daily housekeeping,53,12,19,5,3450
+KTM083,Kathmandu,New Road,Homestay,Private room,2,1,1,Kitchenette;Rooftop terrace;Heating;Wi-Fi;Breakfast;Air conditioning;TV;Hot water;Security,108,2,8,0,1150
+KTM102,Kathmandu,Patan,Apartment,Entire place,1,1,1,Rooftop terrace;Airport shuttle;Balcony;TV;Heating;Workspace,51,11,28,5,5350
+KTM285,Kathmandu,New Road,Guesthouse,Entire place,8,4,3,Kitchenette;Workspace;Wi-Fi;Luggage storage;Airport shuttle;Balcony;Daily housekeeping,71,1,23,5,2600
+KTM361,Kathmandu,Chabahil,Hotel,Private room,2,1,1,24-hour reception;Air conditioning;Laundry;Wi-Fi;Airport shuttle;Hot water,68,12,13,6,6400
+KTM030,Kathmandu,Baneshwor,Homestay,Private room,2,1,1,Paid parking;Daily housekeeping;Wi-Fi;Security;Air conditioning;Rooftop terrace;Balcony;Free parking,88,1,7,3,1900
+KTM349,Kathmandu,Kirtipur,Hotel,Private room,2,1,1,Airport shuttle;Daily housekeeping;Workspace;Paid parking;Garden;Heating;Kitchenette,109,2,9,1,6300
+KTM156,Kathmandu,Kalimati,Guesthouse,Shared room,7,1,1,Free parking;Kitchenette;Garden;Paid parking;Laundry;Workspace;Air conditioning;Wi-Fi;Luggage storage,36,11,27,4,900
+KTM261,Kathmandu,Chabahil,Guesthouse,Shared room,6,1,2,Daily housekeeping;Heating;Security;Paid parking;Airport shuttle,68,1,1,4,1050
+KTM335,Kathmandu,Thamel,Hotel,Private room,2,1,1,24-hour reception;Laundry;Garden;Breakfast;TV;Airport shuttle,80,1,18,0,3800
+KTM124,Kathmandu,Gaushala,Guesthouse,Private room,1,1,1,Kitchenette;Heating;Air conditioning;Hot water;Luggage storage;Paid parking,57,12,14,0,4000
+KTM219,Kathmandu,Swayambhu,Apartment,Entire place,7,2,1,Breakfast;Daily housekeeping;Hot water;Paid parking;Wi-Fi,107,1,25,0,3650
+KTM238,Kathmandu,Kalimati,Hotel,Private room,1,1,1,Airport shuttle;Workspace;Hot water;Heating;Wi-Fi;Paid parking;Rooftop terrace,49,11,24,1,1800
+KTM272,Kathmandu,Boudha,Hotel,Shared room,6,1,1,Kitchen;Wi-Fi;Rooftop terrace;Laundry,84,1,5,1,4650
+KTM343,Kathmandu,Boudha,Guesthouse,Private room,2,1,1,Workspace;Kitchenette;Heating;Kitchen;Hot water;Garden;Laundry;Security;Daily housekeeping,69,1,6,2,4600
+KTM145,Kathmandu,Patan,Hotel,Private room,2,1,1,TV;24-hour reception;Airport shuttle;Free parking;Air conditioning;Rooftop terrace;Heating;Hot water;Daily housekeeping,47,11,21,5,4050
+KTM309,Kathmandu,Baluwatar,Homestay,Private room,2,1,2,Heating;Balcony;Airport shuttle;Kitchen,24,11,20,4,4050
+KTM336,Kathmandu,Baneshwor,Hotel,Private room,1,1,1,Luggage storage;Airport shuttle;Daily housekeeping;Workspace;Laundry;Rooftop terrace;Hot water;Kitchenette,77,12,30,2,4000
+KTM148,Kathmandu,Lazimpat,Homestay,Shared room,4,1,3,Luggage storage;Daily housekeeping;Free parking;Airport shuttle;Balcony;Garden;Hot water;Rooftop terrace;Workspace,35,12,5,5,2950
+KTM194,Kathmandu,Dillibazar,Hotel,Private room,2,1,2,Daily housekeeping;24-hour reception;Hot water;Kitchenette;Garden;Balcony;Luggage storage;Security;Heating,82,2,5,4,5500
+KTM383,Kathmandu,Maharajgunj,Homestay,Private room,1,1,2,Breakfast;Luggage storage;Kitchen;Air conditioning;Paid parking;Hot water;Rooftop terrace;Workspace,84,1,12,1,2600
+KTM368,Kathmandu,Thamel,Apartment,Private room,2,1,1,Paid parking;Balcony;Kitchen;Heating;Kitchenette;Breakfast;Hot water;Luggage storage,21,12,1,1,9050
+KTM104,Kathmandu,Patan,Hostel,Shared room,8,1,1,Breakfast;Garden;Luggage storage;Daily housekeeping;Rooftop terrace;Paid parking;Kitchenette,66,1,15,4,350
+KTM143,Kathmandu,Kalimati,Hotel,Shared room,6,1,3,Rooftop terrace;Paid parking;Security;Hot water;24-hour reception;Kitchenette;Daily housekeeping,51,12,24,3,4750
+KTM004,Kathmandu,Baluwatar,Hotel,Shared room,12,1,3,Free parking;Security;Rooftop terrace;Laundry;24-hour reception,114,2,6,5,4500
+KTM267,Kathmandu,Kalimati,Hotel,Private room,2,1,1,Garden;Kitchenette;Luggage storage;Airport shuttle;Kitchen;Balcony;24-hour reception;Daily housekeeping,101,1,10,6,5650
+KTM133,Kathmandu,Thamel,Serviced apartment,Private room,2,1,1,Laundry;Hot water;TV;Paid parking,91,2,10,2,7950
+KTM357,Kathmandu,Kirtipur,Hostel,Private room,2,1,1,Wi-Fi;Free parking;Workspace;TV;Luggage storage,54,1,4,0,850
+KTM335,Kathmandu,Thamel,Hotel,Private room,2,1,1,24-hour reception;Laundry;Garden;Breakfast;TV;Airport shuttle,114,1,25,0,3800
+KTM070,Kathmandu,Baluwatar,Apartment,Entire place,3,1,1,Workspace;Daily housekeeping;Heating;Wi-Fi;24-hour reception;Paid parking,35,11,21,5,4950
+KTM171,Kathmandu,Gaushala,Hostel,Shared room,7,1,1,Kitchenette;Airport shuttle;Paid parking;Balcony;Workspace;Luggage storage,117,2,9,1,800
+KTM105,Kathmandu,Thamel,Guesthouse,Shared room,3,2,1,Luggage storage;Paid parking;Hot water;TV;Kitchenette;Heating,40,12,18,4,650
+KTM224,Kathmandu,Dillibazar,Apartment,Entire place,2,2,2,TV;Workspace;Kitchenette;Security;Breakfast;Heating,111,2,6,5,4300
+KTM347,Kathmandu,Dillibazar,Guesthouse,Private room,2,1,1,Free parking;Kitchen;Rooftop terrace;Daily housekeeping;Security;Kitchenette;Heating,81,12,31,3,2950
+KTM256,Kathmandu,Kirtipur,Guesthouse,Private room,2,1,1,Garden;Laundry;Kitchen;Security;Luggage storage;TV;Free parking;Rooftop terrace,78,1,26,1,1550
+KTM276,Kathmandu,Lazimpat,Hostel,Shared room,4,2,2,Laundry;Wi-Fi;Garden;Daily housekeeping,71,1,12,1,350
+KTM366,Kathmandu,Maharajgunj,Guesthouse,Private room,2,1,1,Daily housekeeping;Air conditioning;Luggage storage;Airport shuttle;Heating;Workspace;Paid parking,67,12,20,6,2200
+KTM241,Kathmandu,Lazimpat,Apartment,Private room,2,1,2,Free parking;Airport shuttle;24-hour reception;Balcony;Workspace,43,12,1,1,5550
+KTM255,Kathmandu,Maharajgunj,Homestay,Shared room,11,1,1,Laundry;Kitchen;Hot water;Heating;Daily housekeeping;Free parking;Garden;Airport shuttle,18,11,28,5,1600
+KTM150,Kathmandu,Chabahil,Serviced apartment,Entire place,4,1,2,Air conditioning;Paid parking;Laundry;Security;Breakfast;Kitchenette;Airport shuttle;Heating,40,11,17,1,11550
+KTM022,Kathmandu,Boudha,Guesthouse,Private room,3,1,1,Garden;Security;Heating;Hot water;Daily housekeeping,34,11,30,0,6300
+KTM211,Kathmandu,Swayambhu,Apartment,Shared room,12,1,2,Air conditioning;Rooftop terrace;Luggage storage;Garden;Wi-Fi;Heating;Daily housekeeping,45,11,22,6,1950
+KTM273,Kathmandu,Dillibazar,Guesthouse,Private room,1,1,1,Workspace;Airport shuttle;Laundry;Free parking;Heating;Wi-Fi;Daily housekeeping,117,2,2,1,900
+KTM177,Kathmandu,Kalimati,Homestay,Private room,3,1,1,Breakfast;Wi-Fi;Rooftop terrace;Kitchen;Balcony;Security,97,1,7,3,2500
+KTM165,Kathmandu,Kupondole,Apartment,Entire place,3,1,1,Luggage storage;Wi-Fi;Balcony;Breakfast;24-hour reception;Heating;Security,120,2,4,3,8150
+KTM092,Kathmandu,Kupondole,Apartment,Entire place,2,1,1,Garden;Laundry;Wi-Fi;Workspace;Airport shuttle;Security;Kitchenette,80,1,23,5,7200
+KTM134,Kathmandu,Swayambhu,Hotel,Private room,3,1,1,Daily housekeeping;24-hour reception;Security;Luggage storage;Free parking,38,12,22,1,4300
+KTM066,Kathmandu,New Road,Apartment,Private room,1,1,1,Kitchenette;Workspace;Garden;Heating;Airport shuttle;Luggage storage,7,11,21,5,5400
+KTM191,Kathmandu,Kirtipur,Apartment,Entire place,3,1,1,Daily housekeeping;Security;Kitchenette;Rooftop terrace;Kitchen;Breakfast;Wi-Fi,82,2,2,1,3750
+KTM068,Kathmandu,Patan,Serviced apartment,Private room,2,1,1,Airport shuttle;Balcony;Rooftop terrace;Kitchen;Luggage storage,62,12,26,5,8750
+KTM017,Kathmandu,Kalimati,Hostel,Shared room,7,1,3,Airport shuttle;Daily housekeeping;Heating;Rooftop terrace;TV;Paid parking;Luggage storage,110,1,20,2,650
+KTM315,Kathmandu,Kupondole,Apartment,Entire place,1,1,1,TV;Rooftop terrace;24-hour reception;Balcony;Free parking;Heating,95,1,21,3,6300
+KTM326,Kathmandu,Gaushala,Hostel,Private room,2,1,1,Paid parking;Kitchen;Security;Garden;Airport shuttle;Luggage storage,38,12,21,0,750
+KTM063,Kathmandu,Swayambhu,Serviced apartment,Entire place,7,2,1,Heating;Workspace;TV;Kitchenette;Wi-Fi,95,1,4,0,2900
+KTM317,Kathmandu,Maharajgunj,Guesthouse,Private room,2,1,1,Workspace;Wi-Fi;Balcony;Paid parking;Kitchen;Rooftop terrace;Laundry;Breakfast;Daily housekeeping,36,12,12,5,1550
+KTM025,Kathmandu,Gaushala,Hotel,Private room,2,1,1,Free parking;Hot water;Kitchenette;Heating;Paid parking,100,1,9,5,10200
+KTM222,Kathmandu,Gaushala,Apartment,Entire place,3,2,3,Workspace;Paid parking;Wi-Fi;Airport shuttle;Balcony;Kitchen,68,12,15,1,8150
+KTM066,Kathmandu,New Road,Apartment,Private room,1,1,1,Kitchenette;Workspace;Garden;Heating;Airport shuttle;Luggage storage,74,1,24,6,5050
+KTM019,Kathmandu,Gaushala,Apartment,Entire place,1,1,1,Air conditioning;Rooftop terrace;Workspace;Kitchenette,46,11,17,1,8000
+KTM113,Kathmandu,Kalimati,Hostel,Shared room,5,1,2,Heating;24-hour reception;Wi-Fi;Free parking;Laundry;Kitchen;Luggage storage,51,12,13,6,400
+KTM369,Kathmandu,Patan,Hotel,Entire place,3,2,1,Kitchen;Kitchenette;Heating;24-hour reception;Air conditioning;Breakfast;Wi-Fi;Garden;Daily housekeeping,84,12,28,0,2550
+KTM207,Kathmandu,Gaushala,Hostel,Shared room,5,1,3,Rooftop terrace;Heating;Laundry;Free parking;Breakfast;Daily housekeeping,89,1,7,3,1100
+KTM260,Kathmandu,Dillibazar,Apartment,Entire place,7,2,1,Paid parking;Workspace;Balcony;Hot water;Heating,27,12,4,4,7300
+KTM057,Kathmandu,Boudha,Homestay,Private room,2,1,1,Heating;Kitchenette;Air conditioning;Balcony;Breakfast;Airport shuttle;Security,84,1,18,0,3500
+KTM051,Kathmandu,Baluwatar,Hostel,Private room,2,1,1,Laundry;Rooftop terrace;Airport shuttle;Balcony;Luggage storage,59,1,3,6,750
+KTM215,Kathmandu,Patan,Apartment,Entire place,3,1,2,Laundry;Heating;Rooftop terrace;Daily housekeeping;Free parking,41,12,17,3,4350
+KTM250,Kathmandu,Dillibazar,Serviced apartment,Entire place,4,2,1,Workspace;Balcony;Wi-Fi;24-hour reception;Hot water,99,1,25,0,3350
+KTM360,Kathmandu,Kalimati,Hostel,Private room,1,1,1,Breakfast;Rooftop terrace;Free parking;Luggage storage,65,12,24,3,1500
+KTM374,Kathmandu,Thamel,Guesthouse,Shared room,8,1,1,Laundry;Garden;Heating;TV;Wi-Fi;Paid parking,28,12,11,4,2350
+KTM097,Kathmandu,Boudha,Guesthouse,Private room,1,1,2,Daily housekeeping;Kitchenette;Free parking;Breakfast;Hot water;24-hour reception;Balcony;Luggage storage,93,1,9,5,1300
+KTM108,Kathmandu,Patan,Hotel,Shared room,6,2,1,Kitchenette;24-hour reception;Luggage storage;Balcony,21,11,23,0,3200
+KTM064,Kathmandu,Kirtipur,Apartment,Entire place,4,1,2,Kitchenette;Laundry;Airport shuttle;Heating,9,11,21,5,5700
+KTM214,Kathmandu,Kirtipur,Homestay,Private room,2,1,1,Kitchen;Balcony;Breakfast;Workspace;Paid parking,18,11,28,5,1050
+KTM264,Kathmandu,Dillibazar,Hostel,Shared room,11,2,3,TV;Laundry;Garden;Luggage storage,112,2,8,0,850
+KTM231,Kathmandu,Kalimati,Guesthouse,Private room,2,1,1,Balcony;Rooftop terrace;Laundry;TV,119,2,6,5,1250
+KTM355,Kathmandu,Kalimati,Hostel,Private room,3,1,2,Workspace;Free parking;Breakfast;Balcony;TV;Luggage storage;Laundry;Air conditioning,92,2,2,1,600
+KTM378,Kathmandu,Lazimpat,Serviced apartment,Entire place,1,1,1,Free parking;Workspace;Air conditioning;Wi-Fi;Balcony;Daily housekeeping;Garden;Breakfast;24-hour reception,35,12,19,5,16650
+KTM126,Kathmandu,Dillibazar,Homestay,Private room,2,1,1,Heating;Luggage storage;Wi-Fi;Balcony;Security;Air conditioning;Laundry;Workspace,22,12,1,1,3600
+KTM297,Kathmandu,Boudha,Hostel,Shared room,4,2,2,Laundry;Breakfast;Luggage storage;Balcony;Security;Paid parking;Airport shuttle;Free parking,29,11,21,5,500
+KTM126,Kathmandu,Dillibazar,Homestay,Private room,2,1,1,Heating;Luggage storage;Wi-Fi;Balcony;Security;Air conditioning;Laundry;Workspace,75,1,13,2,3600
+KTM158,Kathmandu,Swayambhu,Apartment,Entire place,2,1,3,Laundry;Kitchenette;Balcony;Paid parking;TV,57,12,11,4,6250
+KTM324,Kathmandu,Kirtipur,Guesthouse,Private room,1,1,1,Laundry;Air conditioning;Wi-Fi;Free parking;Daily housekeeping;Kitchenette;Luggage storage;Paid parking;Security,28,12,6,6,2300
+KTM327,Kathmandu,Kalimati,Hotel,Private room,2,1,1,Laundry;Luggage storage;Air conditioning;Paid parking;Breakfast;Balcony;Kitchenette;24-hour reception;Kitchen;Daily housekeeping,47,12,20,6,8600
+KTM241,Kathmandu,Lazimpat,Apartment,Private room,2,1,2,Free parking;Airport shuttle;24-hour reception;Balcony;Workspace,20,11,24,1,5500
+KTM231,Kathmandu,Kalimati,Guesthouse,Private room,2,1,1,Balcony;Rooftop terrace;Laundry;TV,21,11,24,1,1200
+KTM075,Kathmandu,Boudha,Guesthouse,Private room,2,1,1,Hot water;Garden;Security;Daily housekeeping;Balcony;24-hour reception;Luggage storage;Wi-Fi,100,1,20,2,3300
+KTM052,Kathmandu,Patan,Guesthouse,Private room,3,1,1,Wi-Fi;Daily housekeeping;Workspace;Kitchen;Breakfast;Security;Laundry;Airport shuttle;TV,9,11,20,4,1550
+KTM342,Kathmandu,New Road,Guesthouse,Private room,3,1,1,Kitchenette;Balcony;Daily housekeeping;Paid parking;Heating;Laundry;Kitchen;Air conditioning;Workspace,85,1,9,5,1800
+KTM364,Kathmandu,New Road,Hotel,Private room,2,1,1,24-hour reception;Garden;Luggage storage;TV;Kitchen;Hot water;Free parking,37,12,2,2,8900
+KTM012,Kathmandu,Lazimpat,Apartment,Private room,1,1,1,Security;Luggage storage;TV;Workspace;24-hour reception;Airport shuttle;Paid parking,48,12,3,3,3950
+KTM016,Kathmandu,Swayambhu,Hotel,Private room,3,1,1,Breakfast;Daily housekeeping;Security;Laundry;Airport shuttle;Rooftop terrace;Wi-Fi,83,12,30,2,6500
+KTM294,Kathmandu,Dillibazar,Guesthouse,Shared room,5,1,1,Laundry;Wi-Fi;Hot water;Garden;Paid parking;Heating;Luggage storage;Kitchenette;Daily housekeeping,25,11,16,0,2150
+KTM223,Kathmandu,New Road,Guesthouse,Private room,2,1,2,Garden;Workspace;Daily housekeeping;Wi-Fi,40,12,14,0,2750
+KTM229,Kathmandu,Dillibazar,Hostel,Shared room,3,1,1,Garden;Luggage storage;Airport shuttle;Paid parking,58,1,1,4,1100
+KTM102,Kathmandu,Patan,Apartment,Entire place,1,1,1,Rooftop terrace;Airport shuttle;Balcony;TV;Heating;Workspace,95,2,9,1,5100
+KTM386,Kathmandu,Kalimati,Hostel,Shared room,9,1,2,Kitchen;Balcony;Luggage storage;Rooftop terrace;Kitchenette;Heating,25,12,6,6,900
+KTM089,Kathmandu,Thamel,Guesthouse,Private room,2,1,1,Breakfast;TV;Balcony;Airport shuttle;Free parking;Kitchen;Laundry,35,12,2,2,4000
+KTM075,Kathmandu,Boudha,Guesthouse,Private room,2,1,1,Hot water;Garden;Security;Daily housekeeping;Balcony;24-hour reception;Luggage storage;Wi-Fi,97,1,15,4,3600
+KTM093,Kathmandu,Lazimpat,Apartment,Entire place,4,1,1,Breakfast;Daily housekeeping;Garden;Balcony;Air conditioning,68,1,17,6,7900
+KTM132,Kathmandu,Kirtipur,Serviced apartment,Private room,1,1,1,Laundry;Paid parking;Balcony;24-hour reception;Wi-Fi;Heating;Workspace;Hot water;Security,27,12,8,1,9550
+KTM205,Kathmandu,New Road,Hotel,Private room,2,1,1,Security;Daily housekeeping;Heating;Kitchen,109,2,9,1,1650
+KTM352,Kathmandu,Dillibazar,Homestay,Private room,2,1,1,TV;Workspace;Balcony;Rooftop terrace;Paid parking;Wi-Fi,67,12,14,0,2200
+KTM191,Kathmandu,Kirtipur,Apartment,Entire place,3,1,1,Daily housekeeping;Security;Kitchenette;Rooftop terrace;Kitchen;Breakfast;Wi-Fi,104,1,25,0,3800
+KTM059,Kathmandu,Kirtipur,Hostel,Shared room,7,1,2,Kitchenette;Heating;Paid parking;Balcony;Workspace;Wi-Fi;Luggage storage;Laundry,69,1,11,0,400
+KTM231,Kathmandu,Kalimati,Guesthouse,Private room,2,1,1,Balcony;Rooftop terrace;Laundry;TV,118,2,3,2,1100
+KTM183,Kathmandu,Kirtipur,Serviced apartment,Entire place,2,1,1,Rooftop terrace;Heating;Security;24-hour reception;Kitchenette;Kitchen,59,12,21,0,7600
+KTM390,Kathmandu,Kirtipur,Apartment,Private room,2,1,1,Balcony;Breakfast;Paid parking;Laundry;Workspace,74,12,24,3,3150
+KTM303,Kathmandu,Kirtipur,Guesthouse,Private room,1,1,1,Garden;Kitchenette;Rooftop terrace;Laundry;TV;24-hour reception;Airport shuttle;Breakfast,76,1,1,4,2750
+KTM199,Kathmandu,Kalimati,Guesthouse,Private room,2,1,2,Laundry;Free parking;Hot water;TV;Daily housekeeping,71,1,11,0,3750
+KTM105,Kathmandu,Thamel,Guesthouse,Shared room,3,2,1,Luggage storage;Paid parking;Hot water;TV;Kitchenette;Heating,111,2,4,3,550
+KTM387,Kathmandu,Kalimati,Apartment,Entire place,1,1,2,Breakfast;TV;Air conditioning;Hot water;Wi-Fi,66,12,17,3,7900
+KTM261,Kathmandu,Chabahil,Guesthouse,Shared room,6,1,2,Daily housekeeping;Heating;Security;Paid parking;Airport shuttle,42,12,15,1,950
+KTM090,Kathmandu,Patan,Hotel,Entire place,2,1,1,Laundry;Security;Air conditioning;Breakfast;Wi-Fi,103,1,23,5,12400
+KTM335,Kathmandu,Thamel,Hotel,Private room,2,1,1,24-hour reception;Laundry;Garden;Breakfast;TV;Airport shuttle,81,1,23,5,4050
+KTM307,Kathmandu,Chabahil,Guesthouse,Shared room,12,1,1,Heating;Hot water;Air conditioning;Balcony;Paid parking;Wi-Fi,28,11,16,0,1100
+KTM007,Kathmandu,Kalimati,Apartment,Entire place,4,1,2,Luggage storage;Kitchen;Rooftop terrace;Kitchenette;Workspace;Paid parking;Balcony,59,12,6,6,2450
+KTM002,Kathmandu,Gaushala,Apartment,Entire place,3,1,2,TV;Daily housekeeping;Workspace;Heating;Free parking;24-hour reception;Luggage storage;Hot water,130,2,10,2,4400
+KTM230,Kathmandu,Gaushala,Serviced apartment,Entire place,3,1,2,24-hour reception;Hot water;Kitchenette;Workspace,45,12,8,1,12450
+KTM367,Kathmandu,New Road,Homestay,Private room,2,1,1,Rooftop terrace;Workspace;Luggage storage;Hot water;Kitchen;Free parking;Airport shuttle,50,12,17,3,3750
+KTM346,Kathmandu,Kalimati,Serviced apartment,Private room,3,1,1,Paid parking;Balcony;Luggage storage;Airport shuttle;Daily housekeeping,85,1,22,4,2500
+KTM251,Kathmandu,Kalimati,Hostel,Shared room,7,1,3,Garden;Luggage storage;Airport shuttle;Kitchen;Workspace;TV;Daily housekeeping;Paid parking;Air conditioning,109,2,8,0,350
+KTM134,Kathmandu,Swayambhu,Hotel,Private room,3,1,1,Daily housekeeping;24-hour reception;Security;Luggage storage;Free parking,73,1,20,2,4550
+KTM346,Kathmandu,Kalimati,Serviced apartment,Private room,3,1,1,Paid parking;Balcony;Luggage storage;Airport shuttle;Daily housekeeping,67,1,12,1,2300
+KTM313,Kathmandu,Swayambhu,Homestay,Private room,2,1,1,Garden;Rooftop terrace;Breakfast;24-hour reception;Wi-Fi;Kitchenette;TV;Security;Paid parking,90,1,17,6,1050
+KTM041,Kathmandu,Swayambhu,Apartment,Entire place,1,1,1,Security;Hot water;Luggage storage;Free parking;Workspace;Paid parking,33,12,18,4,6000
+KTM248,Kathmandu,Kirtipur,Homestay,Private room,2,1,1,Garden;Daily housekeeping;Kitchen;24-hour reception;Airport shuttle,11,11,22,6,2750
+KTM351,Kathmandu,Kirtipur,Apartment,Private room,2,1,2,Heating;TV;Kitchenette;Luggage storage;Daily housekeeping;Workspace;Garden,40,11,18,2,4800
+KTM170,Kathmandu,Kupondole,Apartment,Entire place,6,2,1,Breakfast;Daily housekeeping;24-hour reception;Balcony;TV;Air conditioning;Rooftop terrace,123,2,10,2,4700
+KTM170,Kathmandu,Kupondole,Apartment,Entire place,6,2,1,Breakfast;Daily housekeeping;24-hour reception;Balcony;TV;Air conditioning;Rooftop terrace,39,12,13,6,4800
+KTM227,Kathmandu,Kupondole,Apartment,Entire place,3,1,1,Garden;Security;Hot water;Balcony;Wi-Fi,28,12,11,4,9100
+KTM106,Kathmandu,Boudha,Hostel,Shared room,12,2,2,Laundry;Kitchen;Garden;Luggage storage,47,12,16,2,650
+KTM266,Kathmandu,Maharajgunj,Serviced apartment,Entire place,4,1,3,Heating;Kitchen;Air conditioning;Balcony;Free parking;24-hour reception;TV;Workspace,12,11,27,4,5450
+KTM179,Kathmandu,Dillibazar,Hostel,Private room,2,1,2,Security;Kitchenette;Rooftop terrace;Laundry;Kitchen;Luggage storage,15,11,21,5,1700
+KTM339,Kathmandu,Gaushala,Apartment,Private room,1,1,1,Luggage storage;Airport shuttle;24-hour reception;Security;Air conditioning;TV,93,1,19,1,5350
+KTM196,Kathmandu,Dillibazar,Serviced apartment,Private room,2,1,1,Air conditioning;Kitchenette;Security;Balcony,61,1,5,1,9600
+KTM348,Kathmandu,Boudha,Hotel,Private room,2,1,2,Laundry;Heating;Workspace;Paid parking;Airport shuttle;Free parking;Daily housekeeping,106,1,25,0,8000
+KTM213,Kathmandu,New Road,Guesthouse,Private room,2,1,1,Heating;Garden;Rooftop terrace;Breakfast,44,12,26,5,1350
+KTM067,Kathmandu,Gaushala,Hotel,Private room,2,1,1,Free parking;Security;Kitchen;Daily housekeeping;Airport shuttle;Air conditioning;Luggage storage;TV,67,12,25,4,8600
+KTM344,Kathmandu,Kalimati,Hostel,Shared room,7,1,1,Airport shuttle;Wi-Fi;Daily housekeeping;Rooftop terrace;Kitchen;Luggage storage,32,11,20,4,650
+KTM142,Kathmandu,Kirtipur,Homestay,Private room,2,1,1,Rooftop terrace;Paid parking;Wi-Fi;Laundry,126,2,7,6,1900
+KTM271,Kathmandu,Kirtipur,Serviced apartment,Private room,2,1,2,Heating;Balcony;Daily housekeeping;Laundry;Airport shuttle;Workspace;Kitchen,12,11,21,5,2900
+KTM337,Kathmandu,New Road,Guesthouse,Private room,2,1,2,Breakfast;Workspace;Kitchen;Hot water;Air conditioning;Kitchenette,116,2,7,6,1150
+KTM036,Kathmandu,Boudha,Guesthouse,Private room,2,1,1,Security;Garden;Free parking;Workspace;Heating,98,1,17,6,4650
+KTM094,Kathmandu,Lazimpat,Apartment,Entire place,4,2,1,Breakfast;Workspace;Balcony;Laundry;Airport shuttle;Daily housekeeping;24-hour reception;Hot water,61,12,11,4,3200
+KTM290,Kathmandu,Chabahil,Hotel,Shared room,9,1,2,Kitchen;Security;Balcony;Garden;Kitchenette;Hot water;Paid parking;Air conditioning;Rooftop terrace;Daily housekeeping,94,1,31,6,900
+KTM400,Kathmandu,New Road,Apartment,Entire place,4,3,2,Free parking;Heating;Airport shuttle;Paid parking;Daily housekeeping;Hot water;Rooftop terrace,44,12,10,3,4350
+KTM262,Kathmandu,Boudha,Apartment,Entire place,6,2,1,Free parking;Garden;Daily housekeeping;Luggage storage;Airport shuttle;Air conditioning;Security,38,11,29,6,5900
+KTM115,Kathmandu,Boudha,Homestay,Shared room,12,2,1,Balcony;Hot water;Laundry;Free parking;Daily housekeeping;Garden;Breakfast,51,12,2,2,2900
+KTM329,Kathmandu,Patan,Hostel,Shared room,6,1,2,Paid parking;Hot water;Workspace;Airport shuttle;Luggage storage,65,1,1,4,1250
+KTM216,Kathmandu,Lazimpat,Homestay,Private room,2,1,1,Wi-Fi;Daily housekeeping;Luggage storage;Breakfast,67,12,20,6,2500
+KTM001,Kathmandu,Baneshwor,Apartment,Private room,2,1,2,Free parking;Air conditioning;Hot water;Paid parking;Kitchenette;Heating;Rooftop terrace,79,1,22,4,2650
+KTM175,Kathmandu,Patan,Apartment,Private room,2,1,1,Workspace;Security;TV;Air conditioning;Rooftop terrace;Hot water;Breakfast,75,12,21,0,7850
+KTM392,Kathmandu,Thamel,Hostel,Shared room,5,1,2,Laundry;Workspace;TV;Free parking;Paid parking;Hot water;Security;Garden;Balcony,84,1,14,3,750
+KTM001,Kathmandu,Baneshwor,Apartment,Private room,2,1,2,Free parking;Air conditioning;Hot water;Paid parking;Kitchenette;Heating;Rooftop terrace,34,12,12,5,2650
+KTM222,Kathmandu,Gaushala,Apartment,Entire place,3,2,3,Workspace;Paid parking;Wi-Fi;Airport shuttle;Balcony;Kitchen,38,12,20,6,8000
+KTM042,Kathmandu,Swayambhu,Apartment,Entire place,7,2,1,Free parking;TV;24-hour reception;Hot water,93,1,12,1,5050
+KTM082,Kathmandu,Kalimati,Apartment,Entire place,2,1,1,Rooftop terrace;Airport shuttle;24-hour reception;Heating;Workspace;Security;Free parking,5,11,20,4,5550
+KTM132,Kathmandu,Kirtipur,Serviced apartment,Private room,1,1,1,Laundry;Paid parking;Balcony;24-hour reception;Wi-Fi;Heating;Workspace;Hot water;Security,93,2,8,0,8400
+KTM295,Kathmandu,Boudha,Guesthouse,Private room,2,1,1,Workspace;Balcony;24-hour reception;Paid parking;TV;Garden;Security,121,2,9,1,3500
+KTM200,Kathmandu,Thamel,Hotel,Entire place,3,2,2,Kitchen;Paid parking;Daily housekeeping;Garden,63,12,28,0,15050
+KTM051,Kathmandu,Baluwatar,Hostel,Private room,2,1,1,Laundry;Rooftop terrace;Airport shuttle;Balcony;Luggage storage,124,2,5,4,750
+KTM243,Kathmandu,Boudha,Guesthouse,Private room,2,1,1,Luggage storage;Kitchenette;Heating;TV;Rooftop terrace;Daily housekeeping,7,11,22,6,1650
+KTM111,Kathmandu,Kupondole,Apartment,Entire place,2,2,1,Airport shuttle;Free parking;Hot water;Heating;Security;Luggage storage,16,11,17,1,4050
+KTM233,Kathmandu,New Road,Hotel,Private room,2,1,1,Airport shuttle;Kitchenette;Paid parking;Daily housekeeping;Free parking,81,1,3,6,2050
+KTM133,Kathmandu,Thamel,Serviced apartment,Private room,2,1,1,Laundry;Hot water;TV;Paid parking,17,11,20,4,8550
+KTM184,Kathmandu,Lazimpat,Apartment,Private room,2,1,1,Kitchen;Daily housekeeping;Rooftop terrace;Hot water;TV;Garden,31,12,7,0,4950
+KTM355,Kathmandu,Kalimati,Hostel,Private room,3,1,2,Workspace;Free parking;Breakfast;Balcony;TV;Luggage storage;Laundry;Air conditioning,51,12,9,2,600
+KTM177,Kathmandu,Kalimati,Homestay,Private room,3,1,1,Breakfast;Wi-Fi;Rooftop terrace;Kitchen;Balcony;Security,53,12,28,0,2550
+KTM377,Kathmandu,Patan,Hotel,Shared room,5,2,1,Kitchenette;Workspace;Free parking;Breakfast;Heating;Daily housekeeping;Air conditioning;TV,80,12,27,6,2550
+KTM282,Kathmandu,Dillibazar,Homestay,Private room,2,1,1,Rooftop terrace;Balcony;Security;Breakfast;Laundry;Air conditioning;Wi-Fi;Daily housekeeping;TV,14,11,18,2,3500
+KTM208,Kathmandu,Thamel,Serviced apartment,Entire place,4,1,1,Balcony;Laundry;Workspace;Daily housekeeping;Free parking;24-hour reception,43,12,26,5,15800
+KTM014,Kathmandu,Boudha,Apartment,Private room,2,1,2,Workspace;Hot water;24-hour reception;Laundry;Breakfast;Heating;Paid parking;Wi-Fi,96,1,16,5,7000
+KTM395,Kathmandu,Lazimpat,Homestay,Private room,2,1,1,Security;Air conditioning;Kitchen;Free parking;Laundry;24-hour reception;Daily housekeeping;Garden;Airport shuttle,104,2,7,6,2850
+KTM169,Kathmandu,Patan,Hotel,Private room,2,1,1,Balcony;Paid parking;Luggage storage;24-hour reception;Garden,58,12,21,0,5150
+KTM103,Kathmandu,Baluwatar,Serviced apartment,Private room,1,1,1,Heating;Rooftop terrace;TV;Hot water,43,11,20,4,5450
+KTM347,Kathmandu,Dillibazar,Guesthouse,Private room,2,1,1,Free parking;Kitchen;Rooftop terrace;Daily housekeeping;Security;Kitchenette;Heating,84,1,11,0,2750
+KTM225,Kathmandu,Boudha,Homestay,Private room,1,1,2,Garden;Free parking;Daily housekeeping;Wi-Fi;Balcony;Kitchen;Heating;Rooftop terrace;Laundry,84,2,1,0,1250
+KTM295,Kathmandu,Boudha,Guesthouse,Private room,2,1,1,Workspace;Balcony;24-hour reception;Paid parking;TV;Garden;Security,30,11,23,0,3650
+KTM230,Kathmandu,Gaushala,Serviced apartment,Entire place,3,1,2,24-hour reception;Hot water;Kitchenette;Workspace,16,11,30,0,12650
+KTM205,Kathmandu,New Road,Hotel,Private room,2,1,1,Security;Daily housekeeping;Heating;Kitchen,50,12,24,3,1700
+KTM056,Kathmandu,Patan,Hostel,Shared room,7,1,2,Garden;Kitchen;Daily housekeeping;Security;Hot water;Free parking,30,11,25,2,850
+KTM034,Kathmandu,Boudha,Hostel,Private room,2,1,1,Hot water;Air conditioning;Daily housekeeping;Airport shuttle;24-hour reception;Security;Workspace;Luggage storage,59,12,31,3,1650
+KTM019,Kathmandu,Gaushala,Apartment,Entire place,1,1,1,Air conditioning;Rooftop terrace;Workspace;Kitchenette,64,12,11,4,8400
+KTM118,Kathmandu,Kirtipur,Serviced apartment,Entire place,4,1,1,24-hour reception;Kitchenette;Workspace;Balcony;Heating;Paid parking;Air conditioning;Wi-Fi,96,1,15,4,6150
+KTM359,Kathmandu,Maharajgunj,Homestay,Private room,1,1,1,Luggage storage;Kitchenette;Heating;Balcony;Paid parking,82,1,3,6,1750
+KTM283,Kathmandu,Gaushala,Hostel,Shared room,8,1,2,Heating;Security;Paid parking;Airport shuttle;Rooftop terrace;Daily housekeeping;Free parking;Breakfast;Luggage storage,22,11,26,3,500
+KTM396,Kathmandu,Kirtipur,Guesthouse,Entire place,1,1,1,Wi-Fi;Balcony;Airport shuttle;Breakfast;Hot water,32,11,29,6,4950
+KTM308,Kathmandu,Kupondole,Hotel,Private room,3,1,1,Free parking;Wi-Fi;Airport shuttle;Balcony;Workspace;24-hour reception;Laundry;Daily housekeeping,87,1,4,0,6750
+KTM131,Kathmandu,Chabahil,Guesthouse,Shared room,12,1,3,24-hour reception;Hot water;Air conditioning;Airport shuttle;Heating,63,12,19,5,700
+KTM285,Kathmandu,New Road,Guesthouse,Entire place,8,4,3,Kitchenette;Workspace;Wi-Fi;Luggage storage;Airport shuttle;Balcony;Daily housekeeping,21,11,17,1,2850
