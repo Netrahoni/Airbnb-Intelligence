@@ -1,0 +1,5 @@
+model,MAE,RMSE,R2
+Gradient Boosting,148.33,218.93,0.9942
+Extra Trees,163.11,270.61,0.9911
+Random Forest,170.0,258.19,0.9919
+Hist Gradient Boosting,184.75,390.78,0.9815

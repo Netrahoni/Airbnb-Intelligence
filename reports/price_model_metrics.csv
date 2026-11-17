@@ -1,0 +1,13 @@
+metric,value
+MAE,148.3300986574859
+RMSE,218.92567476856325
+R2,0.9941944245008444
+Baseline MAE,158.85416666666666
+Baseline RMSE,225.6356761093718
+Baseline R2,0.993833092693171
+MAE Improvement Percentage,6.624987074631818
+Training rows,808.0
+Testing rows,192.0
+Training properties,320.0
+Testing properties,80.0
+Overlapping properties,0.0

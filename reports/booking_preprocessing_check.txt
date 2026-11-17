@@ -1,0 +1,38 @@
+Raw rows: 119,390
+Invalid rows removed: {'negative_adr_rows': 1, 'zero_guest_rows': 180, 'removed_total': 181}
+Rows used for modelling: 119,209
+Cancellation rate after removal: 37.08%
+
+Feature table X shape: (119209, 20)
+Feature columns: hotel, lead_time, stays_in_weekend_nights, stays_in_week_nights, adults, children, babies, meal, market_segment, distribution_channel, is_repeated_guest, previous_cancellations, previous_bookings_not_canceled, deposit_type, customer_type, adr, total_of_special_requests, arrival_month, arrival_weekday, total_guests
+Banned/leaky columns present in X: none
+
+Stratified split -> train 95,367 rows, test 23,842 rows
+Cancellation rate: train 37.08%  test 37.08%
+
+Transformed train shape: (95367, 58); test shape: (23842, 58)
+Any NaN/inf in train: False; in test: False
+Output features: 58 (4 log-scaled numeric, 8 scaled numeric, 46 one-hot)
+
+Train means/stds of numeric outputs (should be ~0 and ~1):
+                                         mean  std
+log_num__lead_time                       -0.0  1.0
+log_num__adr                              0.0  1.0
+log_num__previous_cancellations          -0.0  1.0
+log_num__previous_bookings_not_canceled   0.0  1.0
+num__stays_in_weekend_nights              0.0  1.0
+num__stays_in_week_nights                -0.0  1.0
+num__adults                              -0.0  1.0
+num__children                             0.0  1.0
+num__babies                              -0.0  1.0
+num__total_guests                        -0.0  1.0
+num__total_of_special_requests            0.0  1.0
+num__is_repeated_guest                    0.0  1.0
+
+Test rows whose exact feature values also appear in train: 36.9%
+Unseen category handled without error: (3, 58)
+
+Time-based split -> train 95,367 (arrivals up to 2017-04-22), test 23,842 (from 2017-04-22)
+Cancellation rate: train 36.10%  test 40.99%
+
+Without deposit_type: 19 feature columns -> 55 output features

@@ -1,0 +1,5 @@
+price_category,sample_count,average_actual_price,average_predicted_price,mean_absolute_error,mean_percentage_error,average_signed_error
+Budget (up to 2000),52,1181.73,1362.87,490.17,50.22,181.14
+Mid-range (2001-4000),71,2989.44,3699.87,1486.57,54.15,710.43
+Premium (4001-6000),45,4825.56,4721.92,1442.94,30.91,-103.63
+Luxury (above 6000),24,9610.42,6745.19,3223.01,30.62,-2865.23
