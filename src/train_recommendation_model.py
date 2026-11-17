@@ -23,7 +23,7 @@ df["published"] = df["published"].astype(str).str.lower().eq("true")
 df["verified"] = df["verified"].astype(str).str.lower().eq("true")
 
 df = df[df["published"]].copy()
-df.reset_index(drop=True, inplace=True)
+df = df.reset_index(drop=True)
 
 print("Published properties:", len(df))
 print("Unpublished properties excluded:", 400 - len(df))
