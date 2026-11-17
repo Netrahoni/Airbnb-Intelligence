@@ -1,37 +1,51 @@
 # Kathmandu Airbnb ML Analysis
 
-A machine learning project focused on accommodation recommendation
-and nightly price prediction for properties in Kathmandu, Nepal.
+A machine learning project focused on accommodation recommendation and nightly price prediction for properties in Kathmandu, Nepal.
 
-## Project Overview
+## 1. Project Overview
 
-This project explores how machine learning can support accommodation
-discovery and price analysis in Kathmandu.
+This project explores how machine learning can support accommodation discovery and price analysis in Kathmandu.
 
 The current scope focuses on two machine learning modules:
 
 1. Property Recommendation System
 2. Nightly Price Prediction System
 
-This is an ML-focused internship project, not a complete Airbnb
-booking website.
+This is an ML-focused internship project, not a complete Airbnb booking website.
 
-## Machine Learning Modules
+## 2. Machine Learning Modules
 
-### 1. Property Recommendation
+### 2.1 Property Recommendation System
 
-Uses TF-IDF text vectorization and cosine similarity to recommend
-similar properties based on property information and descriptions.
+The recommendation system uses:
 
-### 2. Nightly Price Prediction
+- TF-IDF text vectorization
+- Cosine similarity
+- Property descriptions and characteristics
 
-Uses a Gradient Boosting Regressor to estimate nightly accommodation
-prices using property characteristics, stay information, and
-baseline nightly prices.
+It compares property information and identifies similar properties for recommendation.
 
-## Model Evaluation
+The current model uses 354 published properties from the prepared sample dataset.
 
-The current price prediction model achieved:
+### 2.2 Nightly Price Prediction System
+
+The price prediction model uses a Gradient Boosting Regressor.
+
+Input features include:
+
+- City and neighbourhood
+- Property type and room type
+- Capacity, bedrooms, and bathrooms
+- Amenities
+- Lead time
+- Stay month, day, and day of the week
+- Baseline nightly price
+
+The model estimates a property's nightly accommodation price.
+
+## 3. Price Prediction Evaluation
+
+The current evaluation uses a property-level train/test split to prevent the same property from appearing in both training and testing sets.
 
 | Metric | Result |
 |---|---:|
@@ -41,49 +55,155 @@ The current price prediction model achieved:
 | Baseline MAE | NPR 158.85 |
 | Improvement over baseline MAE | 6.62% |
 
-The evaluation uses a property-level train/test split to prevent
-the same property from appearing in both sets.
+Dataset split:
 
-## Dataset Information
+- Training: 808 observations from 320 properties
+- Testing: 192 observations from 80 properties
+- Overlapping property IDs: 0
 
-The project uses multiple datasets for property information,
-availability, price observations, cancellations, and tourism trends.
+These results describe performance on the prepared sample dataset. They should not be interpreted as proof of real-world pricing accuracy.
 
-**Important:** The property, availability, and price observation
-datasets currently contain synthetic sample data. The cancellation
-dataset is a separate hotel-booking dataset and is not directly
-merged with Kathmandu property records. Tourism arrivals data is
-used only for broader tourism context.
+## 4. Dataset Information
 
-Consequently, the reported model performance demonstrates
-performance on the available sample data, not verified real-world
-Airbnb prediction accuracy.
+The project uses multiple prepared datasets:
 
-## Technology Stack
+- Property information
+- Availability observations
+- Price observations
+- Monthly tourist arrivals in Nepal
+- Booking cancellation benchmark data
+
+### Important Data Limitations
+
+The current property, availability, and price datasets contain synthetic sample data.
+
+The booking cancellation dataset is based on the Hotel Booking Demand benchmark and is not directly connected to Kathmandu property IDs.
+
+The tourist arrivals dataset provides broader tourism context. It does not directly measure Airbnb occupancy.
+
+Review and occupancy datasets currently do not contain usable observations.
+
+Therefore, the project is intended for machine learning development, experimentation, and demonstration. It does not represent verified live Airbnb market data.
+
+## 5. Technology Stack
 
 - Python
 - Pandas
 - NumPy
+- SciPy
 - Scikit-learn
 - Joblib
 - Matplotlib
 - Seaborn
-- Streamlit (planned dashboard)
+- Streamlit (for the planned dashboard)
 
-## Project Structure
+## 6. Project Structure
 
 ```text
-Kathmandu_Airbnb_ML_Analysis/
+Kathmandu-Airbnb-ML-Analysis/
 │
 ├── data/
 │   ├── raw/
 │   └── processed/
 │
-├── notebooks/
-├── src/
 ├── models/
+│   ├── property_recommender.joblib
+│   └── price_predictor.joblib
+│
 ├── reports/
-├── app/
+│
+├── src/
+│   ├── prepare_ml_datasets.py
+│   ├── train_recommendation_model.py
+│   ├── train_price_model.py
+│   └── test_price_model.py
 │
 ├── requirements.txt
-└── README.md
+├── README.md
+└── .gitignore
+```
+
+Additional directories may contain earlier standalone preprocessing and model development work.
+
+## 7. Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/Netrahoni/Kathmandu-Airbnb-ML-Analysis.git
+cd Kathmandu-Airbnb-ML-Analysis
+```
+
+Create a virtual environment:
+
+```bash
+python -m venv .venv
+```
+
+Activate it on Windows PowerShell:
+
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
+
+Install dependencies:
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+## 8. Running the Project
+
+Prepare the machine learning datasets:
+
+```bash
+python src/prepare_ml_datasets.py
+```
+
+Train the recommendation model:
+
+```bash
+python src/train_recommendation_model.py
+```
+
+Train the price prediction model:
+
+```bash
+python src/train_price_model.py
+```
+
+Test the saved price prediction model:
+
+```bash
+python src/test_price_model.py
+```
+
+Run these scripts from the repository root directory.
+
+## 9. Current Development Status
+
+- [x] Dataset preparation
+- [x] Data quality inspection
+- [x] Recommendation feature engineering
+- [x] Property recommendation model
+- [x] Price prediction feature engineering
+- [x] Price prediction model comparison
+- [x] Price model training
+- [x] Group-based evaluation
+- [x] Saved model inference test
+- [ ] Streamlit dashboard
+- [ ] Further model improvements
+- [ ] Final project documentation
+
+## 10. Future Improvements
+
+- Build an interactive Streamlit dashboard.
+- Add more reliable real-world accommodation data.
+- Improve price prediction for different price categories.
+- Add more recommendation filters.
+- Expand model evaluation and validation.
+- Integrate additional tourism and accommodation indicators.
+
+## 11. Project Disclaimer
+
+This project is developed for
