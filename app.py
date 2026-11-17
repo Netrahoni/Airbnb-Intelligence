@@ -162,6 +162,7 @@ def recommendations_for(index: int, count: int = 5) -> pd.DataFrame:
             "nightly_price_npr": float(item["nightly_price_npr"]),
             "rating": float(item["rating"]),
             "review_count": int(item["review_count"]),
+            "capacity": int(item["capacity"]),
             "similarity": float(scores[candidate]) * 100,
             "description": item.get("description", ""),
         })
@@ -344,7 +345,7 @@ elif page == "Recommendations":
         for i, (_, item) in enumerate(recs.iterrows()):
             with card_cols[i % 2]:
                 st.markdown(
-                    f'<div class="property-card"><div class="score">MATCH SCORE · {item["similarity"]:.1f}%</div><div class="property-name">{html.escape(str(item["property_name"]))}</div><div class="property-meta">{html.escape(str(item["neighbourhood"]))} · {html.escape(str(item["property_type"]))} · {html.escape(str(item["room_type"]))}</div><div style="color:#B7C8DA;font-size:.82rem">Capacity: {int(item["review_count"]*0 + selected["capacity"])} guests &nbsp; · &nbsp; Rating: {item["rating"]:.1f}/5</div><div class="property-price">{npr(item["nightly_price_npr"])} / night</div></div>',
+                    f'<div class="property-card"><div class="score">MATCH SCORE · {item["similarity"]:.1f}%</div><div class="property-name">{html.escape(str(item["property_name"]))}</div><div class="property-meta">{html.escape(str(item["neighbourhood"]))} · {html.escape(str(item["property_type"]))} · {html.escape(str(item["room_type"]))}</div><div style="color:#B7C8DA;font-size:.82rem">Capacity: {int(item["capacity"])} guests &nbsp; · &nbsp; Rating: {item["rating"]:.1f}/5</div><div class="property-price">{npr(item["nightly_price_npr"])} / night</div></div>',
                     unsafe_allow_html=True,
                 )
                 st.write("")
