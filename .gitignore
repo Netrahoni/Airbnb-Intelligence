@@ -24,3 +24,21 @@ build/
 # OS
 .DS_Store
 Thumbs.db
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+
+# Testing and coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak
+
+# Jupyter runtime files
+*.ipynb_checkpoints/
