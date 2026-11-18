@@ -554,6 +554,27 @@ def load_csv(filename):
 
 
 @st.cache_data
+def load_optional_csv(*filenames):
+    """Load optional datasets using alternative filenames and locations."""
+    search_dirs = [
+        DATA_DIR,
+        ROOT / "data" / "raw",
+        ROOT,
+    ]
+
+    for filename in filenames:
+        for folder in search_dirs:
+            path = folder / filename
+
+            if path.exists():
+                try:
+                    return pd.read_csv(path)
+                except Exception as error:
+                    st.warning(f"Could not read {filename}: {error}")
+
+    return pd.DataFrame()
+
+@st.cache_data
 def load_report(filename):
     path = REPORT_DIR / filename
     if not path.exists():
@@ -567,6 +588,16 @@ try:
     properties = load_csv("properties_clean.csv")
     availability = load_csv("availability_clean.csv")
     price_observations = load_csv("price_observations_clean.csv")
+
+    # Optional context datasets for the executive dashboard.
+    tourist_arrivals = load_optional_csv(
+    "nepal_monthly_tourist_arrivals_clean.csv",
+    "nepal_monthly_tourist_arrivals.csv",
+)
+    occupancy_context = load_optional_csv(
+    "kathmandu_monthly_occupancy_clean.csv",
+    "kathmandu_monthly_occupancy.csv",
+)
 
     recommendation_properties = recommender["properties"]
     similarity_matrix = recommender["similarity_matrix"]
@@ -590,6 +621,8 @@ except Exception as error:
 
 def money(value):
     try:
+        if pd.isna(value):
+            return "N/A"
         return f"NPR {float(value):,.2f}"
     except (TypeError, ValueError):
         return "N/A"
@@ -683,7 +716,7 @@ with st.sidebar:
     page = st.radio(
         "WORKSPACE",
         [
-            "Overview",
+            "Executive Analytics",
             "Property Recommendations",
             "Price Prediction",
             "Data Analysis",
@@ -715,118 +748,936 @@ with st.sidebar:
 # 6. OVERVIEW
 # ============================================================
 
-if page == "Overview":
+if page == "Executive Analytics":
 
     page_header(
-        "MACHINE LEARNING ANALYTICS PLATFORM",
-        "Accommodation Intelligence",
-        "Explore Kathmandu accommodation sample data, discover similar "
-        "properties and investigate experimental nightly price estimates.",
+        "EXECUTIVE ANALYTICS",
+        "Kathmandu Accommodation Intelligence",
+        "A decision-support view of accommodation inventory, sample pricing, "
+        "neighbourhood patterns and Nepal tourism context.",
     )
 
     st.warning(
-        "Data transparency: Property, availability and price datasets "
-        "contain synthetic sample data. These results do not represent "
-        "verified live Airbnb listings or market prices."
+        "Data transparency: Property and price observations include synthetic "
+        "sample data. They are not verified live Airbnb listings, actual market "
+        "prices, revenue, or confirmed bookings. Tourist arrivals are Nepal-wide "
+        "context and must not be interpreted as Kathmandu-only demand."
     )
 
-    total = len(properties)
-    published = len(published_data(properties))
+    section_heading(
+        "Executive filters",
+        "Focus the property-level indicators and visualisations.",
+    )
+    f1, f2, f3 = st.columns([1.2, 1.2, 1])
+    neighbourhoods = sorted(properties["neighbourhood"].dropna().astype(str).unique()) if "neighbourhood" in properties else []
+    property_types = sorted(properties["property_type"].dropna().astype(str).unique()) if "property_type" in properties else []
 
-    avg_price = numeric(
-        properties["nightly_price_npr"]
-    ).mean()
-
-    avg_rating = numeric(
-        properties["rating"]
-    ).mean()
-
-    st.markdown('<div class="section-label">KEY INDICATORS</div>',
-                unsafe_allow_html=True)
-
-    c1, c2, c3, c4 = st.columns(4)
-
-    c1.metric("Total Properties", f"{total:,}")
-    c2.metric("Published Properties", f"{published:,}")
-    c3.metric("Average Nightly Price", money(avg_price))
-    c4.metric("Average Rating", f"{avg_rating:.2f} / 5")
-
-    st.divider()
-
-    left, right = st.columns(2)
-
-    with left:
-        section_heading(
-            "Property Types",
-            "Distribution of accommodation types in the sample dataset.",
+    with f1:
+        selected_neighbourhoods = st.multiselect(
+            "Neighbourhood", neighbourhoods, default=neighbourhoods,
+            key="exec_neighbourhood_filter",
+        )
+    with f2:
+        selected_types = st.multiselect(
+            "Property type", property_types, default=property_types,
+            key="exec_property_type_filter",
+        )
+    with f3:
+        published_only = st.toggle(
+            "Published only", value=False, key="exec_published_filter"
         )
 
-        type_data = properties["property_type"].value_counts()
-        st.bar_chart(type_data, color="#38BDF8")
+    executive_properties = properties.copy()
+    if "neighbourhood" in executive_properties:
+        executive_properties = executive_properties[
+            executive_properties["neighbourhood"].astype(str).isin(selected_neighbourhoods)
+        ]
+    if "property_type" in executive_properties:
+        executive_properties = executive_properties[
+            executive_properties["property_type"].astype(str).isin(selected_types)
+        ]
+    if published_only and "published" in executive_properties:
+        executive_properties = executive_properties[
+            is_published(executive_properties["published"])
+        ]
+
+    prices = numeric(executive_properties["nightly_price_npr"]).dropna() if "nightly_price_npr" in executive_properties else pd.Series(dtype=float)
+    ratings = numeric(executive_properties["rating"]).dropna() if "rating" in executive_properties else pd.Series(dtype=float)
+    total = len(executive_properties)
+    published = len(published_data(executive_properties))
+    avg_price = prices.mean() if not prices.empty else np.nan
+    median_price = prices.median() if not prices.empty else np.nan
+    avg_rating = ratings.mean() if not ratings.empty else np.nan
+
+    st.markdown(
+        '<div class="section-label">EXECUTIVE PERFORMANCE SNAPSHOT</div>',
+        unsafe_allow_html=True,
+    )
+    st.markdown("### Accommodation Portfolio Overview")
+    st.caption(
+        "A high-level snapshot of the selected accommodation inventory "
+        "and its sample pricing characteristics."
+    )
+    k1, k2, k3 = st.columns(3)
+    with k1:
+        st.metric(
+            "Total Properties",
+            f"{total:,}",
+            help="Total property records matching the selected filters.",
+        )
+    with k2:
+        st.metric(
+            "Published Properties",
+            f"{published:,}",
+            help="Number of published property records in the selection.",
+        )
+    with k3:
+        publication_rate = (published / total * 100) if total else 0
+        st.metric(
+            "Publication Rate",
+            f"{publication_rate:.1f}%",
+            help="Published properties divided by filtered property records.",
+        )
+
+    st.markdown("")
+    k1, k2, k3 = st.columns(3)
+    with k1:
+        st.metric(
+            "Average Nightly Price",
+            money(avg_price),
+            help="Mean sample nightly price in NPR.",
+        )
+    with k2:
+        st.metric(
+            "Median Nightly Price",
+            money(median_price),
+            help="Median sample nightly price in NPR.",
+        )
+    with k3:
+        st.metric(
+            "Average Guest Rating",
+            f"{avg_rating:.2f} / 5" if pd.notna(avg_rating) else "N/A",
+            help="Mean guest rating among selected properties with a rating.",
+        )
+    st.caption(
+        f"Showing {total:,} of {len(properties):,} property records. "
+        "Price and rating values are sample dataset statistics, not verified market benchmarks."
+    )
+
+    # ========================================================
+    # MARKET INTELLIGENCE
+    # ========================================================
+    st.divider()
+    section_heading(
+        "Market Intelligence",
+        "Explore neighbourhood competitiveness, property inventory "
+        "and accommodation quality.",
+    )
+    market_data = executive_properties.copy()
+    if "nightly_price_npr" in market_data:
+        market_data["nightly_price_npr"] = numeric(
+            market_data["nightly_price_npr"]
+        )
+    if "rating" in market_data:
+        market_data["rating"] = numeric(market_data["rating"])
+
+    # --------------------------------------------------------
+    # NEIGHBOURHOOD PERFORMANCE
+    # --------------------------------------------------------
+    neighbourhood_summary = pd.DataFrame()
+    if not market_data.empty and "neighbourhood" in market_data.columns:
+        neighbourhood_groups = market_data.groupby("neighbourhood")
+        neighbourhood_summary = neighbourhood_groups.size().to_frame(
+            "Property_Count"
+        )
+        if "nightly_price_npr" in market_data.columns:
+            neighbourhood_summary["Average_Price"] = neighbourhood_groups[
+                "nightly_price_npr"
+            ].mean()
+            neighbourhood_summary["Median_Price"] = neighbourhood_groups[
+                "nightly_price_npr"
+            ].median()
+        if "rating" in market_data.columns:
+            neighbourhood_summary["Average_Rating"] = neighbourhood_groups[
+                "rating"
+            ].mean()
+
+    insight_columns = st.columns(3)
+    if not neighbourhood_summary.empty and "Median_Price" in neighbourhood_summary:
+        median_prices = neighbourhood_summary["Median_Price"].dropna()
+        if not median_prices.empty:
+            highest_median_area = median_prices.idxmax()
+            insight_columns[0].metric(
+                "Highest median-price area",
+                str(highest_median_area),
+                help=(
+                    "Median sample nightly price: "
+                    f"{money(median_prices.loc[highest_median_area])}."
+                ),
+            )
+        else:
+            insight_columns[0].metric("Highest median-price area", "N/A")
+    else:
+        insight_columns[0].metric("Highest median-price area", "N/A")
+
+    if not market_data.empty and "property_type" in market_data.columns:
+        inventory_segments = market_data["property_type"].dropna().value_counts()
+        if not inventory_segments.empty:
+            largest_segment = inventory_segments.index[0]
+            segment_share = inventory_segments.iloc[0] / len(market_data) * 100
+            insight_columns[1].metric(
+                "Largest inventory segment",
+                str(largest_segment),
+                help=f"{segment_share:.1f}% of filtered property records.",
+            )
+        else:
+            insight_columns[1].metric("Largest inventory segment", "N/A")
+    else:
+        insight_columns[1].metric("Largest inventory segment", "N/A")
+
+    if not market_data.empty and "rating" in market_data.columns:
+        rating_coverage = market_data["rating"].notna().mean() * 100
+        insight_columns[2].metric("Rating coverage", f"{rating_coverage:.1f}%")
+    else:
+        insight_columns[2].metric("Rating coverage", "N/A")
+
+    left, right = st.columns([1.25, 1])
+    with left:
+        section_heading("Neighbourhood performance")
+        if not neighbourhood_summary.empty:
+            if {"Average_Price", "Median_Price"}.issubset(
+                neighbourhood_summary.columns
+            ):
+                price_summary = (
+                    neighbourhood_summary.dropna(
+                        subset=["Average_Price", "Median_Price"]
+                    )
+                    .sort_values("Average_Price", ascending=False)
+                    .head(12)
+                )
+                if not price_summary.empty:
+                    st.bar_chart(
+                        price_summary[["Average_Price", "Median_Price"]],
+                        color=["#38BDF8", "#2DD4BF"],
+                    )
+                    st.caption(
+                        "NPR per night. Small neighbourhood samples should be "
+                        "interpreted cautiously."
+                    )
+                else:
+                    st.info("No valid neighbourhood price records for this selection.")
+            else:
+                st.info("Nightly price information is unavailable for this selection.")
+
+            summary_columns = [
+                column
+                for column in (
+                    "Property_Count",
+                    "Average_Price",
+                    "Median_Price",
+                    "Average_Rating",
+                )
+                if column in neighbourhood_summary.columns
+            ]
+            st.dataframe(
+                neighbourhood_summary[summary_columns]
+                .sort_values("Property_Count", ascending=False)
+                .reset_index(),
+                hide_index=True,
+                alt="Property counts, prices, and ratings by neighbourhood",
+            )
+        else:
+            st.info("Neighbourhood information is unavailable for this selection.")
 
     with right:
-        section_heading(
-            "Neighbourhood Price Comparison",
-            "Ten neighbourhoods with the highest average sample prices.",
-        )
-
-        neighbourhood_prices = (
-            properties.assign(
-                nightly_price_npr=numeric(
-                    properties["nightly_price_npr"]
-                )
+        section_heading("Accommodation mix")
+        if not market_data.empty and "property_type" in market_data.columns:
+            st.bar_chart(
+                market_data["property_type"]
+                .fillna("Unspecified")
+                .value_counts(),
+                color="#818CF8",
             )
-            .groupby("neighbourhood")["nightly_price_npr"]
-            .mean()
-            .sort_values(ascending=False)
-            .head(10)
-        )
+        else:
+            st.info("Property-type information is unavailable.")
+        if not market_data.empty and "room_type" in market_data.columns:
+            st.caption("Room-type composition")
+            st.bar_chart(
+                market_data["room_type"]
+                .fillna("Unspecified")
+                .value_counts(),
+                color="#F59E0B",
+            )
 
-        st.bar_chart(neighbourhood_prices, color="#2DD4BF")
+    st.divider()
+    section_heading(
+        "Pricing distribution",
+        "The spread of sample nightly prices provides more context than an average alone.",
+    )
+    if not prices.empty:
+        bins = pd.cut(prices, bins=min(10, max(3, prices.nunique())))
+        distribution = bins.value_counts().sort_index()
+        distribution.index = distribution.index.astype(str)
+        st.bar_chart(distribution, color="#2DD4BF")
+        p1, p2, p3 = st.columns(3)
+        p1.metric("Lowest Sample Price", money(prices.min()))
+        p2.metric("Highest Sample Price", money(prices.max()))
+        p3.metric("Sample Price Range", money(prices.max() - prices.min()))
+    else:
+        st.info("No valid nightly-price values match the selected filters.")
+
+    # ========================================================
+    # PRICING INTELLIGENCE
+    # ========================================================
 
     st.divider()
 
     section_heading(
-        "Property Price Distribution",
-        "Explore the distribution of listed sample nightly prices.",
+        "Pricing Intelligence",
+        "Analyze sample price positioning, accommodation segments, "
+        "neighbourhood competitiveness and pricing variation.",
     )
 
-    price_series = numeric(
-        properties["nightly_price_npr"]
-    ).dropna()
+    if not price_observations.empty:
 
-    if not price_series.empty:
-        bins = pd.cut(price_series, bins=10)
-        distribution = bins.value_counts().sort_index()
-        distribution.index = distribution.index.astype(str)
-        st.bar_chart(distribution, color="#818CF8")
+        pricing = price_observations.copy()
+
+        # Prepare numeric and date fields.
+        pricing["base_price_npr"] = numeric(
+            pricing["base_price_npr"]
+        )
+
+        pricing["stay_date"] = pd.to_datetime(
+            pricing["stay_date"], errors="coerce", utc=True
+        )
+
+        pricing["observation_date"] = pd.to_datetime(
+            pricing["observation_date"], errors="coerce", utc=True
+        )
+
+        # Apply executive filters only when selections exist.
+        if selected_neighbourhoods:
+            pricing = pricing[
+                pricing["neighbourhood"].isin(selected_neighbourhoods)
+            ]
+        if selected_types:
+            pricing = pricing[
+                pricing["property_type"].isin(selected_types)
+            ]
+
+        pricing = pricing.dropna(
+            subset=["base_price_npr"]
+        )
+
+        if not pricing.empty:
+
+            # ------------------------------------------------
+            # PRICING KPI SNAPSHOT
+            # ------------------------------------------------
+
+            unique_properties = pricing["property_id"].nunique()
+
+            avg_observed = pricing["base_price_npr"].mean()
+            median_observed = pricing["base_price_npr"].median()
+
+            p1, p2, p3, p4 = st.columns(4)
+
+            p1.metric(
+                "Price Observations",
+                f"{len(pricing):,}",
+            )
+
+            p2.metric(
+                "Unique Properties",
+                f"{unique_properties:,}",
+            )
+
+            p3.metric(
+                "Average Observed Price",
+                money(avg_observed),
+            )
+
+            p4.metric(
+                "Median Observed Price",
+                money(median_observed),
+            )
+
+            st.caption(
+                "All figures represent synthetic sample price observations. "
+                "They are not verified live market prices."
+            )
+
+            # ------------------------------------------------
+            # ACCOMMODATION PRICE SEGMENTATION
+            # ------------------------------------------------
+
+            section_heading(
+                "Accommodation Price Segmentation",
+                "Classify observed prices into four relative sample-price groups.",
+            )
+
+            if len(pricing) >= 4:
+                pricing["Price Segment"] = pd.qcut(
+                    pricing["base_price_npr"].rank(method="first"),
+                    q=4,
+                    labels=[
+                        "Budget",
+                        "Mid-range",
+                        "Premium",
+                        "Luxury",
+                    ],
+                )
+
+                segment_summary = (
+                    pricing.groupby(
+                        "Price Segment",
+                        observed=False,
+                    )
+                    .agg(
+                        Properties=("property_id", "nunique"),
+                        Observations=("base_price_npr", "count"),
+                        Average_Price=("base_price_npr", "mean"),
+                        Median_Price=("base_price_npr", "median"),
+                    )
+                )
+
+                segment_columns = st.columns(4)
+
+                for column, segment_name in zip(
+                    segment_columns,
+                    ["Budget", "Mid-range", "Premium", "Luxury"],
+                ):
+                    segment = segment_summary.loc[segment_name]
+                    column.metric(
+                        segment_name,
+                        money(segment["Median_Price"]),
+                        f"{int(segment['Observations']):,} observations",
+                    )
+                    column.caption(
+                        f"{int(segment['Properties']):,} unique properties"
+                    )
+
+                left, right = st.columns(2)
+
+                with left:
+                    section_heading(
+                        "Price Segment Distribution",
+                        "Compare observations across the four price groups.",
+                    )
+                    st.bar_chart(
+                        segment_summary[["Observations"]],
+                        color="#55C7F3",
+                        alt="Price observation counts by sample-price segment",
+                    )
+
+                with right:
+                    section_heading(
+                        "Segment Price Comparison",
+                        "Compare average and median prices.",
+                    )
+                    st.bar_chart(
+                        segment_summary[
+                            ["Average_Price", "Median_Price"]
+                        ],
+                        color=["#818CF8", "#42D6C3"],
+                        alt="Average and median prices by sample-price segment",
+                    )
+
+                st.caption(
+                    "Segments are based on quartiles of the filtered sample. "
+                    "They are not official industry price categories."
+                )
+            else:
+                st.info(
+                    "At least four price observations are required to create "
+                    "four sample-price segments."
+                )
+
+            st.divider()
+
+            # ------------------------------------------------
+            # NEIGHBOURHOOD PRICE COMPARISON
+            # ------------------------------------------------
+
+            left, right = st.columns([1.25, 1])
+
+            with left:
+
+                section_heading(
+                    "Neighbourhood Price Comparison",
+                    "Compare average and median recorded base prices.",
+                )
+
+                if "neighbourhood" in pricing.columns:
+
+                    area_prices = (
+                        pricing.groupby("neighbourhood")
+                        .agg(
+                            Average_Price=("base_price_npr", "mean"),
+                            Median_Price=("base_price_npr", "median"),
+                            Observations=("base_price_npr", "count"),
+                        )
+                        .sort_values(
+                            "Median_Price", ascending=False
+                        )
+                        .head(10)
+                    )
+
+                    if not area_prices.empty:
+
+                        st.bar_chart(
+                            area_prices[
+                                ["Average_Price", "Median_Price"]
+                            ],
+                            color=["#55C7F3", "#42D6C3"],
+                            alt="Average and median observed prices by neighbourhood",
+                        )
+
+                        st.caption(
+                            "Top 10 neighbourhoods by median observed price."
+                        )
+
+            # ------------------------------------------------
+            # PROPERTY TYPE PRICE COMPARISON
+            # ------------------------------------------------
+
+            with right:
+
+                section_heading(
+                    "Property-Type Pricing",
+                    "Compare observed prices across accommodation types.",
+                )
+
+                if "property_type" in pricing.columns:
+
+                    type_prices = (
+                        pricing.groupby("property_type")[
+                            "base_price_npr"
+                        ]
+                        .agg(["mean", "median", "count"])
+                        .sort_values("mean", ascending=False)
+                    )
+
+                    if not type_prices.empty:
+
+                        st.bar_chart(
+                            type_prices[["mean", "median"]],
+                            color=["#818CF8", "#F59E0B"],
+                            alt="Average and median observed prices by property type",
+                        )
+
+                        st.caption(
+                            "Mean and median base prices by property type."
+                        )
+
+            # ------------------------------------------------
+            # PRICE VOLATILITY ANALYSIS
+            # ------------------------------------------------
+
+            st.divider()
+
+            section_heading(
+                "Price Volatility Analysis",
+                "Measure relative price variation across neighbourhoods.",
+            )
+
+            volatility = (
+                pricing.groupby("neighbourhood")["base_price_npr"]
+                .agg(
+                    Average_Price="mean",
+                    Price_Std_Dev="std",
+                    Observations="count",
+                )
+            )
+
+            volatility = volatility[
+                volatility["Observations"] >= 3
+            ].copy()
+
+            volatility["Price_CV_Percent"] = (
+                volatility["Price_Std_Dev"]
+                / volatility["Average_Price"].where(
+                    volatility["Average_Price"].ne(0)
+                )
+                * 100
+            )
+
+            volatility = volatility.dropna(
+                subset=["Price_CV_Percent"]
+            )
+
+            if not volatility.empty:
+
+                left, right = st.columns(2)
+
+                with left:
+
+                    section_heading(
+                        "Highest Price Variation",
+                        "Areas with the greatest relative price dispersion.",
+                    )
+
+                    st.bar_chart(
+                        volatility.sort_values(
+                            "Price_CV_Percent",
+                            ascending=False,
+                        )[["Price_CV_Percent"]].head(10),
+                        color="#F97316",
+                        alt="Neighbourhoods with highest relative price variation",
+                    )
+
+                with right:
+
+                    section_heading(
+                        "Most Consistent Sample Prices",
+                        "Areas with the lowest relative price dispersion.",
+                    )
+
+                    st.bar_chart(
+                        volatility.sort_values(
+                            "Price_CV_Percent",
+                            ascending=True,
+                        )[["Price_CV_Percent"]].head(10),
+                        color="#2DD4BF",
+                        alt="Neighbourhoods with lowest relative price variation",
+                    )
+
+                st.caption(
+                    "CV = standard deviation / average price × 100. "
+                    "This measures variation across observations, "
+                    "not price movement over time."
+                )
+
+            else:
+
+                st.info(
+                    "Insufficient neighbourhood observations "
+                    "for price variation analysis."
+                )
+
+            # ------------------------------------------------
+            # EXECUTIVE PRICING INSIGHTS
+            # ------------------------------------------------
+
+            st.divider()
+
+            section_heading(
+                "Executive Pricing Insights",
+                "Key observations generated from the selected pricing sample.",
+            )
+
+            insight1, insight2, insight3 = st.columns(3)
+
+            lowest_price = pricing["base_price_npr"].min()
+            highest_price = pricing["base_price_npr"].max()
+            price_spread = (
+                f"{highest_price / lowest_price:.1f}x spread"
+                if lowest_price > 0
+                else None
+            )
+
+            insight1.metric(
+                "Observed Price Range",
+                money(highest_price - lowest_price),
+                price_spread,
+            )
+
+            insight1.caption(
+                "Difference between the highest and lowest sample prices."
+            )
+
+            eligible_areas = (
+                pricing.groupby("neighbourhood")["base_price_npr"]
+                .agg(["median", "count"])
+            )
+
+            eligible_areas = eligible_areas[
+                eligible_areas["count"] >= 3
+            ].sort_values("median", ascending=False)
+
+            if not eligible_areas.empty:
+
+                insight2.metric(
+                    "Highest Median Price Area",
+                    str(eligible_areas.index[0]),
+                    money(eligible_areas.iloc[0]["median"]),
+                )
+
+                insight2.caption(
+                    f"{int(eligible_areas.iloc[0]['count'])} observations."
+                )
+
+            else:
+
+                insight2.metric("Highest Median Price Area", "N/A")
+
+            if not volatility.empty:
+
+                highest_variation = volatility.sort_values(
+                    "Price_CV_Percent",
+                    ascending=False,
+                ).iloc[0]
+
+                insight3.metric(
+                    "Highest Price Variation",
+                    str(highest_variation.name),
+                    f"{highest_variation['Price_CV_Percent']:.1f}% CV",
+                )
+
+                insight3.caption(
+                    "Based on relative price dispersion."
+                )
+
+            else:
+
+                insight3.metric("Highest Price Variation", "N/A")
+
+            st.info(
+                "Business interpretation: Price segmentation helps "
+                "organize accommodation offerings. Neighbourhood "
+                "comparisons support relative positioning, while "
+                "price variation indicates differences within the sample. "
+                "These findings do not establish profitability, booking "
+                "demand, occupancy or future price movements."
+            )
+
+            st.divider()
+
+            # ------------------------------------------------
+            # STAY MONTH PRICE ANALYSIS
+            # ------------------------------------------------
+
+            section_heading(
+                "Stay-Date Pricing Analysis",
+                "Understand how observed base prices differ by intended stay month.",
+            )
+
+            monthly_pricing = pricing.dropna(
+                subset=["stay_date"]
+            ).copy()
+
+            if not monthly_pricing.empty:
+
+                monthly_pricing["Stay Month"] = (
+                    monthly_pricing["stay_date"]
+                    .dt.strftime("%b %Y")
+                )
+
+                monthly_summary = (
+                    monthly_pricing.groupby("Stay Month")
+                    .agg(
+                        Average_Price=("base_price_npr", "mean"),
+                        Median_Price=("base_price_npr", "median"),
+                        Observations=("base_price_npr", "count"),
+                    )
+                )
+
+                st.line_chart(
+                    monthly_summary[
+                        ["Average_Price", "Median_Price"]
+                    ],
+                    color=["#55C7F3", "#42D6C3"],
+                    alt="Average and median observed prices by stay month",
+                )
+
+                st.dataframe(
+                    monthly_summary.reset_index(),
+                    width="stretch",
+                    hide_index=True,
+                    alt="Monthly pricing summary",
+                )
+
+            else:
+                st.info(
+                    "No valid stay dates are available for monthly analysis."
+                )
+
+            st.divider()
+
+            # ------------------------------------------------
+            # PRICE OBSERVATION CAPTURE TIMELINE
+            # ------------------------------------------------
+
+            section_heading(
+                "Observation Capture Timeline",
+                "Number of price records captured during each observation date.",
+            )
+
+            capture_data = pricing.dropna(
+                subset=["observation_date"]
+            ).copy()
+
+            if not capture_data.empty:
+
+                capture_data["Capture Date"] = (
+                    capture_data["observation_date"]
+                    .dt.strftime("%Y-%m-%d")
+                )
+
+                capture_trend = (
+                    capture_data.groupby("Capture Date")
+                    .size()
+                    .rename("Observations")
+                )
+
+                st.bar_chart(
+                    capture_trend,
+                    color="#818CF8",
+                    alt="Price observation counts by capture date",
+                )
+
+            else:
+                st.info(
+                    "No valid observation dates are available."
+                )
+
+            # ------------------------------------------------
+            # DETAILED PRICING TABLE
+            # ------------------------------------------------
+
+            with st.expander("Explore Detailed Pricing Records"):
+
+                display_columns = [
+                    column for column in [
+                        "property_id",
+                        "neighbourhood",
+                        "property_type",
+                        "room_type",
+                        "stay_date",
+                        "base_price_npr",
+                        "currency_original",
+                        "source_name",
+                    ]
+                    if column in pricing.columns
+                ]
+
+                st.dataframe(
+                    pricing[display_columns].sort_values(
+                        "base_price_npr",
+                        ascending=False,
+                    ),
+                    width="stretch",
+                    hide_index=True,
+                    alt="Detailed filtered pricing records",
+                )
+
+                st.download_button(
+                    "Download Pricing Records CSV",
+                    pricing.to_csv(index=False).encode("utf-8"),
+                    file_name="pricing_intelligence.csv",
+                    mime="text/csv",
+                )
+
+        else:
+            st.info(
+                "No pricing records match the selected executive filters."
+            )
+
+    else:
+        st.info(
+            "Price observation dataset is not available."
+        )
 
     st.divider()
-
-    section_heading("Featured Sample Properties")
-
-    featured = properties.sort_values(
-        "rating", ascending=False
-    ).head(8)
-
-    display_columns = [
-        "property_id",
-        "property_name",
-        "neighbourhood",
-        "property_type",
-        "room_type",
-        "nightly_price_npr",
-        "rating",
-    ]
-
-    st.dataframe(
-        featured[display_columns],
-        use_container_width=True,
-        hide_index=True,
+    section_heading(
+        "Tourism demand context",
+        "Nepal-wide visitor arrivals provide macro context, not a direct measure of Kathmandu accommodation demand.",
     )
+    if not tourist_arrivals.empty and "tourist_arrivals" in tourist_arrivals:
+        tourism = tourist_arrivals.copy()
+        if "month_date" in tourism:
+            tourism["month_date"] = pd.to_datetime(tourism["month_date"], errors="coerce")
+        elif {"year", "month"}.issubset(tourism.columns):
+            tourism["month_date"] = pd.to_datetime(
+                dict(
+                    year=numeric(tourism["year"]),
+                    month=numeric(tourism["month"]),
+                    day=1,
+                ),
+                errors="coerce",
+            )
+        tourism["tourist_arrivals"] = numeric(tourism["tourist_arrivals"])
+        tourism = tourism.dropna(subset=["month_date", "tourist_arrivals"]).sort_values("month_date")
+        if not tourism.empty:
+            latest = tourism.iloc[-1]
+            t1, t2 = st.columns([1, 2])
+            t1.metric("Latest Monthly Arrivals", f"{int(latest['tourist_arrivals']):,}")
+            t1.caption(f"Nepal · {latest['month_date'].strftime('%B %Y')}")
+            t2.line_chart(
+                tourism.set_index("month_date")[["tourist_arrivals"]].tail(36),
+                color="#38BDF8",
+            )
+            if "source_name" in tourism and tourism["source_name"].notna().any():
+                st.caption(f"Source: {tourism['source_name'].dropna().iloc[0]}")
+            if "is_provisional" in tourism:
+                provisional = str(latest.get("is_provisional", "")).lower()
+                if provisional in ("true", "1", "yes"):
+                    st.caption("The latest tourism observation is marked provisional.")
+        else:
+            st.info("The tourism file is present but has no usable monthly records.")
+    else:
+        st.info("Tourist-arrival data was not found in the configured project data folders.")
+
+    st.divider()
+    section_heading(
+        "Availability and occupancy data coverage",
+        "Availability is not the same as occupancy. Occupancy is reported only when valid occupancy observations exist.",
+    )
+    if not availability.empty:
+        status_col = next((c for c in ["available", "is_available"] if c in availability.columns), None)
+        if status_col:
+            statuses = availability[status_col].astype(str).str.strip().str.lower()
+            available_n = statuses.isin(["true", "1", "yes", "available"]).sum()
+            unavailable_n = statuses.isin(["false", "0", "no", "unavailable"]).sum()
+            status_total = available_n + unavailable_n
+            if status_total:
+                a1, a2, a3 = st.columns(3)
+                a1.metric("Availability Records", f"{status_total:,}")
+                a2.metric("Available Share", f"{available_n / status_total * 100:.1f}%")
+                a3.metric("Unavailable Share", f"{unavailable_n / status_total * 100:.1f}%")
+                st.caption("These are recorded availability statuses, not confirmed occupancy or completed bookings.")
+            else:
+                st.info("Availability records exist, but status values are not interpretable.")
+        else:
+            st.info("No recognized availability-status column was found.")
+    else:
+        st.info("No processed availability records are currently loaded.")
+
+    if not occupancy_context.empty and "occupancy_rate" in occupancy_context:
+        occupancy_values = numeric(occupancy_context["occupancy_rate"]).dropna()
+        if not occupancy_values.empty:
+            rate = occupancy_values.mean()
+            if occupancy_values.max() <= 1:
+                rate *= 100
+            st.metric("Mean Source Occupancy Rate", f"{rate:.1f}%")
+        else:
+            st.caption("Occupancy file exists but contains no valid occupancy-rate observations.")
+    else:
+        st.caption(
+            "No usable monthly occupancy observations are loaded. "
+            "Occupancy is not inferred from availability."
+        )
+
+    st.divider()
+    section_heading(
+        "Featured sample properties",
+        "Highest-rated records within the selected property sample.",
+    )
+    if not executive_properties.empty and "rating" in executive_properties:
+        featured = executive_properties.copy()
+        featured["rating"] = numeric(featured["rating"])
+        featured = featured.sort_values("rating", ascending=False, na_position="last").head(8)
+        columns = [
+            c for c in [
+                "property_id", "property_name", "neighbourhood", "property_type",
+                "room_type", "nightly_price_npr", "rating",
+            ] if c in featured.columns
+        ]
+        st.dataframe(featured[columns], use_container_width=True, hide_index=True)
+    else:
+        st.info("No featured property records match the selected filters.")
 
 
-# ============================================================
 # 7. PROPERTY RECOMMENDATIONS
 # ============================================================
 
@@ -1269,130 +2120,443 @@ elif page == "Model Evaluation":
 
     page_header(
         "MODEL PERFORMANCE",
-        "Evaluate the Prediction Model",
-        "Review saved test-set metrics, baseline comparison, "
-        "cross-validation and prediction error patterns.",
+        "Advanced Model Evaluation",
+        "Compare prediction models, evaluate cross-validation stability, "
+        "and investigate prediction errors.",
     )
 
-    if not metrics.empty and {"metric", "value"}.issubset(metrics.columns):
+    # --------------------------------------------------------
+    # PREPARE EVALUATION DATA
+    # --------------------------------------------------------
+
+    comparison_df = price_comparison.copy()
+    cv_df = cross_validation.copy()
+    error_df = error_categories.copy()
+    metrics_df = metrics.copy()
+
+    for df in [comparison_df, cv_df, error_df]:
+        for col in df.columns:
+            if col not in ["model", "price_category"]:
+                df[col] = pd.to_numeric(df[col], errors="coerce")
+
+    # --------------------------------------------------------
+    # 1. OVERALL MODEL PERFORMANCE
+    # --------------------------------------------------------
+
+    section_heading("Overall Model Performance")
+
+    if not metrics_df.empty and {"metric", "value"}.issubset(metrics_df.columns):
 
         metric_values = {
-            str(row["metric"]).strip().lower(): float(row["value"])
-            for _, row in metrics.iterrows()
+            str(row["metric"]).strip().lower(): pd.to_numeric(
+                row["value"], errors="coerce"
+            )
+            for _, row in metrics_df.iterrows()
         }
 
-        def metric_lookup(*names):
+        def get_metric(*names):
             for name in names:
-                if name.lower() in metric_values:
-                    return metric_values[name.lower()]
+                value = metric_values.get(name.lower())
+                if value is not None and pd.notna(value):
+                    return float(value)
             return None
 
-        mae = metric_lookup("mae")
-        rmse = metric_lookup("rmse")
-        r2 = metric_lookup("r2", "r2_score", "r2 score")
-        baseline_mae = metric_lookup("baseline mae")
-        improvement = metric_lookup("mae improvement percentage")
+        mae = get_metric("mae")
+        rmse = get_metric("rmse")
+        r2 = get_metric("r2", "r2_score", "r2 score")
 
-        st.markdown(
-            '<div class="section-label">TEST SET PERFORMANCE</div>',
-            unsafe_allow_html=True,
+        c1, c2, c3 = st.columns(3)
+
+        c1.metric(
+            "Mean Absolute Error",
+            money(mae) if mae is not None else "N/A",
+            help="Average absolute difference between actual and predicted prices.",
         )
 
-        c1, c2, c3, c4 = st.columns(4)
-
-        c1.metric("MAE", money(mae) if mae is not None else "N/A")
-        c2.metric("RMSE", money(rmse) if rmse is not None else "N/A")
-        c3.metric("R² Score", f"{r2:.4f}" if r2 is not None else "N/A")
-        c4.metric(
-            "MAE Improvement",
-            f"{improvement:.2f}%" if improvement is not None else "N/A",
+        c2.metric(
+            "Root Mean Squared Error",
+            money(rmse) if rmse is not None else "N/A",
+            help="Penalizes larger prediction errors more heavily.",
         )
 
-        if baseline_mae is not None:
-            st.caption(
-                f"Direct baseline MAE: {money(baseline_mae)}"
-            )
+        c3.metric(
+            "R² Score",
+            f"{r2:.4f}" if r2 is not None else "N/A",
+            help="Measures how much variation is explained by the model.",
+        )
 
     else:
-        st.info("Price model metrics report is unavailable.")
+        st.info("Model performance metrics are unavailable.")
+
+    st.caption(
+        "These are saved test-set metrics. Their interpretation depends "
+        "on the dataset and evaluation methodology."
+    )
 
     st.divider()
 
+    # --------------------------------------------------------
+    # 2. MODEL COMPARISON
+    # --------------------------------------------------------
+
     section_heading("Model Comparison")
 
-    if not price_comparison.empty:
+    if not comparison_df.empty and "model" in comparison_df.columns:
+
         st.dataframe(
-            price_comparison,
+            comparison_df,
             use_container_width=True,
             hide_index=True,
         )
 
-        numeric_columns = price_comparison.select_dtypes(
-            include="number"
-        ).columns.tolist()
+        if "MAE" in comparison_df.columns:
+            valid_mae = comparison_df.dropna(subset=["MAE"])
 
-        if numeric_columns:
+            if not valid_mae.empty:
+                best_model = valid_mae.loc[valid_mae["MAE"].idxmin()]
+
+                st.success(
+                    f"Lowest MAE: {best_model['model']} "
+                    f"({money(best_model['MAE'])})"
+                )
+
+        chart_col1, chart_col2 = st.columns(2)
+
+        with chart_col1:
+            st.markdown("#### MAE Comparison")
+
+            if "MAE" in comparison_df.columns:
+                st.bar_chart(
+                    comparison_df.set_index("model")[["MAE"]]
+                )
+
+        with chart_col2:
+            st.markdown("#### RMSE Comparison")
+
+            if "RMSE" in comparison_df.columns:
+                st.bar_chart(
+                    comparison_df.set_index("model")[["RMSE"]]
+                )
+
+        if "R2" in comparison_df.columns:
+            st.markdown("#### R² Score Comparison")
+
             st.bar_chart(
-                price_comparison.set_index(
-                    price_comparison.columns[0]
-                )[numeric_columns],
+                comparison_df.set_index("model")[["R2"]]
             )
+
     else:
         st.info("Model comparison report is unavailable.")
 
     st.divider()
 
-    section_heading("Cross-Validation")
+    # --------------------------------------------------------
+    # 3. CROSS-VALIDATION ANALYSIS
+    # --------------------------------------------------------
 
-    if not cross_validation.empty:
+    section_heading("Cross-Validation Stability")
+
+    if not cv_df.empty:
+
+        st.markdown(
+            "Evaluate how consistently the model performs across "
+            "different validation folds."
+        )
+
         st.dataframe(
-            cross_validation,
+            cv_df,
             use_container_width=True,
             hide_index=True,
         )
 
-        numeric_columns = cross_validation.select_dtypes(
-            include="number"
-        ).columns.tolist()
+        required_cv = ["GB_MAE", "GB_RMSE", "GB_R2"]
 
-        if numeric_columns:
-            st.line_chart(
-                cross_validation[numeric_columns],
-                color="#38BDF8",
+        if all(col in cv_df.columns for col in required_cv):
+
+            cv_mae_mean = cv_df["GB_MAE"].mean()
+            cv_rmse_mean = cv_df["GB_RMSE"].mean()
+            cv_r2_mean = cv_df["GB_R2"].mean()
+
+            cv_c1, cv_c2, cv_c3 = st.columns(3)
+
+            cv_c1.metric(
+                "Average CV MAE",
+                money(cv_mae_mean),
             )
+
+            cv_c2.metric(
+                "Average CV RMSE",
+                money(cv_rmse_mean),
+            )
+
+            cv_c3.metric(
+                "Average CV R²",
+                f"{cv_r2_mean:.4f}",
+            )
+
+            st.markdown("#### Gradient Boosting: Fold Performance")
+
+            chart1, chart2 = st.columns(2)
+
+            with chart1:
+                st.markdown("**MAE Across Folds**")
+                st.line_chart(cv_df.set_index("fold")[["GB_MAE"]])
+
+            with chart2:
+                st.markdown("**RMSE Across Folds**")
+                st.line_chart(cv_df.set_index("fold")[["GB_RMSE"]])
+
+            st.markdown("**R² Across Folds**")
+            st.line_chart(cv_df.set_index("fold")[["GB_R2"]])
+
+            stability = cv_df["GB_MAE"].std()
+
+            if pd.notna(stability):
+                st.caption(
+                    f"MAE standard deviation across folds: "
+                    f"{money(stability)}. Lower variation indicates "
+                    "more consistent fold performance."
+                )
+
+        baseline_cols = [
+            "Baseline_MAE",
+            "Baseline_RMSE",
+            "Baseline_R2",
+        ]
+
+        if all(col in cv_df.columns for col in baseline_cols):
+
+            st.markdown("#### Gradient Boosting vs Baseline")
+
+            baseline_comparison = pd.DataFrame({
+                "Gradient Boosting MAE": cv_df["GB_MAE"],
+                "Baseline MAE": cv_df["Baseline_MAE"],
+            })
+
+            if "fold" in cv_df.columns:
+                baseline_comparison.index = cv_df["fold"]
+                baseline_comparison.index.name = "Fold"
+
+            st.line_chart(baseline_comparison)
+
     else:
         st.info("Cross-validation report is unavailable.")
 
     st.divider()
 
-    section_heading("Prediction Error by Price Category")
+    # --------------------------------------------------------
+    # 4. PREDICTION ERROR ANALYSIS
+    # --------------------------------------------------------
 
-    if not error_categories.empty:
+    section_heading("Prediction Error Analysis")
+
+    if not error_df.empty:
+
         st.dataframe(
-            error_categories,
+            error_df,
             use_container_width=True,
             hide_index=True,
         )
 
-        numeric_columns = error_categories.select_dtypes(
-            include="number"
-        ).columns.tolist()
+        error_col1, error_col2 = st.columns(2)
 
-        if numeric_columns:
+        with error_col1:
+            st.markdown("#### Mean Absolute Error by Category")
+
+            if "mean_absolute_error" in error_df.columns:
+                st.bar_chart(
+                    error_df.set_index("price_category")[
+                        ["mean_absolute_error"]
+                    ]
+                )
+
+        with error_col2:
+            st.markdown("#### Mean Percentage Error by Category")
+
+            if "mean_percentage_error" in error_df.columns:
+                st.bar_chart(
+                    error_df.set_index("price_category")[
+                        ["mean_percentage_error"]
+                    ]
+                )
+
+        # Actual vs predicted category averages
+        actual_predicted_cols = [
+            "average_actual_price",
+            "average_predicted_price",
+        ]
+
+        if all(col in error_df.columns for col in actual_predicted_cols):
+
+            st.markdown("#### Actual vs Predicted Average Price")
+
+            comparison_chart = error_df.set_index("price_category")[
+                actual_predicted_cols
+            ]
+
+            st.bar_chart(comparison_chart)
+
+        # Signed error analysis
+        signed_error_col = next(
+            (
+                col for col in error_df.columns
+                if col in [
+                    "average_signed_error",
+                    "average_signed_error ",
+                ]
+            ),
+            None,
+        )
+
+        if signed_error_col:
+            st.markdown("#### Prediction Bias")
+
             st.bar_chart(
-                error_categories.set_index(
-                    error_categories.columns[0]
-                )[numeric_columns],
+                error_df.set_index("price_category")[
+                    [signed_error_col]
+                ]
             )
+
+            st.caption(
+                "Positive signed error indicates average overprediction; "
+                "negative signed error indicates average underprediction."
+            )
+
     else:
-        st.info("Price error category report is unavailable.")
+        st.info("Prediction error category report is unavailable.")
+
+    st.divider()
+
+
+    # --------------------------------------------------------
+    # PREDICTION ERROR KEY TAKEAWAYS
+    # --------------------------------------------------------
+
+    if not error_df.empty:
+
+        section_heading("Key Takeaways")
+
+        insight_cols = st.columns(2)
+
+        # Highest percentage error
+        if "mean_percentage_error" in error_df.columns:
+
+            percentage_data = error_df.dropna(
+                subset=["mean_percentage_error"]
+            )
+
+            if not percentage_data.empty:
+
+                highest_percentage = percentage_data.loc[
+                    percentage_data["mean_percentage_error"].idxmax()
+                ]
+
+                with insight_cols[0]:
+                    st.metric(
+                        "Highest Percentage Error",
+                        f"{highest_percentage['mean_percentage_error']:.2f}%",
+                        help="Price category with the highest mean percentage error.",
+                    )
+
+                    st.caption(
+                        f"Category: {highest_percentage['price_category']}"
+                    )
+
+        # Highest absolute error
+        if "mean_absolute_error" in error_df.columns:
+
+            absolute_data = error_df.dropna(
+                subset=["mean_absolute_error"]
+            )
+
+            if not absolute_data.empty:
+
+                highest_absolute = absolute_data.loc[
+                    absolute_data["mean_absolute_error"].idxmax()
+                ]
+
+                with insight_cols[1]:
+                    st.metric(
+                        "Highest Absolute Error",
+                        money(highest_absolute["mean_absolute_error"]),
+                    )
+
+                    st.caption(
+                        f"Category: {highest_absolute['price_category']}"
+                    )
+
+        # Prediction bias
+        if "average_signed_error" in error_df.columns:
+
+            st.markdown("#### Prediction Bias by Category")
+
+            for _, row in error_df.iterrows():
+
+                signed_error = row["average_signed_error"]
+
+                if pd.isna(signed_error):
+                    continue
+
+                if signed_error > 0:
+                    interpretation = "Overprediction"
+                elif signed_error < 0:
+                    interpretation = "Underprediction"
+                else:
+                    interpretation = "Approximately balanced"
+
+                st.write(
+                    f"**{row['price_category']}**: "
+                    f"{interpretation} "
+                    f"({money(abs(signed_error))} average signed error)"
+                )
+
+        st.info(
+            "The model shows different error patterns across price "
+            "categories. These results can help identify where further "
+            "model improvements are needed. They are based on synthetic "
+            "sample data and should not be treated as verified market "
+            "performance."
+        )
+
+
+    # --------------------------------------------------------
+    # 5. EVALUATION INTERPRETATION
+    # --------------------------------------------------------
+
+    section_heading("Model Evaluation Insights")
+
+    if not comparison_df.empty and "MAE" in comparison_df.columns:
+
+        valid_models = comparison_df.dropna(subset=["MAE"])
+
+        if not valid_models.empty:
+
+            best = valid_models.loc[valid_models["MAE"].idxmin()]
+
+            st.markdown(
+                f"""
+                - **Best model by MAE:** {best['model']}
+                - **MAE:** {money(best['MAE'])}
+                - **Models evaluated:** {len(valid_models)}
+                """
+            )
+
+    if not cv_df.empty and "GB_MAE" in cv_df.columns:
+
+        average_cv_mae = cv_df["GB_MAE"].mean()
+
+        st.markdown(
+            f"- **Cross-validation average MAE:** {money(average_cv_mae)}"
+        )
 
     st.warning(
-        "Interpretation limitation: The model uses the existing baseline "
-        "nightly price as an input. Its strong evaluation scores should "
-        "not be interpreted as independent price prediction accuracy. "
-        "All property and price observations are synthetic sample data."
+        "Important limitation: The current price prediction experiment "
+        "uses the existing baseline nightly price as an input. Strong "
+        "evaluation scores should not be interpreted as independent "
+        "market-price discovery. Property and price observations are "
+        "synthetic sample data, not verified live Airbnb market data."
     )
+
 
 
 # ============================================================

@@ -1,0 +1,8 @@
+configuration,scenarios,average_score,neighbourhood_match,property_type_match,room_type_match,budget_compliance,capacity_sufficiency,average_price_difference,average_result_count
+Baseline,25,56.09,80.4,47.6,68.0,100.0,100.0,35.8,10.0
+Balanced,25,60.4,79.6,51.6,69.6,100.0,100.0,35.56,10.0
+Preference Focused,25,63.17,68.4,63.2,81.2,100.0,100.0,31.53,10.0
+Text Focused,25,54.51,79.6,51.6,68.8,100.0,100.0,36.37,10.0
+Location Focused,25,62.88,80.4,50.8,68.8,100.0,100.0,35.77,10.0
+Preference-Location Hybrid,25,63.86,80.4,50.8,68.8,100.0,100.0,35.77,10.0
+Preference-First Hybrid,25,63.28,77.6,54.0,72.0,100.0,100.0,34.61,10.0
