@@ -34,7 +34,7 @@ MODEL_DIR.mkdir(parents=True, exist_ok=True)
 REPORT_DIR.mkdir(parents=True, exist_ok=True)
 
 
-print("\n========== KATHMANDU AIRBNB PRICE PREDICTION ==========")
+print("\n========== AIRBNB INTELLIGENCE | PRICE PREDICTION ==========")
 
 
 # ============================================================
