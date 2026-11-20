@@ -1,4 +1,4 @@
-KATHMANDU AIRBNB ML ANALYSIS — MODEL 02: PRICE PREDICTION
+AIRBNB INTELLIGENCE — MODEL 02: PRICE PREDICTION
 
 Files:
 - Kathmandu_Airbnb_Price_Prediction.ipynb: notebook walkthrough.
