@@ -625,6 +625,49 @@ section[data-testid="stSidebar"] [data-testid="stRadio"] label:has(input:checked
     .brand-tagline { font-size: 0.74rem; }
 }
 
+
+
+/* MIDNIGHT INTELLIGENCE — refined product layer */
+:root {
+  --bg: #080F1C;
+  --panel: #111F32;
+  --panel-light: #172A40;
+  --border: rgba(148, 163, 184, .16);
+  --primary: #55C7F3;
+  --accent: #42D6C3;
+  --text: #EAF2FC;
+  --muted: #91A4BC;
+}
+.stApp {
+  background: radial-gradient(ellipse at 88% 0%, rgba(36, 130, 151, .13), transparent 32%),
+              radial-gradient(ellipse at 8% 35%, rgba(38, 89, 135, .10), transparent 30%), #080F1C;
+}
+.block-container { max-width: 1600px; padding-top: 1.2rem; }
+[data-testid="stMetric"] {
+  background: linear-gradient(145deg, rgba(20,36,57,.98), rgba(13,25,42,.98));
+  border: 1px solid rgba(148,163,184,.15); border-radius: 16px;
+  box-shadow: 0 10px 28px rgba(0,0,0,.13); min-height: 118px;
+}
+[data-testid="stMetric"]:hover { border-color: rgba(66,214,195,.42); transform: translateY(-2px); }
+[data-testid="stMetricValue"] { color: #F5FAFF !important; }
+[data-testid="stMetricLabel"] { color: #A6B8CC !important; }
+[data-testid="stVerticalBlockBorderWrapper"] { border-radius: 16px !important; }
+[data-testid="stTabs"] button[aria-selected="true"] { color: #65DCCF !important; }
+[data-testid="stDataFrame"] { border: 1px solid rgba(148,163,184,.16); border-radius: 13px; }
+[data-baseweb="select"] > div, [data-baseweb="input"] > div { background: #14243A; }
+.stButton > button, .stDownloadButton > button, .stFormSubmitButton > button {
+  border-radius: 11px; font-weight: 700; transition: all .18s ease;
+}
+.stButton > button:hover, .stDownloadButton > button:hover { transform: translateY(-1px); }
+.hero { box-shadow: 0 18px 48px rgba(0,0,0,.18); }
+.section-label { color: #70D8F6; }
+.map-panel { border: 1px solid rgba(85,199,243,.18); border-radius: 16px; padding: 1rem 1.1rem; background: rgba(16,31,50,.62); }
+@media (max-width: 768px) {
+  .block-container { padding: .8rem .8rem 2rem; }
+  .hero-title { font-size: 1.75rem; }
+  [data-testid="stMetric"] { min-height: 96px; }
+}
+
 </style>
 """, unsafe_allow_html=True)
 
@@ -891,6 +934,32 @@ if page == "Executive Analytics":
             "Published only", value=False, key="exec_published_filter"
         )
 
+    # Additional filters keep the executive view useful without changing source data.
+    room_types = sorted(properties["room_type"].dropna().astype(str).unique()) if "room_type" in properties else []
+    selected_room_types = st.multiselect(
+        "Room type", room_types, default=room_types, key="exec_room_type_filter"
+    )
+    filter_col1, filter_col2 = st.columns([1.4, 1])
+    price_floor, price_ceiling = 0, 1
+    if "nightly_price_npr" in properties:
+        all_prices = numeric(properties["nightly_price_npr"]).dropna()
+        if not all_prices.empty:
+            price_floor = int(np.floor(all_prices.min()))
+            price_ceiling = int(np.ceil(all_prices.max()))
+            if price_ceiling <= price_floor:
+                price_ceiling = price_floor + 1
+    with filter_col1:
+        selected_price_range = st.slider(
+            "Sample nightly price range (NPR)", min_value=price_floor,
+            max_value=price_ceiling, value=(price_floor, price_ceiling),
+            key="exec_price_range_filter",
+        )
+    with filter_col2:
+        minimum_rating = st.slider(
+            "Minimum guest rating", min_value=0.0, max_value=5.0,
+            value=0.0, step=0.1, key="exec_min_rating_filter",
+        )
+
     executive_properties = properties.copy()
     if "neighbourhood" in executive_properties:
         executive_properties = executive_properties[
@@ -903,6 +972,20 @@ if page == "Executive Analytics":
     if published_only and "published" in executive_properties:
         executive_properties = executive_properties[
             is_published(executive_properties["published"])
+        ]
+
+    if "room_type" in executive_properties:
+        executive_properties = executive_properties[
+            executive_properties["room_type"].astype(str).isin(selected_room_types)
+        ]
+    if "nightly_price_npr" in executive_properties:
+        filter_prices = numeric(executive_properties["nightly_price_npr"])
+        executive_properties = executive_properties[
+            filter_prices.between(selected_price_range[0], selected_price_range[1])
+        ]
+    if minimum_rating > 0 and "rating" in executive_properties:
+        executive_properties = executive_properties[
+            numeric(executive_properties["rating"]).fillna(0) >= minimum_rating
         ]
 
     prices = numeric(executive_properties["nightly_price_npr"]).dropna() if "nightly_price_npr" in executive_properties else pd.Series(dtype=float)
@@ -1092,6 +1175,38 @@ if page == "Executive Analytics":
             )
         else:
             st.info("Neighbourhood information is unavailable for this selection.")
+
+    # Geospatial intelligence: use only coordinates supplied by the property dataset.
+    st.divider()
+    section_heading(
+        "Kathmandu property map",
+        "Property-level sample coordinates from the selected dataset. Markers are not verified live Airbnb listings."
+    )
+    coordinate_columns = {"latitude", "longitude"}
+    if coordinate_columns.issubset(executive_properties.columns):
+        map_data = executive_properties.copy()
+        map_data["latitude"] = numeric(map_data["latitude"])
+        map_data["longitude"] = numeric(map_data["longitude"])
+        map_data = map_data.dropna(subset=["latitude", "longitude"])
+        map_data = map_data[
+            map_data["latitude"].between(-90, 90)
+            & map_data["longitude"].between(-180, 180)
+        ]
+        if not map_data.empty:
+            st.map(
+                map_data[["latitude", "longitude"]],
+                latitude="latitude", longitude="longitude",
+                color="#42D6C3", size=18, zoom=11,
+                use_container_width=True,
+            )
+            st.caption(
+                f"Mapped {len(map_data):,} of {len(executive_properties):,} selected records with valid coordinates. "
+                "Coordinates and property records are part of the project's synthetic sample data."
+            )
+        else:
+            st.info("No valid coordinates are available for the current filter selection.")
+    else:
+        st.info("The current property dataset does not include latitude/longitude fields, so a map cannot be drawn without inventing locations.")
 
     with right:
         section_heading("Accommodation mix")
