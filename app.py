@@ -18,7 +18,7 @@ MODEL_DIR = ROOT / "models"
 REPORT_DIR = ROOT / "reports"
 
 st.set_page_config(
-    page_title="Kathmandu Airbnb | ML Intelligence",
+    page_title="Airbnb Intelligence | Kathmandu Analytics",
     page_icon="🏠",
     layout="wide",
     initial_sidebar_state="expanded",
@@ -728,7 +728,8 @@ with st.sidebar:
     st.divider()
 
     st.markdown("**PROJECT INFORMATION**")
-    st.caption("Kathmandu Airbnb ML Analysis")
+    st.caption("Airbnb Intelligence")
+    st.caption("Turning Airbnb Data into Intelligent Decisions.")
     st.caption("Machine Learning Internship Project")
     st.caption("Python · Scikit-learn · Streamlit")
 
@@ -2566,7 +2567,7 @@ elif page == "Model Evaluation":
 st.markdown(
     """
     <div class="footer">
-        KATHMANDU AIRBNB ML ANALYSIS<br>
+        AIRBNB INTELLIGENCE<br>Turning Airbnb Data into Intelligent Decisions.<br>
         Machine Learning Internship Project · Experimental Dataset
     </div>
     """,
