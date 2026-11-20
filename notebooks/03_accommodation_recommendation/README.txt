@@ -1,4 +1,4 @@
-KATHMANDU AIRBNB ML ANALYSIS — MODEL 01
+AIRBNB INTELLIGENCE — MODEL 01: ACCOMMODATION RECOMMENDATION
 
 Files:
 - Kathmandu_Airbnb_Recommendation_Model.ipynb: walkthrough notebook.
