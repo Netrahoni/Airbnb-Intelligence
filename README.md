@@ -1,4 +1,8 @@
-# Kathmandu Airbnb ML Analysis
+# Airbnb Intelligence
+
+> **Turning Airbnb Data into Intelligent Decisions.**
+
+**Kathmandu Accommodation Analytics & Machine Learning Platform**
 
 An end-to-end machine learning and analytics project exploring accommodation listings, recommendation, price estimation, and market insights for Kathmandu, Nepal. It includes prepared datasets, ML workflows, evaluation reports, and an interactive Streamlit dashboard.
 
@@ -310,6 +314,6 @@ This project is not affiliated with, endorsed by, or officially connected to Air
 
 ## Author
 
-**Project:** Kathmandu Airbnb ML Analysis  
+**Project:** Airbnb Intelligence  
 **Repository:** [Netrahoni/Kathmandu-Airbnb-ML-Analysis](https://github.com/Netrahoni/Kathmandu-Airbnb-ML-Analysis)  
 **Purpose:** Machine Learning Internship Project
