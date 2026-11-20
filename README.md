@@ -128,6 +128,7 @@ Do not interpret predictions as actual prices, recommendations as verified listi
     │   ├── property_recommender.joblib
     │   └── price_predictor.joblib
     ├── notebooks/
+    │   ├── Project_Report_and_Visual_Analysis.ipynb
     │   ├── 01_data_audit_preprocessing/
     │   ├── 02_price_prediction/
     │   └── 03_accommodation_recommendation/
@@ -200,6 +201,14 @@ Raw files are expected in <code>data/raw/</code> for the data-audit workflow. Do
 ### 5. Validate the environment
 
     python -m pip check
+
+## Project Report Notebook
+
+Open [`notebooks/Project_Report_and_Visual_Analysis.ipynb`](notebooks/Project_Report_and_Visual_Analysis.ipynb) in Jupyter Notebook or VS Code. Run cells from top to bottom to generate a concise project report, workflow diagram, dataset audit, dashboard-style plots, model evaluation visualizations, and outcome/limitations summary from the local processed data and reports. Missing artifacts are handled with notices rather than fabricated chart values.
+
+Install Jupyter if needed:
+
+    python -m pip install notebook
 
 ## Run the Dashboard
 
