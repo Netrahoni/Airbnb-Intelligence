@@ -668,6 +668,30 @@ section[data-testid="stSidebar"] [data-testid="stRadio"] label:has(input:checked
   [data-testid="stMetric"] { min-height: 96px; }
 }
 
+
+/* FINAL SIDEBAR BRAND REFINEMENT */
+section[data-testid="stSidebar"] { width: 286px !important; min-width: 286px !important; background: linear-gradient(180deg,#0C1728 0%,#091321 100%) !important; border-right:1px solid rgba(111,151,183,.17) !important; }
+section[data-testid="stSidebar"] > div:first-child { width:286px !important; }
+section[data-testid="stSidebar"] .block-container { padding:1rem .95rem 1.5rem !important; }
+.brand-shell { position:sticky; top:.35rem; z-index:50; display:grid; grid-template-columns:66px minmax(0,1fr); align-items:center; column-gap:13px; overflow:visible; padding:13px 12px; margin:0 0 1rem; border:1px solid rgba(104,180,204,.20); border-radius:15px; background:linear-gradient(145deg,rgba(20,39,60,.98),rgba(12,27,44,.98)); box-shadow:0 12px 28px rgba(0,0,0,.20); backdrop-filter:blur(14px); }
+.brand-logo-wrap { width:66px; height:66px; display:grid; place-items:center; padding:7px; border-radius:13px; background:linear-gradient(145deg,#F7FBFE,#E4F1F5); border:1px solid rgba(255,255,255,.72); box-shadow:inset 0 1px 0 rgba(255,255,255,.9); }
+.brand-logo-wrap img { display:block; width:100%; height:100%; object-fit:contain; }
+.brand-copy { min-width:0; }
+.brand-title { color:#F4F8FD; font-size:1.02rem; font-weight:800; line-height:1.15; letter-spacing:-.45px; margin:0 0 5px; }
+.brand-tagline { color:#A7BCD0; font-size:.68rem; font-weight:500; line-height:1.4; letter-spacing:0; text-align:left; margin:0; }
+.brand-divider { grid-column:1/-1; height:1px; margin:12px 0 9px; background:linear-gradient(90deg,rgba(90,205,218,.42),rgba(148,163,184,.12)); }
+.brand-kicker { grid-column:1/-1; display:flex; align-items:center; gap:7px; color:#80A1BA; font-size:.57rem; font-weight:800; letter-spacing:1.15px; line-height:1.4; text-align:left; text-transform:uppercase; }
+.brand-kicker-dot { flex:0 0 6px; width:6px; height:6px; border-radius:50%; background:#43D7C5; box-shadow:0 0 0 4px rgba(67,215,197,.10); }
+section[data-testid="stSidebar"] [data-testid="stRadio"] > label { color:#7792AE !important; font-size:.66rem !important; font-weight:800 !important; letter-spacing:1.55px !important; margin:.35rem 0 .45rem; }
+section[data-testid="stSidebar"] [data-testid="stRadio"] > div { gap:.34rem !important; }
+section[data-testid="stSidebar"] [data-testid="stRadio"] label { min-height:42px; display:flex; align-items:center; padding:.55rem .72rem !important; border:1px solid rgba(148,163,184,.09) !important; border-radius:10px !important; background:rgba(255,255,255,.018) !important; transition:background .16s ease,border-color .16s ease,transform .16s ease; }
+section[data-testid="stSidebar"] [data-testid="stRadio"] label:hover { background:rgba(85,199,243,.075) !important; border-color:rgba(85,199,243,.22) !important; transform:translateX(2px); }
+section[data-testid="stSidebar"] [data-testid="stRadio"] label:has(input:checked) { background:linear-gradient(100deg,rgba(56,189,248,.15),rgba(45,212,191,.08)) !important; border-color:rgba(85,199,243,.32) !important; box-shadow:inset 3px 0 0 #42D6C3; }
+.sidebar-project-meta { padding:.85rem; border:1px solid rgba(148,163,184,.13); border-radius:12px; background:linear-gradient(145deg,rgba(19,36,56,.82),rgba(12,25,41,.82)); }
+.sidebar-project-meta .meta-heading { color:#A8C3D9; font-size:.62rem; font-weight:800; letter-spacing:1.25px; text-transform:uppercase; margin-bottom:.42rem; }
+.sidebar-project-meta .meta-copy { color:#91A4BC; font-size:.72rem; line-height:1.55; }
+@media(max-width:768px){ section[data-testid="stSidebar"]{width:min(86vw,286px)!important;min-width:min(86vw,286px)!important;} section[data-testid="stSidebar"]>div:first-child{width:min(86vw,286px)!important;} .brand-shell{grid-template-columns:56px minmax(0,1fr);padding:10px;gap:10px;} .brand-logo-wrap{width:56px;height:56px;} .brand-title{font-size:.94rem;} }
+
 </style>
 """, unsafe_allow_html=True)
 
@@ -838,17 +862,20 @@ def published_data(frame):
 # 5. SIDEBAR
 # ============================================================
 
-logo_svg = (ROOT / "assets" / "airbnb-intelligence-logo.svg").read_text(encoding="utf-8")
+logo_mark_svg = (ROOT / "assets" / "airbnb-intelligence-mark.svg").read_text(encoding="utf-8")
 with st.sidebar:
     st.markdown(
         f"""
         <div class="brand-shell">
           <div class="brand-logo-wrap">
-            <img src="data:image/svg+xml;utf8,{quote(logo_svg)}" alt="Airbnb Intelligence logo">
+            <img src="data:image/svg+xml;utf8,{quote(logo_mark_svg)}" alt="Airbnb Intelligence brand mark">
+          </div>
+          <div class="brand-copy">
+            <div class="brand-title">Airbnb Intelligence</div>
+            <div class="brand-tagline">Turning accommodation data into intelligent decisions.</div>
           </div>
           <div class="brand-divider"></div>
-          <div class="brand-tagline">Turning Airbnb Data into Intelligent Decisions.</div>
-          <div class="brand-kicker"><span class="brand-kicker-dot"></span> Kathmandu Accommodation Analytics</div>
+          <div class="brand-kicker"><span class="brand-kicker-dot"></span> Kathmandu · Accommodation Analytics</div>
         </div>
         """,
         unsafe_allow_html=True,
