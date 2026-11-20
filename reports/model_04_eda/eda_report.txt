@@ -1,8 +1,0 @@
-MODEL 04: BOOKING CANCELLATION EDA
-==================================================
-
-Total bookings: 119390
-Total columns: 25
-Missing values: 0
-Duplicate rows: 0
-Cancellation rate: 37.04%

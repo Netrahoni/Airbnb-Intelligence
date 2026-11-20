@@ -1,8 +1,0 @@
-dataset,rows,columns,duplicate_full_rows,empty_columns,missing_cells
-properties,400,21,0,listing_url,400
-availability,36000,7,0,,0
-prices,1000,17,0,source_url,1000
-bookings,119390,21,0,,0
-tourism,360,8,0,,0
-reviews,0,14,0,review_id; property_id; review_date; review_text; language; rating; sentiment_label; aspect_category; aspect_term; opinion_term; sentiment_polarity; source_name; source_url; captured_at,0
-occupancy,0,9,0,property_id; month_date; total_bookings; rooms_booked; available_room_nights; occupied_room_nights; cancelled_bookings; occupancy_rate; source_name,0

@@ -1,8 +1,0 @@
-configuration,text_similarity,neighbourhood_match,budget_match,property_type_match,quality_score,capacity_match
-Baseline,0.3,0.2,0.2,0.1,0.1,0.1
-Balanced,0.25,0.2,0.15,0.15,0.1,0.15
-Preference Focused,0.2,0.2,0.15,0.2,0.1,0.15
-Text Focused,0.35,0.15,0.15,0.1,0.1,0.15
-Location Focused,0.2,0.3,0.15,0.15,0.1,0.1
-Preference-Location Hybrid,0.2,0.25,0.15,0.15,0.1,0.15
-Preference-First Hybrid,0.2,0.22,0.15,0.18,0.1,0.15

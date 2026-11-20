@@ -1,19 +1,15 @@
 KATHMANDU AIRBNB ML ANALYSIS — MODEL 01
 
 Files:
-- accommodation_recommender.py: reusable recommender class and CLI.
-- accommodation_recommender.joblib: fitted TF-IDF recommender artifact.
-- properties_clean.csv: cleaned property input used to fit the model.
-- sample_recommendations.csv: example output for Thamel, 2 guests, 1 bedroom,
-  max NPR 5,000/night, and requested amenities.
 - Kathmandu_Airbnb_Recommendation_Model.ipynb: walkthrough notebook.
+- Shared recommendation implementation: src/advanced_recommender.py.
+- Input dataset: data/processed/properties_clean.csv.
+- Dashboard model artifact: models/property_recommender.joblib.
 
-Run:
-  pip install -r requirements.txt
-  python accommodation_recommender.py --neighbourhood Thamel --guests 2 --bedrooms 1 --max-budget 5000 --amenities Wi-Fi Kitchen "Air conditioning" --top-n 10
+The notebook demonstrates personalized recommendations using the shared implementation and prepared dataset. Run it from the project environment.
 
-To fit and save:
-  python accommodation_recommender.py --save-model --neighbourhood Thamel --guests 2
+To rebuild the dashboard recommendation model:
+  python src/train_recommendation_model.py
 
 Scoring:
 - Hard filters: published, guest capacity, minimum bedrooms, maximum budget.

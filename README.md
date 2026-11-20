@@ -209,15 +209,17 @@ Kathmandu-Airbnb-ML-Analysis/
 │       ├── properties_clean.csv
 │       └── recommendation_features.csv
 │
+├── docs/
+│   └── Kathmandu_Airbnb_ML_Presentation.pptx
+│
 ├── models/
 │   ├── property_recommender.joblib
 │   └── price_predictor.joblib
 │
 ├── reports/
-│   ├── recommendation_evaluation.csv
-│   ├── recommendation_personalized_quality.csv
-│   ├── recommendation_similarity_quality.csv
-│   └── other evaluation and analysis reports
+│   ├── price_model_metrics.csv
+│   ├── price_predictions.csv
+│   └── other evaluation reports
 │
 ├── scripts/
 │   ├── evaluate_recommendation_quality.py
@@ -225,18 +227,19 @@ Kathmandu-Airbnb-ML-Analysis/
 │
 ├── src/
 │   ├── advanced_recommender.py
+│   ├── booking_preprocessing.py
 │   ├── prepare_ml_datasets.py
-│   ├── train_recommendation_model.py
 │   ├── train_price_model.py
-│   ├── analyze_price_errors.py
-│   └── other preprocessing and evaluation scripts
+│   ├── train_recommendation_model.py
+│   └── validation and comparison scripts
+│
+├── notebooks/
+│   ├── 01_data_audit_preprocessing/
+│   ├── 02_price_prediction/
+│   └── 03_accommodation_recommendation/
 │
 ├── tests/
 │   └── test_recommendations.py
-│
-├── Kathmandu_Airbnb_ML_Preprocessing/
-├── Kathmandu_Airbnb_ML_Price_Prediction/
-├── Kathmandu_Airbnb_ML_Recommendation_Model/
 │
 ├── app.py
 ├── requirements.txt
@@ -244,7 +247,7 @@ Kathmandu-Airbnb-ML-Analysis/
 └── .gitignore
 ```
 
-The three additional directories contain standalone preprocessing and model development work, including notebooks and supporting artifacts.
+The numbered notebook folders organize the audit, price-prediction, and recommendation analyses. Shared datasets, source code, trained models, reports, and documentation are kept in their corresponding top-level folders. The data-audit notebook expects original input CSVs in `data/raw/`; those raw files are not included in the repository.
 
 The `.venv/` directory is created locally during environment setup and is not part of the source-code structure committed to Git.
 
@@ -297,10 +300,10 @@ Run commands from the repository root directory.
 ### Launch the Streamlit dashboard
 
 ```bash
-streamlit run app.py
+python -m streamlit run app.py
 ```
 
-Streamlit will start a local server and provide a browser address for the dashboard.
+Using `python -m streamlit` avoids stale Windows console launchers after a virtual environment is moved. Streamlit will start a local server and provide a browser address for the dashboard.
 
 ### Prepare machine learning datasets
 
@@ -320,10 +323,10 @@ python src/train_recommendation_model.py
 python src/train_price_model.py
 ```
 
-### Test the saved price prediction model
+### Run price-model validation
 
 ```bash
-python src/test_price_model.py
+python src/validate_price_model.py
 ```
 
 Run the training and preparation scripts only when you intend to regenerate the corresponding data or model artifacts. Existing prepared datasets and saved models may be used for dashboard demonstration.

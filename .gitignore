@@ -42,3 +42,6 @@ htmlcov/
 
 # Jupyter runtime files
 *.ipynb_checkpoints/
+
+# Generated audit output
+/data/audit_output/
