@@ -1,6 +1,6 @@
 # Airbnb Intelligence
 
-> **Turning Airbnb Data into Intelligent Decisions.**
+<p align="center"><img src="assets/airbnb-intelligence-logo.svg" alt="Airbnb Intelligence logo" width="620"></p>
 
 **Kathmandu Accommodation Analytics & Machine Learning Platform**
 
