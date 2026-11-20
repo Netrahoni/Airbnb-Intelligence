@@ -123,6 +123,9 @@ Do not interpret predictions as actual prices, recommendations as verified listi
 ## Repository Structure
 
     Kathmandu-Airbnb-ML-Analysis/
+    ├── assets/
+    │   ├── airbnb-intelligence-logo.svg
+    │   └── airbnb-intelligence-icon.svg
     ├── app.py
     ├── requirements.txt
     ├── data/
@@ -155,6 +158,10 @@ Do not interpret predictions as actual prices, recommendations as verified listi
     └── README.md
 
 Raw files are expected in <code>data/raw/</code> for the data-audit workflow. Do not commit private, restricted, or personally identifiable data.
+
+## Brand Assets
+
+The repository includes a flat, single-colour navy logo and matching app icon in `assets/`. The same logo is used in the README, Streamlit sidebar, and project report notebooks.
 
 ## Technology Stack
 
