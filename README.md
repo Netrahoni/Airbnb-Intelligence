@@ -1,443 +1,306 @@
 # Kathmandu Airbnb ML Analysis
 
-An end-to-end machine learning project for accommodation recommendation, nightly price prediction, and market analytics using a prepared Kathmandu accommodation dataset.
+An end-to-end machine learning and analytics project exploring accommodation listings, recommendation, price estimation, and market insights for Kathmandu, Nepal. It includes prepared datasets, ML workflows, evaluation reports, and an interactive Streamlit dashboard.
 
-The project combines machine learning models, data analysis, model evaluation, and an interactive Streamlit dashboard. It is developed as an ML-focused internship project, not as a complete Airbnb booking platform.
+> **Scope:** Academic / internship ML analytics—not a live Airbnb booking platform. Some property and price datasets are synthetic sample data; benchmark datasets are not verified Kathmandu booking records.
 
----
+## Overview
 
-## 1. Project Overview
+The project demonstrates how data science and machine learning can support accommodation discovery and pricing analysis.
 
-Kathmandu Airbnb ML Analysis explores how machine learning can support accommodation discovery and pricing analysis in Kathmandu, Nepal.
+### Main features
+- **Property Recommendation System** — personalized recommendations and similar-property discovery using structured preferences, text features, and hybrid scoring.
+- **Nightly Price Prediction** — estimates accommodation prices from listing characteristics and stay-related features.
+- **Executive Analytics Dashboard** — interactive market, pricing, neighbourhood, property-type, and tourism-context visualizations.
+- **Data Analysis & Model Evaluation** — dataset exploration, preprocessing, model comparisons, validation reports, and performance diagnostics.
+- **Booking Cancellation Data Study** — exploratory analysis and preprocessing of a separate hotel-booking benchmark for a cancellation-prediction experiment.
 
-The project focuses on three main areas:
+## Dashboard Workspaces
 
-1. **Property Recommendation System** – Recommends properties based on user preferences and identifies properties similar to a selected accommodation.
-2. **Nightly Price Prediction System** – Estimates accommodation prices using property characteristics and stay-related features.
-3. **Executive Analytics Dashboard** – Presents accommodation data, pricing patterns, tourism context, and model insights through an interactive interface.
+| Workspace | Description |
+|---|---|
+| **Executive Analytics** | Accommodation KPIs, market and price insights, neighbourhood comparisons, property-type analysis, price distributions, tourism context, and filters |
+| **Property Recommendations** | Personalized search, preference filtering, ranked recommendations, similar-property discovery, and comparisons |
+| **Price Prediction** | Interactive property/stay inputs and estimated nightly price |
+| **Data Analysis** | Dataset exploration, descriptive statistics, and visual analysis |
+| **Model Evaluation** | Model metrics, comparisons, recommendation evaluation, and prediction diagnostics |
 
-The primary objective is to demonstrate the application of data preprocessing, feature engineering, machine learning, model evaluation, and data visualization in an accommodation analytics use case.
+The dashboard is for exploration and demonstration. It does not process reservations or verify live availability.
 
-## 2. Machine Learning Modules
+## Machine Learning & Analytics
 
-### 2.1 Property Recommendation System
+### 1. Property Recommendation System
 
-The recommendation system helps users discover accommodation options based on property characteristics and preferences.
+The recommendation workflow combines listing information and user preferences.
 
-**Techniques used:**
+**Techniques and features**
+- TF-IDF text vectorization and cosine similarity
+- Property descriptions and amenities
+- Neighbourhood, property type, and room type matching
+- Price / budget compatibility
+- Guest capacity, bedrooms, and bathrooms
+- Rating and review-count quality signals
+- Preference filters and weighted ranking
 
-- TF-IDF text vectorization
-- Cosine similarity
-- Text-based property comparison
-- Weighted hybrid recommendation scoring
-- Preference-based filtering and ranking
+The prepared dataset contains **400 property records**, including **354 published properties**.
 
-**Personalized recommendations consider:**
+The repository includes scenario-based recommendation evaluation and weight-comparison scripts. Reported scores are heuristic preference-match diagnostics—not ground-truth precision, recall, recommendation accuracy, or user satisfaction.
 
-- Neighbourhood
-- Property type
-- Room type
-- Budget
-- Guest capacity
-- Property quality
+### 2. Nightly Price Prediction
 
-Budget, minimum rating, and guest capacity are applied as filters where supported. Other preferences contribute to recommendation ranking.
+The current price pipeline uses a **Gradient Boosting Regressor** with categorical, numerical, and amenity-text features.
 
-**Similar-property recommendations** compare a selected property with other available properties using property descriptions and characteristics.
+Features include city, neighbourhood, property type, room type, capacity, bedrooms, bathrooms, amenities, lead time, stay month/day/weekday, and baseline nightly price.
 
-The current prepared dataset contains 400 property records, of which 354 are published properties.
+**Target:** <code>base_price_npr</code>
 
-**Recommendation evaluation:**
-
-The recommendation engine is evaluated using 25 personalized scenarios and 25 similar-property scenarios.
-
-| Evaluation metric | Result |
-|---|---:|
-| Average personalized recommendation score | 63.28% |
-| Budget compliance | 100.00% |
-| Neighbourhood match | 77.60% |
-| Property type match | 54.00% |
-| Room type match | 72.00% |
-| Guest capacity sufficiency | 100.00% |
-| Average similar-property score | 62.91% |
-| Same neighbourhood for similar properties | 87.60% |
-| Same room type for similar properties | 78.80% |
-
-These results are heuristic preference-match diagnostics. They are not ground-truth accuracy, precision, recall, or measured user satisfaction.
-
-### 2.2 Nightly Price Prediction System
-
-The price prediction module estimates nightly accommodation prices using a Gradient Boosting Regressor.
-
-**Input features include:**
-
-- City and neighbourhood
-- Property type and room type
-- Guest capacity
-- Bedrooms and bathrooms
-- Amenities
-- Lead time
-- Stay month
-- Stay day
-- Day of the week
-- Baseline nightly price
-
-The model is trained using prepared price observation data and evaluated with a property-level train/test split.
-
-**Current evaluation results:**
+**Reported evaluation:**
 
 | Metric | Result |
 |---|---:|
 | MAE | NPR 148.33 |
 | RMSE | NPR 218.93 |
-| R² Score | 0.9942 |
+| R² | 0.9942 |
 | Baseline MAE | NPR 158.85 |
-| Improvement over baseline MAE | 6.62% |
+| MAE improvement over baseline | 6.62% |
 
-**Dataset split:**
-
+**Property-level split:**
 - Training: 808 observations from 320 properties
 - Testing: 192 observations from 80 properties
-- Overlapping property IDs: 0
+- Property IDs shared between train and test: **0**
 
-The property-level split prevents the same property from appearing in both training and testing sets.
+These results are based on prepared sample data and do not establish real-market pricing accuracy.
 
-These results describe performance on the prepared sample dataset. They should not be interpreted as proof of real-world pricing accuracy.
+### 3. Booking Cancellation Benchmark — Exploratory Work
 
-## 3. Executive Analytics Dashboard
+Cancellation-data inspection and preprocessing are also included for the **Hotel Booking Demand** benchmark.
 
-The project includes an interactive Streamlit dashboard that brings the analytical modules together.
+- Original dataset: **119,390 records**, **25 columns**
+- Source domain: Portugal hotel bookings—not Kathmandu Airbnb bookings
+- Exploratory cancellation rate: approximately **37.04%**
+- Preprocessing removes logically invalid rows and builds booking-time features
+- The checked preprocessing workflow reports **119,209 rows** after invalid-row removal
 
-**Dashboard sections:**
+This is a separate benchmark experiment. It must not be represented as a cancellation model trained on Kathmandu bookings. No real Nepal COD/no-show labels are implied.
 
-### Executive Analytics
-- Key accommodation statistics
-- Property and pricing indicators
-- Market intelligence
-- Neighbourhood price comparison
-- Property-type pricing analysis
-- Price distribution and quartile-based segments
-- Price dispersion analysis
-- Tourism demand context
-- Availability and occupancy data coverage
-- Featured property samples
-- Interactive filters
+### 4. Tourism Context
 
-### Property Recommendations
-- Personalized property recommendations
-- Similar-property discovery
-- Preference-based filtering
-- Recommendation scores
-- Property information and comparison
+Monthly Nepal tourist-arrival data is included for context. National arrivals are not equivalent to Kathmandu occupancy, accommodation bookings, or local room-night demand.
 
-### Price Prediction
-- Interactive price prediction inputs
-- Property and stay-related features
-- Predicted nightly price output
+Occupancy and review datasets should only be used when valid observations are available; empty or schema-only files are not treated as real data.
 
-### Data Analysis
-- Prepared dataset exploration
-- Descriptive statistics
-- Data visualization and analytical insights
-
-### Model Evaluation
-- Model performance indicators
-- Recommendation evaluation summaries
-- Price prediction evaluation information
-
-The dashboard is intended for analytical exploration and demonstration rather than live booking or transaction processing.
-
-## 4. Dataset Information
-
-The project uses multiple prepared datasets covering accommodation properties, price observations, availability, cancellations, and tourism indicators.
+## Data
 
 ### Main processed datasets
 
-| Dataset | Description |
+| File | Description |
 |---|---|
-| `properties_clean.csv` | Property information and characteristics |
-| `price_observations_clean.csv` | Accommodation price observations |
-| `availability_clean.csv` | Availability dataset |
-| `booking_cancellations_clean.csv` | Booking cancellation benchmark data |
-| `nepal_monthly_tourist_arrivals_clean.csv` | Monthly tourist arrivals in Nepal |
-| `recommendation_features.csv` | Features prepared for recommendation |
-| `price_prediction_features.csv` | Features prepared for price prediction |
+| <code>properties_clean.csv</code> | Property attributes, prices, ratings, amenities, descriptions, and publication fields |
+| <code>price_observations_clean.csv</code> | Price observations |
+| <code>availability_clean.csv</code> | Availability/calendar information |
+| <code>booking_cancellations_clean.csv</code> | Hotel-booking cancellation benchmark |
+| <code>nepal_monthly_tourist_arrivals_clean.csv</code> | Monthly national tourist-arrival context |
+| <code>recommendation_features.csv</code> | Features prepared for recommendation |
+| <code>price_prediction_features.csv</code> | Features prepared for price prediction |
 
-The main processed datasets are stored in `data/processed/`.
+Processed datasets are stored in <code>data/processed/</code>.
 
-### Important Data Limitations
+### Data limitations and provenance
+- Property records and price observations include **synthetic sample data**.
+- Listings are not verified live Airbnb properties.
+- Price observations are not verified live market prices.
+- The cancellation benchmark is not linked to Kathmandu property IDs.
+- Nepal-wide tourist arrivals are not Kathmandu-specific accommodation demand.
+- Occupancy and review data currently lack usable observations.
+- Results are suitable for development, testing, demonstration, and academic analysis—not operational decisions.
 
-The current property and price observation datasets contain synthetic sample data.
+Do not interpret predictions as actual prices, recommendations as verified listings, or availability as live inventory.
 
-Additional limitations:
+## Repository Structure
 
-- The property records are not verified live Airbnb listings.
-- The price observations do not represent verified live market prices.
-- The booking cancellation dataset is based on the Hotel Booking Demand benchmark and is not directly connected to Kathmandu property IDs.
-- The tourist arrivals dataset represents broader Nepal-wide tourism context, not Kathmandu-specific accommodation demand.
-- The occupancy dataset currently contains schema information without usable occupancy observations.
-- Review data does not currently contain usable observations.
+    Kathmandu-Airbnb-ML-Analysis/
+    ├── app.py
+    ├── requirements.txt
+    ├── data/
+    │   ├── raw/
+    │   └── processed/
+    ├── models/
+    │   ├── property_recommender.joblib
+    │   └── price_predictor.joblib
+    ├── notebooks/
+    │   ├── 01_data_audit_preprocessing/
+    │   ├── 02_price_prediction/
+    │   └── 03_accommodation_recommendation/
+    ├── reports/
+    │   ├── price_model_metrics.csv
+    │   ├── price_predictions.csv
+    │   └── analysis and evaluation reports
+    ├── scripts/
+    │   ├── evaluate_recommendation_quality.py
+    │   └── optimize_recommendation_weights.py
+    ├── src/
+    │   ├── advanced_recommender.py
+    │   ├── booking_preprocessing.py
+    │   ├── prepare_ml_datasets.py
+    │   ├── train_price_model.py
+    │   ├── train_recommendation_model.py
+    │   └── validation and analysis scripts
+    ├── tests/
+    │   └── test_recommendations.py
+    └── README.md
 
-Consequently, the project is intended for machine learning development, experimentation, demonstration, and academic analysis. Its outputs must not be treated as actual booking availability, verified accommodation prices, confirmed revenue, or measured market demand.
+Raw files are expected in <code>data/raw/</code> for the data-audit workflow. Do not commit private, restricted, or personally identifiable data.
 
-## 5. Technology Stack
+## Technology Stack
 
-| Category | Technologies |
+| Area | Technologies |
 |---|---|
-| Programming language | Python |
+| Language | Python |
 | Data processing | Pandas, NumPy, SciPy |
 | Machine learning | Scikit-learn |
-| Model serialization | Joblib |
-| Data visualization | Matplotlib, Seaborn |
+| Model persistence | Joblib |
+| Visualization | Matplotlib, Seaborn |
 | Interactive dashboard | Streamlit |
-| Development environment | Visual Studio Code |
-| Version control | Git and GitHub |
-| Data format | CSV |
+| Development | Visual Studio Code |
+| Version control | Git, GitHub |
+| Data storage | CSV |
 
-## 6. Project Structure
+## Installation
 
-```text
-Kathmandu-Airbnb-ML-Analysis/
-│
-├── data/
-│   └── processed/
-│       ├── availability_clean.csv
-│       ├── booking_cancellations_clean.csv
-│       ├── nepal_monthly_tourist_arrivals_clean.csv
-│       ├── price_observations_clean.csv
-│       ├── price_prediction_features.csv
-│       ├── properties_clean.csv
-│       └── recommendation_features.csv
-│
-├── docs/
-│   └── Kathmandu_Airbnb_ML_Presentation.pptx
-│
-├── models/
-│   ├── property_recommender.joblib
-│   └── price_predictor.joblib
-│
-├── reports/
-│   ├── price_model_metrics.csv
-│   ├── price_predictions.csv
-│   └── other evaluation reports
-│
-├── scripts/
-│   ├── evaluate_recommendation_quality.py
-│   └── optimize_recommendation_weights.py
-│
-├── src/
-│   ├── advanced_recommender.py
-│   ├── booking_preprocessing.py
-│   ├── prepare_ml_datasets.py
-│   ├── train_price_model.py
-│   ├── train_recommendation_model.py
-│   └── validation and comparison scripts
-│
-├── notebooks/
-│   ├── 01_data_audit_preprocessing/
-│   ├── 02_price_prediction/
-│   └── 03_accommodation_recommendation/
-│
-├── tests/
-│   └── test_recommendations.py
-│
-├── app.py
-├── requirements.txt
-├── README.md
-└── .gitignore
-```
+**Prerequisites:** Python 3.10 or later (check compatibility with pinned dependencies), Git, and optionally Visual Studio Code.
 
-The numbered notebook folders organize the audit, price-prediction, and recommendation analyses. Shared datasets, source code, trained models, reports, and documentation are kept in their corresponding top-level folders. The data-audit notebook expects original input CSVs in `data/raw/`; those raw files are not included in the repository.
+### 1. Clone the repository
 
-The `.venv/` directory is created locally during environment setup and is not part of the source-code structure committed to Git.
+    git clone https://github.com/Netrahoni/Kathmandu-Airbnb-ML-Analysis.git
+    cd Kathmandu-Airbnb-ML-Analysis
 
-## 7. Installation and Setup
+### 2. Create a virtual environment
 
-### Prerequisites
+    python -m venv .venv
 
-- Python 3.10 or later, subject to dependency compatibility
-- Git
-- Visual Studio Code (recommended)
+### 3. Activate it
 
-### Step 1: Clone the repository
+**Windows PowerShell:**
 
-```bash
-git clone https://github.com/Netrahoni/Kathmandu-Airbnb-ML-Analysis.git
-cd Kathmandu-Airbnb-ML-Analysis
-```
+    .\.venv\Scripts\Activate.ps1
 
-### Step 2: Create a virtual environment
+**Windows Command Prompt:**
 
-```bash
-python -m venv .venv
-```
+    .\.venv\Scripts\activate.bat
 
-### Step 3: Activate the environment
+**macOS / Linux:**
 
-Windows PowerShell:
+    source .venv/bin/activate
 
-```powershell
-.\.venv\Scripts\Activate.ps1
-```
+### 4. Install dependencies
 
-### Step 4: Install dependencies
+    python -m pip install --upgrade pip
+    python -m pip install -r requirements.txt
 
-```bash
-python -m pip install --upgrade pip
-python -m pip install -r requirements.txt
-```
+### 5. Validate the environment
 
-### Step 5: Verify dependencies
+    python -m pip check
 
-```bash
-python -m pip check
-```
+## Run the Dashboard
 
-## 8. Running the Project
+From the repository root:
 
-Run commands from the repository root directory.
+    python -m streamlit run app.py
 
-### Launch the Streamlit dashboard
+Streamlit will print a local URL. Open it in your browser to explore the application. Using <code>python -m streamlit</code> is recommended on Windows because it avoids stale launchers after moving or recreating a virtual environment.
 
-```bash
-python -m streamlit run app.py
-```
+## Model & Dataset Workflows
 
-Using `python -m streamlit` avoids stale Windows console launchers after a virtual environment is moved. Streamlit will start a local server and provide a browser address for the dashboard.
+Run commands from the project root and only when you intend to regenerate the corresponding artifacts.
 
-### Prepare machine learning datasets
+### Prepare model features
 
-```bash
-python src/prepare_ml_datasets.py
-```
+    python src/prepare_ml_datasets.py
 
 ### Train the recommendation model
 
-```bash
-python src/train_recommendation_model.py
-```
+    python src/train_recommendation_model.py
 
-### Train the price prediction model
+### Train the price-prediction model
 
-```bash
-python src/train_price_model.py
-```
+    python src/train_price_model.py
 
-### Run price-model validation
+### Validate the price model
 
-```bash
-python src/validate_price_model.py
-```
+    python src/validate_price_model.py
 
-Run the training and preparation scripts only when you intend to regenerate the corresponding data or model artifacts. Existing prepared datasets and saved models may be used for dashboard demonstration.
+### Evaluate recommendation scenarios
 
-## 9. Testing and Model Evaluation
+    python scripts/evaluate_recommendation_quality.py
 
-The project includes separate testing and evaluation workflows.
+### Compare recommendation weights
 
-### Recommendation behavior tests
+    python scripts/optimize_recommendation_weights.py
 
-```bash
-python tests/test_recommendations.py
-```
+## Testing and Quality Checks
 
-The current recommendation test suite contains 16 tests covering:
+### Recommendation tests
 
-- Personalized recommendation generation
-- Similar-property recommendation generation
-- Budget filtering
-- Guest capacity filtering
-- Minimum rating filtering
-- Recommendation ordering
-- Duplicate detection
-- Invalid input handling
-- Similar-property reference validation
+    python tests/test_recommendations.py
 
-**Latest test result: 16 passed, 0 failed.**
+The current repository README reports **16 passing tests**. The suite covers recommendation generation and similar-property discovery, filtering, ranking, duplicate handling, invalid inputs, and property-reference validation. Re-run locally to confirm the result for your checkout.
 
-### Recommendation quality evaluation
+### Compile Python files
 
-```bash
-python scripts/evaluate_recommendation_quality.py
-```
+    python -m compileall -q app.py src scripts tests
 
-This evaluates personalized and similar-property recommendations across multiple scenarios and saves evaluation reports in `reports/`.
+### Validate dependencies
 
-### Recommendation weight optimization
+    python -m pip check
 
-```bash
-python scripts/optimize_recommendation_weights.py
-```
+These checks help software quality but do not replace validation using verified real-world accommodation data or actual user feedback.
 
-This script compares recommendation weight configurations using the project's heuristic evaluation approach.
+## Development Status
 
-### Python compilation check
-
-```bash
-python -m compileall -q app.py src scripts tests
-```
-
-### Dependency validation
-
-```bash
-python -m pip check
-```
-
-These checks help identify syntax issues, dependency conflicts, and unexpected recommendation behavior. They do not replace real-world validation using verified accommodation data and user feedback.
-
-## 10. Current Development Status
-
-- [x] Dataset preparation and cleaning
-- [x] Data quality inspection
+- [x] Data inspection and preprocessing workflows
 - [x] Recommendation feature engineering
-- [x] Property recommendation system
-- [x] Personalized recommendation functionality
-- [x] Similar-property recommendation functionality
-- [x] Recommendation behavior testing
-- [x] Recommendation quality evaluation
+- [x] Personalized recommendation system
+- [x] Similar-property recommendations
+- [x] Recommendation scenario evaluation
 - [x] Recommendation weight comparison
-- [x] Price prediction feature engineering
-- [x] Price prediction model comparison
-- [x] Gradient Boosting price prediction model
-- [x] Property-level model evaluation
-- [x] Saved model inference testing
-- [x] Streamlit dashboard implementation
-- [x] Executive Analytics dashboard
-- [x] Data analysis and visualization
-- [x] Model evaluation reporting
-- [ ] Further validation using verified real-world accommodation data
-- [ ] Additional model improvements and user-based evaluation
+- [x] Price-prediction feature engineering
+- [x] Gradient Boosting price model
+- [x] Property-level train/test split
+- [x] Price-model evaluation reports
+- [x] Saved-model inference
+- [x] Streamlit dashboard
+- [x] Executive Analytics workspace
+- [x] Data Analysis workspace
+- [x] Model Evaluation workspace
+- [x] Booking-cancellation benchmark inspection and preprocessing
+- [ ] Validation using verified, permitted Kathmandu accommodation data
+- [ ] Local occupancy and booking-history collection
+- [ ] Real review data and validated sentiment analysis
+- [ ] Further user-based recommendation evaluation
 
-## 11. Future Improvements
+## Future Work
 
-Potential improvements include:
+- Replace synthetic property and pricing samples with verified, legally collected data.
+- Improve recommendation quality with user feedback and unbiased evaluation.
+- Validate price estimates against independent real-world observations.
+- Add more robust temporal and geographic validation.
+- Incorporate Kathmandu-specific occupancy and booking signals when available.
+- Develop and evaluate cancellation-risk modelling with appropriate booking-time features and trustworthy labels.
+- Add review sentiment and aspect analysis after collecting permitted, validated review data.
+- Improve explainability, monitoring, reproducibility, and automated testing.
 
-- Collecting more reliable and verified accommodation data.
-- Improving recommendation relevance through user feedback.
-- Exploring additional recommendation algorithms.
-- Evaluating price prediction on independent real-world observations.
-- Adding more detailed temporal pricing analysis.
-- Incorporating reliable Kathmandu-specific tourism and occupancy indicators.
-- Improving model explainability and monitoring.
-- Expanding automated testing and documentation.
+## Disclaimer
 
-## 12. Project Disclaimer
+This repository is an academic and internship-oriented project for educational, analytical, and demonstration purposes.
 
-Kathmandu Airbnb ML Analysis is an academic and internship-oriented machine learning project developed for educational, analytical, and demonstration purposes.
+The project uses prepared datasets, including synthetic sample data and external benchmark data. Recommendations, predictions, and visualizations are generated from those data and trained models. They do not represent official Airbnb information, verified live listings, actual transactions, confirmed availability, or guaranteed market prices.
 
-The project uses prepared datasets, including synthetic sample data and benchmark datasets. Its recommendations, predictions, and analytical outputs are generated from these available datasets and trained models.
-
-The results do not represent official Airbnb information, verified live accommodation listings, actual booking transactions, confirmed availability, or guaranteed market prices.
-
-Model evaluation metrics reflect performance on the prepared datasets and evaluation scenarios. Real-world performance may differ significantly.
+The reported evaluation metrics describe performance on the available prepared datasets and evaluation scenarios. Real-world performance may differ.
 
 This project is not affiliated with, endorsed by, or officially connected to Airbnb.
 
----
+## Author
 
-## Author and Repository
-
-**Project:** Kathmandu Airbnb ML Analysis
-**Repository:** https://github.com/Netrahoni/Kathmandu-Airbnb-ML-Analysis
-
-Developed as a machine learning internship project.
+**Project:** Kathmandu Airbnb ML Analysis  
+**Repository:** [Netrahoni/Kathmandu-Airbnb-ML-Analysis](https://github.com/Netrahoni/Kathmandu-Airbnb-ML-Analysis)  
+**Purpose:** Machine Learning Internship Project
