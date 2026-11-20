@@ -20,7 +20,7 @@ REPORT_DIR = ROOT / "reports"
 
 st.set_page_config(
     page_title="Airbnb Intelligence | Kathmandu Analytics",
-    page_icon=str(ROOT / "assets" / "airbnb-intelligence-logo.svg"),
+    page_icon=str(ROOT / "assets" / "airbnb-intelligence-icon.svg"),
     layout="wide",
     initial_sidebar_state="expanded",
 )
@@ -697,19 +697,14 @@ def published_data(frame):
 # 5. SIDEBAR
 # ============================================================
 
+logo_svg = (ROOT / "assets" / "airbnb-intelligence-logo.svg").read_text(encoding="utf-8")
 with st.sidebar:
     st.markdown(
-        '''
-        <div style="padding:0.25rem 0 0.7rem 0;">
-          <div style="font-size:1.65rem;line-height:1;">🏡</div>
-          <div style="font-size:1.12rem;font-weight:800;color:#F1F7FC;margin-top:0.55rem;letter-spacing:-0.4px;">
-            Kathmandu Stays
-          </div>
-          <div style="font-size:0.64rem;font-weight:800;letter-spacing:1.55px;color:#68D8E8;margin-top:0.25rem;">
-            ACCOMMODATION INTELLIGENCE
-          </div>
+        f"""
+        <div style="background:#FFFFFF;border-radius:12px;padding:0.35rem 0.45rem;margin-bottom:0.8rem;text-align:center;">
+          <img src="data:image/svg+xml;utf8,{quote(logo_svg)}" alt="Airbnb Intelligence logo" style="width:100%;height:auto;display:block;">
         </div>
-        ''',
+        """,
         unsafe_allow_html=True,
     )
     st.divider()
