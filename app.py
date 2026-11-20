@@ -527,6 +527,104 @@ hr {
     }
 }
 
+
+/* PREMIUM BRAND SYSTEM */
+section[data-testid="stSidebar"] .block-container {
+    padding-top: 1.25rem;
+    padding-left: 1.05rem;
+    padding-right: 1.05rem;
+}
+.brand-shell {
+    position: relative;
+    overflow: hidden;
+    padding: 0.9rem;
+    margin: 0.15rem 0 1.15rem;
+    border: 1px solid rgba(107, 202, 226, 0.25);
+    border-radius: 18px;
+    background:
+        radial-gradient(circle at 100% 0%, rgba(45, 212, 191, 0.12), transparent 38%),
+        linear-gradient(155deg, rgba(255,255,255,0.98), rgba(239,247,251,0.98));
+    box-shadow: 0 16px 36px rgba(0,0,0,0.20), inset 0 1px 0 rgba(255,255,255,0.9);
+}
+.brand-logo-wrap {
+    padding: 0.15rem 0.2rem 0.25rem;
+}
+.brand-logo-wrap img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+.brand-tagline {
+    margin: 0.15rem 0.1rem 0.65rem;
+    color: #173B64;
+    font-size: 0.79rem;
+    font-weight: 650;
+    line-height: 1.45;
+    letter-spacing: -0.15px;
+    text-align: center;
+}
+.brand-divider {
+    height: 1px;
+    margin: 0.55rem 0 0.65rem;
+    background: linear-gradient(90deg, transparent, rgba(11,47,99,0.22), rgba(13,148,136,0.34), transparent);
+}
+.brand-kicker {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    color: #476783;
+    font-size: 0.58rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-align: center;
+    text-transform: uppercase;
+}
+.brand-kicker-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #0D9488;
+    box-shadow: 0 0 0 4px rgba(13,148,136,0.10);
+}
+section[data-testid="stSidebar"] [data-testid="stRadio"] > div {
+    gap: 0.42rem;
+}
+section[data-testid="stSidebar"] [data-testid="stRadio"] label {
+    border: 1px solid rgba(148,163,184,0.07);
+    border-radius: 11px;
+    padding: 0.52rem 0.68rem;
+    background: rgba(255,255,255,0.015);
+}
+section[data-testid="stSidebar"] [data-testid="stRadio"] label:has(input:checked) {
+    background: linear-gradient(100deg, rgba(56,189,248,0.13), rgba(45,212,191,0.09));
+    border-color: rgba(85,199,243,0.32);
+    box-shadow: inset 3px 0 0 #42D6C3;
+}
+.sidebar-project-meta {
+    padding: 0.75rem 0.8rem;
+    border: 1px solid rgba(148,163,184,0.12);
+    border-radius: 12px;
+    background: rgba(255,255,255,0.025);
+}
+.sidebar-project-meta .meta-heading {
+    color: #B9D1E5;
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 1.35px;
+    text-transform: uppercase;
+    margin-bottom: 0.38rem;
+}
+.sidebar-project-meta .meta-copy {
+    color: #91A4BC;
+    font-size: 0.74rem;
+    line-height: 1.5;
+}
+@media (max-width: 768px) {
+    .brand-shell { border-radius: 14px; padding: 0.7rem; }
+    .brand-tagline { font-size: 0.74rem; }
+}
+
 </style>
 """, unsafe_allow_html=True)
 
@@ -701,8 +799,13 @@ logo_svg = (ROOT / "assets" / "airbnb-intelligence-logo.svg").read_text(encoding
 with st.sidebar:
     st.markdown(
         f"""
-        <div style="background:#FFFFFF;border-radius:12px;padding:0.35rem 0.45rem;margin-bottom:0.8rem;text-align:center;">
-          <img src="data:image/svg+xml;utf8,{quote(logo_svg)}" alt="Airbnb Intelligence logo" style="width:100%;height:auto;display:block;">
+        <div class="brand-shell">
+          <div class="brand-logo-wrap">
+            <img src="data:image/svg+xml;utf8,{quote(logo_svg)}" alt="Airbnb Intelligence logo">
+          </div>
+          <div class="brand-divider"></div>
+          <div class="brand-tagline">Turning Airbnb Data into Intelligent Decisions.</div>
+          <div class="brand-kicker"><span class="brand-kicker-dot"></span> Kathmandu Accommodation Analytics</div>
         </div>
         """,
         unsafe_allow_html=True,
@@ -723,10 +826,15 @@ with st.sidebar:
 
     st.divider()
 
-    st.markdown("**PROJECT INFORMATION**")
-    st.caption("Kathmandu Accommodation Analytics")
-    st.caption("Machine Learning Internship Project")
-    st.caption("Python · Scikit-learn · Streamlit")
+    st.markdown(
+        """
+        <div class="sidebar-project-meta">
+          <div class="meta-heading">Project workspace</div>
+          <div class="meta-copy">Machine Learning Internship Project<br>Python · Scikit-learn · Streamlit</div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
     st.divider()
 
