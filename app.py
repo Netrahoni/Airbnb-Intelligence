@@ -1,6 +1,7 @@
 
 from pathlib import Path
 from datetime import date
+from urllib.parse import quote
 
 import joblib
 import numpy as np
@@ -19,7 +20,7 @@ REPORT_DIR = ROOT / "reports"
 
 st.set_page_config(
     page_title="Airbnb Intelligence | Kathmandu Analytics",
-    page_icon="🏠",
+    page_icon=str(ROOT / "assets" / "airbnb-intelligence-logo.svg"),
     layout="wide",
     initial_sidebar_state="expanded",
 )
@@ -728,8 +729,7 @@ with st.sidebar:
     st.divider()
 
     st.markdown("**PROJECT INFORMATION**")
-    st.caption("Airbnb Intelligence")
-    st.caption("Turning Airbnb Data into Intelligent Decisions.")
+    st.caption("Kathmandu Accommodation Analytics")
     st.caption("Machine Learning Internship Project")
     st.caption("Python · Scikit-learn · Streamlit")
 
@@ -2567,7 +2567,7 @@ elif page == "Model Evaluation":
 st.markdown(
     """
     <div class="footer">
-        AIRBNB INTELLIGENCE<br>Turning Airbnb Data into Intelligent Decisions.<br>
+        AIRBNB INTELLIGENCE<br>
         Machine Learning Internship Project · Experimental Dataset
     </div>
     """,
