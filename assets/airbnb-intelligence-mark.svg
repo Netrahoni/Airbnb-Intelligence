@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="100 30 720 450" role="img" aria-label="Airbnb Intelligence brand mark">
+<g fill="none" stroke="#0B2F63" stroke-linecap="round" stroke-linejoin="round">
+<path stroke-width="24" d="M145 290 L450 65 L755 290 M190 258 V425 H710 V300"/>
+<path stroke-width="18" d="M190 258 V190 H250 V214 M650 222 L710 270"/>
+<path stroke-width="12" d="M376 192 H420 V236 H376 Z M432 192 H476 V236 H432 Z M376 248 H420 V292 H376 Z M432 248 H476 V292 H432 Z"/>
+<path stroke-width="8" d="M500 305 L550 245 L600 292 L645 215 M500 355 V430 M555 330 V430 M610 295 V430 M665 250 V430"/>
+<path stroke-width="12" d="M495 420 Q590 420 690 300 L665 300 M690 300 L690 325"/>
+<path stroke-width="7" d="M600 90 L660 55 L720 90 L780 60 M660 55 L665 125 L720 90 L750 150 L780 60 M665 125 L720 90 M600 90 L665 125 L750 150 L780 60"/>
+</g>
+<g fill="#0B2F63">
+<circle cx="600" cy="90" r="13"/><circle cx="660" cy="55" r="13"/><circle cx="720" cy="90" r="13"/><circle cx="780" cy="60" r="13"/><circle cx="665" cy="125" r="13"/><circle cx="750" cy="150" r="13"/>
+<path d="M208 423 L245 355 L282 423 Z M250 423 L320 332 L390 423 Z M330 423 L450 280 L570 423 Z" opacity=".95"/>
+<path d="M270 423 V390 L320 360 L370 390 V423 Z M285 390 V373 L320 352 L355 373 V390 Z M408 423 V386 L450 356 L492 386 V423 Z M421 386 V369 L450 347 L479 369 V386 Z M530 423 V365 L575 320 L620 365 V423 Z"/>
+<path d="M550 365 H600 M560 344 H590 M575 320 V298"/>
+<path d="M198 445 Q330 395 450 445 T700 435" fill="none" stroke="#0B2F63" stroke-width="18"/>
+<path d="M190 463 Q340 425 470 465 T710 450" fill="none" stroke="#0B2F63" stroke-width="10"/>
+</g></svg>
