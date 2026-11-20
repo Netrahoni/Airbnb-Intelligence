@@ -1,4 +1,4 @@
-KATHMANDU AIRBNB ML ANALYSIS — PREPROCESSING OUTPUT
+AIRBNB INTELLIGENCE — DATA AUDIT & PREPROCESSING
 
 Contents:
 - Kathmandu_Airbnb_ML_Data_Audit.ipynb: repeatable audit and preprocessing notebook.
