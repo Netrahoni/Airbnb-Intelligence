@@ -7,6 +7,7 @@ from urllib.parse import quote
 import joblib
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 import streamlit as st
 
 
@@ -531,6 +532,152 @@ def render_kpi_card(label, value, context, progress, symbol, accent="cyan"):
     )
 
 
+def _style_chart_axis(ax):
+    """Apply the shared dark navy / cyan dashboard chart palette."""
+    ax.set_facecolor("#101d30")
+    ax.tick_params(colors="#b8c9d9", labelsize=9)
+    ax.xaxis.label.set_color("#91a8bd")
+    ax.yaxis.label.set_color("#91a8bd")
+    for spine in ax.spines.values():
+        spine.set_visible(False)
+    ax.grid(axis="x", color="#34475d", alpha=.48, linewidth=.8)
+    ax.set_axisbelow(True)
+
+
+def render_grouped_bar_chart(frame, columns, value_format="price", limit=10):
+    """Render a readable horizontal grouped comparison chart."""
+    available = [column for column in columns if column in frame.columns]
+    if frame.empty or not available:
+        st.info("There is not enough data to draw this comparison.")
+        return
+
+    chart_data = frame[available].apply(pd.to_numeric, errors="coerce").dropna(how="all")
+    chart_data = chart_data.sort_values(available[0], ascending=True).tail(limit)
+    if chart_data.empty:
+        st.info("There are no valid values for this chart.")
+        return
+
+    labels = [str(label) for label in chart_data.index]
+    y = np.arange(len(labels))
+    height = max(3.1, .43 * len(labels) + 1.1)
+    fig, ax = plt.subplots(figsize=(9, height), dpi=120)
+    fig.patch.set_facecolor("#101d30")
+    _style_chart_axis(ax)
+    palette = ["#59c8f2", "#42d6c3", "#82aaff"]
+    bar_height = min(.34, .72 / len(available))
+    offsets = (np.arange(len(available)) - (len(available) - 1) / 2) * (bar_height + .035)
+
+    for index, column in enumerate(available):
+        values = chart_data[column].fillna(0).to_numpy(dtype=float)
+        bars = ax.barh(y + offsets[index], values, height=bar_height,
+                       color=palette[index % len(palette)], label=column.replace("_", " "),
+                       edgecolor="none", alpha=.96)
+        for bar, value in zip(bars, values):
+            if value > 0:
+                label = f"{value:,.0f}" if value_format == "count" else f"{value:,.0f}"
+                ax.annotate(label, (bar.get_width(), bar.get_y() + bar.get_height()/2),
+                            xytext=(5, 0), textcoords="offset points",
+                            va="center", color="#dce8f2", fontsize=7.5)
+
+    ax.set_yticks(y)
+    ax.set_yticklabels(labels, color="#c3d2df")
+    ax.set_xlabel("Properties" if value_format == "count" else "Sample nightly price · NPR", fontsize=8)
+    ax.margins(x=.18)
+    ax.legend(loc="lower right", frameon=False, labelcolor="#b8c9d9", fontsize=8, ncol=min(2, len(available)))
+    fig.tight_layout(pad=1.25)
+    st.pyplot(fig, width="stretch", clear_figure=True)
+    plt.close(fig)
+
+
+def render_horizontal_bar_chart(series, value_format="count", limit=10, color="#59c8f2"):
+    """Render a compact horizontal ranking chart."""
+    values = pd.to_numeric(series, errors="coerce").dropna().sort_values().tail(limit)
+    if values.empty:
+        st.info("There are no valid values for this chart.")
+        return
+    fig, ax = plt.subplots(figsize=(9, max(3.0, .42 * len(values) + .9)), dpi=120)
+    fig.patch.set_facecolor("#101d30")
+    _style_chart_axis(ax)
+    bars = ax.barh([str(x) for x in values.index], values.to_numpy(),
+                   color=color, height=.58, edgecolor="none")
+    for bar, value in zip(bars, values.to_numpy()):
+        suffix = "%" if value_format == "percent" else ""
+        ax.annotate(f"{value:,.1f}{suffix}" if value_format == "percent" else f"{value:,.0f}",
+                    (bar.get_width(), bar.get_y() + bar.get_height()/2),
+                    xytext=(5, 0), textcoords="offset points", va="center",
+                    color="#dce8f2", fontsize=8)
+    ax.set_xlabel("Share / variation (%)" if value_format == "percent" else
+                  ("Properties" if value_format == "count" else "Sample nightly price · NPR"), fontsize=8)
+    ax.margins(x=.18)
+    fig.tight_layout(pad=1.2)
+    st.pyplot(fig, width="stretch", clear_figure=True)
+    plt.close(fig)
+
+
+def render_donut_chart(series, center_label="LISTINGS"):
+    """Render a labelled dark-theme donut chart with a compact legend."""
+    values = pd.to_numeric(series, errors="coerce")
+    values = values[values > 0]
+    if values.empty:
+        st.info("There is not enough category data to draw this chart.")
+        return
+    values = values.sort_values(ascending=False).head(8)
+    palette = ["#59c8f2", "#42d6c3", "#82aaff", "#8b9cf6",
+               "#54b6a9", "#6e9fc8", "#a2c7dc", "#6d8298"]
+    fig, ax = plt.subplots(figsize=(6.2, 4.1), dpi=120)
+    fig.patch.set_facecolor("#101d30")
+    ax.set_facecolor("#101d30")
+    wedges, _, _ = ax.pie(
+        values.values, startangle=90, counterclock=False,
+        colors=palette[:len(values)], autopct=lambda pct: f"{pct:.0f}%" if pct >= 5 else "",
+        pctdistance=.78, wedgeprops={"width": .34, "edgecolor": "#101d30", "linewidth": 2},
+        textprops={"color": "#f2f7fc", "fontsize": 8},
+    )
+    ax.text(0, .06, f"{int(values.sum()):,}", ha="center", va="center",
+            color="#f5f9ff", fontsize=18, fontweight="bold")
+    ax.text(0, -.19, center_label, ha="center", va="center",
+            color="#91a8bd", fontsize=7, fontweight="bold")
+    ax.legend(wedges, [str(x) for x in values.index], loc="center left",
+              bbox_to_anchor=(.88, .5), frameon=False, labelcolor="#c3d2df", fontsize=8)
+    fig.tight_layout(pad=1.1)
+    st.pyplot(fig, width="stretch", clear_figure=True)
+    plt.close(fig)
+
+
+def render_price_distribution(prices):
+    """Render a histogram and compact boxplot for filtered sample prices."""
+    values = pd.to_numeric(prices, errors="coerce").dropna()
+    values = values[values >= 0]
+    if values.empty:
+        st.info("No valid nightly-price values match the selected filters.")
+        return
+    fig, (hist_ax, box_ax) = plt.subplots(
+        2, 1, figsize=(10, 4.8), dpi=120,
+        gridspec_kw={"height_ratios": [3, 1]},
+    )
+    fig.patch.set_facecolor("#101d30")
+    for ax in (hist_ax, box_ax):
+        _style_chart_axis(ax)
+    hist_ax.hist(values, bins=min(18, max(5, int(np.sqrt(len(values))))),
+                 color="#59c8f2", edgecolor="#101d30", alpha=.9)
+    hist_ax.axvline(values.median(), color="#42d6c3", linewidth=2,
+                    linestyle="--", label=f"Median · NPR {values.median():,.0f}")
+    hist_ax.set_ylabel("Observations", fontsize=8)
+    hist_ax.legend(frameon=False, labelcolor="#c3d2df", fontsize=8)
+    box_ax.boxplot(values, vert=False, patch_artist=True,
+                   boxprops={"facecolor": "#17617a", "edgecolor": "#59c8f2"},
+                   medianprops={"color": "#42d6c3", "linewidth": 2},
+                   whiskerprops={"color": "#8fa8bf"},
+                   capprops={"color": "#8fa8bf"},
+                   flierprops={"marker": "o", "markersize": 2.5,
+                               "markerfacecolor": "#82aaff", "markeredgecolor": "none"})
+    box_ax.set_yticks([])
+    box_ax.set_xlabel("Sample nightly price · NPR", fontsize=8)
+    fig.tight_layout(pad=1.2)
+    st.pyplot(fig, width="stretch", clear_figure=True)
+    plt.close(fig)
+
+
 # ============================================================
 # 5. SIDEBAR
 # ============================================================
@@ -818,44 +965,65 @@ if page == "Executive Analytics":
                 "rating"
             ].mean()
 
+    # Dynamic findings are calculated from the currently filtered sample only.
     insight_columns = st.columns(3)
-    if not neighbourhood_summary.empty and "Median_Price" in neighbourhood_summary:
-        median_prices = neighbourhood_summary["Median_Price"].dropna()
-        if not median_prices.empty:
-            highest_median_area = median_prices.idxmax()
-            insight_columns[0].metric(
-                "Highest median-price area",
-                str(highest_median_area),
-                help=(
-                    "Median sample nightly price: "
-                    f"{money(median_prices.loc[highest_median_area])}."
-                ),
-            )
-        else:
-            insight_columns[0].metric("Highest median-price area", "N/A")
+    median_prices = (
+        neighbourhood_summary["Median_Price"].dropna()
+        if "Median_Price" in neighbourhood_summary else pd.Series(dtype=float)
+    )
+    if not median_prices.empty:
+        highest_median_area = str(median_prices.idxmax())
+        insight_columns[0].metric(
+            "Highest median-price area", highest_median_area,
+            help=f"Median sample nightly price: {money(median_prices.max())}.",
+        )
+        insight_columns[0].caption(f"Median sample price · {money(median_prices.max())}")
     else:
         insight_columns[0].metric("Highest median-price area", "N/A")
 
-    if not market_data.empty and "property_type" in market_data.columns:
-        inventory_segments = market_data["property_type"].dropna().value_counts()
-        if not inventory_segments.empty:
-            largest_segment = inventory_segments.index[0]
-            segment_share = inventory_segments.iloc[0] / len(market_data) * 100
-            insight_columns[1].metric(
-                "Largest inventory segment",
-                str(largest_segment),
-                help=f"{segment_share:.1f}% of filtered property records.",
-            )
-        else:
-            insight_columns[1].metric("Largest inventory segment", "N/A")
+    inventory_segments = (
+        market_data["property_type"].fillna("Unspecified").value_counts()
+        if "property_type" in market_data else pd.Series(dtype=int)
+    )
+    if not inventory_segments.empty and len(market_data):
+        largest_segment = str(inventory_segments.index[0])
+        segment_share = float(inventory_segments.iloc[0] / len(market_data) * 100)
+        insight_columns[1].metric("Largest inventory segment", largest_segment)
+        insight_columns[1].caption(f"{segment_share:.1f}% of filtered sample records")
     else:
         insight_columns[1].metric("Largest inventory segment", "N/A")
 
-    if not market_data.empty and "rating" in market_data.columns:
-        rating_coverage = market_data["rating"].notna().mean() * 100
-        insight_columns[2].metric("Rating coverage", f"{rating_coverage:.1f}%")
-    else:
-        insight_columns[2].metric("Rating coverage", "N/A")
+    rating_coverage = (
+        market_data["rating"].notna().mean() * 100
+        if "rating" in market_data else np.nan
+    )
+    insight_columns[2].metric(
+        "Rating coverage", f"{rating_coverage:.1f}%" if pd.notna(rating_coverage) else "N/A"
+    )
+    insight_columns[2].caption("Share of selected records with a rating")
+
+    # A short narrative insight makes the dashboard useful without implying
+    # statistical significance or live-market verification.
+    insight_parts = []
+    if not median_prices.empty:
+        insight_parts.append(
+            f"{highest_median_area} has the highest median sample nightly price "
+            f"({money(median_prices.max())})."
+        )
+    if not inventory_segments.empty:
+        insight_parts.append(
+            f"{str(inventory_segments.index[0])} is the largest accommodation segment "
+            f"({segment_share:.1f}% of the selected sample)."
+        )
+    if pd.notna(rating_coverage):
+        insight_parts.append(f"Rating coverage is {rating_coverage:.1f}%.")
+    if insight_parts:
+        st.markdown(
+            '<div class="insight-narrative"><span class="insight-narrative-kicker">'
+            'FILTERED SAMPLE INSIGHT</span><div>' + escape(" ".join(insight_parts)) +
+            '</div><small>Automatically calculated from the selected synthetic sample records; not a live-market conclusion.</small></div>',
+            unsafe_allow_html=True,
+        )
 
     left, right = st.columns([1.25, 1])
     with left:
@@ -872,9 +1040,8 @@ if page == "Executive Analytics":
                     .head(12)
                 )
                 if not price_summary.empty:
-                    st.bar_chart(
-                        price_summary[["Average_Price", "Median_Price"]],
-                        color=["#59C8F2", "#42D6C3"],
+                    render_grouped_bar_chart(
+                        price_summary, ["Average_Price", "Median_Price"], value_format="price", limit=10
                     )
                     st.caption(
                         "NPR per night. Small neighbourhood samples should be "
@@ -940,21 +1107,17 @@ if page == "Executive Analytics":
     with right:
         section_heading("Accommodation mix")
         if not market_data.empty and "property_type" in market_data.columns:
-            st.bar_chart(
-                market_data["property_type"]
-                .fillna("Unspecified")
-                .value_counts(),
-                color="#59C8F2",
+            render_donut_chart(
+                market_data["property_type"].fillna("Unspecified").value_counts(),
+                center_label="PROPERTY TYPES",
             )
         else:
             st.info("Property-type information is unavailable.")
         if not market_data.empty and "room_type" in market_data.columns:
             st.caption("Room-type composition")
-            st.bar_chart(
-                market_data["room_type"]
-                .fillna("Unspecified")
-                .value_counts(),
-                color="#42D6C3",
+            render_donut_chart(
+                market_data["room_type"].fillna("Unspecified").value_counts(),
+                center_label="ROOM TYPES",
             )
 
     st.divider()
@@ -963,10 +1126,7 @@ if page == "Executive Analytics":
         "The spread of sample nightly prices provides more context than an average alone.",
     )
     if not prices.empty:
-        bins = pd.cut(prices, bins=min(10, max(3, prices.nunique())))
-        distribution = bins.value_counts().sort_index()
-        distribution.index = distribution.index.astype(str)
-        st.bar_chart(distribution, color="#42D6C3")
+        render_price_distribution(prices)
         p1, p2, p3 = st.columns(3)
         p1.metric("Lowest Sample Price", money(prices.min()))
         p2.metric("Highest Sample Price", money(prices.max()))
@@ -1112,10 +1272,8 @@ if page == "Executive Analytics":
                         "Price Segment Distribution",
                         "Compare observations across the four price groups.",
                     )
-                    st.bar_chart(
-                        segment_summary[["Observations"]],
-                        color="#59C8F2",
-                        alt="Price observation counts by sample-price segment",
+                    render_horizontal_bar_chart(
+                        segment_summary["Observations"], value_format="count", limit=4, color="#59c8f2"
                     )
 
                 with right:
@@ -1123,12 +1281,8 @@ if page == "Executive Analytics":
                         "Segment Price Comparison",
                         "Compare average and median prices.",
                     )
-                    st.bar_chart(
-                        segment_summary[
-                            ["Average_Price", "Median_Price"]
-                        ],
-                        color=["#59C8F2", "#42D6C3"],
-                        alt="Average and median prices by sample-price segment",
+                    render_grouped_bar_chart(
+                        segment_summary, ["Average_Price", "Median_Price"], value_format="price", limit=4
                     )
 
                 st.caption(
@@ -1173,12 +1327,8 @@ if page == "Executive Analytics":
 
                     if not area_prices.empty:
 
-                        st.bar_chart(
-                            area_prices[
-                                ["Average_Price", "Median_Price"]
-                            ],
-                            color=["#59C8F2", "#42D6C3"],
-                            alt="Average and median observed prices by neighbourhood",
+                        render_grouped_bar_chart(
+                            area_prices, ["Average_Price", "Median_Price"], value_format="price", limit=10
                         )
 
                         st.caption(
@@ -1208,10 +1358,9 @@ if page == "Executive Analytics":
 
                     if not type_prices.empty:
 
-                        st.bar_chart(
-                            type_prices[["mean", "median"]],
-                            color=["#59C8F2", "#42D6C3"],
-                            alt="Average and median observed prices by property type",
+                        render_grouped_bar_chart(
+                            type_prices.rename(columns={"mean": "Average_Price", "median": "Median_Price"}),
+                            ["Average_Price", "Median_Price"], value_format="price", limit=10
                         )
 
                         st.caption(
@@ -1265,13 +1414,10 @@ if page == "Executive Analytics":
                         "Areas with the greatest relative price dispersion.",
                     )
 
-                    st.bar_chart(
-                        volatility.sort_values(
-                            "Price_CV_Percent",
-                            ascending=False,
-                        )[["Price_CV_Percent"]].head(10),
-                        color="#59C8F2",
-                        alt="Neighbourhoods with highest relative price variation",
+                    render_horizontal_bar_chart(
+                        volatility.sort_values("Price_CV_Percent", ascending=False)
+                        .head(10)["Price_CV_Percent"],
+                        value_format="percent", limit=10, color="#59c8f2"
                     )
 
                 with right:
@@ -1281,13 +1427,10 @@ if page == "Executive Analytics":
                         "Areas with the lowest relative price dispersion.",
                     )
 
-                    st.bar_chart(
-                        volatility.sort_values(
-                            "Price_CV_Percent",
-                            ascending=True,
-                        )[["Price_CV_Percent"]].head(10),
-                        color="#42D6C3",
-                        alt="Neighbourhoods with lowest relative price variation",
+                    render_horizontal_bar_chart(
+                        volatility.sort_values("Price_CV_Percent", ascending=True)
+                        .head(10)["Price_CV_Percent"],
+                        value_format="percent", limit=10, color="#42d6c3"
                     )
 
                 st.caption(

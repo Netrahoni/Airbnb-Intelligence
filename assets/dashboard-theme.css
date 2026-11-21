@@ -651,3 +651,38 @@ section[data-testid="stSidebar"] [data-testid="stRadio"] label {
     padding: .2rem;
   }
 }
+
+
+/* Phase 2: narrative insight panel and consistent Matplotlib chart styling */
+.insight-narrative {
+  margin: .2rem 0 1rem;
+  padding: .95rem 1.1rem;
+  border: 1px solid rgba(89,200,242,.24);
+  border-left: 3px solid #42d6c3;
+  border-radius: 12px;
+  background: linear-gradient(105deg, rgba(19,43,62,.92), rgba(13,29,44,.88));
+  color: #e7f1f8;
+  font-size: .86rem;
+  line-height: 1.65;
+}
+.insight-narrative-kicker {
+  display: block;
+  margin-bottom: .28rem;
+  color: #79def0;
+  font-size: .62rem;
+  font-weight: 800;
+  letter-spacing: 1.45px;
+}
+.insight-narrative small {
+  display: block;
+  margin-top: .38rem;
+  color: #8fa8bd;
+  font-size: .68rem;
+}
+[data-testid="stImage"] img {
+  max-width: 100%;
+  height: auto;
+}
+@media (max-width: 760px) {
+  .insight-narrative { padding: .8rem .9rem; }
+}
