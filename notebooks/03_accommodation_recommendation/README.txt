@@ -6,20 +6,35 @@ Files:
 - Input dataset: data/processed/properties_clean.csv.
 - Dashboard model artifact: models/property_recommender.joblib.
 
-The notebook demonstrates personalized recommendations using the shared implementation and prepared dataset. Run it from the project environment.
+The notebook demonstrates personalized recommendations using the shared
+implementation and prepared dataset. Run it from the project environment.
 
 To rebuild the dashboard recommendation model:
   python src/train_recommendation_model.py
 
-Scoring:
-- Hard filters: published, guest capacity, minimum bedrooms, maximum budget.
-- Ranking: neighbourhood (0.20), property type (0.15), room type (0.10),
-  TF-IDF amenity/description similarity (0.40), budget fit (0.15).
-- Weights are renormalized over preferences supplied by the user.
-- Rating and review_count are tie-breakers only.
+Current default ranking weights (src/advanced_recommender.py):
+- Text similarity (TF-IDF over amenities and description): 0.20
+- Neighbourhood match: 0.22
+- Property-type/room-type match: 0.18 combined
+- Quality score (rating and review-count signal): 0.10
+- Guest capacity match: 0.15
+- Budget compliance: 0.15
 
-Important limitations:
+Personalization behavior:
+- Explicit neighbourhood, property/room type, text, and guest preferences
+  activate their corresponding ranking signals; active weights are
+  renormalized while retaining the quality signal.
+- Property type and room type share one combined matching component.
+- Maximum budget is an affordability ceiling and hard filter, not a target
+  spend or a reward for spending closer to the limit.
+- Guest capacity, minimum bedrooms, and maximum budget are hard constraints
+  where supplied.
+- Ratings and review counts contribute to the quality signal and tie-breaking.
+
+Evaluation limitations:
+- Scenario-based scores are heuristic preference-match diagnostics, not
+  ground-truth precision, recall, NDCG, or user satisfaction.
 - Source property data identifies itself as Synthetic Sample Data.
-- relevance_score is not a probability and not an evaluation metric.
-- No verified user interaction data is available for collaborative filtering or
-  offline ranking metrics.
+- No verified user interaction, click, or booking labels are available.
+- relevance_score is a ranking score, not a probability.
+- Do not present the current output as verified marketplace recommendations.
