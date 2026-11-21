@@ -98,29 +98,26 @@ section[data-testid="stSidebar"] .block-container {
 
 /* Brand: the icon and wordmark are intentionally separate */
 .brand-shell {
-  display: grid;
-  grid-template-columns: 62px minmax(0, 1fr);
+  display: flex;
   align-items: center;
-  column-gap: 13px;
-  padding: 14px 12px;
-  margin: 0 0 1.1rem;
-  border: 1px solid var(--line-strong);
-  border-radius: 16px;
-  background:
-    radial-gradient(circle at 100% 0%, rgba(69, 213, 194, .10), transparent 42%),
-    linear-gradient(145deg, #15283d, #101d2e);
-  box-shadow: 0 12px 30px rgba(0,0,0,.20);
+  gap: 12px;
+  padding: 8px 3px 16px;
+  margin: 0 0 .75rem;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 .brand-logo-wrap {
-  width: 62px;
-  height: 62px;
+  flex: 0 0 48px;
+  width: 48px;
+  height: 48px;
   display: grid;
   place-items: center;
-  padding: 9px;
-  border-radius: 14px;
+  padding: 7px;
+  border-radius: 12px;
   background: linear-gradient(145deg, #f8fbfd, #e6f0f5);
-  border: 1px solid rgba(255,255,255,.78);
-  box-shadow: 0 5px 15px rgba(0,0,0,.16), inset 0 1px 0 white;
+  border: 1px solid rgba(255,255,255,.72);
 }
 .brand-logo-wrap img {
   display: block;
@@ -332,8 +329,8 @@ hr { border-color: var(--line); margin: 1.25rem 0; }
   section[data-testid="stSidebar"] { width: min(88vw, 292px) !important; min-width: min(88vw, 292px) !important; }
   section[data-testid="stSidebar"] > div:first-child { width: min(88vw, 292px) !important; }
   .block-container { padding: .9rem .9rem 2rem; }
-  .brand-shell { grid-template-columns: 54px minmax(0,1fr); column-gap: 10px; padding: 11px; }
-  .brand-logo-wrap { width: 54px; height: 54px; }
+  .brand-shell { gap: 10px; padding: 7px 3px 14px; }
+  .brand-logo-wrap { flex-basis: 46px; width: 46px; height: 46px; }
   .brand-title { font-size: .94rem; }
   .brand-tagline { font-size: .65rem; }
   .hero { padding: 1.25rem; border-radius: 15px; }
@@ -741,8 +738,6 @@ with st.sidebar:
             <div class="brand-title">Airbnb Intelligence</div>
             <div class="brand-tagline">Turning accommodation data into intelligent decisions.</div>
           </div>
-          <div class="brand-divider"></div>
-          <div class="brand-kicker"><span class="brand-kicker-dot"></span> Kathmandu · Accommodation Analytics</div>
         </div>
         """,
         unsafe_allow_html=True,
