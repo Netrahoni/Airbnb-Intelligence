@@ -11,6 +11,8 @@ def regression_metrics(actual, predicted):
     predicted = np.asarray(predicted, dtype=float).reshape(-1)
     if actual.size == 0:
         raise ValueError("Evaluation data must contain at least one observation.")
+    if actual.size < 2:
+        raise ValueError("R2 evaluation requires at least two observations.")
     if actual.shape != predicted.shape:
         raise ValueError("Actual and predicted values must have the same length.")
     if not np.isfinite(actual).all() or not np.isfinite(predicted).all():
