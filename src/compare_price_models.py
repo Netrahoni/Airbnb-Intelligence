@@ -17,11 +17,7 @@ from sklearn.ensemble import (
     HistGradientBoostingRegressor
 )
 
-from sklearn.metrics import (
-    mean_absolute_error,
-    mean_squared_error,
-    r2_score
-)
+from src.model_evaluation import regression_metrics, ensure_group_disjoint
 
 # --------------------------------------------------
 # 1. Load dataset
@@ -108,6 +104,9 @@ X_test = X.iloc[test_index]
 y_train = y.iloc[train_index]
 y_test = y.iloc[test_index]
 
+train_property_count, test_property_count = ensure_group_disjoint(
+    groups.to_numpy(), train_index, test_index
+)
 train_properties = set(groups.iloc[train_index])
 test_properties = set(groups.iloc[test_index])
 
@@ -203,13 +202,10 @@ for model_name, regressor in models.items():
 
     predictions = model_pipeline.predict(X_test)
 
-    mae = mean_absolute_error(y_test, predictions)
-
-    rmse = np.sqrt(
-        mean_squared_error(y_test, predictions)
-    )
-
-    r2 = r2_score(y_test, predictions)
+    model_metrics = regression_metrics(y_test, predictions)
+    mae = model_metrics["MAE"]
+    rmse = model_metrics["RMSE"]
+    r2 = model_metrics["R2"]
 
     results.append({
         "model": model_name,
