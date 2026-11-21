@@ -355,6 +355,65 @@ class ModelEvaluationTests(unittest.TestCase):
 
 
 
+class PriceTrainingDataValidationTests(unittest.TestCase):
+
+    def test_price_training_data_accepts_valid_grouped_rows(self):
+        from src.model_evaluation import validate_price_training_data
+
+        frame = pd.DataFrame({
+            "feature": [1, 2, 3, 4, 5],
+            "lead_time_days": [1, 2, 3, 4, 5],
+            "base_price_npr": [1000, 1200, 1300, 1500, 1800],
+            "property_id": ["A", "B", "C", "D", "E"],
+        })
+        count = validate_price_training_data(frame, ["feature", "lead_time_days"])
+        self.assertEqual(count, 5)
+
+    def test_price_training_data_rejects_non_positive_targets(self):
+        from src.model_evaluation import validate_price_training_data
+
+        frame = pd.DataFrame({
+            "feature": [1, 2, 3, 4, 5],
+            "base_price_npr": [1000, 0, 1300, 1500, 1800],
+            "property_id": ["A", "B", "C", "D", "E"],
+        })
+        with self.assertRaisesRegex(ValueError, "greater than zero"):
+            validate_price_training_data(frame, ["feature"])
+
+    def test_price_training_data_rejects_negative_lead_time(self):
+        from src.model_evaluation import validate_price_training_data
+
+        frame = pd.DataFrame({
+            "feature": [1, 2, 3, 4, 5],
+            "lead_time_days": [1, -1, 3, 4, 5],
+            "base_price_npr": [1000, 1200, 1300, 1500, 1800],
+            "property_id": ["A", "B", "C", "D", "E"],
+        })
+        with self.assertRaisesRegex(ValueError, "non-negative"):
+            validate_price_training_data(frame, ["feature", "lead_time_days"])
+
+    def test_price_training_data_requires_enough_distinct_properties(self):
+        from src.model_evaluation import validate_price_training_data
+
+        frame = pd.DataFrame({
+            "feature": [1, 2, 3, 4, 5],
+            "base_price_npr": [1000, 1200, 1300, 1500, 1800],
+            "property_id": ["A", "A", "B", "B", "C"],
+        })
+        with self.assertRaisesRegex(ValueError, "at least 5 distinct"):
+            validate_price_training_data(frame, ["feature"])
+
+    def test_price_training_data_rejects_missing_features(self):
+        from src.model_evaluation import validate_price_training_data
+
+        frame = pd.DataFrame({
+            "base_price_npr": [1000, 1200, 1300, 1500, 1800],
+            "property_id": ["A", "B", "C", "D", "E"],
+        })
+        with self.assertRaisesRegex(ValueError, "missing columns"):
+            validate_price_training_data(frame, ["unknown_feature"])
+
+
 class DataQualityProfileTests(unittest.TestCase):
     def test_profile_counts_missing_invalid_and_out_of_range_values(self):
         from src.data_quality import profile_dataframe

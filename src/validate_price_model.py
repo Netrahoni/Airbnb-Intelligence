@@ -11,7 +11,11 @@ from sklearn.preprocessing import OneHotEncoder
 from sklearn.pipeline import Pipeline
 from sklearn.ensemble import GradientBoostingRegressor
 
-from src.model_evaluation import regression_metrics, ensure_group_disjoint
+from src.model_evaluation import (
+    regression_metrics,
+    ensure_group_disjoint,
+    validate_price_training_data,
+)
 
 # --------------------------------------------------
 # 1. Load and prepare data
@@ -66,6 +70,13 @@ feature_columns = (
     categorical_features
     + numerical_features
     + text_features
+)
+
+validate_price_training_data(
+    df,
+    feature_columns=feature_columns,
+    target_column="base_price_npr",
+    group_column="property_id",
 )
 
 X = df[feature_columns]

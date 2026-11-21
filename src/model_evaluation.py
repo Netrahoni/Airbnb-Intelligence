@@ -84,3 +84,43 @@ def ensure_group_disjoint(groups, train_indices, test_indices):
         preview = ", ".join(sorted(map(str, overlap))[:5])
         raise ValueError(f"Train/test group leakage detected: {preview}")
     return len(train_groups), len(test_groups)
+
+
+
+def validate_price_training_data(
+    frame,
+    feature_columns,
+    target_column="base_price_npr",
+    group_column="property_id",
+    minimum_groups=5,
+):
+    """Fail early on unusable targets, features, or insufficient property groups."""
+    required = list(dict.fromkeys(
+        list(feature_columns) + [target_column, group_column]
+    ))
+    missing = sorted(set(required).difference(frame.columns))
+    if missing:
+        raise ValueError(f"Price training data is missing columns: {missing}")
+    if frame.empty:
+        raise ValueError("Price training data must contain at least one row.")
+    if frame[required].isna().any().any():
+        raise ValueError("Price training data contains missing required values.")
+
+    target = pd.to_numeric(frame[target_column], errors="coerce").to_numpy(dtype=float)
+    if not np.isfinite(target).all():
+        raise ValueError("Price target values must all be finite numbers.")
+    if (target <= 0).any():
+        raise ValueError("Price target values must all be greater than zero.")
+
+    if "lead_time_days" in frame.columns:
+        lead_time = pd.to_numeric(frame["lead_time_days"], errors="coerce").to_numpy(dtype=float)
+        if not np.isfinite(lead_time).all() or (lead_time < 0).any():
+            raise ValueError("Lead time must contain finite, non-negative values.")
+
+    group_count = frame[group_column].nunique(dropna=True)
+    if group_count < minimum_groups:
+        raise ValueError(
+            f"Price training requires at least {minimum_groups} distinct "
+            f"{group_column} groups; found {group_count}."
+        )
+    return int(group_count)

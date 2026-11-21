@@ -17,6 +17,8 @@ from sklearn.metrics import (
     r2_score
 )
 
+from src.model_evaluation import validate_price_training_data
+
 
 # ============================================================
 # 1. PROJECT PATHS
@@ -132,8 +134,12 @@ if missing_columns:
         f"Missing required dataset columns: {missing_columns}"
     )
 
-if df[required_columns].isna().any().any():
-    raise ValueError("Missing values detected in required model columns.")
+validate_price_training_data(
+    df,
+    feature_columns=feature_columns,
+    target_column=target_column,
+    group_column="property_id",
+)
 
 X = df[feature_columns].copy()
 y = df[target_column].copy()
