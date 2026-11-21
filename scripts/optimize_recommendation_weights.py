@@ -132,6 +132,7 @@ sample_properties = published.sample(
 
 experiment_results = []
 scenario_results = []
+execution_results = []
 
 print("\n========== RUNNING EXPERIMENTS ==========\n")
 
@@ -147,9 +148,12 @@ try:
 
         for index, property_row in sample_properties.iterrows():
 
+            execution = {"configuration": config_name, "scenario_id": index + 1, "reference_property_id": property_row["property_id"]}
             base_price = float(property_row["nightly_price_npr"])
 
             if not np.isfinite(base_price) or base_price <= 0:
+                execution.update(status="skipped_invalid_reference_price", result_count=0, error="Reference price must be finite and positive")
+                execution_results.append(execution)
                 continue
 
             guests = max(
@@ -178,6 +182,8 @@ try:
                 )
 
                 if results.empty:
+                    execution.update(status="empty_results", result_count=0, error="No eligible recommendations")
+                    execution_results.append(execution)
                     continue
 
                 prices = pd.to_numeric(
@@ -240,8 +246,12 @@ try:
                 }
 
                 scenario_results.append(scenario)
+                execution.update(status="success", result_count=len(results), error="")
+                execution_results.append(execution)
 
             except Exception as error:
+                execution.update(status="failed", result_count=0, error=str(error))
+                execution_results.append(execution)
 
                 print(
                     f"[WARNING] {config_name}, "
@@ -258,9 +268,22 @@ finally:
 # ============================================================
 
 scenario_df = pd.DataFrame(scenario_results)
+execution_df = pd.DataFrame(execution_results)
 
 if scenario_df.empty:
     raise RuntimeError("No experiment results were generated.")
+
+execution_summary = (
+    execution_df.groupby("configuration")
+    .agg(
+        attempted_scenarios=("scenario_id", "size"),
+        successful_scenarios=("status", lambda values: int(values.eq("success").sum())),
+        empty_scenarios=("status", lambda values: int(values.eq("empty_results").sum())),
+        failed_scenarios=("status", lambda values: int(values.eq("failed").sum())),
+        skipped_scenarios=("status", lambda values: int(values.eq("skipped_invalid_reference_price").sum())),
+    )
+    .reset_index()
+)
 
 summary_df = (
     scenario_df
@@ -280,6 +303,7 @@ summary_df = (
     .round(2)
     .reset_index()
     .rename(columns={"index": "configuration"})
+    .merge(execution_summary, on="configuration", how="right")
 )
 
 
@@ -300,11 +324,14 @@ summary_path = REPORT_DIR / "recommendation_weight_comparison.csv"
 
 details_path = REPORT_DIR / "recommendation_weight_scenarios.csv"
 
+execution_path = REPORT_DIR / "recommendation_weight_execution.csv"
+
 weights_path = REPORT_DIR / "recommendation_weight_configurations.csv"
 
 summary_df.to_csv(summary_path, index=False)
 
 scenario_df.to_csv(details_path, index=False)
+execution_df.to_csv(execution_path, index=False)
 
 weights_df = pd.DataFrame(WEIGHT_CONFIGS).T
 weights_df.index.name = "configuration"
@@ -314,6 +341,7 @@ print("\n========== REPORTS SAVED ==========\n")
 
 print(summary_path)
 print(details_path)
+print(execution_path)
 print(weights_path)
 
 
@@ -326,11 +354,18 @@ print("\n========== EXPERIMENT COMPLETE ==========\n")
 print(f"Configurations tested: {len(WEIGHT_CONFIGS)}")
 print(f"Scenarios per configuration: {sample_size}")
 print(f"Total successful evaluations: {len(scenario_df)}")
+print("Scenario execution status:")
+print(execution_df.groupby(["configuration", "status"]).size().to_string())
 
 print(
     "\nNOTE: These results are heuristic comparisons "
     "using synthetic property data and proxy relevance measures."
 )
+
+if execution_df["status"].eq("failed").any():
+    failed_count = int(execution_df["status"].eq("failed").sum())
+    print(f"\n[ERROR] {failed_count} scenario(s) failed. See recommendation_weight_execution.csv.")
+    raise SystemExit(1)
 
 print(
     "Do not select a configuration using average recommendation "
