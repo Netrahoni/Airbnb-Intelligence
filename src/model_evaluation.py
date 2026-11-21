@@ -1,3 +1,4 @@
+import pandas as pd
 """Pure evaluation helpers used by model workflows and automated tests."""
 
 import numpy as np
@@ -19,6 +20,57 @@ def regression_metrics(actual, predicted):
         "R2": float(r2_score(actual, predicted)),
     }
 
+
+
+def price_band_diagnostics(predictions):
+    """Summarise held-out prediction errors by actual-price band."""
+    required = {"actual_price_npr", "predicted_price_npr"}
+    missing = sorted(required.difference(predictions.columns))
+    if missing:
+        raise ValueError(f"Prediction report is missing columns: {missing}")
+
+    frame = predictions[list(required)].copy()
+    for column in required:
+        frame[column] = pd.to_numeric(frame[column], errors="coerce")
+    frame = frame.replace([np.inf, -np.inf], np.nan).dropna()
+    columns = [
+        "price_category", "sample_count", "average_actual_price",
+        "average_predicted_price", "mean_absolute_error",
+        "mean_percentage_error", "average_signed_error",
+    ]
+    if frame.empty:
+        return pd.DataFrame(columns=columns)
+
+    actual = frame["actual_price_npr"].to_numpy(dtype=float)
+    predicted = frame["predicted_price_npr"].to_numpy(dtype=float)
+    absolute_error = np.abs(predicted - actual)
+    frame["absolute_error"] = absolute_error
+    frame["percentage_error"] = np.divide(
+        absolute_error * 100, np.abs(actual),
+        out=np.full(len(actual), np.nan, dtype=float), where=actual != 0,
+    )
+    frame["signed_error"] = predicted - actual
+    frame["price_category"] = pd.cut(
+        frame["actual_price_npr"],
+        bins=[-np.inf, 2000, 4000, 6000, np.inf],
+        labels=[
+            "Budget (up to 2000)", "Mid-range (2001-4000)",
+            "Premium (4001-6000)", "Luxury (above 6000)",
+        ],
+        include_lowest=True,
+    )
+    return (
+        frame.groupby("price_category", observed=True, sort=True)
+        .agg(
+            sample_count=("absolute_error", "size"),
+            average_actual_price=("actual_price_npr", "mean"),
+            average_predicted_price=("predicted_price_npr", "mean"),
+            mean_absolute_error=("absolute_error", "mean"),
+            mean_percentage_error=("percentage_error", "mean"),
+            average_signed_error=("signed_error", "mean"),
+        )
+        .reset_index()
+    )
 
 def ensure_group_disjoint(groups, train_indices, test_indices):
     groups = np.asarray(groups)
