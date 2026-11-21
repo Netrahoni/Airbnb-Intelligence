@@ -364,17 +364,22 @@ class AdvancedPropertyRecommender:
     min_rating=0,
     min_capacity=None,
 ):
-        if number <= 0:
-
+        if (
+            isinstance(number, bool)
+            or not isinstance(number, (int, np.integer))
+            or number <= 0
+        ):
             raise ValueError(
-                "Number of recommendations must be positive."
+                "Number of recommendations must be a positive integer."
             )
 
-        if min_rating < 0 or min_rating > 5:
+        try:
+            min_rating = float(min_rating)
+        except (TypeError, ValueError):
+            raise ValueError("Minimum rating must be a number between 0 and 5.")
 
-            raise ValueError(
-                "Minimum rating must be between 0 and 5."
-            )
+        if not np.isfinite(min_rating) or not 0 <= min_rating <= 5:
+            raise ValueError("Minimum rating must be a finite number between 0 and 5.")
 
         results = self.properties.copy()
 

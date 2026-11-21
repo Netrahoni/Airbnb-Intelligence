@@ -282,6 +282,18 @@ class RecommendationEdgeCaseTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.engine.recommend_personalized({},number=5,min_rating=5.1)
 
+    def test_non_finite_minimum_rating_is_rejected(self):
+        for value in (float("nan"), float("inf"), "not-a-rating"):
+            with self.subTest(value=value):
+                with self.assertRaises(ValueError):
+                    self.engine.recommend_personalized({}, min_rating=value)
+
+    def test_recommendation_count_must_be_a_positive_integer(self):
+        for value in (0, -1, 1.5, True):
+            with self.subTest(value=value):
+                with self.assertRaises(ValueError):
+                    self.engine.recommend_personalized({}, number=value)
+
 
 class ModelEvaluationTests(unittest.TestCase):
     def test_price_band_diagnostics_reconcile_to_overall_mae(self):
@@ -340,6 +352,52 @@ class ModelEvaluationTests(unittest.TestCase):
     def test_group_split_detects_leakage(self):
         with self.assertRaisesRegex(ValueError,"leakage"):
             ensure_group_disjoint(["a","b","a","c"],[0,1],[2,3])
+
+
+
+class DataQualityProfileTests(unittest.TestCase):
+    def test_profile_counts_missing_invalid_and_out_of_range_values(self):
+        from src.data_quality import profile_dataframe
+
+        frame = pd.DataFrame({
+            "property_id": ["A", "A", "C"],
+            "rating": [4.5, 6.0, np.nan],
+            "nightly_price_npr": [1200, "unknown", -5],
+        })
+        report = profile_dataframe(
+            frame,
+            "properties",
+            key_columns=("property_id",),
+            numeric_bounds={"rating": (0, 5), "nightly_price_npr": (0, None)},
+        ).set_index("column")
+
+        self.assertEqual(report.loc["property_id", "duplicate_key_rows"], 1)
+        self.assertEqual(report.loc["rating", "missing_count"], 1)
+        self.assertEqual(report.loc["rating", "out_of_range_count"], 1)
+        self.assertEqual(report.loc["nightly_price_npr", "invalid_numeric_count"], 1)
+        self.assertEqual(report.loc["nightly_price_npr", "out_of_range_count"], 1)
+
+    def test_profile_rejects_missing_key_columns(self):
+        from src.data_quality import profile_dataframe
+
+        with self.assertRaisesRegex(ValueError, "missing key columns"):
+            profile_dataframe(pd.DataFrame({"name": ["Stay"]}), "properties", ("property_id",))
+
+    def test_empty_report_has_stable_schema(self):
+        from src.data_quality import build_data_quality_report
+
+        report = build_data_quality_report([])
+        self.assertIn("missing_percent", report.columns)
+        self.assertTrue(report.empty)
+
+    def test_report_combines_multiple_datasets(self):
+        from src.data_quality import build_data_quality_report
+
+        report = build_data_quality_report([
+            ("properties", pd.DataFrame({"id": [1]}), {}),
+            ("availability", pd.DataFrame({"days": [30]}), {}),
+        ])
+        self.assertEqual(set(report["dataset"]), {"properties", "availability"})
 
 
 if __name__ == "__main__":
