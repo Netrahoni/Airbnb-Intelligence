@@ -2280,444 +2280,719 @@ elif page == "Data Analysis":
 elif page == "Model Evaluation":
 
     page_header(
-        "MODEL PERFORMANCE",
-        "Advanced Model Evaluation",
-        "Compare prediction models, evaluate cross-validation stability, "
-        "and investigate prediction errors.",
+        "MODEL INTELLIGENCE",
+        "Performance, Validation & Error Analysis",
+        "A transparent view of model quality, cross-validation consistency, "
+        "price-band performance and individual prediction behaviour.",
     )
 
-    # --------------------------------------------------------
-    # PREPARE EVALUATION DATA
-    # --------------------------------------------------------
+    # Load the row-level holdout report for interactive diagnostics.
+    prediction_records = load_report("price_predictions.csv")
 
+    metrics_df = metrics.copy()
     comparison_df = price_comparison.copy()
     cv_df = cross_validation.copy()
     error_df = error_categories.copy()
-    metrics_df = metrics.copy()
 
-    for df in [comparison_df, cv_df, error_df]:
-        for col in df.columns:
-            if col not in ["model", "price_category"]:
-                df[col] = pd.to_numeric(df[col], errors="coerce")
+    def metric_lookup(frame):
+        if frame.empty or not {"metric", "value"}.issubset(frame.columns):
+            return {}
+        values = {}
+        for _, row in frame.iterrows():
+            key = str(row["metric"]).strip().lower()
+            value = pd.to_numeric(row["value"], errors="coerce")
+            if key and pd.notna(value):
+                values[key] = float(value)
+        return values
 
-    # --------------------------------------------------------
-    # 1. OVERALL MODEL PERFORMANCE
-    # --------------------------------------------------------
+    metric_values = metric_lookup(metrics_df)
 
-    section_heading("Overall Model Performance")
+    def evaluation_metric(*names):
+        for name in names:
+            value = metric_values.get(name.strip().lower())
+            if value is not None and np.isfinite(value):
+                return float(value)
+        return None
 
-    if not metrics_df.empty and {"metric", "value"}.issubset(metrics_df.columns):
+    mae = evaluation_metric("mae")
+    rmse = evaluation_metric("rmse")
+    r2 = evaluation_metric("r2", "r2_score", "r2 score")
+    baseline_mae = evaluation_metric("baseline mae")
+    baseline_rmse = evaluation_metric("baseline rmse")
+    baseline_r2 = evaluation_metric("baseline r2")
+    mae_improvement = evaluation_metric("mae improvement percentage")
 
-        metric_values = {
-            str(row["metric"]).strip().lower(): pd.to_numeric(
-                row["value"], errors="coerce"
-            )
-            for _, row in metrics_df.iterrows()
-        }
+    if mae_improvement is None and baseline_mae and mae is not None:
+        mae_improvement = ((baseline_mae - mae) / baseline_mae) * 100
 
-        def get_metric(*names):
-            for name in names:
-                value = metric_values.get(name.lower())
-                if value is not None and pd.notna(value):
-                    return float(value)
-            return None
+    training_rows = evaluation_metric("training rows")
+    testing_rows = evaluation_metric("testing rows")
+    training_properties = evaluation_metric("training properties")
+    testing_properties = evaluation_metric("testing properties")
+    overlapping_properties = evaluation_metric("overlapping properties")
 
-        mae = get_metric("mae")
-        rmse = get_metric("rmse")
-        r2 = get_metric("r2", "r2_score", "r2 score")
+    # Normalize numeric fields without changing the saved source reports.
+    for frame in (comparison_df, cv_df, error_df):
+        for column in frame.columns:
+            if column not in {"model", "price_category"}:
+                frame[column] = pd.to_numeric(frame[column], errors="coerce")
 
-        c1, c2, c3 = st.columns(3)
+    section_heading(
+        "Held-out test performance",
+        "Saved evaluation metrics from the property-level test split.",
+    )
 
-        c1.metric(
-            "Mean Absolute Error",
+    kpi_columns = st.columns(4)
+    with kpi_columns[0]:
+        st.metric(
+            "Mean absolute error",
             money(mae) if mae is not None else "N/A",
-            help="Average absolute difference between actual and predicted prices.",
+            help="Average absolute difference between the predicted and actual target price.",
         )
-
-        c2.metric(
-            "Root Mean Squared Error",
+    with kpi_columns[1]:
+        st.metric(
+            "Root mean squared error",
             money(rmse) if rmse is not None else "N/A",
-            help="Penalizes larger prediction errors more heavily.",
+            help="Penalizes larger errors more heavily than MAE.",
         )
-
-        c3.metric(
-            "R² Score",
+    with kpi_columns[2]:
+        st.metric(
+            "R² score",
             f"{r2:.4f}" if r2 is not None else "N/A",
-            help="Measures how much variation is explained by the model.",
+            help="Explained variance on the saved held-out test set; interpret alongside the feature caveat below.",
         )
-
-    else:
-        st.info("Model performance metrics are unavailable.")
-
-    st.caption(
-        "These are saved test-set metrics. Their interpretation depends "
-        "on the dataset and evaluation methodology."
-    )
-
-    st.divider()
-
-    # --------------------------------------------------------
-    # 2. MODEL COMPARISON
-    # --------------------------------------------------------
-
-    section_heading("Model Comparison")
-
-    if not comparison_df.empty and "model" in comparison_df.columns:
-
-        st.dataframe(
-            comparison_df,
-            width="stretch",
-            hide_index=True,
-        )
-
-        if "MAE" in comparison_df.columns:
-            valid_mae = comparison_df.dropna(subset=["MAE"])
-
-            if not valid_mae.empty:
-                best_model = valid_mae.loc[valid_mae["MAE"].idxmin()]
-
-                st.success(
-                    f"Lowest MAE: {best_model['model']} "
-                    f"({money(best_model['MAE'])})"
-                )
-
-        chart_col1, chart_col2 = st.columns(2)
-
-        with chart_col1:
-            st.markdown("#### MAE Comparison")
-
-            if "MAE" in comparison_df.columns:
-                st.bar_chart(
-                    comparison_df.set_index("model")[["MAE"]]
-                )
-
-        with chart_col2:
-            st.markdown("#### RMSE Comparison")
-
-            if "RMSE" in comparison_df.columns:
-                st.bar_chart(
-                    comparison_df.set_index("model")[["RMSE"]]
-                )
-
-        if "R2" in comparison_df.columns:
-            st.markdown("#### R² Score Comparison")
-
-            st.bar_chart(
-                comparison_df.set_index("model")[["R2"]]
-            )
-
-    else:
-        st.info("Model comparison report is unavailable.")
-
-    st.divider()
-
-    # --------------------------------------------------------
-    # 3. CROSS-VALIDATION ANALYSIS
-    # --------------------------------------------------------
-
-    section_heading("Cross-Validation Stability")
-
-    if not cv_df.empty:
-
-        st.markdown(
-            "Evaluate how consistently the model performs across "
-            "different validation folds."
-        )
-
-        st.dataframe(
-            cv_df,
-            width="stretch",
-            hide_index=True,
-        )
-
-        required_cv = ["GB_MAE", "GB_RMSE", "GB_R2"]
-
-        if all(col in cv_df.columns for col in required_cv):
-
-            cv_mae_mean = cv_df["GB_MAE"].mean()
-            cv_rmse_mean = cv_df["GB_RMSE"].mean()
-            cv_r2_mean = cv_df["GB_R2"].mean()
-
-            cv_c1, cv_c2, cv_c3 = st.columns(3)
-
-            cv_c1.metric(
-                "Average CV MAE",
-                money(cv_mae_mean),
-            )
-
-            cv_c2.metric(
-                "Average CV RMSE",
-                money(cv_rmse_mean),
-            )
-
-            cv_c3.metric(
-                "Average CV R²",
-                f"{cv_r2_mean:.4f}",
-            )
-
-            st.markdown("#### Gradient Boosting: Fold Performance")
-
-            chart1, chart2 = st.columns(2)
-
-            with chart1:
-                st.markdown("**MAE Across Folds**")
-                st.line_chart(cv_df.set_index("fold")[["GB_MAE"]])
-
-            with chart2:
-                st.markdown("**RMSE Across Folds**")
-                st.line_chart(cv_df.set_index("fold")[["GB_RMSE"]])
-
-            st.markdown("**R² Across Folds**")
-            st.line_chart(cv_df.set_index("fold")[["GB_R2"]])
-
-            stability = cv_df["GB_MAE"].std()
-
-            if pd.notna(stability):
-                st.caption(
-                    f"MAE standard deviation across folds: "
-                    f"{money(stability)}. Lower variation indicates "
-                    "more consistent fold performance."
-                )
-
-        baseline_cols = [
-            "Baseline_MAE",
-            "Baseline_RMSE",
-            "Baseline_R2",
-        ]
-
-        if all(col in cv_df.columns for col in baseline_cols):
-
-            st.markdown("#### Gradient Boosting vs Baseline")
-
-            baseline_comparison = pd.DataFrame({
-                "Gradient Boosting MAE": cv_df["GB_MAE"],
-                "Baseline MAE": cv_df["Baseline_MAE"],
-            })
-
-            if "fold" in cv_df.columns:
-                baseline_comparison.index = cv_df["fold"]
-                baseline_comparison.index.name = "Fold"
-
-            st.line_chart(baseline_comparison)
-
-    else:
-        st.info("Cross-validation report is unavailable.")
-
-    st.divider()
-
-    # --------------------------------------------------------
-    # 4. PREDICTION ERROR ANALYSIS
-    # --------------------------------------------------------
-
-    section_heading("Prediction Error Analysis")
-
-    if not error_df.empty:
-
-        st.dataframe(
-            error_df,
-            width="stretch",
-            hide_index=True,
-        )
-
-        error_col1, error_col2 = st.columns(2)
-
-        with error_col1:
-            st.markdown("#### Mean Absolute Error by Category")
-
-            if "mean_absolute_error" in error_df.columns:
-                st.bar_chart(
-                    error_df.set_index("price_category")[
-                        ["mean_absolute_error"]
-                    ]
-                )
-
-        with error_col2:
-            st.markdown("#### Mean Percentage Error by Category")
-
-            if "mean_percentage_error" in error_df.columns:
-                st.bar_chart(
-                    error_df.set_index("price_category")[
-                        ["mean_percentage_error"]
-                    ]
-                )
-
-        # Actual vs predicted category averages
-        actual_predicted_cols = [
-            "average_actual_price",
-            "average_predicted_price",
-        ]
-
-        if all(col in error_df.columns for col in actual_predicted_cols):
-
-            st.markdown("#### Actual vs Predicted Average Price")
-
-            comparison_chart = error_df.set_index("price_category")[
-                actual_predicted_cols
-            ]
-
-            st.bar_chart(comparison_chart)
-
-        # Signed error analysis
-        signed_error_col = next(
-            (
-                col for col in error_df.columns
-                if col in [
-                    "average_signed_error",
-                    "average_signed_error ",
-                ]
+    with kpi_columns[3]:
+        st.metric(
+            "MAE vs baseline",
+            f"{mae_improvement:+.2f}%" if mae_improvement is not None else "N/A",
+            delta="Lower error than baseline" if mae_improvement is not None and mae_improvement > 0 else (
+                "Higher error than baseline" if mae_improvement is not None else None
             ),
-            None,
+            delta_color="normal" if mae_improvement is not None and mae_improvement > 0 else "inverse",
+            help="Relative MAE reduction compared with using the existing property nightly price as the baseline prediction.",
         )
 
-        if signed_error_col:
-            st.markdown("#### Prediction Bias")
+    st.markdown(
+        """
+        <div class="evaluation-caveat">
+          <span class="evaluation-caveat-kicker">INTERPRETATION NOTE</span>
+          The price model includes the property's existing nightly price as an input feature.
+          The reported scores therefore measure performance with that baseline information
+          available; they should not be described as independent market-price discovery.
+          Property and price observations in this project include synthetic sample records.
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
-            st.bar_chart(
-                error_df.set_index("price_category")[
-                    [signed_error_col]
-                ]
-            )
+    with st.expander("Test split and evaluation setup", expanded=False):
+        split_columns = st.columns(4)
+        split_columns[0].metric("Training rows", f"{int(training_rows):,}" if training_rows is not None else "N/A")
+        split_columns[1].metric("Test rows", f"{int(testing_rows):,}" if testing_rows is not None else "N/A")
+        split_columns[2].metric("Training properties", f"{int(training_properties):,}" if training_properties is not None else "N/A")
+        split_columns[3].metric("Test properties", f"{int(testing_properties):,}" if testing_properties is not None else "N/A")
 
-            st.caption(
-                "Positive signed error indicates average overprediction; "
-                "negative signed error indicates average underprediction."
-            )
-
-    else:
-        st.info("Prediction error category report is unavailable.")
+        if overlapping_properties is not None:
+            if int(overlapping_properties) == 0:
+                st.info("Property-level split check: 0 property IDs overlap between training and test sets.")
+            else:
+                st.error(
+                    f"Split integrity issue: {int(overlapping_properties):,} property IDs overlap."
+                )
+        st.caption(
+            "The saved training workflow uses GroupShuffleSplit with property_id as the grouping key. "
+            "A group-based split reduces the risk of the same property appearing in both partitions."
+        )
 
     st.divider()
 
+    # Shared chart helpers keep evaluation charts aligned with the dashboard palette.
+    def render_evaluation_bar(series, title, axis_label, color="#59c8f2", value_kind="money"):
+        values = pd.to_numeric(series, errors="coerce").dropna().sort_values(ascending=True)
+        if values.empty:
+            st.caption("No valid values are available for this chart.")
+            return
 
-    # --------------------------------------------------------
-    # PREDICTION ERROR KEY TAKEAWAYS
-    # --------------------------------------------------------
+        fig, ax = plt.subplots(figsize=(8.2, max(2.8, .48 * len(values) + .85)), dpi=120)
+        fig.patch.set_facecolor("#101d30")
+        _style_chart_axis(ax)
+        bars = ax.barh(
+            [str(label) for label in values.index],
+            values.to_numpy(dtype=float),
+            color=color,
+            height=.58,
+            edgecolor="none",
+        )
+        for bar, value in zip(bars, values.to_numpy(dtype=float)):
+            if value_kind == "percent":
+                label = f"{value:.1f}%"
+            elif value_kind == "score":
+                label = f"{value:.4f}"
+            else:
+                label = f"{value:,.0f}"
+            offset = 5 if value >= 0 else -5
+            ax.annotate(
+                label,
+                (bar.get_width(), bar.get_y() + bar.get_height() / 2),
+                xytext=(offset, 0),
+                textcoords="offset points",
+                ha="left" if value >= 0 else "right",
+                va="center",
+                color="#dce8f2",
+                fontsize=8,
+            )
+        ax.axvline(0, color="#8298ad", linewidth=.8, alpha=.65)
+        ax.set_xlabel(axis_label, fontsize=8)
+        ax.set_title(title, color="#edf4fb", loc="left", fontsize=10, pad=11, fontweight="bold")
+        ax.margins(x=.2)
+        fig.tight_layout(pad=1.2)
+        st.pyplot(fig, width="stretch", clear_figure=True)
+        plt.close(fig)
 
-    if not error_df.empty:
+    def render_evaluation_lines(frame, columns, labels, title, axis_label):
+        available = [column for column in columns if column in frame.columns]
+        if frame.empty or not available:
+            st.info("Cross-validation series are unavailable.")
+            return
 
-        section_heading("Key Takeaways")
+        x_values = (
+            frame["fold"].astype(str).tolist()
+            if "fold" in frame.columns
+            else [str(index + 1) for index in range(len(frame))]
+        )
+        palette = ["#59c8f2", "#42d6c3", "#82aaff"]
+        fig, ax = plt.subplots(figsize=(8.5, 3.7), dpi=120)
+        fig.patch.set_facecolor("#101d30")
+        _style_chart_axis(ax)
+        ax.grid(axis="y", color="#34475d", alpha=.48, linewidth=.8)
+        ax.grid(axis="x", visible=False)
 
-        insight_cols = st.columns(2)
-
-        # Highest percentage error
-        if "mean_percentage_error" in error_df.columns:
-
-            percentage_data = error_df.dropna(
-                subset=["mean_percentage_error"]
+        for index, column in enumerate(available):
+            values = pd.to_numeric(frame[column], errors="coerce")
+            label = labels[index] if index < len(labels) else column.replace("_", " ")
+            ax.plot(
+                x_values,
+                values,
+                color=palette[index % len(palette)],
+                marker="o",
+                markersize=5,
+                linewidth=2,
+                label=label,
             )
 
-            if not percentage_data.empty:
+        ax.set_title(title, color="#edf4fb", loc="left", fontsize=10, pad=11, fontweight="bold")
+        ax.set_xlabel("Validation fold", fontsize=8)
+        ax.set_ylabel(axis_label, fontsize=8)
+        ax.legend(frameon=False, labelcolor="#c3d2df", fontsize=8)
+        fig.tight_layout(pad=1.2)
+        st.pyplot(fig, width="stretch", clear_figure=True)
+        plt.close(fig)
 
-                highest_percentage = percentage_data.loc[
-                    percentage_data["mean_percentage_error"].idxmax()
-                ]
+    tab_performance, tab_validation, tab_errors, tab_predictions = st.tabs([
+        "Model Comparison",
+        "Validation Stability",
+        "Error Diagnostics",
+        "Prediction Explorer",
+    ])
 
-                with insight_cols[0]:
-                    st.metric(
-                        "Highest Percentage Error",
-                        f"{highest_percentage['mean_percentage_error']:.2f}%",
-                        help="Price category with the highest mean percentage error.",
-                    )
+    # --------------------------------------------------------
+    # MODEL COMPARISON
+    # --------------------------------------------------------
+    with tab_performance:
+        section_heading(
+            "Benchmark comparison",
+            "Compare saved model results using consistent error and fit metrics.",
+        )
 
-                    st.caption(
-                        f"Category: {highest_percentage['price_category']}"
-                    )
+        if comparison_df.empty or "model" not in comparison_df.columns:
+            st.info("The model comparison report is unavailable.")
+        else:
+            model_view = comparison_df.copy()
+            for column in ("MAE", "RMSE", "R2"):
+                if column in model_view.columns:
+                    model_view[column] = pd.to_numeric(model_view[column], errors="coerce")
+            if "MAE" in model_view.columns:
+                model_view = model_view.sort_values("MAE", ascending=True, na_position="last")
 
-        # Highest absolute error
-        if "mean_absolute_error" in error_df.columns:
-
-            absolute_data = error_df.dropna(
-                subset=["mean_absolute_error"]
+            best_model_name = (
+                str(model_view.iloc[0]["model"])
+                if not model_view.empty and "model" in model_view.columns
+                else "N/A"
+            )
+            best_model_mae = (
+                float(model_view.iloc[0]["MAE"])
+                if not model_view.empty and "MAE" in model_view.columns
+                and pd.notna(model_view.iloc[0]["MAE"])
+                else None
             )
 
-            if not absolute_data.empty:
+            best_col, count_col = st.columns([1.2, 1])
+            with best_col:
+                st.markdown(
+                    f"""
+                    <div class="evaluation-highlight">
+                      <span class="evaluation-highlight-label">LOWEST MAE</span>
+                      <strong>{escape(best_model_name)}</strong>
+                      <small>{money(best_model_mae) if best_model_mae is not None else "Metric unavailable"}</small>
+                    </div>
+                    """,
+                    unsafe_allow_html=True,
+                )
+            with count_col:
+                st.metric("Models benchmarked", f"{len(model_view):,}")
 
-                highest_absolute = absolute_data.loc[
-                    absolute_data["mean_absolute_error"].idxmax()
-                ]
+            display_columns = [
+                column for column in ["model", "MAE", "RMSE", "R2"]
+                if column in model_view.columns
+            ]
+            st.dataframe(
+                model_view[display_columns].rename(columns={
+                    "model": "Model",
+                    "MAE": "MAE · NPR",
+                    "RMSE": "RMSE · NPR",
+                    "R2": "R²",
+                }),
+                width="stretch",
+                hide_index=True,
+            )
 
-                with insight_cols[1]:
-                    st.metric(
-                        "Highest Absolute Error",
-                        money(highest_absolute["mean_absolute_error"]),
+            chart_a, chart_b = st.columns(2)
+            with chart_a:
+                if "MAE" in model_view.columns:
+                    render_evaluation_bar(
+                        model_view.set_index("model")["MAE"],
+                        "Mean absolute error",
+                        "Error · NPR",
+                        color="#59c8f2",
+                    )
+            with chart_b:
+                if "RMSE" in model_view.columns:
+                    render_evaluation_bar(
+                        model_view.set_index("model")["RMSE"],
+                        "Root mean squared error",
+                        "Error · NPR",
+                        color="#42d6c3",
                     )
 
-                    st.caption(
-                        f"Category: {highest_absolute['price_category']}"
-                    )
-
-        # Prediction bias
-        if "average_signed_error" in error_df.columns:
-
-            st.markdown("#### Prediction Bias by Category")
-
-            for _, row in error_df.iterrows():
-
-                signed_error = row["average_signed_error"]
-
-                if pd.isna(signed_error):
-                    continue
-
-                if signed_error > 0:
-                    interpretation = "Overprediction"
-                elif signed_error < 0:
-                    interpretation = "Underprediction"
-                else:
-                    interpretation = "Approximately balanced"
-
-                st.write(
-                    f"**{row['price_category']}**: "
-                    f"{interpretation} "
-                    f"({money(abs(signed_error))} average signed error)"
+            if "R2" in model_view.columns:
+                render_evaluation_bar(
+                    model_view.set_index("model")["R2"],
+                    "Explained variance (R²)",
+                    "R² score",
+                    color="#82aaff",
+                    value_kind="score",
                 )
 
-        st.info(
-            "The model shows different error patterns across price "
-            "categories. These results can help identify where further "
-            "model improvements are needed. They are based on synthetic "
-            "sample data and should not be treated as verified market "
-            "performance."
+        st.divider()
+        section_heading("Machine learning vs baseline", "The baseline predicts with the property's existing nightly price.")
+        baseline_columns = st.columns(3)
+        baseline_columns[0].metric("Model MAE", money(mae) if mae is not None else "N/A")
+        baseline_columns[1].metric("Baseline MAE", money(baseline_mae) if baseline_mae is not None else "N/A")
+        baseline_columns[2].metric(
+            "MAE reduction",
+            f"{mae_improvement:.2f}%" if mae_improvement is not None else "N/A",
         )
 
-
-    # --------------------------------------------------------
-    # 5. EVALUATION INTERPRETATION
-    # --------------------------------------------------------
-
-    section_heading("Model Evaluation Insights")
-
-    if not comparison_df.empty and "MAE" in comparison_df.columns:
-
-        valid_models = comparison_df.dropna(subset=["MAE"])
-
-        if not valid_models.empty:
-
-            best = valid_models.loc[valid_models["MAE"].idxmin()]
-
-            st.markdown(
-                f"""
-                - **Best model by MAE:** {best['model']}
-                - **MAE:** {money(best['MAE'])}
-                - **Models evaluated:** {len(valid_models)}
-                """
+        if mae is not None and baseline_mae is not None:
+            baseline_plot = pd.Series(
+                {"Gradient Boosting": mae, "Existing-price baseline": baseline_mae}
+            )
+            render_evaluation_bar(
+                baseline_plot,
+                "Held-out MAE: model vs baseline",
+                "Mean absolute error · NPR",
+                color="#42d6c3",
             )
 
-    if not cv_df.empty and "GB_MAE" in cv_df.columns:
-
-        average_cv_mae = cv_df["GB_MAE"].mean()
-
-        st.markdown(
-            f"- **Cross-validation average MAE:** {money(average_cv_mae)}"
+    # --------------------------------------------------------
+    # VALIDATION STABILITY
+    # --------------------------------------------------------
+    with tab_validation:
+        section_heading(
+            "Cross-validation consistency",
+            "Fold-level metrics show how much performance varies across validation partitions.",
         )
 
-    st.warning(
-        "Important limitation: The current price prediction experiment "
-        "uses the existing baseline nightly price as an input. Strong "
-        "evaluation scores should not be interpreted as independent "
-        "market-price discovery. Property and price observations are "
-        "synthetic sample data, not verified live Airbnb market data."
-    )
+        if cv_df.empty:
+            st.info("The cross-validation report is unavailable.")
+        else:
+            required_cv = ["GB_MAE", "GB_RMSE", "GB_R2"]
+            cv_numeric = cv_df.copy()
+            for column in cv_numeric.columns:
+                if column != "fold":
+                    cv_numeric[column] = pd.to_numeric(cv_numeric[column], errors="coerce")
 
+            summary_fields = [
+                ("GB_MAE", "Mean CV MAE", money),
+                ("GB_RMSE", "Mean CV RMSE", money),
+                ("GB_R2", "Mean CV R²", lambda value: f"{value:.4f}"),
+            ]
+            summary_cols = st.columns(3)
+            for index, (column, label, formatter) in enumerate(summary_fields):
+                if column in cv_numeric.columns:
+                    mean_value = cv_numeric[column].mean()
+                    std_value = cv_numeric[column].std()
+                    summary_cols[index].metric(
+                        label,
+                        formatter(mean_value) if pd.notna(mean_value) else "N/A",
+                        f"Fold σ · {formatter(std_value)}" if pd.notna(std_value) else None,
+                    )
+
+            if all(column in cv_numeric.columns for column in required_cv):
+                stability_a, stability_b = st.columns(2)
+                with stability_a:
+                    render_evaluation_lines(
+                        cv_numeric,
+                        ["GB_MAE", "Baseline_MAE"],
+                        ["Gradient Boosting", "Existing-price baseline"],
+                        "MAE across folds",
+                        "Error · NPR",
+                    )
+                with stability_b:
+                    render_evaluation_lines(
+                        cv_numeric,
+                        ["GB_RMSE", "Baseline_RMSE"],
+                        ["Gradient Boosting", "Existing-price baseline"],
+                        "RMSE across folds",
+                        "Error · NPR",
+                    )
+                render_evaluation_lines(
+                    cv_numeric,
+                    ["GB_R2", "Baseline_R2"],
+                    ["Gradient Boosting", "Existing-price baseline"],
+                    "R² across folds",
+                    "R² score",
+                )
+
+            fold_display = cv_numeric.rename(columns={
+                "fold": "Fold",
+                "training_properties": "Training properties",
+                "testing_properties": "Test properties",
+                "GB_MAE": "Model MAE · NPR",
+                "GB_RMSE": "Model RMSE · NPR",
+                "GB_R2": "Model R²",
+                "Baseline_MAE": "Baseline MAE · NPR",
+                "Baseline_RMSE": "Baseline RMSE · NPR",
+                "Baseline_R2": "Baseline R²",
+            })
+            st.markdown("#### Fold results")
+            st.dataframe(fold_display, width="stretch", hide_index=True)
+
+            if "GB_MAE" in cv_numeric.columns:
+                valid_folds = cv_numeric.dropna(subset=["GB_MAE"])
+                if not valid_folds.empty:
+                    best_fold = valid_folds.loc[valid_folds["GB_MAE"].idxmin()]
+                    worst_fold = valid_folds.loc[valid_folds["GB_MAE"].idxmax()]
+                    fold_insights = st.columns(2)
+                    fold_insights[0].metric(
+                        "Lowest-error fold",
+                        f"Fold {int(best_fold['fold'])}" if "fold" in best_fold else str(best_fold.name),
+                        money(best_fold["GB_MAE"]),
+                    )
+                    fold_insights[1].metric(
+                        "Highest-error fold",
+                        f"Fold {int(worst_fold['fold'])}" if "fold" in worst_fold else str(worst_fold.name),
+                        money(worst_fold["GB_MAE"]),
+                    )
+
+    # --------------------------------------------------------
+    # ERROR DIAGNOSTICS
+    # --------------------------------------------------------
+    with tab_errors:
+        section_heading(
+            "Where does the model miss?",
+            "Compare error size and prediction bias across the saved price bands.",
+        )
+
+        if error_df.empty:
+            st.info("The price-category error report is unavailable.")
+        else:
+            if "price_category" in error_df.columns:
+                error_sorted = error_df.sort_values(
+                    "mean_absolute_error" if "mean_absolute_error" in error_df.columns else "price_category",
+                    ascending=False,
+                    na_position="last",
+                )
+                st.dataframe(
+                    error_sorted.rename(columns={
+                        "price_category": "Price band",
+                        "sample_count": "Test records",
+                        "average_actual_price": "Actual mean · NPR",
+                        "average_predicted_price": "Predicted mean · NPR",
+                        "mean_absolute_error": "MAE · NPR",
+                        "mean_percentage_error": "MAPE · %",
+                        "average_signed_error": "Signed error · NPR",
+                    }),
+                    width="stretch",
+                    hide_index=True,
+                )
+
+                err_a, err_b = st.columns(2)
+                with err_a:
+                    if "mean_absolute_error" in error_df.columns:
+                        render_evaluation_bar(
+                            error_df.set_index("price_category")["mean_absolute_error"],
+                            "Mean absolute error by price band",
+                            "Error · NPR",
+                            color="#59c8f2",
+                        )
+                with err_b:
+                    if "mean_percentage_error" in error_df.columns:
+                        render_evaluation_bar(
+                            error_df.set_index("price_category")["mean_percentage_error"],
+                            "Mean percentage error by price band",
+                            "Mean percentage error",
+                            color="#82aaff",
+                            value_kind="percent",
+                        )
+
+                if "average_signed_error" in error_df.columns:
+                    render_evaluation_bar(
+                        error_df.set_index("price_category")["average_signed_error"],
+                        "Average prediction bias by price band",
+                        "Predicted − actual · NPR",
+                        color="#42d6c3",
+                    )
+                    st.caption(
+                        "Positive signed error means the model overpredicts on average; "
+                        "negative signed error means it underpredicts."
+                    )
+
+                insight_candidates = error_df.dropna(
+                    subset=["mean_absolute_error"]
+                ) if "mean_absolute_error" in error_df.columns else pd.DataFrame()
+                if not insight_candidates.empty:
+                    hardest_band = insight_candidates.loc[
+                        insight_candidates["mean_absolute_error"].idxmax()
+                    ]
+                    st.markdown(
+                        f"""
+                        <div class="evaluation-highlight">
+                          <span class="evaluation-highlight-label">LARGEST ABSOLUTE ERROR</span>
+                          <strong>{escape(str(hardest_band['price_category']))}</strong>
+                          <small>MAE · {money(hardest_band['mean_absolute_error'])}</small>
+                        </div>
+                        """,
+                        unsafe_allow_html=True,
+                    )
+
+        st.divider()
+        section_heading("Residual sign guide", "Use the sign of predicted − actual to understand direction of error.")
+        guide_cols = st.columns(2)
+        with guide_cols[0]:
+            st.markdown(
+                '<div class="evaluation-sign-card positive"><strong>Positive residual</strong><span>Overprediction · estimate is above the actual target</span></div>',
+                unsafe_allow_html=True,
+            )
+        with guide_cols[1]:
+            st.markdown(
+                '<div class="evaluation-sign-card negative"><strong>Negative residual</strong><span>Underprediction · estimate is below the actual target</span></div>',
+                unsafe_allow_html=True,
+            )
+
+    # --------------------------------------------------------
+    # ROW-LEVEL PREDICTION EXPLORER
+    # --------------------------------------------------------
+    with tab_predictions:
+        section_heading(
+            "Held-out prediction explorer",
+            "Filter individual test records, inspect residuals and export the selected diagnostic sample.",
+        )
+
+        if prediction_records.empty:
+            st.info("The row-level price_predictions.csv report is unavailable.")
+        else:
+            prediction_view = prediction_records.copy()
+            numeric_prediction_columns = [
+                "actual_price_npr",
+                "predicted_price_npr",
+                "baseline_price_prediction_npr",
+                "absolute_error_npr",
+                "signed_error_npr",
+                "percentage_error",
+            ]
+            for column in numeric_prediction_columns:
+                if column in prediction_view.columns:
+                    prediction_view[column] = pd.to_numeric(
+                        prediction_view[column], errors="coerce"
+                    )
+
+            if {"actual_price_npr", "predicted_price_npr"}.issubset(prediction_view.columns):
+                if "absolute_error_npr" not in prediction_view.columns:
+                    prediction_view["absolute_error_npr"] = (
+                        prediction_view["predicted_price_npr"]
+                        - prediction_view["actual_price_npr"]
+                    ).abs()
+                if "signed_error_npr" not in prediction_view.columns:
+                    prediction_view["signed_error_npr"] = (
+                        prediction_view["predicted_price_npr"]
+                        - prediction_view["actual_price_npr"]
+                    )
+
+                filter_frame = st.container(border=True)
+                with filter_frame:
+                    filter_cols = st.columns(2)
+                    with filter_cols[0]:
+                        neighbourhood_values = (
+                            sorted(prediction_view["neighbourhood"].dropna().astype(str).unique())
+                            if "neighbourhood" in prediction_view.columns else []
+                        )
+                        selected_neighbourhoods = st.multiselect(
+                            "Neighbourhood",
+                            neighbourhood_values,
+                            default=neighbourhood_values,
+                            key="eval_prediction_neighbourhoods",
+                        )
+                    with filter_cols[1]:
+                        property_type_values = (
+                            sorted(prediction_view["property_type"].dropna().astype(str).unique())
+                            if "property_type" in prediction_view.columns else []
+                        )
+                        selected_property_types = st.multiselect(
+                            "Property type",
+                            property_type_values,
+                            default=property_type_values,
+                            key="eval_prediction_property_types",
+                        )
+
+                    max_abs_error = float(
+                        prediction_view["absolute_error_npr"].dropna().max()
+                    ) if prediction_view["absolute_error_npr"].notna().any() else 0.0
+                    if max_abs_error > 0:
+                        max_error_filter = st.slider(
+                            "Maximum absolute error · NPR",
+                            min_value=0.0,
+                            max_value=float(np.ceil(max_abs_error)),
+                            value=float(np.ceil(max_abs_error)),
+                            step=max(1.0, float(np.ceil(max_abs_error / 100))),
+                            key="eval_prediction_max_error",
+                        )
+                    else:
+                        max_error_filter = 0.0
+                        st.caption("Absolute error range is not available for this report.")
+
+                filtered_predictions = prediction_view.copy()
+                if "neighbourhood" in filtered_predictions.columns:
+                    filtered_predictions = filtered_predictions[
+                        filtered_predictions["neighbourhood"].astype(str).isin(selected_neighbourhoods)
+                    ]
+                if "property_type" in filtered_predictions.columns:
+                    filtered_predictions = filtered_predictions[
+                        filtered_predictions["property_type"].astype(str).isin(selected_property_types)
+                    ]
+                if max_abs_error > 0:
+                    filtered_predictions = filtered_predictions[
+                        filtered_predictions["absolute_error_npr"].le(max_error_filter)
+                        | filtered_predictions["absolute_error_npr"].isna()
+                    ]
+
+                if filtered_predictions.empty:
+                    st.warning("No test records match the selected filters.")
+                else:
+                    filtered_mae = filtered_predictions["absolute_error_npr"].mean()
+                    filtered_mape = (
+                        filtered_predictions["percentage_error"].mean()
+                        if "percentage_error" in filtered_predictions.columns else np.nan
+                    )
+                    filtered_metrics = st.columns(4)
+                    filtered_metrics[0].metric("Test records", f"{len(filtered_predictions):,}")
+                    filtered_metrics[1].metric("Filtered MAE", money(filtered_mae))
+                    filtered_metrics[2].metric(
+                        "Median absolute error",
+                        money(filtered_predictions["absolute_error_npr"].median()),
+                    )
+                    filtered_metrics[3].metric(
+                        "Mean percentage error",
+                        f"{filtered_mape:.2f}%" if pd.notna(filtered_mape) else "N/A",
+                    )
+
+                    plot_left, plot_right = st.columns(2)
+                    with plot_left:
+                        x = filtered_predictions["actual_price_npr"]
+                        y = filtered_predictions["predicted_price_npr"]
+                        valid_xy = pd.DataFrame({"actual": x, "predicted": y}).dropna()
+                        if not valid_xy.empty:
+                            fig, ax = plt.subplots(figsize=(7.2, 4.2), dpi=120)
+                            fig.patch.set_facecolor("#101d30")
+                            ax.set_facecolor("#101d30")
+                            ax.scatter(
+                                valid_xy["actual"], valid_xy["predicted"],
+                                s=25, alpha=.78, color="#59c8f2",
+                                edgecolors="none",
+                            )
+                            low = float(min(valid_xy.min().min(), 0))
+                            high = float(max(valid_xy.max().max(), 1))
+                            ax.plot([low, high], [low, high], color="#42d6c3", linewidth=1.7, linestyle="--", label="Perfect prediction")
+                            ax.set_xlim(left=low)
+                            ax.set_ylim(bottom=low)
+                            ax.set_xlabel("Actual target price · NPR", color="#91a8bd", fontsize=8)
+                            ax.set_ylabel("Predicted price · NPR", color="#91a8bd", fontsize=8)
+                            ax.set_title("Actual vs predicted", color="#edf4fb", loc="left", fontsize=10, pad=11, fontweight="bold")
+                            ax.tick_params(colors="#b8c9d9", labelsize=8)
+                            for spine in ax.spines.values():
+                                spine.set_visible(False)
+                            ax.grid(color="#34475d", alpha=.48, linewidth=.8)
+                            ax.legend(frameon=False, labelcolor="#c3d2df", fontsize=8)
+                            fig.tight_layout(pad=1.2)
+                            st.pyplot(fig, width="stretch", clear_figure=True)
+                            plt.close(fig)
+
+                    with plot_right:
+                        render_evaluation_bar(
+                            filtered_predictions.set_index(
+                                filtered_predictions.get(
+                                    "property_id",
+                                    pd.Series(filtered_predictions.index, index=filtered_predictions.index),
+                                ).astype(str)
+                            )["absolute_error_npr"].sort_values(ascending=True).tail(12),
+                            "Largest absolute errors in the filtered sample",
+                            "Absolute error · NPR",
+                            color="#82aaff",
+                        )
+
+                    residual_columns = [
+                        column for column in [
+                            "property_id", "neighbourhood", "property_type", "room_type",
+                            "actual_price_npr", "predicted_price_npr",
+                            "absolute_error_npr", "signed_error_npr", "percentage_error",
+                        ]
+                        if column in filtered_predictions.columns
+                    ]
+                    worst_predictions = filtered_predictions.sort_values(
+                        "absolute_error_npr", ascending=False, na_position="last"
+                    )
+                    st.markdown("#### Largest individual prediction errors")
+                    st.dataframe(
+                        worst_predictions[residual_columns].head(20).rename(columns={
+                            "property_id": "Property ID",
+                            "neighbourhood": "Neighbourhood",
+                            "property_type": "Property type",
+                            "room_type": "Room type",
+                            "actual_price_npr": "Actual · NPR",
+                            "predicted_price_npr": "Predicted · NPR",
+                            "absolute_error_npr": "Absolute error · NPR",
+                            "signed_error_npr": "Signed error · NPR",
+                            "percentage_error": "Percentage error · %",
+                        }),
+                        width="stretch",
+                        hide_index=True,
+                    )
+                    st.download_button(
+                        "Download filtered prediction diagnostics",
+                        filtered_predictions.to_csv(index=False).encode("utf-8"),
+                        file_name="filtered_prediction_diagnostics.csv",
+                        mime="text/csv",
+                        key="eval_prediction_export",
+                        use_container_width=True,
+                    )
+            else:
+                st.warning("The row-level report does not contain the required actual and predicted price fields.")
+
+    st.divider()
+    st.caption(
+        "Evaluation results are saved project reports based on the current prepared datasets. "
+        "They are useful for experimentation and comparison, not evidence of live-market performance."
+    )
 
 
 # ============================================================
