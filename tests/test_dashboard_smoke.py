@@ -9,11 +9,11 @@ from streamlit.testing.v1 import AppTest
 ROOT = Path(__file__).resolve().parents[1]
 APP_PATH = ROOT / "app.py"
 WORKSPACES = (
-    "Executive Analytics",
+    "Market Overview",
     "Property Recommendations",
     "Price Prediction",
-    "Data Analysis",
-    "Model Evaluation",
+    "Data Explorer",
+    "Model Performance",
 )
 
 

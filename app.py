@@ -747,19 +747,19 @@ with st.sidebar:
     page = st.radio(
         "WORKSPACE",
         [
-            "Executive Analytics",
+            "Market Overview",
             "Property Recommendations",
             "Price Prediction",
-            "Data Analysis",
-            "Model Evaluation",
+            "Data Explorer",
+            "Model Performance",
         ],
         label_visibility="visible",
         format_func=lambda item: {
-            "Executive Analytics": "▦  Executive Analytics",
+            "Market Overview": "▦  Market Overview",
             "Property Recommendations": "⌕  Property Recommendations",
             "Price Prediction": "↗  Price Prediction",
-            "Data Analysis": "◫  Data Analysis",
-            "Model Evaluation": "◎  Model Evaluation",
+            "Data Explorer": "◫  Data Explorer",
+            "Model Performance": "◎  Model Performance",
         }.get(item, item),
     )
 
@@ -791,7 +791,7 @@ with st.sidebar:
 # 6. OVERVIEW
 # ============================================================
 
-if page == "Executive Analytics":
+if page == "Market Overview":
 
     page_header(
         "EXECUTIVE ANALYTICS",
@@ -2144,7 +2144,7 @@ elif page == "Price Prediction":
 # 9. DATA ANALYSIS
 # ============================================================
 
-elif page == "Data Analysis":
+elif page == "Data Explorer":
 
     page_header(
         "DATA INTELLIGENCE",
@@ -2379,7 +2379,7 @@ elif page == "Data Analysis":
 # 10. MODEL EVALUATION
 # ============================================================
 
-elif page == "Model Evaluation":
+elif page == "Model Performance":
 
     page_header(
         "MODEL INTELLIGENCE",
