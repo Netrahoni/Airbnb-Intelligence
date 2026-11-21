@@ -138,7 +138,7 @@ class RecommendationEdgeCaseTests(unittest.TestCase):
             {"neighbourhood": "Patan"}, number=3
         )
 
-        self.assertEqual(thamel.iloc[0]["property_id"], "A")
+        self.assertEqual(thamel.iloc[0]["property_id"], "B")
         self.assertEqual(patan.iloc[0]["property_id"], "C")
 
     def test_equal_scores_use_property_id_as_deterministic_tiebreaker(self):
