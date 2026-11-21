@@ -85,6 +85,7 @@ sample_properties = published.sample(
 scenario_results = []
 similarity_results = []
 component_results = []
+execution_results = []
 
 print("\n========== PERSONALIZED RECOMMENDATION QUALITY ==========\n")
 
@@ -120,6 +121,8 @@ for index, property_row in sample_properties.iterrows():
         "guests": capacity,
     }
 
+    execution = {"evaluation_type": "personalized", "scenario_id": index + 1, "reference_property_id": property_id}
+
     try:
 
         results = engine.recommend_personalized(
@@ -128,6 +131,8 @@ for index, property_row in sample_properties.iterrows():
         )
 
         if results.empty:
+            execution.update(status="empty_results", result_count=0, error="No eligible recommendations")
+            execution_results.append(execution)
             continue
 
         prices = pd.to_numeric(
@@ -169,6 +174,8 @@ for index, property_row in sample_properties.iterrows():
         }
 
         add_result(scenario_results, row)
+        execution.update(status="success", result_count=len(results), error="")
+        execution_results.append(execution)
 
         # Collect recommendation component scores if available.
         score_columns = [
@@ -189,6 +196,8 @@ for index, property_row in sample_properties.iterrows():
                 })
 
     except Exception as error:
+        execution.update(status="failed", result_count=0, error=str(error))
+        execution_results.append(execution)
         print(f"[WARNING] Scenario {index + 1} failed: {error}")
 
 
@@ -202,6 +211,8 @@ for index, property_row in sample_properties.iterrows():
 
     property_id = property_row["property_id"]
 
+    execution = {"evaluation_type": "similarity", "scenario_id": index + 1, "reference_property_id": property_id}
+
     try:
 
         results = engine.recommend_similar(
@@ -210,6 +221,8 @@ for index, property_row in sample_properties.iterrows():
         )
 
         if results.empty:
+            execution.update(status="empty_results", result_count=0, error="No eligible similar properties")
+            execution_results.append(execution)
             continue
 
         reference_price = safe_number(
@@ -252,8 +265,12 @@ for index, property_row in sample_properties.iterrows():
         }
 
         similarity_results.append(row)
+        execution.update(status="success", result_count=len(results), error="")
+        execution_results.append(execution)
 
     except Exception as error:
+        execution.update(status="failed", result_count=0, error=str(error))
+        execution_results.append(execution)
         print(f"[WARNING] Similarity scenario {index + 1} failed: {error}")
 
 
@@ -264,6 +281,7 @@ for index, property_row in sample_properties.iterrows():
 personalized_df = pd.DataFrame(scenario_results)
 similarity_df = pd.DataFrame(similarity_results)
 components_df = pd.DataFrame(component_results)
+execution_df = pd.DataFrame(execution_results)
 
 
 # ============================================================
@@ -422,6 +440,7 @@ reports = {
     "recommendation_personalized_summary.csv": personalized_summary,
     "recommendation_similarity_summary.csv": similarity_summary,
     "recommendation_score_distribution.csv": score_distribution,
+    "recommendation_evaluation_execution.csv": execution_df,
 }
 
 print("\n========== SAVING EVALUATION REPORTS ==========\n")
@@ -443,6 +462,12 @@ print("\n========== FINAL QUALITY EVALUATION ==========\n")
 
 print(f"Personalized scenarios evaluated: {len(personalized_df)}")
 print(f"Similarity scenarios evaluated: {len(similarity_df)}")
+if not execution_df.empty:
+    print("Scenario execution status:")
+    print(execution_df.groupby(["evaluation_type", "status"]).size().to_string())
+    failed_count = int(execution_df["status"].eq("failed").sum())
+    if failed_count:
+        print(f"\n[ERROR] {failed_count} evaluation scenario(s) failed. See recommendation_evaluation_execution.csv.")
 
 if not personalized_df.empty:
 
@@ -468,5 +493,11 @@ print(
     "These are heuristic relevance and preference-match diagnostics. "
     "They are not ground-truth accuracy, precision, recall, or user satisfaction."
 )
+
+if execution_df.empty or not execution_df["status"].eq("success").any():
+    raise RuntimeError("No recommendation evaluation scenarios completed successfully.")
+
+if execution_df["status"].eq("failed").any():
+    raise SystemExit(1)
 
 print("\nSUCCESS: Recommendation quality evaluation completed.")
