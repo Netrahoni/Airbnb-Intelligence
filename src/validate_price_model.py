@@ -11,11 +11,7 @@ from sklearn.preprocessing import OneHotEncoder
 from sklearn.pipeline import Pipeline
 from sklearn.ensemble import GradientBoostingRegressor
 
-from sklearn.metrics import (
-    mean_absolute_error,
-    mean_squared_error,
-    r2_score
-)
+from src.model_evaluation import regression_metrics, ensure_group_disjoint
 
 # --------------------------------------------------
 # 1. Load and prepare data
@@ -99,10 +95,9 @@ for fold, (train_index, test_index) in enumerate(
     y_train = y.iloc[train_index]
     y_test = y.iloc[test_index]
 
+    ensure_group_disjoint(groups.to_numpy(), train_index, test_index)
     train_groups = set(groups.iloc[train_index])
     test_groups = set(groups.iloc[test_index])
-
-    assert train_groups.isdisjoint(test_groups)
 
     # Preprocessing
     preprocessor = ColumnTransformer(
@@ -156,28 +151,16 @@ for fold, (train_index, test_index) in enumerate(
     baseline_predictions = X_test["nightly_price_npr"]
 
     # Model metrics
-    model_mae = mean_absolute_error(
-        y_test, predictions
-    )
-
-    model_rmse = np.sqrt(
-        mean_squared_error(y_test, predictions)
-    )
-
-    model_r2 = r2_score(y_test, predictions)
+    model_metrics = regression_metrics(y_test, predictions)
+    model_mae = model_metrics["MAE"]
+    model_rmse = model_metrics["RMSE"]
+    model_r2 = model_metrics["R2"]
 
     # Baseline metrics
-    baseline_mae = mean_absolute_error(
-        y_test, baseline_predictions
-    )
-
-    baseline_rmse = np.sqrt(
-        mean_squared_error(y_test, baseline_predictions)
-    )
-
-    baseline_r2 = r2_score(
-        y_test, baseline_predictions
-    )
+    baseline_metrics = regression_metrics(y_test, baseline_predictions)
+    baseline_mae = baseline_metrics["MAE"]
+    baseline_rmse = baseline_metrics["RMSE"]
+    baseline_r2 = baseline_metrics["R2"]
 
     results.append({
         "fold": fold,
