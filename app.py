@@ -703,7 +703,7 @@ def render_price_distribution(prices):
                     linestyle="--", label=f"Median · NPR {values.median():,.0f}")
     hist_ax.set_ylabel("Observations", fontsize=8)
     hist_ax.legend(frameon=False, labelcolor="#c3d2df", fontsize=8)
-    box_ax.boxplot(values, vert=False, patch_artist=True,
+    box_ax.boxplot(values, orientation="horizontal", patch_artist=True,
                    boxprops={"facecolor": "#17617a", "edgecolor": "#59c8f2"},
                    medianprops={"color": "#42d6c3", "linewidth": 2},
                    whiskerprops={"color": "#8fa8bf"},
