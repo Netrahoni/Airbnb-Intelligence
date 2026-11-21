@@ -301,23 +301,7 @@ section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p { color: 
 }
 .section-label { margin: .25rem 0 .8rem; }
 
-/* KPI cards, panels and data displays */
-[data-testid="stMetric"] {
-  min-height: 116px;
-  padding: 1.05rem 1.1rem;
-  border: 1px solid var(--line);
-  border-radius: 15px;
-  background: linear-gradient(145deg, rgba(20,36,57,.98), rgba(13,25,42,.98));
-  box-shadow: 0 9px 25px rgba(0,0,0,.12);
-  transition: transform .18s ease, border-color .18s ease;
-}
-[data-testid="stMetric"]:hover {
-  transform: translateY(-2px);
-  border-color: rgba(66,214,195,.40);
-}
-[data-testid="stMetricLabel"] { color: #a6b8cc !important; font-size: .78rem !important; font-weight: 600 !important; }
-[data-testid="stMetricValue"] { color: #f5faff !important; font-family: 'Manrope', sans-serif; font-size: clamp(1.25rem,2vw,1.75rem) !important; font-weight: 800 !important; letter-spacing: -.04em; }
-[data-testid="stMetricDelta"] { font-size: .76rem !important; }
+/* Panels and data displays */
 [data-testid="stVerticalBlockBorderWrapper"] {
   border-color: var(--line) !important;
   border-radius: 15px !important;
@@ -382,7 +366,6 @@ hr { border-color: var(--line); margin: 1.25rem 0; }
   .sidebar-project-meta { padding: .78rem .82rem; }
   .hero { padding: 1.25rem; border-radius: 15px; }
   .hero-title { font-size: 1.75rem; }
-  [data-testid="stMetric"] { min-height: 96px; padding: .85rem; }
 }
 </style>
 """, unsafe_allow_html=True)
@@ -591,38 +574,6 @@ def published_data(frame):
 
 
 
-def render_kpi_card(label, value, context, progress, symbol, accent="cyan"):
-    """Render a compact executive KPI card with a contextual indicator."""
-    try:
-        progress_value = min(100.0, max(0.0, float(progress)))
-    except (TypeError, ValueError):
-        progress_value = 0.0
-
-    safe_label = escape(str(label))
-    safe_value = escape(str(value))
-    safe_context = escape(str(context))
-    safe_symbol = escape(str(symbol))
-    safe_accent = accent if accent in {"cyan", "teal", "blue"} else "cyan"
-
-    st.markdown(
-        f"""
-        <article class="executive-kpi {safe_accent}">
-          <div class="executive-kpi-head">
-            <span class="executive-kpi-symbol" aria-hidden="true">{safe_symbol}</span>
-            <span class="executive-kpi-label">{safe_label}</span>
-            <span class="executive-kpi-indicator" aria-hidden="true"></span>
-          </div>
-          <div class="executive-kpi-value">{safe_value}</div>
-          <div class="executive-kpi-context">{safe_context}</div>
-          <div class="executive-kpi-track" role="img" aria-label="{safe_label} indicator: {progress_value:.1f}%">
-            <span style="width:{progress_value:.1f}%"></span>
-          </div>
-        </article>
-        """,
-        unsafe_allow_html=True,
-    )
-
-
 def _style_chart_axis(ax):
     """Apply the shared dark navy / cyan dashboard chart palette."""
     ax.set_facecolor("#101d30")
@@ -777,22 +728,197 @@ logo_mark_svg = (ROOT / "assets" / "airbnb-intelligence-mark.svg").read_text(enc
 with st.sidebar:
     st.markdown(
         f"""
-        <div class="brand-shell">
-          <div class="brand-logo-wrap">
+        <style>
+          @keyframes ambientPulse {{
+            0%, 100% {{
+              box-shadow: 0 0 14px rgba(34, 211, 238, 0.16), inset 0 0 10px rgba(34, 211, 238, 0.08);
+            }}
+            50% {{
+              box-shadow: 0 0 24px rgba(34, 211, 238, 0.34), inset 0 0 14px rgba(34, 211, 238, 0.16);
+            }}
+          }}
+
+          @keyframes statusBlink {{
+            0%, 100% {{ opacity: 1; transform: scale(1); }}
+            50% {{ opacity: 0.45; transform: scale(0.85); }}
+          }}
+
+          .ai-brand-shell {{
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            padding: 14px;
+            border-radius: 16px;
+            background: linear-gradient(145deg, rgba(15, 23, 42, 0.92), rgba(30, 41, 59, 0.55));
+            border: 1px solid rgba(56, 189, 248, 0.22);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 10px 28px -8px rgba(0, 0, 0, 0.55);
+            transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+                        border-color 0.28s ease,
+                        box-shadow 0.28s ease;
+          }}
+
+          .ai-brand-shell::before {{
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 12%;
+            right: 12%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(125, 211, 252, 0.65), transparent);
+          }}
+
+          .ai-brand-shell::after {{
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -120%;
+            width: 75%;
+            height: 100%;
+            background: linear-gradient(
+              115deg,
+              transparent 0%,
+              rgba(255, 255, 255, 0.06) 50%,
+              transparent 100%
+            );
+            transition: left 0.65s ease;
+            pointer-events: none;
+          }}
+
+          .ai-brand-shell:hover {{
+            transform: translateY(-2px);
+            border-color: rgba(56, 189, 248, 0.52);
+            box-shadow: 0 14px 32px -6px rgba(8, 145, 178, 0.28);
+          }}
+
+          .ai-brand-shell:hover::after {{
+            left: 140%;
+          }}
+
+          .ai-brand-logo-wrap {{
+            position: relative;
+            width: 48px;
+            height: 48px;
+            min-width: 48px;
+            border-radius: 13px;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border: 1px solid rgba(56, 189, 248, 0.45);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: ambientPulse 4s ease-in-out infinite;
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+          }}
+
+          .ai-brand-shell:hover .ai-brand-logo-wrap {{
+            transform: scale(1.06) rotate(-2deg);
+          }}
+
+          .ai-brand-logo-wrap img {{
+            width: 30px;
+            height: 30px;
+            object-fit: contain;
+          }}
+
+          .ai-brand-copy {{
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+          }}
+
+          .ai-brand-eyebrow {{
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.62rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #38bdf8;
+            margin-bottom: 2px;
+          }}
+
+          .ai-brand-dot {{
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #22d3ee;
+            box-shadow: 0 0 8px #22d3ee;
+            animation: statusBlink 2.4s ease-in-out infinite;
+          }}
+
+          .ai-brand-title {{
+            font-size: 1.02rem;
+            font-weight: 750;
+            line-height: 1.2;
+            letter-spacing: -0.015em;
+            background: linear-gradient(90deg, #ffffff 0%, #bae6fd 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+          }}
+
+          .ai-brand-tagline {{
+            font-size: 0.73rem;
+            line-height: 1.32;
+            color: #94a3b8;
+            margin-top: 3px;
+          }}
+
+          .ai-brand-divider {{
+            height: 1px;
+            margin: 14px 0 16px;
+            border: none;
+            background: linear-gradient(90deg, transparent, rgba(148, 163, 184, 0.22), transparent);
+          }}
+
+          @media (prefers-reduced-motion: reduce) {{
+            .ai-brand-logo-wrap,
+            .ai-brand-dot {{
+              animation: none;
+            }}
+            .ai-brand-shell,
+            .ai-brand-logo-wrap,
+            .ai-brand-shell::after {{
+              transition: none;
+            }}
+          }}
+
+          .st-key-explore_page label {{
+            transition: transform 0.12s ease, box-shadow 0.12s ease !important;
+          }}
+
+          .st-key-explore_page label:active {{
+            transform: scale(0.97) !important;
+            box-shadow: inset 0 0 0 1px rgba(34, 211, 238, 0.45) !important;
+          }}
+
+          @media (prefers-reduced-motion: reduce) {{
+            .st-key-explore_page label {{
+              transition: none;
+            }}
+          }}
+        </style>
+
+        <div class="ai-brand-shell">
+          <div class="ai-brand-logo-wrap">
             <img src="data:image/svg+xml;utf8,{quote(logo_mark_svg)}" alt="Airbnb Intelligence brand mark">
           </div>
-          <div class="brand-copy">
-            <div class="brand-title">Airbnb Intelligence</div>
-            <div class="brand-tagline">Turning accommodation data into intelligent decisions.</div>
+          <div class="ai-brand-copy">
+            <div class="ai-brand-eyebrow"><span class="ai-brand-dot"></span>Analytics Suite</div>
+            <div class="ai-brand-title">Airbnb Intelligence</div>
+            <div class="ai-brand-tagline">Turning accommodation data into intelligent decisions.</div>
           </div>
         </div>
+        <hr class="ai-brand-divider">
         """,
         unsafe_allow_html=True,
     )
-    st.divider()
 
     page = st.radio(
-        "WORKSPACE",
+        "EXPLORE",
         [
             "Market Overview",
             "Property Recommendations",
@@ -801,6 +927,7 @@ with st.sidebar:
             "Model Performance",
         ],
         label_visibility="visible",
+        key="explore_page",
         format_func=lambda item: {
             "Market Overview": "▦  Market Overview",
             "Property Recommendations": "⌕  Property Recommendations",
@@ -834,13 +961,6 @@ if page == "Market Overview":
         "Market Overview",
         "A decision-support view of accommodation inventory, sample pricing, "
         "neighbourhood patterns and Nepal tourism context.",
-    )
-
-    st.warning(
-        "Data transparency: Property and price observations include synthetic "
-        "sample data. They are not verified live Airbnb listings, actual market "
-        "prices, revenue, or confirmed bookings. Tourist arrivals are Nepal-wide "
-        "context and must not be interpreted as Kathmandu-only demand."
     )
 
     with st.container(border=True):
@@ -936,88 +1056,6 @@ if page == "Market Overview":
         st.warning("No properties match the current filters. Adjust a filter or reset the selection.")
 
     prices = numeric(executive_properties["nightly_price_npr"]).dropna() if "nightly_price_npr" in executive_properties else pd.Series(dtype=float)
-    ratings = numeric(executive_properties["rating"]).dropna() if "rating" in executive_properties else pd.Series(dtype=float)
-    total = len(executive_properties)
-    published = len(published_data(executive_properties))
-    avg_price = prices.mean() if not prices.empty else np.nan
-    median_price = prices.median() if not prices.empty else np.nan
-    avg_rating = ratings.mean() if not ratings.empty else np.nan
-
-    st.markdown(
-        '<div class="section-label">EXECUTIVE PERFORMANCE SNAPSHOT</div>',
-        unsafe_allow_html=True,
-    )
-    st.markdown("### Accommodation Portfolio Overview")
-    st.caption(
-        "A high-level snapshot of the selected accommodation inventory "
-        "and its sample pricing characteristics."
-    )
-    publication_rate = (published / total * 100) if total else 0
-    full_inventory = max(len(properties), 1)
-    price_scale = max(float(price_ceiling), 1.0)
-
-    kpi_row_one = st.columns(3, gap="medium")
-    with kpi_row_one[0]:
-        render_kpi_card(
-            "Total properties",
-            f"{total:,}",
-            f"Filtered from {len(properties):,} sample records",
-            total / full_inventory * 100,
-            "⌂",
-            "cyan",
-        )
-    with kpi_row_one[1]:
-        render_kpi_card(
-            "Published properties",
-            f"{published:,}",
-            "Records marked as published",
-            published / total * 100 if total else 0,
-            "✓",
-            "teal",
-        )
-    with kpi_row_one[2]:
-        render_kpi_card(
-            "Publication rate",
-            f"{publication_rate:.1f}%",
-            "Published share of selected inventory",
-            publication_rate,
-            "%",
-            "blue",
-        )
-
-    kpi_row_two = st.columns(3, gap="medium")
-    with kpi_row_two[0]:
-        render_kpi_card(
-            "Average nightly price",
-            money(avg_price),
-            "Mean sample price · NPR per night",
-            (avg_price / price_scale * 100) if pd.notna(avg_price) else 0,
-            "↗",
-            "cyan",
-        )
-    with kpi_row_two[1]:
-        render_kpi_card(
-            "Median nightly price",
-            money(median_price),
-            "Middle value · less sensitive to outliers",
-            (median_price / price_scale * 100) if pd.notna(median_price) else 0,
-            "◆",
-            "teal",
-        )
-    with kpi_row_two[2]:
-        render_kpi_card(
-            "Average guest rating",
-            f"{avg_rating:.2f} / 5" if pd.notna(avg_rating) else "N/A",
-            "Mean rating among records with a rating",
-            (avg_rating / 5 * 100) if pd.notna(avg_rating) else 0,
-            "★",
-            "blue",
-        )
-    st.caption(
-        f"Showing {total:,} of {len(properties):,} property records. "
-        "Price and rating values are sample dataset statistics, not verified market benchmarks."
-    )
-
     # ========================================================
     # MARKET INTELLIGENCE
     # ========================================================
@@ -1057,20 +1095,12 @@ if page == "Market Overview":
             ].mean()
 
     # Dynamic findings are calculated from the currently filtered sample only.
-    insight_columns = st.columns(3)
     median_prices = (
         neighbourhood_summary["Median_Price"].dropna()
         if "Median_Price" in neighbourhood_summary else pd.Series(dtype=float)
     )
     if not median_prices.empty:
         highest_median_area = str(median_prices.idxmax())
-        insight_columns[0].metric(
-            "Highest median-price area", highest_median_area,
-            help=f"Median sample nightly price: {money(median_prices.max())}.",
-        )
-        insight_columns[0].caption(f"Median sample price · {money(median_prices.max())}")
-    else:
-        insight_columns[0].metric("Highest median-price area", "N/A")
 
     inventory_segments = (
         market_data["property_type"].fillna("Unspecified").value_counts()
@@ -1079,20 +1109,11 @@ if page == "Market Overview":
     if not inventory_segments.empty and len(market_data):
         largest_segment = str(inventory_segments.index[0])
         segment_share = float(inventory_segments.iloc[0] / len(market_data) * 100)
-        insight_columns[1].metric("Largest inventory segment", largest_segment)
-        insight_columns[1].caption(f"{segment_share:.1f}% of filtered sample records")
-    else:
-        insight_columns[1].metric("Largest inventory segment", "N/A")
 
     rating_coverage = (
         market_data["rating"].notna().mean() * 100
         if "rating" in market_data else np.nan
     )
-    insight_columns[2].metric(
-        "Rating coverage", f"{rating_coverage:.1f}%" if pd.notna(rating_coverage) else "N/A"
-    )
-    insight_columns[2].caption("Share of selected records with a rating")
-
     # A short narrative insight makes the dashboard useful without implying
     # statistical significance or live-market verification.
     insight_parts = []
@@ -1218,10 +1239,6 @@ if page == "Market Overview":
     )
     if not prices.empty:
         render_price_distribution(prices)
-        p1, p2, p3 = st.columns(3)
-        p1.metric("Lowest Sample Price", money(prices.min()))
-        p2.metric("Highest Sample Price", money(prices.max()))
-        p3.metric("Sample Price Range", money(prices.max() - prices.min()))
     else:
         st.info("No valid nightly-price values match the selected filters.")
 
@@ -1270,37 +1287,6 @@ if page == "Market Overview":
 
         if not pricing.empty:
 
-            # ------------------------------------------------
-            # PRICING KPI SNAPSHOT
-            # ------------------------------------------------
-
-            unique_properties = pricing["property_id"].nunique()
-
-            avg_observed = pricing["base_price_npr"].mean()
-            median_observed = pricing["base_price_npr"].median()
-
-            p1, p2, p3, p4 = st.columns(4)
-
-            p1.metric(
-                "Price Observations",
-                f"{len(pricing):,}",
-            )
-
-            p2.metric(
-                "Unique Properties",
-                f"{unique_properties:,}",
-            )
-
-            p3.metric(
-                "Average Observed Price",
-                money(avg_observed),
-            )
-
-            p4.metric(
-                "Median Observed Price",
-                money(median_observed),
-            )
-
             st.caption(
                 "All figures represent synthetic sample price observations. "
                 "They are not verified live market prices."
@@ -1339,22 +1325,6 @@ if page == "Market Overview":
                         Median_Price=("base_price_npr", "median"),
                     )
                 )
-
-                segment_columns = st.columns(4)
-
-                for column, segment_name in zip(
-                    segment_columns,
-                    ["Budget", "Mid-range", "Premium", "Luxury"],
-                ):
-                    segment = segment_summary.loc[segment_name]
-                    column.metric(
-                        segment_name,
-                        money(segment["Median_Price"]),
-                        f"{int(segment['Observations']):,} observations",
-                    )
-                    column.caption(
-                        f"{int(segment['Properties']):,} unique properties"
-                    )
 
                 left, right = st.columns(2)
 
@@ -1537,83 +1507,6 @@ if page == "Market Overview":
                     "for price variation analysis."
                 )
 
-            # ------------------------------------------------
-            # EXECUTIVE PRICING INSIGHTS
-            # ------------------------------------------------
-
-            st.divider()
-
-            section_heading(
-                "Executive Pricing Insights",
-                "Key observations generated from the selected pricing sample.",
-            )
-
-            insight1, insight2, insight3 = st.columns(3)
-
-            lowest_price = pricing["base_price_npr"].min()
-            highest_price = pricing["base_price_npr"].max()
-            price_spread = (
-                f"{highest_price / lowest_price:.1f}x spread"
-                if lowest_price > 0
-                else None
-            )
-
-            insight1.metric(
-                "Observed Price Range",
-                money(highest_price - lowest_price),
-                price_spread,
-            )
-
-            insight1.caption(
-                "Difference between the highest and lowest sample prices."
-            )
-
-            eligible_areas = (
-                pricing.groupby("neighbourhood")["base_price_npr"]
-                .agg(["median", "count"])
-            )
-
-            eligible_areas = eligible_areas[
-                eligible_areas["count"] >= 3
-            ].sort_values("median", ascending=False)
-
-            if not eligible_areas.empty:
-
-                insight2.metric(
-                    "Highest Median Price Area",
-                    str(eligible_areas.index[0]),
-                    money(eligible_areas.iloc[0]["median"]),
-                )
-
-                insight2.caption(
-                    f"{int(eligible_areas.iloc[0]['count'])} observations."
-                )
-
-            else:
-
-                insight2.metric("Highest Median Price Area", "N/A")
-
-            if not volatility.empty:
-
-                highest_variation = volatility.sort_values(
-                    "Price_CV_Percent",
-                    ascending=False,
-                ).iloc[0]
-
-                insight3.metric(
-                    "Highest Price Variation",
-                    str(highest_variation.name),
-                    f"{highest_variation['Price_CV_Percent']:.1f}% CV",
-                )
-
-                insight3.caption(
-                    "Based on relative price dispersion."
-                )
-
-            else:
-
-                insight3.metric("Highest Price Variation", "N/A")
-
             st.info(
                 "Business interpretation: Price segmentation helps "
                 "organize accommodation offerings. Neighbourhood "
@@ -1782,10 +1675,11 @@ if page == "Market Overview":
         tourism = tourism.dropna(subset=["month_date", "tourist_arrivals"]).sort_values("month_date")
         if not tourism.empty:
             latest = tourism.iloc[-1]
-            t1, t2 = st.columns([1, 2])
-            t1.metric("Latest Monthly Arrivals", f"{int(latest['tourist_arrivals']):,}")
-            t1.caption(f"Nepal · {latest['month_date'].strftime('%B %Y')}")
-            t2.line_chart(
+            st.caption(
+                f"Nepal · {latest['month_date'].strftime('%B %Y')}. "
+                "The chart shows the monthly visitor-arrival trend."
+            )
+            st.line_chart(
                 tourism.set_index("month_date")[["tourist_arrivals"]].tail(36),
                 color="#59C8F2",
             )
@@ -1813,10 +1707,6 @@ if page == "Market Overview":
             unavailable_n = statuses.isin(["false", "0", "no", "unavailable"]).sum()
             status_total = available_n + unavailable_n
             if status_total:
-                a1, a2, a3 = st.columns(3)
-                a1.metric("Availability Records", f"{status_total:,}")
-                a2.metric("Available Share", f"{available_n / status_total * 100:.1f}%")
-                a3.metric("Unavailable Share", f"{unavailable_n / status_total * 100:.1f}%")
                 st.caption("These are recorded availability statuses, not confirmed occupancy or completed bookings.")
             else:
                 st.info("Availability records exist, but status values are not interpretable.")
@@ -1828,10 +1718,7 @@ if page == "Market Overview":
     if not occupancy_context.empty and "occupancy_rate" in occupancy_context:
         occupancy_values = numeric(occupancy_context["occupancy_rate"]).dropna()
         if not occupancy_values.empty:
-            rate = occupancy_values.mean()
-            if occupancy_values.max() <= 1:
-                rate *= 100
-            st.metric("Mean Source Occupancy Rate", f"{rate:.1f}%")
+            st.caption("Valid source occupancy observations are available; occupancy is not inferred from availability.")
         else:
             st.caption("Occupancy file exists but contains no valid occupancy-rate observations.")
     else:
@@ -1890,17 +1777,13 @@ elif page == "Property Recommendations":
 
         st.markdown("#### Selected Property")
 
-        a, b, c, d = st.columns(4)
-
-        a.metric("Nightly Price", money(selected["nightly_price_npr"]))
-        b.metric("Rating", f"{selected['rating']} / 5")
-        c.metric("Reviews", f"{int(selected['review_count']):,}")
-        d.metric("Capacity", f"{int(selected['capacity'])} guests")
-
         st.caption(
             f"📍 {selected['neighbourhood']}  ·  "
-            f"{selected['property_type']}  ·  "
-            f"{selected['room_type']}"
+            f"{selected['property_type']}  ·  {selected['room_type']}  ·  "
+            f"{money(selected['nightly_price_npr'])} per night  ·  "
+            f"{selected['rating']} / 5 rating  ·  "
+            f"{int(selected['review_count']):,} reviews  ·  "
+            f"{int(selected['capacity'])} guests"
         )
 
         st.write(selected["description"])
@@ -2068,11 +1951,6 @@ elif page == "Price Prediction":
 
         selected = choices.iloc[labels.index(selected_label)]
 
-        st.metric(
-            "Current Baseline Nightly Price",
-            money(selected["nightly_price_npr"]),
-        )
-
         col1, col2 = st.columns(2)
 
         with col1:
@@ -2146,11 +2024,6 @@ elif page == "Price Prediction":
                 unsafe_allow_html=True,
             )
 
-            p1, p2, p3 = st.columns(3)
-            p1.metric("Estimated Nightly Price", money(prediction))
-            p2.metric("Baseline Nightly Price", money(baseline))
-            p3.metric("Absolute Difference", money(abs(difference)))
-
             comparison = pd.Series(
                 {"Baseline": baseline, "Model estimate": prediction},
                 dtype=float,
@@ -2189,12 +2062,6 @@ elif page == "Data Explorer":
         "understanding distributions and exporting clean analysis extracts.",
     )
 
-    st.info(
-        "Data provenance: the property and price datasets contain synthetic "
-        "sample records. Availability and price observations are not live "
-        "booking inventory or verified market transactions."
-    )
-
     def render_dataset_workspace(frame, dataset_name, key_prefix, filter_columns=()):
         """Render a consistent, defensive dataset exploration workspace."""
         if frame.empty:
@@ -2202,17 +2069,7 @@ elif page == "Data Explorer":
             return
 
         working = frame.copy()
-        total_rows, total_columns = working.shape
-        missing_cells = int(working.isna().sum().sum())
-        missing_pct = (missing_cells / max(total_rows * total_columns, 1)) * 100
-        duplicate_rows = int(working.duplicated().sum())
-
-        k1, k2, k3, k4 = st.columns(4)
-        k1.metric("Records", f"{total_rows:,}")
-        k2.metric("Fields", f"{total_columns:,}")
-        k3.metric("Missing cells", f"{missing_cells:,}", f"{missing_pct:.1f}% of all cells")
-        k4.metric("Duplicate rows", f"{duplicate_rows:,}")
-
+        total_rows = len(working)
         with st.container(border=True):
             section_heading("Filter & refine", "Filters apply to the preview, charts and downloaded extract.")
             st.button(
@@ -2240,7 +2097,6 @@ elif page == "Data Explorer":
                     ["No category filter"] + available_filter_columns,
                     key=f"{key_prefix}_filter_column",
                 )
-
             if search_text.strip():
                 searchable = working.astype("string").fillna("")
                 mask = searchable.apply(
@@ -2298,7 +2154,11 @@ elif page == "Data Explorer":
                     histogram = pd.cut(numeric_values, bins=bins, duplicates="drop").value_counts().sort_index()
                     histogram.index = histogram.index.astype(str)
                     st.markdown("**Value distribution**")
-                    st.bar_chart(histogram, color="#59C8F2")
+                    st.bar_chart(
+                        histogram,
+                        color="#59C8F2",
+                        alt=f"Distribution of {numeric_choice}",
+                    )
                 else:
                     st.caption("No numeric values are available for this field.")
             else:
@@ -2315,7 +2175,11 @@ elif page == "Data Explorer":
                     .value_counts().head(12)
                 )
                 st.markdown("**Most common values**")
-                st.bar_chart(category_counts, color="#42D6C3")
+                st.bar_chart(
+                    category_counts,
+                    color="#42D6C3",
+                    alt=f"Most common values for {category_choice}",
+                )
             else:
                 st.caption("No suitable categorical fields are available.")
 
@@ -2466,20 +2330,8 @@ elif page == "Model Performance":
         return None
 
     mae = evaluation_metric("mae")
-    rmse = evaluation_metric("rmse")
-    r2 = evaluation_metric("r2", "r2_score", "r2 score")
     baseline_mae = evaluation_metric("baseline mae")
-    baseline_rmse = evaluation_metric("baseline rmse")
-    baseline_r2 = evaluation_metric("baseline r2")
-    mae_improvement = evaluation_metric("mae improvement percentage")
 
-    if mae_improvement is None and baseline_mae and mae is not None:
-        mae_improvement = ((baseline_mae - mae) / baseline_mae) * 100
-
-    training_rows = evaluation_metric("training rows")
-    testing_rows = evaluation_metric("testing rows")
-    training_properties = evaluation_metric("training properties")
-    testing_properties = evaluation_metric("testing properties")
     overlapping_properties = evaluation_metric("overlapping properties")
 
     # Normalize numeric fields without changing the saved source reports.
@@ -2492,36 +2344,6 @@ elif page == "Model Performance":
         "Held-out test performance",
         "Saved evaluation metrics from the property-level test split.",
     )
-
-    kpi_columns = st.columns(4)
-    with kpi_columns[0]:
-        st.metric(
-            "Mean absolute error",
-            money(mae) if mae is not None else "N/A",
-            help="Average absolute difference between the predicted and actual target price.",
-        )
-    with kpi_columns[1]:
-        st.metric(
-            "Root mean squared error",
-            money(rmse) if rmse is not None else "N/A",
-            help="Penalizes larger errors more heavily than MAE.",
-        )
-    with kpi_columns[2]:
-        st.metric(
-            "R² score",
-            f"{r2:.4f}" if r2 is not None else "N/A",
-            help="Explained variance on the saved held-out test set; interpret alongside the feature caveat below.",
-        )
-    with kpi_columns[3]:
-        st.metric(
-            "MAE vs baseline",
-            f"{mae_improvement:+.2f}%" if mae_improvement is not None else "N/A",
-            delta="Lower error than baseline" if mae_improvement is not None and mae_improvement > 0 else (
-                "Higher error than baseline" if mae_improvement is not None else None
-            ),
-            delta_color="off",
-            help="Relative MAE reduction compared with using the existing property nightly price as the baseline prediction.",
-        )
 
     st.markdown(
         """
@@ -2537,12 +2359,6 @@ elif page == "Model Performance":
     )
 
     with st.expander("Test split and evaluation setup", expanded=False):
-        split_columns = st.columns(4)
-        split_columns[0].metric("Training rows", f"{int(training_rows):,}" if training_rows is not None else "N/A")
-        split_columns[1].metric("Test rows", f"{int(testing_rows):,}" if testing_rows is not None else "N/A")
-        split_columns[2].metric("Training properties", f"{int(training_properties):,}" if training_properties is not None else "N/A")
-        split_columns[3].metric("Test properties", f"{int(testing_properties):,}" if testing_properties is not None else "N/A")
-
         if overlapping_properties is not None:
             if int(overlapping_properties) == 0:
                 st.info("Property-level split check: 0 property IDs overlap between training and test sets.")
@@ -2665,33 +2481,6 @@ elif page == "Model Performance":
             if "MAE" in model_view.columns:
                 model_view = model_view.sort_values("MAE", ascending=True, na_position="last")
 
-            best_model_name = (
-                str(model_view.iloc[0]["model"])
-                if not model_view.empty and "model" in model_view.columns
-                else "N/A"
-            )
-            best_model_mae = (
-                float(model_view.iloc[0]["MAE"])
-                if not model_view.empty and "MAE" in model_view.columns
-                and pd.notna(model_view.iloc[0]["MAE"])
-                else None
-            )
-
-            best_col, count_col = st.columns([1.2, 1])
-            with best_col:
-                st.markdown(
-                    f"""
-                    <div class="evaluation-highlight">
-                      <span class="evaluation-highlight-label">LOWEST MAE</span>
-                      <strong>{escape(best_model_name)}</strong>
-                      <small>{money(best_model_mae) if best_model_mae is not None else "Metric unavailable"}</small>
-                    </div>
-                    """,
-                    unsafe_allow_html=True,
-                )
-            with count_col:
-                st.metric("Models benchmarked", f"{len(model_view):,}")
-
             display_columns = [
                 column for column in ["model", "MAE", "RMSE", "R2"]
                 if column in model_view.columns
@@ -2736,13 +2525,6 @@ elif page == "Model Performance":
 
         st.divider()
         section_heading("Machine learning vs baseline", "The baseline predicts with the property's existing nightly price.")
-        baseline_columns = st.columns(3)
-        baseline_columns[0].metric("Model MAE", money(mae) if mae is not None else "N/A")
-        baseline_columns[1].metric("Baseline MAE", money(baseline_mae) if baseline_mae is not None else "N/A")
-        baseline_columns[2].metric(
-            "MAE reduction",
-            f"{mae_improvement:.2f}%" if mae_improvement is not None else "N/A",
-        )
 
         if mae is not None and baseline_mae is not None:
             baseline_plot = pd.Series(
@@ -2772,22 +2554,6 @@ elif page == "Model Performance":
             for column in cv_numeric.columns:
                 if column != "fold":
                     cv_numeric[column] = pd.to_numeric(cv_numeric[column], errors="coerce")
-
-            summary_fields = [
-                ("GB_MAE", "Mean CV MAE", money),
-                ("GB_RMSE", "Mean CV RMSE", money),
-                ("GB_R2", "Mean CV R²", lambda value: f"{value:.4f}"),
-            ]
-            summary_cols = st.columns(3)
-            for index, (column, label, formatter) in enumerate(summary_fields):
-                if column in cv_numeric.columns:
-                    mean_value = cv_numeric[column].mean()
-                    std_value = cv_numeric[column].std()
-                    summary_cols[index].metric(
-                        label,
-                        formatter(mean_value) if pd.notna(mean_value) else "N/A",
-                        f"Fold σ · {formatter(std_value)}" if pd.notna(std_value) else None,
-                    )
 
             if all(column in cv_numeric.columns for column in required_cv):
                 stability_a, stability_b = st.columns(2)
@@ -2828,23 +2594,6 @@ elif page == "Model Performance":
             })
             st.markdown("#### Fold results")
             st.dataframe(fold_display, width="stretch", hide_index=True)
-
-            if "GB_MAE" in cv_numeric.columns:
-                valid_folds = cv_numeric.dropna(subset=["GB_MAE"])
-                if not valid_folds.empty:
-                    best_fold = valid_folds.loc[valid_folds["GB_MAE"].idxmin()]
-                    worst_fold = valid_folds.loc[valid_folds["GB_MAE"].idxmax()]
-                    fold_insights = st.columns(2)
-                    fold_insights[0].metric(
-                        "Lowest-error fold",
-                        f"Fold {int(best_fold['fold'])}" if "fold" in best_fold else str(best_fold.name),
-                        money(best_fold["GB_MAE"]),
-                    )
-                    fold_insights[1].metric(
-                        "Highest-error fold",
-                        f"Fold {int(worst_fold['fold'])}" if "fold" in worst_fold else str(worst_fold.name),
-                        money(worst_fold["GB_MAE"]),
-                    )
 
     # --------------------------------------------------------
     # ERROR DIAGNOSTICS
@@ -2916,24 +2665,6 @@ elif page == "Model Performance":
                     st.caption(
                         "Positive signed error means the model overpredicts on average; "
                         "negative signed error means it underpredicts."
-                    )
-
-                insight_candidates = error_df.dropna(
-                    subset=["mean_absolute_error"]
-                ) if "mean_absolute_error" in error_df.columns else pd.DataFrame()
-                if not insight_candidates.empty:
-                    hardest_band = insight_candidates.loc[
-                        insight_candidates["mean_absolute_error"].idxmax()
-                    ]
-                    st.markdown(
-                        f"""
-                        <div class="evaluation-highlight">
-                          <span class="evaluation-highlight-label">LARGEST ABSOLUTE ERROR</span>
-                          <strong>{escape(str(hardest_band['price_category']))}</strong>
-                          <small>MAE · {money(hardest_band['mean_absolute_error'])}</small>
-                        </div>
-                        """,
-                        unsafe_allow_html=True,
                     )
 
         st.divider()
@@ -3057,23 +2788,6 @@ elif page == "Model Performance":
                 if filtered_predictions.empty:
                     st.warning("No test records match the selected filters.")
                 else:
-                    filtered_mae = filtered_predictions["absolute_error_npr"].mean()
-                    filtered_mape = (
-                        filtered_predictions["percentage_error"].mean()
-                        if "percentage_error" in filtered_predictions.columns else np.nan
-                    )
-                    filtered_metrics = st.columns(4)
-                    filtered_metrics[0].metric("Test records", f"{len(filtered_predictions):,}")
-                    filtered_metrics[1].metric("Filtered MAE", money(filtered_mae))
-                    filtered_metrics[2].metric(
-                        "Median absolute error",
-                        money(filtered_predictions["absolute_error_npr"].median()),
-                    )
-                    filtered_metrics[3].metric(
-                        "Mean percentage error",
-                        f"{filtered_mape:.2f}%" if pd.notna(filtered_mape) else "N/A",
-                    )
-
                     plot_left, plot_right = st.columns(2)
                     with plot_left:
                         x = filtered_predictions["actual_price_npr"]
@@ -3171,7 +2885,7 @@ st.markdown(
     """
     <div class="footer">
         AIRBNB INTELLIGENCE<br>
-        Machine Learning Internship Project · Experimental Dataset
+        Machine Learning Project · Experimental Dataset
     </div>
     """,
     unsafe_allow_html=True,
