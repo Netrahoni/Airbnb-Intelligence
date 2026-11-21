@@ -375,7 +375,7 @@ The following figures are generated from the project's local processed datasets 
 python scripts/generate_readme_report.py
 ```
 
-Generated figures are saved under `reports/figures/`. The charts are only available in this README after the generated image files have been committed to GitHub. Missing datasets or report files are skipped; no sample values are invented.
+Generated figures are saved under `reports/figures/`. The current set of generated PNG figures is committed in this repository and embedded below. Re-run the script and commit the updated images whenever the underlying datasets or evaluation reports change. Missing datasets or report files are skipped; no sample values are invented.
 
 ### Executive Analytics
 
@@ -405,7 +405,7 @@ Generated figures are saved under `reports/figures/`. The charts are only availa
 | Recommendation score summary | ![Recommendation score summary](reports/figures/recommendation_score_summary.png) |
 | Personalized recommendation scores | ![Personalized recommendation scores](reports/figures/personalized_recommendation_scores.png) |
 | Similar-property scores | ![Similar-property scores](reports/figures/similar_property_scores.png) |
-| Weight configuration comparisons | See generated `recommendation_weights_*.png` figures in `reports/figures/`. |
+| Average recommendation score by weights | ![Average recommendation score by weights](reports/figures/recommendation_weights_average_score.png) |\n| Neighbourhood match by weights | ![Neighbourhood match by weights](reports/figures/recommendation_weights_neighbourhood_match.png) |\n| Budget compliance by weights | ![Budget compliance by weights](reports/figures/recommendation_weights_budget_compliance.png) |\n| Capacity sufficiency by weights | ![Capacity sufficiency by weights](reports/figures/recommendation_weights_capacity_sufficiency.png) |\n| Property-type match by weights | ![Property type match by weights](reports/figures/recommendation_weights_property_type_match.png) |
 
 These recommendation charts represent scenario-based, heuristic diagnostics—not ground-truth recommendation accuracy or user satisfaction.
 
