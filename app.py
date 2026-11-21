@@ -2244,7 +2244,7 @@ elif page == "Data Analysis":
             file_name=f"{key_prefix}_filtered.csv",
             mime="text/csv",
             key=f"{key_prefix}_data_download",
-            use_container_width=True,
+            width="stretch",
         )
 
     tab1, tab2, tab3 = st.tabs([
@@ -2368,7 +2368,7 @@ elif page == "Model Evaluation":
             delta="Lower error than baseline" if mae_improvement is not None and mae_improvement > 0 else (
                 "Higher error than baseline" if mae_improvement is not None else None
             ),
-            delta_color="normal" if mae_improvement is not None and mae_improvement > 0 else "inverse",
+            delta_color="off",
             help="Relative MAE reduction compared with using the existing property nightly price as the baseline prediction.",
         )
 
@@ -2983,7 +2983,7 @@ elif page == "Model Evaluation":
                         file_name="filtered_prediction_diagnostics.csv",
                         mime="text/csv",
                         key="eval_prediction_export",
-                        use_container_width=True,
+                        width="stretch",
                     )
             else:
                 st.warning("The row-level report does not contain the required actual and predicted price fields.")
