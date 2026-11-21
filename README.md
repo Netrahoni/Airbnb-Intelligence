@@ -79,7 +79,7 @@ Reported evaluation:
 - Testing: 192 observations from 80 properties
 - Property IDs shared across train and test: **0**
 
-These metrics come from prepared sample data and do not establish real-market pricing accuracy. The model includes baseline nightly price among its input features, so results should not be interpreted as independent price discovery.
+These metrics come from prepared sample data and do not establish real-market pricing accuracy. The model uses the property's existing `nightly_price_npr` as an input feature and as the comparison baseline. The task is therefore to estimate the synthetic observed `base_price_npr` conditional on an already-known listing price and stay features—not to discover an unknown market price from property attributes alone. The baseline already achieves R² 0.9938, while Gradient Boosting reaches 0.9942 and reduces MAE by 6.62%; this is a modest improvement on synthetic data, not evidence of strong independent pricing power.
 
 ### Booking Cancellation Benchmark
 
@@ -182,7 +182,7 @@ Raw data files are expected in `data/raw/` for the data-audit workflow. Do not c
 
 ## Installation
 
-**Prerequisites:** Python 3.10 or later (check compatibility with pinned dependencies) and Git.
+**Prerequisites:** Python 3.12 or later and Git. The pinned NumPy release and the GitHub Actions quality workflow use Python 3.12.
 
 ### 1. Clone the repository
 

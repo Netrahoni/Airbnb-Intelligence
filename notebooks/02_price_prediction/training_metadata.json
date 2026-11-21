@@ -1,5 +1,5 @@
 {
-  "model_name": "Ridge Regression",
+  "model_name": "Gradient Boosting Regressor",
   "target": "base_price_npr",
   "training_rows": 808,
   "test_rows": 192,
@@ -14,44 +14,31 @@
     "capacity",
     "bedrooms",
     "bathrooms",
+    "lead_time_days",
     "stay_month",
+    "stay_day",
     "stay_day_of_week",
-    "lead_days",
+    "nightly_price_npr",
     "amenities"
   ],
   "split_method": "GroupShuffleSplit by property_id, test_size=0.20, random_state=42",
-  "provenance": "Synthetic Sample Data (as stated in source_name column)",
-  "primary_selection_reason": "Ridge Regression achieved the lowest RMSE and highest R2 among tested candidates; Random Forest achieved the lowest MAE.",
+  "provenance": "Synthetic Sample Data (source_name in price_observations_clean.csv)",
+  "baseline": "Existing property nightly_price_npr merged by property_id; not a median-price baseline",
+  "task_scope": "Estimate synthetic observed base_price_npr conditional on an already-known listing price and stay/property features; not independent market-price discovery",
   "metrics": [
     {
-      "model": "Random Forest",
-      "MAE_NPR": 1357.9945324712905,
-      "RMSE_NPR": 2113.917142776285,
-      "R2": 0.4587127409428706
+      "model": "Gradient Boosting Regressor",
+      "MAE_NPR": 148.3300986574859,
+      "RMSE_NPR": 218.92567476856325,
+      "R2": 0.9941944245008444
     },
     {
-      "model": "Ridge Regression",
-      "MAE_NPR": 1460.836525619472,
-      "RMSE_NPR": 2071.4205602020224,
-      "R2": 0.48025723978008616
-    },
-    {
-      "model": "Gradient Boosting",
-      "MAE_NPR": 1462.2999601262381,
-      "RMSE_NPR": 2240.396952624991,
-      "R2": 0.39200244908322357
-    },
-    {
-      "model": "Linear Regression",
-      "MAE_NPR": 1820.535647836515,
-      "RMSE_NPR": 2502.393658264398,
-      "R2": 0.24148679670579098
-    },
-    {
-      "model": "Dummy Median Baseline",
-      "MAE_NPR": 1933.8541666666667,
-      "RMSE_NPR": 2877.584888698623,
-      "R2": -0.00301671777990542
+      "model": "Existing listing price baseline",
+      "MAE_NPR": 158.85416666666666,
+      "RMSE_NPR": 225.6356761093718,
+      "R2": 0.993833092693171
     }
-  ]
+  ],
+  "mae_improvement_over_baseline_percent": 6.624987074631818,
+  "evaluation_caveat": "The existing-price baseline already performs strongly. These results are synthetic and do not demonstrate independent real-world price estimation."
 }
