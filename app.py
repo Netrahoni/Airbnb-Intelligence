@@ -871,7 +871,7 @@ if page == "Executive Analytics":
                 map_data[["latitude", "longitude"]],
                 latitude="latitude", longitude="longitude",
                 color="#42D6C3", size=18, zoom=11,
-                use_container_width=True,
+                width="stretch",
             )
             st.caption(
                 f"Mapped {len(map_data):,} of {len(executive_properties):,} selected records with valid coordinates. "
@@ -1566,7 +1566,7 @@ if page == "Executive Analytics":
                 "room_type", "nightly_price_npr", "rating",
             ] if c in featured.columns
         ]
-        st.dataframe(featured[columns], use_container_width=True, hide_index=True)
+        st.dataframe(featured[columns], width="stretch", hide_index=True)
     else:
         st.info("No featured property records match the selected filters.")
 
@@ -1755,7 +1755,7 @@ elif page == "Price Prediction":
         predict = st.button(
             "Generate Price Estimate",
             type="primary",
-            use_container_width=True,
+            width="stretch",
         )
 
     if predict:
@@ -1829,7 +1829,7 @@ elif page == "Price Prediction":
             with st.expander("View model input features"):
                 st.dataframe(
                     input_data,
-                    use_container_width=True,
+                    width="stretch",
                     hide_index=True,
                 )
 
@@ -1939,7 +1939,7 @@ elif page == "Data Analysis":
         section_heading("Filtered Records")
         st.dataframe(
             filtered,
-            use_container_width=True,
+            width="stretch",
             hide_index=True,
         )
 
@@ -1970,7 +1970,7 @@ elif page == "Data Analysis":
 
             st.dataframe(
                 availability.head(500),
-                use_container_width=True,
+                width="stretch",
                 hide_index=True,
             )
 
@@ -1998,7 +1998,7 @@ elif page == "Data Analysis":
 
             st.dataframe(
                 price_observations.head(500),
-                use_container_width=True,
+                width="stretch",
                 hide_index=True,
             )
 
@@ -2098,7 +2098,7 @@ elif page == "Model Evaluation":
 
         st.dataframe(
             comparison_df,
-            use_container_width=True,
+            width="stretch",
             hide_index=True,
         )
 
@@ -2158,7 +2158,7 @@ elif page == "Model Evaluation":
 
         st.dataframe(
             cv_df,
-            use_container_width=True,
+            width="stretch",
             hide_index=True,
         )
 
@@ -2247,7 +2247,7 @@ elif page == "Model Evaluation":
 
         st.dataframe(
             error_df,
-            use_container_width=True,
+            width="stretch",
             hide_index=True,
         )
 

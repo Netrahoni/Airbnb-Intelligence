@@ -281,3 +281,34 @@ hr {
     border-radius: 16px !important;
   }
 }
+
+/* Strong BaseWeb overrides: Streamlit applies its primary colour to
+   multiselect chips unless the tag root and its descendants are targeted. */
+section[data-testid="stSidebar"] [data-baseweb="tag"],
+div[data-testid="stMultiSelect"] [data-baseweb="tag"],
+div[data-testid="stMultiSelect"] [data-baseweb="tag"] > div,
+div[data-testid="stMultiSelect"] [data-baseweb="tag"] > span {
+  background: #17617a !important;
+  background-color: #17617a !important;
+  border-color: rgba(89, 200, 242, .48) !important;
+  color: #f3fbff !important;
+}
+div[data-testid="stMultiSelect"] [data-baseweb="tag"] *,
+div[data-testid="stMultiSelect"] [data-baseweb="tag"] svg {
+  color: #f3fbff !important;
+  fill: #f3fbff !important;
+}
+div[data-testid="stMultiSelect"] [data-baseweb="tag"] button {
+  background: transparent !important;
+  color: #e9f8ff !important;
+}
+div[data-testid="stSlider"] [data-baseweb="slider"] [role="slider"] {
+  background: #59c8f2 !important;
+  border-color: #e4f8ff !important;
+}
+div[data-testid="stSlider"] [data-baseweb="slider"] [data-testid="stTickBar"] {
+  background: rgba(89,200,242,.35) !important;
+}
+div[data-testid="stSlider"] [data-baseweb="slider"] > div > div {
+  background: #59c8f2 !important;
+}
