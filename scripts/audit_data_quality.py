@@ -2,13 +2,18 @@
 
 from pathlib import Path
 import argparse
+import sys
+
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 import pandas as pd
 
 from src.data_quality import build_data_quality_report
 
 
-ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = ROOT / "data" / "processed"
 REPORT_DIR = ROOT / "reports"
 
