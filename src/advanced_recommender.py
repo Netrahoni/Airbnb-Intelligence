@@ -301,12 +301,54 @@ class AdvancedPropertyRecommender:
             0.0,
         )
 
-    def _calculate_final_score(self, components):
+    def _calculate_final_score(self, components, weights=None):
+
+        weights = self.WEIGHTS if weights is None else weights
 
         return sum(
             components[name] * weight
-            for name, weight in self.WEIGHTS.items()
+            for name, weight in weights.items()
+            if weight
         )
+
+    def _personalized_weights(self, preferences):
+        """Redistribute weight toward signals the guest explicitly supplied."""
+        active = {"quality_score"}
+
+        if self._normalised_options(preferences.get("neighbourhood")):
+            active.add("neighbourhood_match")
+
+        if (
+            self._normalised_options(preferences.get("property_type"))
+            or self._normalised_options(preferences.get("room_type"))
+        ):
+            active.add("property_type_match")
+
+        if (
+            self._normalised_options(preferences.get("amenities"))
+            or self._normalised_options(preferences.get("description"))
+        ):
+            active.add("text_similarity")
+
+        if preferences.get("guests") is not None:
+            active.add("capacity_match")
+
+        # Preserve the established baseline when no ranking preference was
+        # supplied. A maximum budget remains a hard filter, not a ranking signal.
+        if active == {"quality_score"}:
+            return dict(self.WEIGHTS)
+
+        active_weights = {
+            name: weight
+            for name, weight in self.WEIGHTS.items()
+            if name in active
+        }
+        total = sum(active_weights.values())
+
+        return {
+            name: weight / total
+            for name, weight in active_weights.items()
+        }
 
     # ======================================================
     # RESULT PROCESSING
@@ -620,13 +662,10 @@ class AdvancedPropertyRecommender:
 
         query_parts = []
 
-        for field in [
-            "neighbourhood",
-            "property_type",
-            "room_type",
-            "amenities",
-            "description",
-        ]:
+        # Categorical preferences are scored in dedicated components below.
+        # Keep text similarity focused on descriptive/amenity intent so the same
+        # preference is not counted twice.
+        for field in ["amenities", "description"]:
 
             value = preferences.get(field)
 
@@ -772,8 +811,10 @@ class AdvancedPropertyRecommender:
             "capacity_match": capacity_scores,
         }
 
+        personalized_weights = self._personalized_weights(preferences)
         final_scores = self._calculate_final_score(
-            components
+            components,
+            weights=personalized_weights,
         )
 
         # --------------------------------------------------
