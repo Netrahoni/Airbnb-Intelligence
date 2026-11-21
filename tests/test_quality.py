@@ -123,6 +123,50 @@ class RecommendationEdgeCaseTests(unittest.TestCase):
         scores = self.engine._budget_score()
         self.assertTrue(np.all(scores == 0.5))
 
+    def test_neighbourhood_preference_changes_top_recommendation(self):
+        self.engine._text_similarity = lambda query: np.full(
+            len(self.engine.properties), 0.5
+        )
+        self.engine._quality_score = lambda: np.full(
+            len(self.engine.properties), 0.5
+        )
+
+        thamel = self.engine.recommend_personalized(
+            {"neighbourhood": "Thamel"}, number=3
+        )
+        patan = self.engine.recommend_personalized(
+            {"neighbourhood": "Patan"}, number=3
+        )
+
+        self.assertEqual(thamel.iloc[0]["property_id"], "A")
+        self.assertEqual(patan.iloc[0]["property_id"], "C")
+
+    def test_equal_scores_use_property_id_as_deterministic_tiebreaker(self):
+        frame = sample_properties().iloc[[2, 1, 0]].copy()
+        frame["rating"] = 4.0
+        frame["review_count"] = 10
+        engine = AdvancedPropertyRecommender(frame)
+        engine._text_similarity = lambda query: np.full(
+            len(engine.properties), 0.5
+        )
+        engine._quality_score = lambda: np.full(
+            len(engine.properties), 0.5
+        )
+
+        result = engine.recommend_personalized({}, number=3)
+
+        self.assertEqual(
+            result["property_id"].tolist(),
+            ["A", "B", "C"],
+        )
+
+    def test_recommendation_scores_are_finite_and_bounded(self):
+        result = self.engine.recommend_personalized({}, number=10)
+        scores = result["Recommendation Score (%)"].to_numpy(dtype=float)
+
+        self.assertTrue(np.isfinite(scores).all())
+        self.assertTrue(((scores >= 0) & (scores <= 100)).all())
+
     def test_similar_recommendation_excludes_reference(self):
         result=self.engine.recommend_similar("a",number=10)
         self.assertNotIn("A",set(result.property_id.str.upper()))
