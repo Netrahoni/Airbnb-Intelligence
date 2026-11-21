@@ -823,3 +823,13 @@ section[data-testid="stSidebar"] [data-testid="stRadio"] label {
   .discovery-card { padding: .9rem; }
   .prediction-hero { padding: 1rem; }
 }
+
+/* Phase 4: Data Analysis workspace */
+[data-testid="stDataFrame"] { max-width: 100%; }
+div[data-testid="stDownloadButton"] { min-width: 0; }
+@media (max-width: 760px) {
+  [data-testid="stHorizontalBlock"] { flex-wrap: wrap; gap: .65rem; }
+  [data-testid="stHorizontalBlock"] > [data-testid="column"] {
+    min-width: min(100%, 230px);
+  }
+}

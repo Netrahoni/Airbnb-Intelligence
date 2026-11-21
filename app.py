@@ -2052,165 +2052,225 @@ elif page == "Price Prediction":
 elif page == "Data Analysis":
 
     page_header(
-        "DATA EXPLORATION",
-        "Understand the Dataset",
-        "Explore property characteristics, availability records "
-        "and nightly price observations.",
+        "DATA INTELLIGENCE",
+        "Explore, Inspect & Understand Your Data",
+        "A focused workspace for filtering datasets, checking data quality, "
+        "understanding distributions and exporting clean analysis extracts.",
     )
 
+    st.info(
+        "Data provenance: the property and price datasets contain synthetic "
+        "sample records. Availability and price observations are not live "
+        "booking inventory or verified market transactions."
+    )
+
+    def render_dataset_workspace(frame, dataset_name, key_prefix, filter_columns=()):
+        """Render a consistent, defensive dataset exploration workspace."""
+        if frame.empty:
+            st.warning(f"{dataset_name} is empty or unavailable in this checkout.")
+            return
+
+        working = frame.copy()
+        total_rows, total_columns = working.shape
+        missing_cells = int(working.isna().sum().sum())
+        missing_pct = (missing_cells / max(total_rows * total_columns, 1)) * 100
+        duplicate_rows = int(working.duplicated().sum())
+
+        k1, k2, k3, k4 = st.columns(4)
+        k1.metric("Records", f"{total_rows:,}")
+        k2.metric("Fields", f"{total_columns:,}")
+        k3.metric("Missing cells", f"{missing_cells:,}", f"{missing_pct:.1f}% of all cells")
+        k4.metric("Duplicate rows", f"{duplicate_rows:,}")
+
+        with st.container(border=True):
+            section_heading("Filter & refine", "Filters apply to the preview, charts and downloaded extract.")
+            search_col, filter_col = st.columns([1.2, 1])
+            with search_col:
+                search_text = st.text_input(
+                    "Search across all fields",
+                    placeholder="Search neighbourhood, property, ID…",
+                    key=f"{key_prefix}_search",
+                )
+            with filter_col:
+                available_filter_columns = [
+                    column for column in filter_columns
+                    if column in working.columns
+                    and working[column].nunique(dropna=True) > 1
+                ]
+                selected_filter_column = st.selectbox(
+                    "Category filter",
+                    ["No category filter"] + available_filter_columns,
+                    key=f"{key_prefix}_filter_column",
+                )
+
+            if search_text.strip():
+                searchable = working.astype("string").fillna("")
+                mask = searchable.apply(
+                    lambda column: column.str.contains(
+                        search_text.strip(), case=False, regex=False
+                    )
+                ).any(axis=1)
+                working = working.loc[mask].copy()
+
+            if selected_filter_column != "No category filter":
+                choices = sorted(
+                    working[selected_filter_column].dropna().astype(str).unique().tolist()
+                )
+                selected_values = st.multiselect(
+                    f"Select {selected_filter_column.replace('_', ' ')}",
+                    choices,
+                    default=choices,
+                    key=f"{key_prefix}_category_values",
+                )
+                working = working[
+                    working[selected_filter_column].astype(str).isin(selected_values)
+                ].copy()
+
+        st.caption(
+            f"Showing {len(working):,} of {total_rows:,} records · "
+            f"{working.shape[1]:,} fields"
+        )
+
+        if working.empty:
+            st.warning("No records match the current filters. Adjust the filters to continue.")
+            return
+
+        section_heading("Explore a field", "Review a distribution from the filtered dataset.")
+        numeric_columns = [
+            column for column in working.columns
+            if pd.api.types.is_numeric_dtype(working[column])
+            or pd.to_numeric(working[column], errors="coerce").notna().sum() > 0
+        ]
+        category_candidates = [
+            column for column in working.columns
+            if not pd.api.types.is_numeric_dtype(working[column])
+            and 1 < working[column].nunique(dropna=True) <= 100
+        ]
+        chart_left, chart_right = st.columns(2)
+
+        with chart_left:
+            if numeric_columns:
+                numeric_choice = st.selectbox(
+                    "Numeric field", numeric_columns,
+                    key=f"{key_prefix}_numeric_chart",
+                )
+                numeric_values = pd.to_numeric(working[numeric_choice], errors="coerce").dropna()
+                if not numeric_values.empty:
+                    bins = min(16, max(5, int(np.sqrt(len(numeric_values)))))
+                    histogram = pd.cut(numeric_values, bins=bins, duplicates="drop").value_counts().sort_index()
+                    histogram.index = histogram.index.astype(str)
+                    st.markdown("**Value distribution**")
+                    st.bar_chart(histogram, color="#59C8F2")
+                else:
+                    st.caption("No numeric values are available for this field.")
+            else:
+                st.caption("No numeric fields are available in this dataset.")
+
+        with chart_right:
+            if category_candidates:
+                category_choice = st.selectbox(
+                    "Category field", category_candidates,
+                    key=f"{key_prefix}_category_chart",
+                )
+                category_counts = (
+                    working[category_choice].fillna("Missing").astype(str)
+                    .value_counts().head(12)
+                )
+                st.markdown("**Most common values**")
+                st.bar_chart(category_counts, color="#42D6C3")
+            else:
+                st.caption("No suitable categorical fields are available.")
+
+        with st.expander("Data quality report", expanded=False):
+            quality = pd.DataFrame({
+                "Field": working.columns,
+                "Data type": [str(working[column].dtype) for column in working.columns],
+                "Missing values": [int(working[column].isna().sum()) for column in working.columns],
+                "Missing (%)": [
+                    round(float(working[column].isna().mean() * 100), 2)
+                    for column in working.columns
+                ],
+                "Unique values": [int(working[column].nunique(dropna=True)) for column in working.columns],
+            }).sort_values(["Missing values", "Field"], ascending=[False, True])
+            st.dataframe(quality, width="stretch", hide_index=True)
+            st.markdown("**Numeric summary**")
+            numeric_summary = working.select_dtypes(include=np.number).describe().T
+            if numeric_summary.empty:
+                st.caption("No native numeric columns are available for descriptive statistics.")
+            else:
+                st.dataframe(numeric_summary, width="stretch")
+
+            st.download_button(
+                "Download data quality report",
+                quality.to_csv(index=False).encode("utf-8"),
+                file_name=f"{key_prefix}_data_quality.csv",
+                mime="text/csv",
+                key=f"{key_prefix}_quality_download",
+            )
+
+        section_heading("Filtered records", "Choose the visible columns and page through the result set.")
+        visible_columns = st.multiselect(
+            "Visible columns", working.columns.tolist(),
+            default=working.columns.tolist(),
+            key=f"{key_prefix}_visible_columns",
+        )
+        if not visible_columns:
+            st.warning("Select at least one column to display the table.")
+        else:
+            page_controls = st.columns([1, 1, 2])
+            with page_controls[0]:
+                page_size = st.selectbox(
+                    "Rows per page", [25, 50, 100, 250, 500],
+                    index=1, key=f"{key_prefix}_page_size",
+                )
+            page_count = max(1, int(np.ceil(len(working) / page_size)))
+            with page_controls[1]:
+                page_number = st.number_input(
+                    "Page", min_value=1, max_value=page_count, value=1,
+                    step=1, key=f"{key_prefix}_page_number",
+                )
+            first_row = (int(page_number) - 1) * page_size
+            last_row = min(first_row + page_size, len(working))
+            with page_controls[2]:
+                st.caption(f"Rows {first_row + 1:,}–{last_row:,} of {len(working):,}")
+            st.dataframe(
+                working.iloc[first_row:last_row][visible_columns],
+                width="stretch", hide_index=True, height=440,
+            )
+
+        st.download_button(
+            "Download filtered dataset (CSV)",
+            working.to_csv(index=False).encode("utf-8"),
+            file_name=f"{key_prefix}_filtered.csv",
+            mime="text/csv",
+            key=f"{key_prefix}_data_download",
+            use_container_width=True,
+        )
+
     tab1, tab2, tab3 = st.tabs([
-        "Property Dataset",
-        "Availability",
-        "Price Observations",
+        "Property Dataset", "Availability", "Price Observations",
     ])
 
     with tab1:
-
-        section_heading("Property Explorer")
-
-        filtered = properties.copy()
-
-        f1, f2, f3 = st.columns(3)
-
-        with f1:
-            neighbourhoods = sorted(
-                filtered["neighbourhood"].dropna().unique()
-            )
-            selected_neighbourhoods = st.multiselect(
-                "Neighbourhood",
-                neighbourhoods,
-                default=neighbourhoods,
-            )
-
-        with f2:
-            property_types = sorted(
-                filtered["property_type"].dropna().unique()
-            )
-            selected_types = st.multiselect(
-                "Property Type",
-                property_types,
-                default=property_types,
-            )
-
-        with f3:
-            room_types = sorted(
-                filtered["room_type"].dropna().unique()
-            )
-            selected_rooms = st.multiselect(
-                "Room Type",
-                room_types,
-                default=room_types,
-            )
-
-        filtered = filtered[
-            filtered["neighbourhood"].isin(selected_neighbourhoods)
-            & filtered["property_type"].isin(selected_types)
-            & filtered["room_type"].isin(selected_rooms)
-        ]
-
-        m1, m2, m3 = st.columns(3)
-
-        m1.metric("Filtered Properties", f"{len(filtered):,}")
-
-        m2.metric(
-            "Average Price",
-            money(numeric(filtered["nightly_price_npr"]).mean()),
-        )
-
-        m3.metric(
-            "Average Rating",
-            f"{numeric(filtered['rating']).mean():.2f} / 5",
-        )
-
-        left, right = st.columns(2)
-
-        with left:
-            section_heading("Neighbourhood Distribution")
-            st.bar_chart(
-                filtered["neighbourhood"].value_counts(),
-                color="#59C8F2",
-            )
-
-        with right:
-            section_heading("Price by Property Type")
-            price_by_type = (
-                filtered.assign(
-                    nightly_price_npr=numeric(
-                        filtered["nightly_price_npr"]
-                    )
-                )
-                .groupby("property_type")["nightly_price_npr"]
-                .mean()
-            )
-            st.bar_chart(price_by_type, color="#42D6C3")
-
-        section_heading("Filtered Records")
-        st.dataframe(
-            filtered,
-            width="stretch",
-            hide_index=True,
-        )
-
-        st.download_button(
-            "Download Filtered Properties CSV",
-            filtered.to_csv(index=False).encode("utf-8"),
-            file_name="filtered_properties.csv",
-            mime="text/csv",
+        section_heading("Property dataset", "Explore listing attributes, pricing, ratings and neighbourhood coverage.")
+        render_dataset_workspace(
+            properties, "Property dataset", "properties",
+            filter_columns=("neighbourhood", "property_type", "room_type", "city", "published"),
         )
 
     with tab2:
-
-        section_heading("Availability Records")
-
-        if availability.empty:
-            st.info("Availability dataset is not available.")
-        else:
-            st.metric(
-                "Total Availability Records",
-                f"{len(availability):,}",
-            )
-
-            if "available" in availability.columns:
-                st.bar_chart(
-                    availability["available"].astype(str).value_counts(),
-                    color="#59C8F2",
-                )
-
-            st.dataframe(
-                availability.head(500),
-                width="stretch",
-                hide_index=True,
-            )
-
-            st.caption("Preview limited to the first 500 records.")
+        section_heading("Availability dataset", "Inspect calendar-level records and the fields available in this extract.")
+        render_dataset_workspace(
+            availability, "Availability dataset", "availability",
+            filter_columns=("neighbourhood", "property_type", "room_type", "available", "city"),
+        )
 
     with tab3:
-
-        section_heading("Price Observation Records")
-
-        if price_observations.empty:
-            st.info("Price observation dataset is not available.")
-        else:
-            st.metric(
-                "Total Price Observations",
-                f"{len(price_observations):,}",
-            )
-
-            if "observed_price_npr" in price_observations.columns:
-                st.bar_chart(
-                    numeric(
-                        price_observations["observed_price_npr"]
-                    ).dropna(),
-                    color="#42D6C3",
-                )
-
-            st.dataframe(
-                price_observations.head(500),
-                width="stretch",
-                hide_index=True,
-            )
-
-            st.caption("Preview limited to the first 500 records.")
+        section_heading("Price observation dataset", "Review sample prices and the property or stay attributes attached to them.")
+        render_dataset_workspace(
+            price_observations, "Price observation dataset", "price_observations",
+            filter_columns=("neighbourhood", "property_type", "room_type", "city", "currency_original"),
+        )
 
 
 # ============================================================
