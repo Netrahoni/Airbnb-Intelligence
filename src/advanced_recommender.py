@@ -263,9 +263,12 @@ class AdvancedPropertyRecommender:
                 0.5,
             )
 
+        # A maximum budget is an affordability ceiling, not a target spend.
+        # Every eligible listing receives full budget compliance; listings
+        # above the ceiling are filtered out again by the hard constraint.
         return np.where(
             prices <= max_budget,
-            np.clip(prices / max_budget, 0.5, 1.0),
+            1.0,
             0.0,
         )
 
