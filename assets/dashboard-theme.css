@@ -1017,3 +1017,41 @@ textarea:focus-visible,
     transition-duration: .01ms !important;
   }
 }
+
+/* Sidebar identity: keep the logo and wordmark free of a surrounding card. */
+.brand-shell {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  grid-template-columns: none !important;
+  column-gap: 0 !important;
+  padding: 8px 3px 16px !important;
+  margin: 0 0 .75rem !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.brand-logo-wrap {
+  flex: 0 0 48px !important;
+  width: 48px !important;
+  height: 48px !important;
+  padding: 7px !important;
+  border-radius: 12px !important;
+  box-shadow: none !important;
+}
+.brand-divider,
+.brand-kicker {
+  display: none !important;
+}
+@media (max-width: 768px) {
+  .brand-shell {
+    gap: 10px !important;
+    padding: 7px 3px 14px !important;
+  }
+  .brand-logo-wrap {
+    flex-basis: 46px !important;
+    width: 46px !important;
+    height: 46px !important;
+  }
+}
