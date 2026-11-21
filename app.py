@@ -1,6 +1,7 @@
 
 from pathlib import Path
 from datetime import date
+from html import escape
 from urllib.parse import quote
 
 import joblib
@@ -497,6 +498,39 @@ def published_data(frame):
     return frame[is_published(frame["published"])].copy()
 
 
+
+def render_kpi_card(label, value, context, progress, symbol, accent="cyan"):
+    """Render a compact executive KPI card with a contextual indicator."""
+    try:
+        progress_value = min(100.0, max(0.0, float(progress)))
+    except (TypeError, ValueError):
+        progress_value = 0.0
+
+    safe_label = escape(str(label))
+    safe_value = escape(str(value))
+    safe_context = escape(str(context))
+    safe_symbol = escape(str(symbol))
+    safe_accent = accent if accent in {"cyan", "teal", "blue"} else "cyan"
+
+    st.markdown(
+        f"""
+        <article class="executive-kpi {safe_accent}">
+          <div class="executive-kpi-head">
+            <span class="executive-kpi-symbol" aria-hidden="true">{safe_symbol}</span>
+            <span class="executive-kpi-label">{safe_label}</span>
+            <span class="executive-kpi-indicator" aria-hidden="true"></span>
+          </div>
+          <div class="executive-kpi-value">{safe_value}</div>
+          <div class="executive-kpi-context">{safe_context}</div>
+          <div class="executive-kpi-track" role="img" aria-label="{safe_label} indicator: {progress_value:.1f}%">
+            <span style="width:{progress_value:.1f}%"></span>
+          </div>
+        </article>
+        """,
+        unsafe_allow_html=True,
+    )
+
+
 # ============================================================
 # 5. SIDEBAR
 # ============================================================
@@ -680,46 +714,66 @@ if page == "Executive Analytics":
         "A high-level snapshot of the selected accommodation inventory "
         "and its sample pricing characteristics."
     )
-    k1, k2, k3 = st.columns(3)
-    with k1:
-        st.metric(
-            "Total Properties",
+    publication_rate = (published / total * 100) if total else 0
+    full_inventory = max(len(properties), 1)
+    price_scale = max(float(price_ceiling), 1.0)
+
+    kpi_row_one = st.columns(3, gap="medium")
+    with kpi_row_one[0]:
+        render_kpi_card(
+            "Total properties",
             f"{total:,}",
-            help="Total property records matching the selected filters.",
+            f"Filtered from {len(properties):,} sample records",
+            total / full_inventory * 100,
+            "⌂",
+            "cyan",
         )
-    with k2:
-        st.metric(
-            "Published Properties",
+    with kpi_row_one[1]:
+        render_kpi_card(
+            "Published properties",
             f"{published:,}",
-            help="Number of published property records in the selection.",
+            "Records marked as published",
+            published / total * 100 if total else 0,
+            "✓",
+            "teal",
         )
-    with k3:
-        publication_rate = (published / total * 100) if total else 0
-        st.metric(
-            "Publication Rate",
+    with kpi_row_one[2]:
+        render_kpi_card(
+            "Publication rate",
             f"{publication_rate:.1f}%",
-            help="Published properties divided by filtered property records.",
+            "Published share of selected inventory",
+            publication_rate,
+            "%",
+            "blue",
         )
 
-    st.markdown("")
-    k1, k2, k3 = st.columns(3)
-    with k1:
-        st.metric(
-            "Average Nightly Price",
+    kpi_row_two = st.columns(3, gap="medium")
+    with kpi_row_two[0]:
+        render_kpi_card(
+            "Average nightly price",
             money(avg_price),
-            help="Mean sample nightly price in NPR.",
+            "Mean sample price · NPR per night",
+            (avg_price / price_scale * 100) if pd.notna(avg_price) else 0,
+            "↗",
+            "cyan",
         )
-    with k2:
-        st.metric(
-            "Median Nightly Price",
+    with kpi_row_two[1]:
+        render_kpi_card(
+            "Median nightly price",
             money(median_price),
-            help="Median sample nightly price in NPR.",
+            "Middle value · less sensitive to outliers",
+            (median_price / price_scale * 100) if pd.notna(median_price) else 0,
+            "◆",
+            "teal",
         )
-    with k3:
-        st.metric(
-            "Average Guest Rating",
+    with kpi_row_two[2]:
+        render_kpi_card(
+            "Average guest rating",
             f"{avg_rating:.2f} / 5" if pd.notna(avg_rating) else "N/A",
-            help="Mean guest rating among selected properties with a rating.",
+            "Mean rating among records with a rating",
+            (avg_rating / 5 * 100) if pd.notna(avg_rating) else 0,
+            "★",
+            "blue",
         )
     st.caption(
         f"Showing {total:,} of {len(properties):,} property records. "
@@ -820,7 +874,7 @@ if page == "Executive Analytics":
                 if not price_summary.empty:
                     st.bar_chart(
                         price_summary[["Average_Price", "Median_Price"]],
-                        color=["#38BDF8", "#2DD4BF"],
+                        color=["#59C8F2", "#42D6C3"],
                     )
                     st.caption(
                         "NPR per night. Small neighbourhood samples should be "
@@ -890,7 +944,7 @@ if page == "Executive Analytics":
                 market_data["property_type"]
                 .fillna("Unspecified")
                 .value_counts(),
-                color="#818CF8",
+                color="#59C8F2",
             )
         else:
             st.info("Property-type information is unavailable.")
@@ -900,7 +954,7 @@ if page == "Executive Analytics":
                 market_data["room_type"]
                 .fillna("Unspecified")
                 .value_counts(),
-                color="#F59E0B",
+                color="#42D6C3",
             )
 
     st.divider()
@@ -912,7 +966,7 @@ if page == "Executive Analytics":
         bins = pd.cut(prices, bins=min(10, max(3, prices.nunique())))
         distribution = bins.value_counts().sort_index()
         distribution.index = distribution.index.astype(str)
-        st.bar_chart(distribution, color="#2DD4BF")
+        st.bar_chart(distribution, color="#42D6C3")
         p1, p2, p3 = st.columns(3)
         p1.metric("Lowest Sample Price", money(prices.min()))
         p2.metric("Highest Sample Price", money(prices.max()))
@@ -1060,7 +1114,7 @@ if page == "Executive Analytics":
                     )
                     st.bar_chart(
                         segment_summary[["Observations"]],
-                        color="#55C7F3",
+                        color="#59C8F2",
                         alt="Price observation counts by sample-price segment",
                     )
 
@@ -1073,7 +1127,7 @@ if page == "Executive Analytics":
                         segment_summary[
                             ["Average_Price", "Median_Price"]
                         ],
-                        color=["#818CF8", "#42D6C3"],
+                        color=["#59C8F2", "#42D6C3"],
                         alt="Average and median prices by sample-price segment",
                     )
 
@@ -1123,7 +1177,7 @@ if page == "Executive Analytics":
                             area_prices[
                                 ["Average_Price", "Median_Price"]
                             ],
-                            color=["#55C7F3", "#42D6C3"],
+                            color=["#59C8F2", "#42D6C3"],
                             alt="Average and median observed prices by neighbourhood",
                         )
 
@@ -1156,7 +1210,7 @@ if page == "Executive Analytics":
 
                         st.bar_chart(
                             type_prices[["mean", "median"]],
-                            color=["#818CF8", "#F59E0B"],
+                            color=["#59C8F2", "#42D6C3"],
                             alt="Average and median observed prices by property type",
                         )
 
@@ -1216,7 +1270,7 @@ if page == "Executive Analytics":
                             "Price_CV_Percent",
                             ascending=False,
                         )[["Price_CV_Percent"]].head(10),
-                        color="#F97316",
+                        color="#59C8F2",
                         alt="Neighbourhoods with highest relative price variation",
                     )
 
@@ -1232,7 +1286,7 @@ if page == "Executive Analytics":
                             "Price_CV_Percent",
                             ascending=True,
                         )[["Price_CV_Percent"]].head(10),
-                        color="#2DD4BF",
+                        color="#42D6C3",
                         alt="Neighbourhoods with lowest relative price variation",
                     )
 
@@ -1370,7 +1424,7 @@ if page == "Executive Analytics":
                     monthly_summary[
                         ["Average_Price", "Median_Price"]
                     ],
-                    color=["#55C7F3", "#42D6C3"],
+                    color=["#59C8F2", "#42D6C3"],
                     alt="Average and median observed prices by stay month",
                 )
 
@@ -1416,7 +1470,7 @@ if page == "Executive Analytics":
 
                 st.bar_chart(
                     capture_trend,
-                    color="#818CF8",
+                    color="#59C8F2",
                     alt="Price observation counts by capture date",
                 )
 
@@ -1499,7 +1553,7 @@ if page == "Executive Analytics":
             t1.caption(f"Nepal · {latest['month_date'].strftime('%B %Y')}")
             t2.line_chart(
                 tourism.set_index("month_date")[["tourist_arrivals"]].tail(36),
-                color="#38BDF8",
+                color="#59C8F2",
             )
             if "source_name" in tourism and tourism["source_name"].notna().any():
                 st.caption(f"Source: {tourism['source_name'].dropna().iloc[0]}")
@@ -1817,7 +1871,7 @@ elif page == "Price Prediction":
 
             st.bar_chart(
                 comparison,
-                color="#38BDF8",
+                color="#59C8F2",
             )
 
             st.success("Prediction generated successfully.")
@@ -1921,7 +1975,7 @@ elif page == "Data Analysis":
             section_heading("Neighbourhood Distribution")
             st.bar_chart(
                 filtered["neighbourhood"].value_counts(),
-                color="#38BDF8",
+                color="#59C8F2",
             )
 
         with right:
@@ -1935,7 +1989,7 @@ elif page == "Data Analysis":
                 .groupby("property_type")["nightly_price_npr"]
                 .mean()
             )
-            st.bar_chart(price_by_type, color="#2DD4BF")
+            st.bar_chart(price_by_type, color="#42D6C3")
 
         section_heading("Filtered Records")
         st.dataframe(
@@ -1966,7 +2020,7 @@ elif page == "Data Analysis":
             if "available" in availability.columns:
                 st.bar_chart(
                     availability["available"].astype(str).value_counts(),
-                    color="#38BDF8",
+                    color="#59C8F2",
                 )
 
             st.dataframe(
@@ -1994,7 +2048,7 @@ elif page == "Data Analysis":
                     numeric(
                         price_observations["observed_price_npr"]
                     ).dropna(),
-                    color="#2DD4BF",
+                    color="#42D6C3",
                 )
 
             st.dataframe(

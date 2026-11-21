@@ -477,3 +477,177 @@ section.main > div.block-container,
     width: 100% !important;
   }
 }
+
+
+/* ============================================================
+   PREMIUM EXECUTIVE KPI CARDS
+   ============================================================ */
+.executive-kpi {
+  --kpi-accent: #59c8f2;
+  position: relative;
+  min-width: 0;
+  min-height: 142px;
+  margin: 0 0 .85rem;
+  padding: 1rem 1.08rem .9rem;
+  overflow: hidden;
+  border: 1px solid rgba(139,170,199,.18);
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--kpi-accent) 12%, transparent), transparent 43%),
+    linear-gradient(145deg, #14263c 0%, #101d30 100%);
+  box-shadow: 0 10px 26px rgba(0,0,0,.14), inset 0 1px rgba(255,255,255,.025);
+  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+.executive-kpi:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--kpi-accent) 48%, transparent);
+  box-shadow: 0 15px 32px rgba(0,0,0,.20);
+}
+.executive-kpi.teal { --kpi-accent: #42d6c3; }
+.executive-kpi.blue { --kpi-accent: #82aaff; }
+.executive-kpi-head {
+  display: flex;
+  align-items: center;
+  gap: .62rem;
+  min-width: 0;
+}
+.executive-kpi-symbol {
+  display: grid;
+  flex: 0 0 30px;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--kpi-accent) 30%, transparent);
+  border-radius: 9px;
+  background: color-mix(in srgb, var(--kpi-accent) 12%, transparent);
+  color: var(--kpi-accent);
+  font-size: .95rem;
+  font-weight: 800;
+}
+.executive-kpi-label {
+  min-width: 0;
+  color: #b7c8d8;
+  font-size: .76rem;
+  font-weight: 700;
+  letter-spacing: .01em;
+}
+.executive-kpi-indicator {
+  width: 6px;
+  height: 6px;
+  margin-left: auto;
+  border-radius: 50%;
+  background: var(--kpi-accent);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--kpi-accent) 12%, transparent);
+}
+.executive-kpi-value {
+  margin: .72rem 0 .24rem;
+  color: #f5f9ff;
+  font-family: 'Manrope', 'DM Sans', sans-serif;
+  font-size: clamp(1.28rem, 1.75vw, 1.72rem);
+  font-weight: 800;
+  line-height: 1.18;
+  letter-spacing: -.045em;
+  overflow-wrap: anywhere;
+}
+.executive-kpi-context {
+  min-height: 1.25rem;
+  color: #8fa5ba;
+  font-size: .68rem;
+  line-height: 1.45;
+}
+.executive-kpi-track {
+  height: 4px;
+  margin-top: .72rem;
+  overflow: hidden;
+  border-radius: 99px;
+  background: rgba(125,151,177,.18);
+}
+.executive-kpi-track span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--kpi-accent), color-mix(in srgb, var(--kpi-accent) 62%, #42d6c3));
+  box-shadow: 0 0 12px color-mix(in srgb, var(--kpi-accent) 38%, transparent);
+}
+
+/* Consistent, quiet chart surfaces and responsive chart sizing */
+[data-testid="stVegaLiteChart"],
+[data-testid="stArrowVegaLiteChart"],
+[data-testid="stPlotlyChart"] {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(139,170,199,.14);
+  border-radius: 14px;
+  background: linear-gradient(145deg, rgba(16,30,48,.78), rgba(10,21,36,.68));
+  padding: .45rem;
+  box-sizing: border-box !important;
+}
+[data-testid="stDataFrame"],
+[data-testid="stTable"] {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+}
+[data-testid="stHorizontalBlock"],
+[data-testid="stColumn"] {
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* Compact sidebar without merging the logo and wordmark */
+section[data-testid="stSidebar"] {
+  width: 264px !important;
+  min-width: 264px !important;
+}
+section[data-testid="stSidebar"] > div:first-child {
+  width: 264px !important;
+}
+section[data-testid="stSidebar"] .block-container {
+  padding: 1rem .78rem 1.45rem !important;
+}
+.brand-shell {
+  grid-template-columns: 54px minmax(0, 1fr) !important;
+  column-gap: 11px !important;
+  padding: 12px 11px !important;
+  border-radius: 15px !important;
+}
+.brand-logo-wrap {
+  width: 54px !important;
+  height: 54px !important;
+}
+section[data-testid="stSidebar"] [data-testid="stRadio"] label {
+  min-height: 41px !important;
+  padding: .52rem .62rem !important;
+  font-size: .75rem !important;
+}
+.sidebar-project-meta {
+  padding: .78rem !important;
+}
+@media (max-width: 900px) {
+  section[data-testid="stSidebar"] {
+    width: min(86vw, 264px) !important;
+    min-width: min(86vw, 264px) !important;
+  }
+  section[data-testid="stSidebar"] > div:first-child {
+    width: min(86vw, 264px) !important;
+  }
+  .executive-kpi {
+    min-height: 132px;
+  }
+}
+@media (max-width: 760px) {
+  .executive-kpi {
+    min-height: 124px;
+    margin-bottom: .65rem;
+  }
+  .executive-kpi-value {
+    font-size: 1.3rem;
+  }
+  [data-testid="stVegaLiteChart"],
+  [data-testid="stArrowVegaLiteChart"],
+  [data-testid="stPlotlyChart"] {
+    padding: .2rem;
+  }
+}
