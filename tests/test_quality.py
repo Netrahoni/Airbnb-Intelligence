@@ -321,6 +321,10 @@ class ModelEvaluationTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,"at least one"):
             regression_metrics([],[])
 
+    def test_regression_metrics_reject_single_observation(self):
+        with self.assertRaisesRegex(ValueError,"at least two"):
+            regression_metrics([1000], [1100])
+
     def test_regression_metrics_reject_mismatched_lengths(self):
         with self.assertRaisesRegex(ValueError,"same length"):
             regression_metrics([1,2],[1])
