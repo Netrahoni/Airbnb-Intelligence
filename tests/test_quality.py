@@ -112,6 +112,17 @@ class RecommendationEdgeCaseTests(unittest.TestCase):
         result=self.engine.recommend_personalized({"max_price":500,"guests":2},number=10)
         self.assertTrue(result.empty)
 
+    def test_maximum_budget_rewards_affordability_not_spending_closer_to_limit(self):
+        scores = self.engine._budget_score(2500)
+        by_id = dict(zip(self.engine.properties["property_id"], scores))
+        self.assertEqual(by_id["A"], 1.0)
+        self.assertEqual(by_id["C"], 1.0)
+        self.assertEqual(by_id["B"], 0.0)
+
+    def test_budget_score_is_neutral_when_no_budget_is_provided(self):
+        scores = self.engine._budget_score()
+        self.assertTrue(np.all(scores == 0.5))
+
     def test_similar_recommendation_excludes_reference(self):
         result=self.engine.recommend_similar("a",number=10)
         self.assertNotIn("A",set(result.property_id.str.upper()))
