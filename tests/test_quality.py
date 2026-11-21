@@ -141,6 +141,42 @@ class RecommendationEdgeCaseTests(unittest.TestCase):
         self.assertEqual(thamel.iloc[0]["property_id"], "B")
         self.assertEqual(patan.iloc[0]["property_id"], "C")
 
+    def test_property_type_preference_changes_top_recommendation(self):
+        self.engine._text_similarity = lambda query: np.full(
+            len(self.engine.properties), 0.5
+        )
+        self.engine._quality_score = lambda: np.full(
+            len(self.engine.properties), 0.5
+        )
+
+        hotel = self.engine.recommend_personalized(
+            {"property_type": "Hotel"}, number=3
+        )
+        apartment = self.engine.recommend_personalized(
+            {"property_type": "Apartment"}, number=3
+        )
+
+        self.assertEqual(hotel.iloc[0]["property_id"], "B")
+        self.assertEqual(apartment.iloc[0]["property_id"], "C")
+
+    def test_room_type_preference_changes_top_recommendation(self):
+        self.engine._text_similarity = lambda query: np.full(
+            len(self.engine.properties), 0.5
+        )
+        self.engine._quality_score = lambda: np.full(
+            len(self.engine.properties), 0.5
+        )
+
+        private_room = self.engine.recommend_personalized(
+            {"room_type": "Private room"}, number=3
+        )
+        entire_place = self.engine.recommend_personalized(
+            {"room_type": "Entire place"}, number=3
+        )
+
+        self.assertEqual(private_room.iloc[0]["property_id"], "A")
+        self.assertEqual(entire_place.iloc[0]["property_id"], "B")
+
     def test_equal_scores_use_property_id_as_deterministic_tiebreaker(self):
         frame = sample_properties().iloc[[2, 1, 0]].copy()
         frame["rating"] = 4.0
