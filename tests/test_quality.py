@@ -195,6 +195,59 @@ class RecommendationEdgeCaseTests(unittest.TestCase):
 
         self.assertTrue((result["property_type_match"] == 1.0).all())
 
+    def test_explicit_neighbourhood_preference_outweighs_unrelated_text_and_quality(self):
+        self.engine._text_similarity = lambda query: np.array([0.0, 0.0, 1.0])
+        self.engine._quality_score = lambda: np.array([0.0, 0.0, 1.0])
+
+        result = self.engine.recommend_personalized(
+            {"neighbourhood": "Thamel"}, number=3
+        )
+
+        self.assertEqual(result.iloc[0]["property_id"], "B")
+
+    def test_personalized_weights_normalize_only_explicit_ranking_signals(self):
+        weights = self.engine._personalized_weights(
+            {"neighbourhood": "Thamel"}
+        )
+
+        self.assertAlmostEqual(sum(weights.values()), 1.0)
+        self.assertAlmostEqual(weights["neighbourhood_match"], 0.22 / 0.32)
+        self.assertAlmostEqual(weights["quality_score"], 0.10 / 0.32)
+        self.assertNotIn("text_similarity", weights)
+        self.assertNotIn("budget_match", weights)
+        self.assertNotIn("property_type_match", weights)
+        self.assertNotIn("capacity_match", weights)
+
+    def test_categorical_preferences_are_not_repeated_in_text_query(self):
+        captured = []
+        self.engine._text_similarity = lambda query: (
+            captured.append(query) or np.full(len(self.engine.properties), 0.5)
+        )
+
+        self.engine.recommend_personalized(
+            {
+                "neighbourhood": "Thamel",
+                "property_type": "Hotel",
+                "room_type": "Private room",
+            },
+            number=3,
+        )
+
+        self.assertEqual(captured, [""])
+
+    def test_descriptive_and_guest_preferences_activate_their_own_weights(self):
+        weights = self.engine._personalized_weights(
+            {"amenities": ["wifi", "kitchen"], "guests": 2}
+        )
+
+        self.assertAlmostEqual(sum(weights.values()), 1.0)
+        self.assertAlmostEqual(weights["text_similarity"], 0.20 / 0.45)
+        self.assertAlmostEqual(weights["capacity_match"], 0.15 / 0.45)
+        self.assertAlmostEqual(weights["quality_score"], 0.10 / 0.45)
+        self.assertNotIn("neighbourhood_match", weights)
+        self.assertNotIn("property_type_match", weights)
+        self.assertNotIn("budget_match", weights)
+
     def test_equal_scores_use_property_id_as_deterministic_tiebreaker(self):
         frame = sample_properties().iloc[[2, 1, 0]].copy()
         frame["rating"] = 4.0
