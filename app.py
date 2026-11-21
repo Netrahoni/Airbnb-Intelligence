@@ -1858,30 +1858,40 @@ elif page == "Property Recommendations":
     if recommendations.empty:
         st.info("No properties match the selected filters.")
     else:
-        for _, item in recommendations.iterrows():
-            st.markdown(
-                f"""
-                <div class="property-card">
-                    <div class="property-card-title">
-                        {item['Property Name']}
-                    </div>
-                    <div class="property-card-meta">
-                        {item['Property ID']} ·
-                        {item['Neighbourhood']} ·
-                        {item['Property Type']} ·
-                        {item['Room Type']}
-                    </div>
-                    <br>
-                    <b>{money(item['Nightly Price (NPR)'])}</b>
-                    &nbsp; · &nbsp; ⭐ {item['Rating']} / 5
-                    &nbsp; · &nbsp;
-                    <span class="similarity">
-                        {item['Similarity (%)']}% similarity
-                    </span>
-                </div>
-                """,
-                unsafe_allow_html=True,
-            )
+        for start in range(0, len(recommendations), 2):
+            card_columns = st.columns(2, gap="medium")
+            for column, (_, item) in zip(
+                card_columns,
+                recommendations.iloc[start:start + 2].iterrows(),
+            ):
+                similarity_score = float(item["Similarity (%)"])
+                safe_name = escape(str(item["Property Name"]))
+                safe_id = escape(str(item["Property ID"]))
+                safe_area = escape(str(item["Neighbourhood"]))
+                safe_type = escape(str(item["Property Type"]))
+                safe_room = escape(str(item["Room Type"]))
+                with column:
+                    st.markdown(
+                        f"""
+                        <article class="discovery-card">
+                          <div class="discovery-card-top">
+                            <span class="discovery-kicker">MATCHED PROPERTY</span>
+                            <span class="discovery-score">{similarity_score:.1f}% match</span>
+                          </div>
+                          <h3 class="discovery-title">{safe_name}</h3>
+                          <div class="discovery-location">{safe_area} · {safe_id}</div>
+                          <div class="discovery-tags">
+                            <span>{safe_type}</span><span>{safe_room}</span>
+                          </div>
+                          <div class="discovery-card-bottom">
+                            <div><small>Sample nightly price</small><strong>{money(item['Nightly Price (NPR)'])}</strong></div>
+                            <div class="discovery-rating"><span>★</span> {item['Rating']} / 5</div>
+                          </div>
+                          <div class="discovery-track"><span style="width:{min(100, max(0, similarity_score)):.1f}%"></span></div>
+                        </article>
+                        """,
+                        unsafe_allow_html=True,
+                    )
 
     st.caption(
         "Similarity is a mathematical text-feature similarity score. "
@@ -1987,36 +1997,36 @@ elif page == "Price Prediction":
             )
 
             st.divider()
-            section_heading("Prediction Results")
+            section_heading(
+                "Prediction Results",
+                "A side-by-side view of the model estimate and the selected property's baseline.",
+            )
+
+            st.markdown(
+                f"""
+                <section class="prediction-hero">
+                  <div class="prediction-kicker">EXPERIMENTAL MODEL ESTIMATE</div>
+                  <div class="prediction-price">{money(prediction)}<span> / night</span></div>
+                  <div class="prediction-change {'positive' if difference >= 0 else 'negative'}">
+                    {'+' if difference >= 0 else ''}{percentage:.2f}% versus baseline
+                  </div>
+                </section>
+                """,
+                unsafe_allow_html=True,
+            )
 
             p1, p2, p3 = st.columns(3)
+            p1.metric("Estimated Nightly Price", money(prediction))
+            p2.metric("Baseline Nightly Price", money(baseline))
+            p3.metric("Absolute Difference", money(abs(difference)))
 
-            p1.metric(
-                "Estimated Nightly Price",
-                money(prediction),
+            comparison = pd.Series(
+                {"Baseline": baseline, "Model estimate": prediction},
+                dtype=float,
             )
-
-            p2.metric(
-                "Baseline Price",
-                money(baseline),
+            render_horizontal_bar_chart(
+                comparison, value_format="price", limit=2, color="#59c8f2"
             )
-
-            p3.metric(
-                "Difference from Baseline",
-                money(difference),
-                delta=f"{percentage:+.2f}%",
-            )
-
-            comparison = pd.DataFrame({
-                "Price Type": ["Baseline", "Model Estimate"],
-                "Nightly Price (NPR)": [baseline, prediction],
-            }).set_index("Price Type")
-
-            st.bar_chart(
-                comparison,
-                color="#59C8F2",
-            )
-
             st.success("Prediction generated successfully.")
 
             st.caption(

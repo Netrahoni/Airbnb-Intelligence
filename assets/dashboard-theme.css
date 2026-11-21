@@ -686,3 +686,140 @@ section[data-testid="stSidebar"] [data-testid="stRadio"] label {
 @media (max-width: 760px) {
   .insight-narrative { padding: .8rem .9rem; }
 }
+
+
+/* Phase 3: property discovery and model prediction experience */
+.discovery-card {
+  min-width: 0;
+  height: 100%;
+  margin: .15rem 0 .9rem;
+  padding: 1.05rem 1.1rem .95rem;
+  overflow: hidden;
+  border: 1px solid rgba(139,170,199,.19);
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(89,200,242,.09), transparent 36%),
+    linear-gradient(145deg, #14263c, #101d30);
+  box-shadow: 0 10px 25px rgba(0,0,0,.13);
+  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+.discovery-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(66,214,195,.42);
+  box-shadow: 0 15px 30px rgba(0,0,0,.19);
+}
+.discovery-card-top, .discovery-card-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .6rem;
+}
+.discovery-kicker, .prediction-kicker {
+  color: #79def0;
+  font-size: .61rem;
+  font-weight: 800;
+  letter-spacing: 1.35px;
+}
+.discovery-score {
+  flex: 0 0 auto;
+  padding: .28rem .55rem;
+  border: 1px solid rgba(66,214,195,.25);
+  border-radius: 99px;
+  background: rgba(66,214,195,.09);
+  color: #66e0cf;
+  font-size: .68rem;
+  font-weight: 800;
+}
+.discovery-title {
+  margin: .78rem 0 .2rem !important;
+  color: #f3f8fd !important;
+  font-size: 1.03rem !important;
+  line-height: 1.35 !important;
+  overflow-wrap: anywhere;
+}
+.discovery-location {
+  color: #8fa7bd;
+  font-size: .72rem;
+}
+.discovery-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+  margin: .8rem 0 .95rem;
+}
+.discovery-tags span {
+  padding: .27rem .52rem;
+  border: 1px solid rgba(139,170,199,.17);
+  border-radius: 7px;
+  background: rgba(255,255,255,.035);
+  color: #b7c9d9;
+  font-size: .66rem;
+}
+.discovery-card-bottom {
+  align-items: end;
+  padding-top: .72rem;
+  border-top: 1px solid rgba(139,170,199,.13);
+}
+.discovery-card-bottom small {
+  display: block;
+  margin-bottom: .18rem;
+  color: #8fa5ba;
+  font-size: .62rem;
+}
+.discovery-card-bottom strong {
+  color: #f3f8fd;
+  font-size: .91rem;
+}
+.discovery-rating {
+  color: #dce8f2;
+  font-size: .78rem;
+  font-weight: 700;
+}
+.discovery-rating span { color: #f2c66d; }
+.discovery-track {
+  height: 3px;
+  margin-top: .8rem;
+  overflow: hidden;
+  border-radius: 99px;
+  background: rgba(139,170,199,.15);
+}
+.discovery-track span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #59c8f2, #42d6c3);
+}
+.prediction-hero {
+  margin: .2rem 0 1rem;
+  padding: 1.25rem 1.4rem;
+  border: 1px solid rgba(89,200,242,.25);
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 95% 10%, rgba(66,214,195,.14), transparent 30%),
+    linear-gradient(115deg, #142b45, #102d37);
+}
+.prediction-price {
+  margin: .45rem 0 .28rem;
+  color: #f5faff;
+  font-family: 'Manrope', sans-serif;
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 800;
+  letter-spacing: -.05em;
+  overflow-wrap: anywhere;
+}
+.prediction-price span {
+  color: #9bb1c4;
+  font-size: .85rem;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+.prediction-change {
+  font-size: .78rem;
+  font-weight: 750;
+}
+.prediction-change.positive { color: #62dfc9; }
+.prediction-change.negative { color: #83c9ed; }
+@media (max-width: 760px) {
+  .discovery-card { padding: .9rem; }
+  .prediction-hero { padding: 1rem; }
+}
