@@ -461,3 +461,23 @@ class DataQualityProfileTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class DashboardControlTests(unittest.TestCase):
+    def test_reset_widget_state_removes_only_requested_keys(self):
+        from src.dashboard_controls import reset_widget_state
+        state = {"search": "Thamel", "price": 5000, "keep": "value"}
+        reset_widget_state(state, ("search", "price"))
+        self.assertEqual(state, {"keep": "value"})
+
+    def test_reset_widget_state_accepts_missing_keys(self):
+        from src.dashboard_controls import reset_widget_state
+        state = {"keep": True}
+        reset_widget_state(state, ("missing",))
+        self.assertEqual(state, {"keep": True})
+
+    def test_reset_widget_state_accepts_empty_key_list(self):
+        from src.dashboard_controls import reset_widget_state
+        state = {"search": "Thamel"}
+        reset_widget_state(state, ())
+        self.assertEqual(state, {"search": "Thamel"})
