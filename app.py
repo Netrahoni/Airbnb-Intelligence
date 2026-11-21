@@ -677,7 +677,7 @@ def render_donut_chart(series, center_label="LISTINGS"):
     wedges, _, _ = ax.pie(
         values.values, startangle=90, counterclock=False,
         colors=palette[:len(values)], autopct=lambda pct: f"{pct:.0f}%" if pct >= 5 else "",
-        pctdistance=.78, wedgeprops={"width": .34, "edgecolor": "#ffffff", "linewidth": 2},
+        pctdistance=.78, wedgeprops={"width": .34, "edgecolor": "#101d30", "linewidth": 2},
         textprops={"color": "#f2f7fc", "fontsize": 8},
     )
     ax.text(0, .06, f"{int(values.sum()):,}", ha="center", va="center",
