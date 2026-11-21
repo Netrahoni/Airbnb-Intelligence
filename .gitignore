@@ -45,3 +45,6 @@ htmlcov/
 
 # Generated audit output
 /data/audit_output/
+
+# Generated local evaluation report
+/reports/recommendation_evaluation.csv
