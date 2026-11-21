@@ -177,6 +177,24 @@ class RecommendationEdgeCaseTests(unittest.TestCase):
         self.assertEqual(private_room.iloc[0]["property_id"], "A")
         self.assertEqual(entire_place.iloc[0]["property_id"], "B")
 
+    def test_multi_value_neighbourhood_preference_matches_any_selection(self):
+        components = self.engine.recommend_personalized(
+            {"neighbourhood": [" thamel ", "PATAN"]}, number=3
+        )
+
+        self.assertTrue((components["neighbourhood_match"] == 1.0).all())
+
+    def test_multi_value_property_and_room_preferences_match_any_selection(self):
+        result = self.engine.recommend_personalized(
+            {
+                "property_type": [" hotel ", "APARTMENT"],
+                "room_type": ["PRIVATE ROOM", " entire place "],
+            },
+            number=3,
+        )
+
+        self.assertTrue((result["property_type_match"] == 1.0).all())
+
     def test_equal_scores_use_property_id_as_deterministic_tiebreaker(self):
         frame = sample_properties().iloc[[2, 1, 0]].copy()
         frame["rating"] = 4.0
