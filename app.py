@@ -10,6 +10,14 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import streamlit as st
 
+from src.data_loading import (
+    file_cache_key as _shared_file_cache_key,
+    optional_file_cache_keys as _shared_optional_file_cache_keys,
+    read_csv_if_exists,
+    read_optional_csv,
+    read_report as read_report_file,
+)
+
 
 # ============================================================
 # 1. CONFIGURATION
@@ -343,20 +351,13 @@ st.markdown(f"<style>{DASHBOARD_THEME}</style>", unsafe_allow_html=True)
 
 def _file_cache_key(path):
     """Return a lightweight file signature so cached artifacts refresh after replacement."""
-    try:
-        stat = Path(path).stat()
-        return (stat.st_mtime_ns, stat.st_size)
-    except FileNotFoundError:
-        return None
+    return _shared_file_cache_key(path)
 
 
 def _optional_file_cache_keys(filenames):
     """Capture signatures for each optional-data search location."""
-    search_dirs = [DATA_DIR, ROOT / "data" / "raw", ROOT]
-    return tuple(
-        (str(folder / filename), _file_cache_key(folder / filename))
-        for filename in filenames
-        for folder in search_dirs
+    return _shared_optional_file_cache_keys(
+        filenames, [DATA_DIR, ROOT / "data" / "raw", ROOT]
     )
 
 
@@ -376,41 +377,24 @@ def load_models(recommender_signature=None, price_signature=None):
 
 @st.cache_data(ttl=1800, max_entries=32, show_spinner=False)
 def load_csv(filename, file_signature=None):
-    path = DATA_DIR / filename
-    if not path.exists():
-        return pd.DataFrame()
-    return pd.read_csv(path)
+    return read_csv_if_exists(DATA_DIR / filename)
 
 
 @st.cache_data(ttl=1800, max_entries=32, show_spinner=False)
 def load_optional_csv(*filenames, file_signatures=None):
     """Load optional datasets using alternative filenames and locations."""
-    search_dirs = [
-        DATA_DIR,
-        ROOT / "data" / "raw",
-        ROOT,
-    ]
-
-    for filename in filenames:
-        for folder in search_dirs:
-            path = folder / filename
-
-            if path.exists():
-                try:
-                    return pd.read_csv(path)
-                except Exception as error:
-                    st.warning(f"Could not read {filename}: {error}")
-
-    return pd.DataFrame()
+    return read_optional_csv(
+        filenames,
+        [DATA_DIR, ROOT / "data" / "raw", ROOT],
+        on_error=lambda filename, error: st.warning(
+            f"Could not read {filename}: {error}"
+        ),
+    )
 
 
 @st.cache_data(ttl=1800, max_entries=32, show_spinner=False)
 def load_report(filename, file_signature=None):
-    path = REPORT_DIR / filename
-    if not path.exists():
-        return pd.DataFrame()
-    return pd.read_csv(path)
-
+    return read_report_file(REPORT_DIR / filename)
 
 try:
     recommender, price_model = load_models(
