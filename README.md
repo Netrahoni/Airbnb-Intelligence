@@ -364,3 +364,59 @@ This project is not affiliated with, endorsed by, or officially connected to Air
 **Project:** Airbnb Intelligence  
 **Repository:** [Netrahoni/Airbnb-Intelligence](https://github.com/Netrahoni/Airbnb-Intelligence)  
 **Purpose:** Machine Learning Internship Project
+
+---
+
+## Visual Analysis & Output Report
+
+The following figures are generated from the project's local processed datasets and saved evaluation reports. To generate or refresh the charts, run the report script from the repository root:
+
+```bash
+python scripts/generate_readme_report.py
+```
+
+Generated figures are saved under `reports/figures/`. The charts are only available in this README after the generated image files have been committed to GitHub. Missing datasets or report files are skipped; no sample values are invented.
+
+### Executive Analytics
+
+| Analysis | Output figure |
+|---|---|
+| Nightly price distribution | ![Nightly price distribution](reports/figures/price_distribution.png) |
+| Neighbourhood listing counts | ![Listing counts by neighbourhood](reports/figures/neighbourhood_listing_counts.png) |
+| Median price by neighbourhood | ![Median price by neighbourhood](reports/figures/neighbourhood_median_prices.png) |
+| Property type composition | ![Property type composition](reports/figures/property_type_composition.png) |
+| Nepal tourist-arrival trend | ![Nepal tourist arrivals](reports/figures/tourist_arrivals_trend.png) |
+
+### Price Prediction & Model Evaluation
+
+| Analysis | Output figure |
+|---|---|
+| Actual vs. predicted prices | ![Actual vs predicted prices](reports/figures/actual_vs_predicted.png) |
+| Prediction error distribution | ![Prediction error distribution](reports/figures/prediction_error_distribution.png) |
+| Absolute prediction errors | ![Absolute prediction error](reports/figures/absolute_prediction_error.png) |
+| Saved model metrics | ![Price model metrics](reports/figures/price_model_metrics.png) |
+| Model comparison | See generated `model_comparison_*.png` figures in `reports/figures/`. |
+| Cross-validation | See generated `cross_validation_*.png` figures in `reports/figures/`. |
+
+### Recommendation System Evaluation
+
+| Analysis | Output figure |
+|---|---|
+| Recommendation score summary | ![Recommendation score summary](reports/figures/recommendation_score_summary.png) |
+| Personalized recommendation scores | ![Personalized recommendation scores](reports/figures/personalized_recommendation_scores.png) |
+| Similar-property scores | ![Similar-property scores](reports/figures/similar_property_scores.png) |
+| Weight configuration comparisons | See generated `recommendation_weights_*.png` figures in `reports/figures/`. |
+
+These recommendation charts represent scenario-based, heuristic diagnostics—not ground-truth recommendation accuracy or user satisfaction.
+
+### Cancellation Benchmark
+
+![Cancellation benchmark distribution](reports/figures/cancellation_target_distribution.png)
+
+This figure is based on the external hotel-booking benchmark and is not Kathmandu Airbnb cancellation data.
+
+### Report Files
+
+The detailed CSV outputs are available in the `reports/` directory when generated locally, including model metrics, prediction-level records, cross-validation, model comparison, recommendation scenario results, and weight experiments. Figures and report outputs must be regenerated when datasets or model artifacts change.
+
+> **Data integrity note:** Charts are generated from available files in the repository's `data/processed/` and `reports/` folders. Property and pricing data may contain synthetic samples; national tourism figures are contextual only; and the cancellation benchmark is external. Visuals should not be interpreted as verified live market data.
