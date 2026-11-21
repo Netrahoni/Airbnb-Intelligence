@@ -42,6 +42,9 @@ jobs:
       - name: Run recommendation tests
         run: python tests/test_recommendations.py
 
+      - name: Run Streamlit dashboard smoke tests
+        run: python -m unittest discover -s tests -p "test_dashboard_smoke.py" -v
+
       - name: Run isolated quality test suite
         run: python -m unittest discover -s tests -p "test_*.py" -v
 
