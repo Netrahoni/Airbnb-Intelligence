@@ -391,8 +391,9 @@ class AdvancedPropertyRecommender:
                 "recommendation_score",
                 "rating",
                 "review_count",
+                "property_id",
             ],
-            ascending=[False, False, False],
+            ascending=[False, False, False, True],
         )
 
         results = results.head(number).copy()
