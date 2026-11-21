@@ -53,7 +53,7 @@ class DashboardDataLoadingTests(unittest.TestCase):
     def test_optional_csv_continues_after_unreadable_candidate(self):
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory)
-            (root/"bad.csv").write_text('not,csv\\n"unterminated', encoding="utf-8")
+            (root/"bad.csv").write_text("a,b\n1,2\n3,4,5\n", encoding="utf-8")
             pd.DataFrame({"ok":[1]}).to_csv(root/"good.csv",index=False)
             warnings=[]
             frame=read_optional_csv(["bad.csv","good.csv"],[root],lambda name,error:warnings.append(name))
