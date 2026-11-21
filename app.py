@@ -10,6 +10,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import streamlit as st
 
+from src.model_evaluation import price_band_diagnostics
+
 from src.data_loading import (
     file_cache_key as _shared_file_cache_key,
     optional_file_cache_keys as _shared_optional_file_cache_keys,
@@ -2334,7 +2336,17 @@ elif page == "Model Evaluation":
     metrics_df = metrics.copy()
     comparison_df = price_comparison.copy()
     cv_df = cross_validation.copy()
-    error_df = error_categories.copy()
+    has_row_level_predictions = (
+        not prediction_records.empty
+        and {"actual_price_npr", "predicted_price_npr"}.issubset(
+            prediction_records.columns
+        )
+    )
+    error_df = (
+        price_band_diagnostics(prediction_records)
+        if has_row_level_predictions
+        else error_categories.copy()
+    )
 
     def metric_lookup(frame):
         if frame.empty or not {"metric", "value"}.issubset(frame.columns):
@@ -2743,12 +2755,21 @@ elif page == "Model Evaluation":
     with tab_errors:
         section_heading(
             "Where does the model miss?",
-            "Compare error size and prediction bias across the saved price bands.",
+            "Compare error size and prediction bias across actual-price bands.",
         )
 
-        if error_df.empty:
-            st.info("The price-category error report is unavailable.")
+        if has_row_level_predictions and not error_df.empty:
+            st.caption(
+                "Band metrics are calculated from row-level held-out predictions, "
+                "so their count-weighted MAE reconciles with the overall prediction error."
+            )
+        elif error_df.empty:
+            st.info("No valid row-level price predictions or saved category diagnostics are available.")
         else:
+            st.warning(
+                "Row-level predictions are unavailable. Showing the saved category report, "
+                "which may not match the current model run."
+            )
             if "price_category" in error_df.columns:
                 error_sorted = error_df.sort_values(
                     "mean_absolute_error" if "mean_absolute_error" in error_df.columns else "price_category",
