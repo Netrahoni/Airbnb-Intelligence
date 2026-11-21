@@ -587,33 +587,13 @@ if page == "Executive Analytics":
     with st.container(border=True):
         section_heading(
             "Executive filters",
-            "Focus the property-level indicators and visualisations.",
+            "Manage your portfolio view. Reset restores the complete sample inventory.",
         )
-        f1, f2, f3 = st.columns([1.2, 1.2, 1])
+
         neighbourhoods = sorted(properties["neighbourhood"].dropna().astype(str).unique()) if "neighbourhood" in properties else []
         property_types = sorted(properties["property_type"].dropna().astype(str).unique()) if "property_type" in properties else []
-    
-        with f1:
-            selected_neighbourhoods = st.multiselect(
-                "Neighbourhood", neighbourhoods, default=neighbourhoods,
-                key="exec_neighbourhood_filter",
-            )
-        with f2:
-            selected_types = st.multiselect(
-                "Property type", property_types, default=property_types,
-                key="exec_property_type_filter",
-            )
-        with f3:
-            published_only = st.toggle(
-                "Published only", value=False, key="exec_published_filter"
-            )
-    
-        # Additional filters keep the executive view useful without changing source data.
         room_types = sorted(properties["room_type"].dropna().astype(str).unique()) if "room_type" in properties else []
-        selected_room_types = st.multiselect(
-            "Room type", room_types, default=room_types, key="exec_room_type_filter"
-        )
-        filter_col1, filter_col2 = st.columns([1.4, 1])
+
         price_floor, price_ceiling = 0, 1
         if "nightly_price_npr" in properties:
             all_prices = numeric(properties["nightly_price_npr"]).dropna()
@@ -622,17 +602,78 @@ if page == "Executive Analytics":
                 price_ceiling = int(np.ceil(all_prices.max()))
                 if price_ceiling <= price_floor:
                     price_ceiling = price_floor + 1
-        with filter_col1:
-            selected_price_range = st.slider(
-                "Sample nightly price range (NPR)", min_value=price_floor,
-                max_value=price_ceiling, value=(price_floor, price_ceiling),
-                key="exec_price_range_filter",
+
+        action_col, status_col = st.columns([1, 4])
+        with action_col:
+            reset_filters = st.button(
+                "↺  Reset filters",
+                key="reset_exec_filters",
+                type="secondary",
+                width="content",
+                help="Restore all executive filters to their default values.",
             )
-        with filter_col2:
-            minimum_rating = st.slider(
-                "Minimum guest rating", min_value=0.0, max_value=5.0,
-                value=0.0, step=0.1, key="exec_min_rating_filter",
+        with status_col:
+            st.caption("Use Manage filters to show or hide the filter controls.")
+
+        # Set widget state before creating the widgets; Streamlit then renders
+        # the reset values in the same rerun without stale selections.
+        if reset_filters:
+            st.session_state["exec_neighbourhood_filter"] = neighbourhoods
+            st.session_state["exec_property_type_filter"] = property_types
+            st.session_state["exec_published_filter"] = False
+            st.session_state["exec_room_type_filter"] = room_types
+            st.session_state["exec_price_range_filter"] = (price_floor, price_ceiling)
+            st.session_state["exec_min_rating_filter"] = 0.0
+
+        with st.expander("⚙  Manage filters", expanded=True):
+            f1, f2, f3 = st.columns([1.2, 1.2, 1])
+
+            with f1:
+                selected_neighbourhoods = st.multiselect(
+                    "Neighbourhood",
+                    neighbourhoods,
+                    default=neighbourhoods,
+                    key="exec_neighbourhood_filter",
+                )
+            with f2:
+                selected_types = st.multiselect(
+                    "Property type",
+                    property_types,
+                    default=property_types,
+                    key="exec_property_type_filter",
+                )
+            with f3:
+                published_only = st.toggle(
+                    "Published only",
+                    value=False,
+                    key="exec_published_filter",
+                )
+
+            selected_room_types = st.multiselect(
+                "Room type",
+                room_types,
+                default=room_types,
+                key="exec_room_type_filter",
             )
+
+            filter_col1, filter_col2 = st.columns([1.4, 1])
+            with filter_col1:
+                selected_price_range = st.slider(
+                    "Sample nightly price range (NPR)",
+                    min_value=price_floor,
+                    max_value=price_ceiling,
+                    value=(price_floor, price_ceiling),
+                    key="exec_price_range_filter",
+                )
+            with filter_col2:
+                minimum_rating = st.slider(
+                    "Minimum guest rating",
+                    min_value=0.0,
+                    max_value=5.0,
+                    value=0.0,
+                    step=0.1,
+                    key="exec_min_rating_filter",
+                )
 
     executive_properties = properties.copy()
     if "neighbourhood" in executive_properties:
