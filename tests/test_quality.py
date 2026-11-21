@@ -9,7 +9,7 @@ import pandas as pd
 
 from src.data_loading import file_cache_key, optional_file_cache_keys, read_csv_if_exists, read_optional_csv, read_report
 from src.advanced_recommender import AdvancedPropertyRecommender
-from src.model_evaluation import regression_metrics, ensure_group_disjoint
+from src.model_evaluation import regression_metrics, ensure_group_disjoint, price_band_diagnostics
 
 
 def sample_properties():
@@ -122,6 +122,33 @@ class RecommendationEdgeCaseTests(unittest.TestCase):
 
 
 class ModelEvaluationTests(unittest.TestCase):
+    def test_price_band_diagnostics_reconcile_to_overall_mae(self):
+        predictions = pd.DataFrame({
+            "actual_price_npr": [1000, 2500, 4500, 7000, 0],
+            "predicted_price_npr": [1100, 2000, 5000, 6000, 100],
+        })
+        bands = price_band_diagnostics(predictions)
+        self.assertEqual(int(bands["sample_count"].sum()), len(predictions))
+        weighted_mae = np.average(
+            bands["mean_absolute_error"], weights=bands["sample_count"]
+        )
+        overall_mae = regression_metrics(
+            predictions["actual_price_npr"], predictions["predicted_price_npr"]
+        )["MAE"]
+        self.assertAlmostEqual(weighted_mae, overall_mae)
+
+    def test_price_band_diagnostics_excludes_zero_actual_from_percentage_error(self):
+        predictions = pd.DataFrame({
+            "actual_price_npr": [0, 1000],
+            "predicted_price_npr": [100, 1100],
+        })
+        bands = price_band_diagnostics(predictions)
+        self.assertAlmostEqual(bands["mean_percentage_error"].iloc[0], 10.0)
+
+    def test_price_band_diagnostics_requires_prediction_columns(self):
+        with self.assertRaisesRegex(ValueError, "missing columns"):
+            price_band_diagnostics(pd.DataFrame({"actual_price_npr": [1000]}))
+
     def test_regression_metrics_known_values(self):
         metrics=regression_metrics([3, -0.5, 2, 7],[2.5, 0, 2, 8])
         self.assertAlmostEqual(metrics["MAE"],0.5)
