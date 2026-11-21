@@ -1055,3 +1055,48 @@ textarea:focus-visible,
     height: 46px !important;
   }
 }
+
+/* Centered vertical brand lockup: logo first, name and tagline beneath. */
+.brand-shell {
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  padding: 8px 4px 17px !important;
+  text-align: center !important;
+}
+.brand-logo-wrap {
+  flex: 0 0 58px !important;
+  width: 58px !important;
+  height: 58px !important;
+  padding: 8px !important;
+}
+.brand-copy {
+  width: 100% !important;
+  min-width: 0 !important;
+  text-align: center !important;
+}
+.brand-title {
+  margin: 0 0 5px !important;
+  text-align: center !important;
+  font-size: 1.02rem !important;
+}
+.brand-tagline {
+  max-width: 220px !important;
+  margin: 0 auto !important;
+  text-align: center !important;
+  font-size: .66rem !important;
+  line-height: 1.45 !important;
+}
+@media (max-width: 768px) {
+  .brand-shell {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 9px !important;
+  }
+  .brand-logo-wrap {
+    flex-basis: 54px !important;
+    width: 54px !important;
+    height: 54px !important;
+  }
+}
