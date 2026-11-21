@@ -12,9 +12,18 @@
 
 ---
 
+**Project title:** Airbnb Intelligence  
+**Project focus:** Kathmandu Accommodation Analytics & Machine Learning Platform
+
 Airbnb Intelligence is an academic and internship-oriented machine-learning project exploring accommodation listings, pricing, recommendation, and market context for Kathmandu, Nepal. It combines data-preparation workflows, machine-learning pipelines, evaluation reports, and a multi-workspace Streamlit dashboard.
 
 > **Important scope note:** This is an analytics and demonstration project—not a booking platform. The prepared property and pricing data include synthetic samples. External benchmark datasets are not Kathmandu booking records, and the dashboard does not provide verified live listings, prices, or availability.
+
+## Training Objective
+
+The project applies Python, data analytics, and machine-learning methods to prepared accommodation data for Kathmandu. The training objective is to build practical experience across the complete workflow: data quality checks and preprocessing, exploratory analysis, feature engineering, preference-based property recommendations, nightly-price estimation, model evaluation, and delivery through an interactive Streamlit dashboard.
+
+The work also develops software-engineering skills in modular Python development, automated testing, Git/GitHub, and technical documentation. Because the prepared property and price datasets include synthetic samples, the project is intended for academic exploration and demonstration; its outputs must not be interpreted as verified live listings, market prices, or availability.
 
 ## Overview
 
