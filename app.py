@@ -603,22 +603,6 @@ if page == "Executive Analytics":
                 if price_ceiling <= price_floor:
                     price_ceiling = price_floor + 1
 
-        reset_col, spacer_col = st.columns([1, 5])
-        with reset_col:
-            reset_filters = st.button(
-                "↺  Reset filters",
-                key="reset_exec_filters",
-                type="secondary",
-                help="Restore all executive filters to their default selections.",
-            )
-        if reset_filters:
-            st.session_state["exec_neighbourhood_filter"] = neighbourhoods
-            st.session_state["exec_property_type_filter"] = property_types
-            st.session_state["exec_published_filter"] = False
-            st.session_state["exec_room_type_filter"] = room_types
-            st.session_state["exec_price_range_filter"] = (price_floor, price_ceiling)
-            st.session_state["exec_min_rating_filter"] = 0.0
-
         f1, f2, f3 = st.columns([1.2, 1.2, 1])
         with f1:
             selected_neighbourhoods = st.multiselect(

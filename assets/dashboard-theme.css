@@ -312,3 +312,93 @@ div[data-testid="stSlider"] [data-baseweb="slider"] [data-testid="stTickBar"] {
 div[data-testid="stSlider"] [data-baseweb="slider"] > div > div {
   background: #59c8f2 !important;
 }
+
+/* ============================================================
+   EXECUTIVE FILTERS — reference-matched filter panel
+   ============================================================ */
+[data-testid="stVerticalBlockBorderWrapper"]:has([data-testid="stMultiSelect"]) {
+  border: 1px solid #34475d !important;
+  border-radius: 8px !important;
+  background: rgba(7, 19, 33, .72) !important;
+  box-shadow: none !important;
+}
+[data-testid="stVerticalBlockBorderWrapper"]:has([data-testid="stMultiSelect"]) > div {
+  padding: 12px 13px 10px !important;
+}
+[data-testid="stVerticalBlockBorderWrapper"]:has([data-testid="stMultiSelect"]) h3 {
+  margin: 0 0 2px !important;
+  color: #f3f7fc !important;
+  font-size: 1.38rem !important;
+  line-height: 1.3 !important;
+  letter-spacing: -.04em !important;
+}
+[data-testid="stVerticalBlockBorderWrapper"]:has([data-testid="stMultiSelect"]) [data-testid="stCaptionContainer"] {
+  margin-top: 0 !important;
+  margin-bottom: 8px !important;
+}
+[data-testid="stVerticalBlockBorderWrapper"]:has([data-testid="stMultiSelect"]) [data-testid="stCaptionContainer"] p {
+  color: #71869d !important;
+  font-size: .76rem !important;
+}
+[data-testid="stVerticalBlockBorderWrapper"]:has([data-testid="stMultiSelect"]) [data-testid="stWidgetLabel"] p,
+[data-testid="stVerticalBlockBorderWrapper"]:has([data-testid="stMultiSelect"]) [data-testid="stWidgetLabel"] label,
+[data-testid="stVerticalBlockBorderWrapper"]:has([data-testid="stMultiSelect"]) label {
+  color: #e5edf6 !important;
+  font-size: .72rem !important;
+  font-weight: 700 !important;
+}
+[data-testid="stVerticalBlockBorderWrapper"]:has([data-testid="stMultiSelect"]) [data-testid="stMultiSelect"] [data-baseweb="select"] > div {
+  min-height: 34px !important;
+  border: 1px solid #40566d !important;
+  border-radius: 7px !important;
+  background: #172b42 !important;
+  box-shadow: none !important;
+}
+[data-testid="stVerticalBlockBorderWrapper"]:has([data-testid="stMultiSelect"]) [data-baseweb="tag"],
+[data-testid="stVerticalBlockBorderWrapper"]:has([data-testid="stMultiSelect"]) [data-baseweb="tag"] > div,
+[data-testid="stVerticalBlockBorderWrapper"]:has([data-testid="stMultiSelect"]) [data-baseweb="tag"] > span {
+  background: #55c7ed !important;
+  background-color: #55c7ed !important;
+  border: 1px solid #55c7ed !important;
+  border-radius: 5px !important;
+  color: #f7fcff !important;
+}
+[data-testid="stVerticalBlockBorderWrapper"]:has([data-testid="stMultiSelect"]) [data-baseweb="tag"] *,
+[data-testid="stVerticalBlockBorderWrapper"]:has([data-testid="stMultiSelect"]) [data-baseweb="tag"] svg {
+  color: #f7fcff !important;
+  fill: #f7fcff !important;
+}
+[data-testid="stVerticalBlockBorderWrapper"]:has([data-testid="stMultiSelect"]) [data-baseweb="tag"] button {
+  background: transparent !important;
+  color: #f7fcff !important;
+}
+[data-testid="stVerticalBlockBorderWrapper"]:has([data-testid="stMultiSelect"]) [data-testid="stMultiSelect"] input {
+  color: #edf7ff !important;
+}
+[data-testid="stVerticalBlockBorderWrapper"]:has([data-testid="stMultiSelect"]) [data-testid="stSlider"] {
+  padding-top: 0 !important;
+}
+[data-testid="stVerticalBlockBorderWrapper"]:has([data-testid="stMultiSelect"]) [data-testid="stSlider"] [role="slider"] {
+  width: 12px !important;
+  height: 12px !important;
+  background: #55c7ed !important;
+  border: 2px solid #55c7ed !important;
+  box-shadow: none !important;
+}
+[data-testid="stVerticalBlockBorderWrapper"]:has([data-testid="stMultiSelect"]) [data-testid="stSlider"] [data-baseweb="slider"] > div > div {
+  background: #55c7ed !important;
+}
+[data-testid="stVerticalBlockBorderWrapper"]:has([data-testid="stMultiSelect"]) [data-testid="stSlider"] [data-baseweb="slider"] > div:first-child {
+  background: #34465a !important;
+}
+[data-testid="stVerticalBlockBorderWrapper"]:has([data-testid="stMultiSelect"]) [data-testid="stToggle"] {
+  padding-top: 19px !important;
+}
+[data-testid="stVerticalBlockBorderWrapper"]:has([data-testid="stMultiSelect"]) [data-testid="stToggle"] label {
+  color: #e5edf6 !important;
+}
+@media (max-width: 900px) {
+  [data-testid="stVerticalBlockBorderWrapper"]:has([data-testid="stMultiSelect"]) > div {
+    padding: 10px !important;
+  }
+}
