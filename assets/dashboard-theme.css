@@ -1100,3 +1100,96 @@ textarea:focus-visible,
     height: 54px !important;
   }
 }
+
+/* ============================================================
+   FINAL TYPE SCALE — shared across every dashboard page
+   ============================================================ */
+:root {
+  --ai-brand-size: 1.08rem;
+  --ai-nav-size: .82rem;
+  --ai-body-size: .91rem;
+  --ai-section-size: 1.08rem;
+}
+html, body, [class*="css"], button, input, textarea {
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: var(--ai-body-size);
+}
+.brand-shell {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0 !important;
+  padding: 12px 8px 16px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  text-align: center !important;
+}
+.brand-logo-wrap {
+  flex: 0 0 62px !important;
+  width: 62px !important;
+  height: 62px !important;
+  margin: 0 0 12px !important;
+}
+.brand-copy { width: 100% !important; min-width: 0 !important; }
+.brand-title {
+  margin: 0 0 6px !important;
+  font-family: 'Manrope', 'DM Sans', sans-serif !important;
+  font-size: var(--ai-brand-size) !important;
+  font-weight: 800 !important;
+  line-height: 1.2 !important;
+  letter-spacing: -.04em !important;
+  color: #f5f9fd !important;
+  overflow-wrap: normal !important;
+}
+.brand-tagline {
+  max-width: 235px !important;
+  margin: 0 auto !important;
+  font-size: .70rem !important;
+  font-weight: 500 !important;
+  line-height: 1.5 !important;
+  text-align: center !important;
+}
+section[data-testid="stSidebar"] [data-testid="stRadio"] label p {
+  font-size: var(--ai-nav-size) !important;
+  font-weight: 750 !important;
+  line-height: 1.35 !important;
+}
+h1, h2, h3, h4,
+[data-testid="stMarkdownContainer"] h1,
+[data-testid="stMarkdownContainer"] h2,
+[data-testid="stMarkdownContainer"] h3,
+[data-testid="stMarkdownContainer"] h4 {
+  font-family: 'Manrope', 'DM Sans', sans-serif !important;
+  color: #f5f9fd !important;
+  font-weight: 800 !important;
+  line-height: 1.25 !important;
+  letter-spacing: -.035em !important;
+}
+.hero-title {
+  font-family: 'Manrope', 'DM Sans', sans-serif !important;
+  font-size: clamp(1.85rem, 3.2vw, 2.55rem) !important;
+  font-weight: 800 !important;
+  line-height: 1.12 !important;
+}
+[data-testid="stMarkdownContainer"] h2 { font-size: 1.32rem !important; }
+[data-testid="stMarkdownContainer"] h3 { font-size: var(--ai-section-size) !important; }
+[data-testid="stMarkdownContainer"] h4 { font-size: .96rem !important; }
+[data-testid="stWidgetLabel"] p,
+[data-testid="stWidgetLabel"] label,
+[data-testid="stRadio"] > label {
+  font-weight: 700 !important;
+}
+[data-testid="stMetricLabel"] { font-weight: 700 !important; }
+[data-testid="stCaptionContainer"] p,
+.stCaption { font-size: .78rem !important; line-height: 1.5 !important; }
+@media (max-width: 768px) {
+  .brand-logo-wrap { flex-basis: 56px !important; width: 56px !important; height: 56px !important; }
+  .brand-title { font-size: var(--ai-brand-size) !important; }
+  .brand-tagline { font-size: .68rem !important; }
+  .hero-title { font-size: clamp(1.65rem, 6vw, 2.1rem) !important; }
+  [data-testid="stMarkdownContainer"] h2 { font-size: 1.18rem !important; }
+  [data-testid="stMarkdownContainer"] h3 { font-size: 1rem !important; }
+}

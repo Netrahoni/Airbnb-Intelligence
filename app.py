@@ -812,18 +812,6 @@ with st.sidebar:
 
     st.divider()
 
-    st.markdown(
-        """
-        <div class="sidebar-project-meta">
-          <div class="meta-heading">Project workspace</div>
-          <div class="meta-copy">Machine Learning Internship Project<br>Python · Scikit-learn · Streamlit</div>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-    st.divider()
-
     st.markdown("**DATA STATUS**")
     st.markdown(
         '<div class="sidebar-status" role="status">'
@@ -833,7 +821,6 @@ with st.sidebar:
         unsafe_allow_html=True,
     )
 
-    st.caption("Experimental educational project")
 
 
 # ============================================================
@@ -844,7 +831,7 @@ if page == "Market Overview":
 
     page_header(
         "EXECUTIVE ANALYTICS",
-        "Kathmandu Accommodation Intelligence",
+        "Market Overview",
         "A decision-support view of accommodation inventory, sample pricing, "
         "neighbourhood patterns and Nepal tourism context.",
     )
@@ -1880,7 +1867,7 @@ elif page == "Property Recommendations":
 
     page_header(
         "DISCOVERY ENGINE",
-        "Find Your Next Stay",
+        "Property Recommendations",
         "Discover accommodation options with similar characteristics "
         "using TF-IDF text features and cosine similarity.",
     )
@@ -2051,7 +2038,7 @@ elif page == "Price Prediction":
 
     page_header(
         "PREDICTIVE ANALYTICS",
-        "Nightly Price Estimator",
+        "Price Prediction",
         "Estimate an experimental nightly price using the trained "
         "Gradient Boosting regression pipeline.",
     )
@@ -2197,7 +2184,7 @@ elif page == "Data Explorer":
 
     page_header(
         "DATA INTELLIGENCE",
-        "Explore, Inspect & Understand Your Data",
+        "Data Explorer",
         "A focused workspace for filtering datasets, checking data quality, "
         "understanding distributions and exporting clean analysis extracts.",
     )
@@ -2432,7 +2419,7 @@ elif page == "Model Performance":
 
     page_header(
         "MODEL INTELLIGENCE",
-        "Performance, Validation & Error Analysis",
+        "Model Performance",
         "A transparent view of model quality, cross-validation consistency, "
         "price-band performance and individual prediction behaviour.",
     )
