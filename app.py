@@ -341,8 +341,30 @@ st.markdown(f"<style>{DASHBOARD_THEME}</style>", unsafe_allow_html=True)
 # 3. DATA AND MODEL LOADING
 # ============================================================
 
-@st.cache_resource
-def load_models():
+def _file_cache_key(path):
+    """Return a lightweight file signature so cached artifacts refresh after replacement."""
+    try:
+        stat = Path(path).stat()
+        return (stat.st_mtime_ns, stat.st_size)
+    except FileNotFoundError:
+        return None
+
+
+def _optional_file_cache_keys(filenames):
+    """Capture signatures for each optional-data search location."""
+    search_dirs = [DATA_DIR, ROOT / "data" / "raw", ROOT]
+    return tuple(
+        (str(folder / filename), _file_cache_key(folder / filename))
+        for filename in filenames
+        for folder in search_dirs
+    )
+
+
+@st.cache_resource(
+    max_entries=1,
+    show_spinner="Loading recommendation and pricing models…",
+)
+def load_models(recommender_signature=None, price_signature=None):
     recommender = joblib.load(
         MODEL_DIR / "property_recommender.joblib"
     )
@@ -352,16 +374,16 @@ def load_models():
     return recommender, price_predictor
 
 
-@st.cache_data
-def load_csv(filename):
+@st.cache_data(ttl=1800, max_entries=32, show_spinner=False)
+def load_csv(filename, file_signature=None):
     path = DATA_DIR / filename
     if not path.exists():
         return pd.DataFrame()
     return pd.read_csv(path)
 
 
-@st.cache_data
-def load_optional_csv(*filenames):
+@st.cache_data(ttl=1800, max_entries=32, show_spinner=False)
+def load_optional_csv(*filenames, file_signatures=None):
     """Load optional datasets using alternative filenames and locations."""
     search_dirs = [
         DATA_DIR,
@@ -381,8 +403,9 @@ def load_optional_csv(*filenames):
 
     return pd.DataFrame()
 
-@st.cache_data
-def load_report(filename):
+
+@st.cache_data(ttl=1800, max_entries=32, show_spinner=False)
+def load_report(filename, file_signature=None):
     path = REPORT_DIR / filename
     if not path.exists():
         return pd.DataFrame()
@@ -390,29 +413,61 @@ def load_report(filename):
 
 
 try:
-    recommender, price_model = load_models()
+    recommender, price_model = load_models(
+        _file_cache_key(MODEL_DIR / "property_recommender.joblib"),
+        _file_cache_key(MODEL_DIR / "price_predictor.joblib"),
+    )
 
-    properties = load_csv("properties_clean.csv")
-    availability = load_csv("availability_clean.csv")
-    price_observations = load_csv("price_observations_clean.csv")
+    properties = load_csv(
+        "properties_clean.csv",
+        _file_cache_key(DATA_DIR / "properties_clean.csv"),
+    )
+    availability = load_csv(
+        "availability_clean.csv",
+        _file_cache_key(DATA_DIR / "availability_clean.csv"),
+    )
+    price_observations = load_csv(
+        "price_observations_clean.csv",
+        _file_cache_key(DATA_DIR / "price_observations_clean.csv"),
+    )
 
     # Optional context datasets for the executive dashboard.
+    tourist_arrival_files = (
+        "nepal_monthly_tourist_arrivals_clean.csv",
+        "nepal_monthly_tourist_arrivals.csv",
+    )
     tourist_arrivals = load_optional_csv(
-    "nepal_monthly_tourist_arrivals_clean.csv",
-    "nepal_monthly_tourist_arrivals.csv",
-)
+        *tourist_arrival_files,
+        file_signatures=_optional_file_cache_keys(tourist_arrival_files),
+    )
+    occupancy_files = (
+        "kathmandu_monthly_occupancy_clean.csv",
+        "kathmandu_monthly_occupancy.csv",
+    )
     occupancy_context = load_optional_csv(
-    "kathmandu_monthly_occupancy_clean.csv",
-    "kathmandu_monthly_occupancy.csv",
-)
+        *occupancy_files,
+        file_signatures=_optional_file_cache_keys(occupancy_files),
+    )
 
     recommendation_properties = recommender["properties"]
     similarity_matrix = recommender["similarity_matrix"]
 
-    metrics = load_report("price_model_metrics.csv")
-    price_comparison = load_report("price_model_comparison.csv")
-    cross_validation = load_report("price_model_cross_validation.csv")
-    error_categories = load_report("price_error_by_category.csv")
+    metrics = load_report(
+        "price_model_metrics.csv",
+        _file_cache_key(REPORT_DIR / "price_model_metrics.csv"),
+    )
+    price_comparison = load_report(
+        "price_model_comparison.csv",
+        _file_cache_key(REPORT_DIR / "price_model_comparison.csv"),
+    )
+    cross_validation = load_report(
+        "price_model_cross_validation.csv",
+        _file_cache_key(REPORT_DIR / "price_model_cross_validation.csv"),
+    )
+    error_categories = load_report(
+        "price_error_by_category.csv",
+        _file_cache_key(REPORT_DIR / "price_error_by_category.csv"),
+    )
 
     if properties.empty:
         raise ValueError("The properties dataset is empty.")
@@ -2287,7 +2342,10 @@ elif page == "Model Evaluation":
     )
 
     # Load the row-level holdout report for interactive diagnostics.
-    prediction_records = load_report("price_predictions.csv")
+    prediction_records = load_report(
+        "price_predictions.csv",
+        _file_cache_key(REPORT_DIR / "price_predictions.csv"),
+    )
 
     metrics_df = metrics.copy()
     comparison_df = price_comparison.copy()
