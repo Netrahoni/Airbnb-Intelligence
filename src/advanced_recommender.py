@@ -180,7 +180,36 @@ class AdvancedPropertyRecommender:
     @staticmethod
     def _normalise(value):
 
-        return str(value).strip().lower()
+        return str(value).strip().casefold()
+
+    @classmethod
+    def _normalised_options(cls, value):
+
+        if value is None:
+            return set()
+
+        values = value if isinstance(value, (list, tuple, set)) else [value]
+
+        return {
+            cls._normalise(item)
+            for item in values
+            if item is not None and str(item).strip()
+        }
+
+    def _categorical_match(self, column, preference):
+
+        options = self._normalised_options(preference)
+
+        if not options:
+            return np.full(len(self.properties), 0.5)
+
+        return (
+            self.properties[column]
+            .map(self._normalise)
+            .isin(options)
+            .astype(float)
+            .to_numpy()
+        )
 
     @staticmethod
     def _positive_number(value, name):
@@ -621,14 +650,11 @@ class AdvancedPropertyRecommender:
 
         neighbourhood = preferences.get("neighbourhood")
 
-        if neighbourhood:
+        if self._normalised_options(neighbourhood):
 
-            neighbourhood_scores = (
-                self.properties["neighbourhood"]
-                .str.lower()
-                .eq(self._normalise(neighbourhood))
-                .astype(float)
-                .to_numpy()
+            neighbourhood_scores = self._categorical_match(
+                "neighbourhood",
+                neighbourhood,
             )
 
         else:
@@ -665,24 +691,22 @@ class AdvancedPropertyRecommender:
 
         room_type = preferences.get("room_type")
 
-        if property_type:
+        if self._normalised_options(property_type):
 
             type_scores.append(
-                self.properties["property_type"]
-                .str.lower()
-                .eq(self._normalise(property_type))
-                .astype(float)
-                .to_numpy()
+                self._categorical_match(
+                    "property_type",
+                    property_type,
+                )
             )
 
-        if room_type:
+        if self._normalised_options(room_type):
 
             type_scores.append(
-                self.properties["room_type"]
-                .str.lower()
-                .eq(self._normalise(room_type))
-                .astype(float)
-                .to_numpy()
+                self._categorical_match(
+                    "room_type",
+                    room_type,
+                )
             )
 
         if type_scores:
