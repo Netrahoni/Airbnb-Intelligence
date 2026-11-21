@@ -1,0 +1,283 @@
+/* Airbnb Intelligence — refined executive dashboard theme
+   Loaded after Streamlit's base styles so these rules stay consistent. */
+:root {
+  --ai-bg: #07111f;
+  --ai-panel: #101e30;
+  --ai-panel-2: #14263b;
+  --ai-border: rgba(139, 170, 199, .17);
+  --ai-border-active: rgba(79, 196, 231, .42);
+  --ai-text: #f3f7fc;
+  --ai-muted: #9aadc1;
+  --ai-cyan: #59c8f2;
+  --ai-teal: #42d6c3;
+  --ai-amber: #f2bd55;
+}
+.stApp {
+  background:
+    radial-gradient(ellipse at 86% 2%, rgba(41, 155, 174, .13), transparent 32%),
+    radial-gradient(ellipse at 0% 54%, rgba(50, 102, 158, .10), transparent 30%),
+    var(--ai-bg) !important;
+}
+[data-testid="stHeader"] {
+  background: rgba(7, 17, 31, .76) !important;
+}
+.block-container {
+  max-width: 1640px !important;
+  padding-top: 1.35rem !important;
+  padding-bottom: 3.5rem !important;
+}
+h1, h2, h3, h4 {
+  color: var(--ai-text) !important;
+  letter-spacing: -.04em !important;
+}
+[data-testid="stCaptionContainer"] p,
+.stCaption {
+  color: var(--ai-muted) !important;
+}
+
+/* Sidebar: dedicated brand block, readable navigation, deliberate spacing */
+section[data-testid="stSidebar"] {
+  width: 292px !important;
+  min-width: 292px !important;
+  background: linear-gradient(180deg, #0c1929 0%, #091422 100%) !important;
+  border-right: 1px solid rgba(139, 170, 199, .16) !important;
+}
+section[data-testid="stSidebar"] > div:first-child {
+  width: 292px !important;
+}
+section[data-testid="stSidebar"] .block-container {
+  padding: 1.2rem .9rem 1.8rem !important;
+}
+.brand-shell {
+  grid-template-columns: 60px minmax(0, 1fr) !important;
+  column-gap: 13px !important;
+  padding: 15px 13px 13px !important;
+  border: 1px solid rgba(89, 200, 242, .28) !important;
+  border-radius: 17px !important;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(66, 214, 195, .12), transparent 45%),
+    linear-gradient(145deg, #172d44, #101d2e 78%) !important;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, .22), inset 0 1px rgba(255,255,255,.035) !important;
+}
+.brand-logo-wrap {
+  width: 60px !important;
+  height: 60px !important;
+  padding: 8px !important;
+  border-radius: 15px !important;
+  background: linear-gradient(145deg, #fff, #e7f1f7) !important;
+  box-shadow: 0 7px 18px rgba(0,0,0,.2) !important;
+}
+.brand-copy { min-width: 0 !important; }
+.brand-title {
+  font-size: 1rem !important;
+  line-height: 1.2 !important;
+  letter-spacing: -.035em !important;
+  overflow-wrap: normal !important;
+}
+.brand-tagline {
+  font-size: .67rem !important;
+  line-height: 1.48 !important;
+  color: #afc1d2 !important;
+}
+.brand-divider {
+  margin: 13px 0 10px !important;
+  background: linear-gradient(90deg, rgba(89,200,242,.5), rgba(148,163,184,.08)) !important;
+}
+.brand-kicker {
+  font-size: .57rem !important;
+  letter-spacing: 1.05px !important;
+  color: #9cb3c8 !important;
+}
+section[data-testid="stSidebar"] [data-testid="stRadio"] > label {
+  margin: .25rem 0 .65rem !important;
+  color: #8fa8bf !important;
+  font-size: .66rem !important;
+  letter-spacing: 1.55px !important;
+}
+section[data-testid="stSidebar"] [data-testid="stRadio"] > div {
+  gap: .48rem !important;
+}
+section[data-testid="stSidebar"] [data-testid="stRadio"] label {
+  min-height: 45px !important;
+  padding: .62rem .72rem !important;
+  border: 1px solid rgba(148,163,184,.10) !important;
+  border-radius: 12px !important;
+  background: rgba(255,255,255,.022) !important;
+  color: #c2d1df !important;
+  font-size: .78rem !important;
+  font-weight: 600 !important;
+  transition: background .18s ease, border-color .18s ease, transform .18s ease !important;
+}
+section[data-testid="stSidebar"] [data-testid="stRadio"] label:hover {
+  background: rgba(89,200,242,.08) !important;
+  border-color: rgba(89,200,242,.28) !important;
+  transform: translateX(2px);
+}
+section[data-testid="stSidebar"] [data-testid="stRadio"] label:has(input:checked) {
+  background: linear-gradient(100deg, rgba(56,189,248,.17), rgba(45,212,191,.09)) !important;
+  border-color: rgba(89,200,242,.42) !important;
+  color: #f3f8fc !important;
+  box-shadow: inset 3px 0 0 var(--ai-teal), 0 5px 16px rgba(0,0,0,.10) !important;
+}
+.sidebar-project-meta {
+  padding: .95rem !important;
+  border-color: rgba(139,170,199,.18) !important;
+  border-radius: 13px !important;
+  background: linear-gradient(145deg, rgba(20,39,60,.92), rgba(12,25,41,.94)) !important;
+}
+.sidebar-project-meta .meta-heading {
+  color: #c0d2e1 !important;
+  letter-spacing: 1.15px !important;
+}
+.sidebar-project-meta .meta-copy {
+  color: #9aafc2 !important;
+  line-height: 1.65 !important;
+}
+
+/* Hero banner and page hierarchy */
+.hero {
+  padding: clamp(1.55rem, 3vw, 2.35rem) !important;
+  margin-bottom: 1.35rem !important;
+  border: 1px solid rgba(89,200,242,.28) !important;
+  border-radius: 21px !important;
+  background:
+    radial-gradient(circle at 94% 10%, rgba(66,214,195,.18), transparent 26%),
+    radial-gradient(circle at 0% 100%, rgba(89,200,242,.10), transparent 35%),
+    linear-gradient(112deg, #142b45 0%, #10263a 57%, #10343a 100%) !important;
+  box-shadow: 0 20px 52px rgba(0,0,0,.20), inset 0 1px rgba(255,255,255,.04) !important;
+}
+.hero-eyebrow, .section-label {
+  color: #79def0 !important;
+  letter-spacing: 1.8px !important;
+}
+.hero-title {
+  font-size: clamp(1.9rem, 3.5vw, 2.7rem) !important;
+  line-height: 1.12 !important;
+}
+.hero-description {
+  color: #c2d2df !important;
+  max-width: 790px !important;
+  font-size: .95rem !important;
+}
+
+/* Bordered filter panel; widgets use the same cool palette */
+[data-testid="stVerticalBlockBorderWrapper"] {
+  border: 1px solid var(--ai-border) !important;
+  border-radius: 17px !important;
+  background: linear-gradient(145deg, rgba(17,32,50,.92), rgba(11,23,38,.88)) !important;
+  box-shadow: 0 12px 30px rgba(0,0,0,.10) !important;
+}
+[data-testid="stMultiSelect"] [data-baseweb="tag"] {
+  background: #17617a !important;
+  border: 1px solid rgba(89,200,242,.25) !important;
+  border-radius: 7px !important;
+}
+[data-testid="stMultiSelect"] [data-baseweb="tag"] span {
+  color: #f3fbff !important;
+}
+[data-baseweb="select"] > div,
+[data-baseweb="input"] > div,
+[data-baseweb="textarea"] {
+  border-color: rgba(116,165,197,.32) !important;
+  border-radius: 10px !important;
+  background: #14263b !important;
+}
+[data-testid="stSlider"] [data-baseweb="slider"] [role="slider"] {
+  background: var(--ai-cyan) !important;
+  border-color: #d9f5ff !important;
+  box-shadow: 0 0 0 3px rgba(89,200,242,.16) !important;
+}
+[data-testid="stSlider"] [data-baseweb="slider"] > div > div {
+  background: var(--ai-cyan) !important;
+}
+[data-testid="stToggle"] [data-testid="stWidgetLabel"] p,
+[data-testid="stSlider"] [data-testid="stWidgetLabel"] p,
+[data-testid="stMultiSelect"] [data-testid="stWidgetLabel"] p {
+  color: #dce8f2 !important;
+  font-weight: 650 !important;
+}
+
+/* Transparency alert, KPI cards, charts and tables */
+[data-testid="stAlert"] {
+  border-radius: 13px !important;
+  border: 1px solid rgba(242,189,85,.28) !important;
+  background: rgba(92,67,25,.28) !important;
+}
+[data-testid="stAlert"] p {
+  color: #f1dfb9 !important;
+  line-height: 1.55 !important;
+}
+[data-testid="stMetric"] {
+  min-height: 118px !important;
+  padding: 1.12rem 1.18rem !important;
+  border: 1px solid var(--ai-border) !important;
+  border-radius: 16px !important;
+  background: linear-gradient(145deg, #14263c, #0f1d30) !important;
+  box-shadow: 0 10px 26px rgba(0,0,0,.13) !important;
+}
+[data-testid="stMetric"]:hover {
+  border-color: rgba(66,214,195,.42) !important;
+  transform: translateY(-2px);
+}
+[data-testid="stMetricLabel"] {
+  color: #aec0d1 !important;
+  font-size: .79rem !important;
+  font-weight: 650 !important;
+}
+[data-testid="stMetricValue"] {
+  color: #f5faff !important;
+  font-size: clamp(1.35rem, 2vw, 1.85rem) !important;
+  font-weight: 800 !important;
+  letter-spacing: -.045em !important;
+}
+[data-testid="stDataFrame"], [data-testid="stTable"] {
+  border: 1px solid var(--ai-border) !important;
+  border-radius: 13px !important;
+  overflow: hidden !important;
+}
+[data-testid="stTabs"] button {
+  font-weight: 650 !important;
+}
+[data-testid="stTabs"] button[aria-selected="true"] {
+  color: var(--ai-cyan) !important;
+}
+.stButton > button, .stFormSubmitButton > button, .stDownloadButton > button {
+  border-radius: 10px !important;
+  border: 1px solid rgba(89,200,242,.32) !important;
+  background: linear-gradient(110deg, rgba(25,91,119,.38), rgba(20,76,83,.30)) !important;
+  color: #f2f9fd !important;
+  font-weight: 700 !important;
+}
+.stButton > button:hover, .stFormSubmitButton > button:hover, .stDownloadButton > button:hover {
+  border-color: rgba(66,214,195,.65) !important;
+  transform: translateY(-1px);
+}
+hr {
+  border-color: rgba(139,170,199,.16) !important;
+}
+.footer {
+  color: #8fa4b9 !important;
+}
+@media (max-width: 900px) {
+  section[data-testid="stSidebar"] {
+    width: min(88vw, 292px) !important;
+    min-width: min(88vw, 292px) !important;
+  }
+  section[data-testid="stSidebar"] > div:first-child {
+    width: min(88vw, 292px) !important;
+  }
+  .block-container {
+    padding: 1rem .85rem 2.5rem !important;
+  }
+  .brand-shell {
+    grid-template-columns: 54px minmax(0, 1fr) !important;
+    column-gap: 10px !important;
+  }
+  .brand-logo-wrap {
+    width: 54px !important;
+    height: 54px !important;
+  }
+  .hero {
+    border-radius: 16px !important;
+  }
+}

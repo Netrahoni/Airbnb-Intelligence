@@ -330,6 +330,10 @@ hr { border-color: var(--line); margin: 1.25rem 0; }
 </style>
 """, unsafe_allow_html=True)
 
+# Layer the maintained dashboard theme after Streamlit base styles.
+DASHBOARD_THEME = (ROOT / "assets" / "dashboard-theme.css").read_text(encoding="utf-8")
+st.markdown(f"<style>{DASHBOARD_THEME}</style>", unsafe_allow_html=True)
+
 
 # ============================================================
 # 3. DATA AND MODEL LOADING
@@ -527,6 +531,13 @@ with st.sidebar:
             "Model Evaluation",
         ],
         label_visibility="visible",
+        format_func=lambda item: {
+            "Executive Analytics": "▦  Executive Analytics",
+            "Property Recommendations": "⌕  Property Recommendations",
+            "Price Prediction": "↗  Price Prediction",
+            "Data Analysis": "◫  Data Analysis",
+            "Model Evaluation": "◎  Model Evaluation",
+        }.get(item, item),
     )
 
     st.divider()
@@ -573,54 +584,55 @@ if page == "Executive Analytics":
         "context and must not be interpreted as Kathmandu-only demand."
     )
 
-    section_heading(
-        "Executive filters",
-        "Focus the property-level indicators and visualisations.",
-    )
-    f1, f2, f3 = st.columns([1.2, 1.2, 1])
-    neighbourhoods = sorted(properties["neighbourhood"].dropna().astype(str).unique()) if "neighbourhood" in properties else []
-    property_types = sorted(properties["property_type"].dropna().astype(str).unique()) if "property_type" in properties else []
-
-    with f1:
-        selected_neighbourhoods = st.multiselect(
-            "Neighbourhood", neighbourhoods, default=neighbourhoods,
-            key="exec_neighbourhood_filter",
+    with st.container(border=True):
+        section_heading(
+            "Executive filters",
+            "Focus the property-level indicators and visualisations.",
         )
-    with f2:
-        selected_types = st.multiselect(
-            "Property type", property_types, default=property_types,
-            key="exec_property_type_filter",
+        f1, f2, f3 = st.columns([1.2, 1.2, 1])
+        neighbourhoods = sorted(properties["neighbourhood"].dropna().astype(str).unique()) if "neighbourhood" in properties else []
+        property_types = sorted(properties["property_type"].dropna().astype(str).unique()) if "property_type" in properties else []
+    
+        with f1:
+            selected_neighbourhoods = st.multiselect(
+                "Neighbourhood", neighbourhoods, default=neighbourhoods,
+                key="exec_neighbourhood_filter",
+            )
+        with f2:
+            selected_types = st.multiselect(
+                "Property type", property_types, default=property_types,
+                key="exec_property_type_filter",
+            )
+        with f3:
+            published_only = st.toggle(
+                "Published only", value=False, key="exec_published_filter"
+            )
+    
+        # Additional filters keep the executive view useful without changing source data.
+        room_types = sorted(properties["room_type"].dropna().astype(str).unique()) if "room_type" in properties else []
+        selected_room_types = st.multiselect(
+            "Room type", room_types, default=room_types, key="exec_room_type_filter"
         )
-    with f3:
-        published_only = st.toggle(
-            "Published only", value=False, key="exec_published_filter"
-        )
-
-    # Additional filters keep the executive view useful without changing source data.
-    room_types = sorted(properties["room_type"].dropna().astype(str).unique()) if "room_type" in properties else []
-    selected_room_types = st.multiselect(
-        "Room type", room_types, default=room_types, key="exec_room_type_filter"
-    )
-    filter_col1, filter_col2 = st.columns([1.4, 1])
-    price_floor, price_ceiling = 0, 1
-    if "nightly_price_npr" in properties:
-        all_prices = numeric(properties["nightly_price_npr"]).dropna()
-        if not all_prices.empty:
-            price_floor = int(np.floor(all_prices.min()))
-            price_ceiling = int(np.ceil(all_prices.max()))
-            if price_ceiling <= price_floor:
-                price_ceiling = price_floor + 1
-    with filter_col1:
-        selected_price_range = st.slider(
-            "Sample nightly price range (NPR)", min_value=price_floor,
-            max_value=price_ceiling, value=(price_floor, price_ceiling),
-            key="exec_price_range_filter",
-        )
-    with filter_col2:
-        minimum_rating = st.slider(
-            "Minimum guest rating", min_value=0.0, max_value=5.0,
-            value=0.0, step=0.1, key="exec_min_rating_filter",
-        )
+        filter_col1, filter_col2 = st.columns([1.4, 1])
+        price_floor, price_ceiling = 0, 1
+        if "nightly_price_npr" in properties:
+            all_prices = numeric(properties["nightly_price_npr"]).dropna()
+            if not all_prices.empty:
+                price_floor = int(np.floor(all_prices.min()))
+                price_ceiling = int(np.ceil(all_prices.max()))
+                if price_ceiling <= price_floor:
+                    price_ceiling = price_floor + 1
+        with filter_col1:
+            selected_price_range = st.slider(
+                "Sample nightly price range (NPR)", min_value=price_floor,
+                max_value=price_ceiling, value=(price_floor, price_ceiling),
+                key="exec_price_range_filter",
+            )
+        with filter_col2:
+            minimum_rating = st.slider(
+                "Minimum guest rating", min_value=0.0, max_value=5.0,
+                value=0.0, step=0.1, key="exec_min_rating_filter",
+            )
 
     executive_properties = properties.copy()
     if "neighbourhood" in executive_properties:
