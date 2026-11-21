@@ -99,25 +99,24 @@ section[data-testid="stSidebar"] .block-container {
 /* Brand: the icon and wordmark are intentionally separate */
 .brand-shell {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 12px;
-  padding: 8px 3px 16px;
-  margin: 0 0 .75rem;
-  border: 0;
-  border-radius: 0;
-  background: transparent;
-  box-shadow: none;
+  gap: 0;
+  padding: 12px 8px 17px;
+  margin: 0 0 .2rem;
+  text-align: center;
 }
 .brand-logo-wrap {
-  flex: 0 0 48px;
-  width: 48px;
-  height: 48px;
   display: grid;
   place-items: center;
-  padding: 7px;
-  border-radius: 12px;
+  width: 62px;
+  height: 62px;
+  padding: 8px;
+  margin-bottom: 12px;
+  border-radius: 17px;
   background: linear-gradient(145deg, #f8fbfd, #e6f0f5);
-  border: 1px solid rgba(255,255,255,.72);
+  border: 1px solid rgba(255,255,255,.78);
+  box-shadow: 0 8px 22px rgba(0,0,0,.22), 0 0 0 5px rgba(89,200,242,.055);
 }
 .brand-logo-wrap img {
   display: block;
@@ -125,25 +124,26 @@ section[data-testid="stSidebar"] .block-container {
   height: 100%;
   object-fit: contain;
 }
-.brand-copy { min-width: 0; }
+.brand-copy { min-width: 0; width: 100%; }
 .brand-title {
-  margin: 0 0 5px;
+  margin: 0 0 6px;
   color: #f5f9fd;
   font-family: 'Manrope', sans-serif;
-  font-size: 1rem;
+  font-size: 1.08rem;
   font-weight: 800;
-  line-height: 1.18;
-  letter-spacing: -.045em;
+  line-height: 1.2;
+  letter-spacing: -.04em;
   overflow-wrap: anywhere;
 }
 .brand-tagline {
-  margin: 0;
+  max-width: 235px;
+  margin: 0 auto;
   color: #a9bbcd;
-  font-size: .68rem;
+  font-size: .7rem;
   font-weight: 500;
-  line-height: 1.45;
-  text-align: left;
-  letter-spacing: 0;
+  line-height: 1.5;
+  text-align: center;
+  letter-spacing: .005em;
 }
 .brand-divider {
   grid-column: 1 / -1;
@@ -174,53 +174,92 @@ section[data-testid="stSidebar"] .block-container {
 
 /* Workspace navigation */
 section[data-testid="stSidebar"] [data-testid="stRadio"] > label {
-  margin: .15rem 0 .55rem;
-  color: #8ba3ba !important;
-  font-size: .66rem !important;
+  margin: .1rem 0 .62rem;
+  color: #9bb1c6 !important;
+  font-size: .67rem !important;
   font-weight: 800 !important;
-  letter-spacing: 1.6px !important;
+  letter-spacing: 1.55px !important;
 }
 section[data-testid="stSidebar"] [data-testid="stRadio"] > div {
-  gap: .38rem !important;
+  gap: .42rem !important;
 }
 section[data-testid="stSidebar"] [data-testid="stRadio"] label {
-  min-height: 43px;
+  min-height: 46px;
   display: flex;
   align-items: center;
-  padding: .58rem .72rem !important;
-  border: 1px solid rgba(148,163,184,.09) !important;
-  border-radius: 11px !important;
-  background: rgba(255,255,255,.018) !important;
+  padding: .64rem .76rem !important;
+  border: 1px solid rgba(148,163,184,.10) !important;
+  border-radius: 12px !important;
+  background: rgba(255,255,255,.022) !important;
   transition: background .18s ease, border-color .18s ease, transform .18s ease;
+}
+section[data-testid="stSidebar"] [data-testid="stRadio"] label p {
+  color: #d5e2ee !important;
+  font-size: .82rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -.01em;
 }
 section[data-testid="stSidebar"] [data-testid="stRadio"] label:hover {
   background: rgba(85,199,243,.075) !important;
-  border-color: rgba(85,199,243,.24) !important;
+  border-color: rgba(85,199,243,.28) !important;
   transform: translateX(2px);
 }
 section[data-testid="stSidebar"] [data-testid="stRadio"] label:has(input:checked) {
-  background: linear-gradient(100deg, rgba(56,189,248,.16), rgba(45,212,191,.085)) !important;
-  border-color: rgba(85,199,243,.34) !important;
+  background: linear-gradient(100deg, rgba(56,189,248,.17), rgba(45,212,191,.09)) !important;
+  border-color: rgba(85,199,243,.38) !important;
   box-shadow: inset 3px 0 0 var(--teal);
 }
+section[data-testid="stSidebar"] [data-testid="stRadio"] label:has(input:focus-visible) {
+  outline: 2px solid rgba(89,200,242,.8);
+  outline-offset: 2px;
+}
 .sidebar-project-meta {
-  padding: .85rem .9rem;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  background: linear-gradient(145deg, rgba(19,36,56,.82), rgba(12,25,41,.82));
+  padding: .9rem .95rem;
+  border: 1px solid rgba(148,171,195,.15);
+  border-radius: 13px;
+  background: linear-gradient(145deg, rgba(19,36,56,.86), rgba(12,25,41,.9));
 }
 .sidebar-project-meta .meta-heading {
-  margin-bottom: .4rem;
-  color: #b5cadd;
-  font-size: .62rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: .48rem;
+  color: #e0ebf5;
+  font-size: .69rem;
   font-weight: 800;
-  letter-spacing: 1.3px;
-  text-transform: uppercase;
+  letter-spacing: .35px;
+}
+.sidebar-project-meta .meta-heading:before {
+  content: "▦";
+  color: var(--blue);
+  font-size: .85rem;
 }
 .sidebar-project-meta .meta-copy {
-  color: var(--muted);
+  color: #9eb2c6;
   font-size: .73rem;
-  line-height: 1.55;
+  font-weight: 500;
+  line-height: 1.65;
+}
+.sidebar-status {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: .72rem .82rem;
+  border: 1px solid rgba(251,191,36,.18);
+  border-radius: 11px;
+  background: rgba(251,191,36,.055);
+  color: #f5d58a;
+  font-size: .76rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+.sidebar-status-dot {
+  flex: 0 0 7px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #fbbf24;
+  box-shadow: 0 0 0 4px rgba(251,191,36,.10);
 }
 section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p { color: var(--muted); }
 
@@ -329,10 +368,18 @@ hr { border-color: var(--line); margin: 1.25rem 0; }
   section[data-testid="stSidebar"] { width: min(88vw, 292px) !important; min-width: min(88vw, 292px) !important; }
   section[data-testid="stSidebar"] > div:first-child { width: min(88vw, 292px) !important; }
   .block-container { padding: .9rem .9rem 2rem; }
-  .brand-shell { gap: 10px; padding: 7px 3px 14px; }
-  .brand-logo-wrap { flex-basis: 46px; width: 46px; height: 46px; }
-  .brand-title { font-size: .94rem; }
-  .brand-tagline { font-size: .65rem; }
+  .brand-shell { padding: 8px 5px 13px; }
+  .brand-logo-wrap { width: 56px; height: 56px; margin-bottom: 10px; }
+  .brand-title { font-size: 1rem; }
+  .brand-tagline { max-width: 220px; font-size: .67rem; }
+  section[data-testid="stSidebar"] [data-testid="stRadio"] label {
+    min-height: 44px;
+    padding: .58rem .68rem !important;
+  }
+  section[data-testid="stSidebar"] [data-testid="stRadio"] label p {
+    font-size: .78rem !important;
+  }
+  .sidebar-project-meta { padding: .78rem .82rem; }
   .hero { padding: 1.25rem; border-radius: 15px; }
   .hero-title { font-size: 1.75rem; }
   [data-testid="stMetric"] { min-height: 96px; padding: .85rem; }
@@ -779,8 +826,10 @@ with st.sidebar:
 
     st.markdown("**DATA STATUS**")
     st.markdown(
-        '<span style="color:#FBBF24;font-weight:700;">● '
-        'Synthetic sample data</span>',
+        '<div class="sidebar-status" role="status">'
+        '<span class="sidebar-status-dot" aria-hidden="true"></span>'
+        '<span>Synthetic sample data</span>'
+        '</div>',
         unsafe_allow_html=True,
     )
 
