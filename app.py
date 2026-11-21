@@ -54,7 +54,7 @@ st.markdown("""
   --surface-hover: #192d45;
   --line: rgba(148, 171, 195, .16);
   --line-strong: rgba(111, 190, 218, .30);
-  --ink: #172b4d;
+  --ink: #edf4fb;
   --muted: #91a5bb;
   --blue: #59c8f2;
   --teal: #45d5c2;
@@ -323,7 +323,7 @@ hr { border-color: var(--line); margin: 1.25rem 0; }
 }
 .property-card { transition: transform .18s ease, border-color .18s ease; }
 .property-card:hover { transform: translateY(-2px); border-color: rgba(66,214,195,.34); }
-.property-card-title { color: #334155; font-size: 1.02rem; font-weight: 750; }
+.property-card-title { color: #f2f7fc; font-size: 1.02rem; font-weight: 750; }
 .property-card-meta { margin-top: .25rem; color: #9baec3; font-size: .79rem; }
 .similarity { color: var(--teal); font-weight: 800; }
 .footer { margin-top: 2.5rem; padding-top: 1.3rem; border-top: 1px solid var(--line); color: #8297ad; text-align: center; font-size: .8rem; }
@@ -581,13 +581,13 @@ def render_kpi_card(label, value, context, progress, symbol, accent="cyan"):
 
 def _style_chart_axis(ax):
     """Apply the shared dark navy / cyan dashboard chart palette."""
-    ax.set_facecolor("#ffffff")
-    ax.tick_params(colors="#64748b", labelsize=9)
-    ax.xaxis.label.set_color("#64748b")
-    ax.yaxis.label.set_color("#64748b")
+    ax.set_facecolor("#101d30")
+    ax.tick_params(colors="#b8c9d9", labelsize=9)
+    ax.xaxis.label.set_color("#91a8bd")
+    ax.yaxis.label.set_color("#91a8bd")
     for spine in ax.spines.values():
         spine.set_visible(False)
-    ax.grid(axis="x", color="#e2e8f0", alpha=.48, linewidth=.8)
+    ax.grid(axis="x", color="#34475d", alpha=.48, linewidth=.8)
     ax.set_axisbelow(True)
 
 
@@ -608,7 +608,7 @@ def render_grouped_bar_chart(frame, columns, value_format="price", limit=10):
     y = np.arange(len(labels))
     height = max(3.1, .43 * len(labels) + 1.1)
     fig, ax = plt.subplots(figsize=(9, height), dpi=120)
-    fig.patch.set_facecolor("#ffffff")
+    fig.patch.set_facecolor("#101d30")
     _style_chart_axis(ax)
     palette = ["#59c8f2", "#42d6c3", "#82aaff"]
     bar_height = min(.34, .72 / len(available))
@@ -624,13 +624,13 @@ def render_grouped_bar_chart(frame, columns, value_format="price", limit=10):
                 label = f"{value:,.0f}" if value_format == "count" else f"{value:,.0f}"
                 ax.annotate(label, (bar.get_width(), bar.get_y() + bar.get_height()/2),
                             xytext=(5, 0), textcoords="offset points",
-                            va="center", color="#334155", fontsize=7.5)
+                            va="center", color="#dce8f2", fontsize=7.5)
 
     ax.set_yticks(y)
-    ax.set_yticklabels(labels, color="#475569")
+    ax.set_yticklabels(labels, color="#c3d2df")
     ax.set_xlabel("Properties" if value_format == "count" else "Sample nightly price · NPR", fontsize=8)
     ax.margins(x=.18)
-    ax.legend(loc="lower right", frameon=False, labelcolor="#64748b", fontsize=8, ncol=min(2, len(available)))
+    ax.legend(loc="lower right", frameon=False, labelcolor="#b8c9d9", fontsize=8, ncol=min(2, len(available)))
     fig.tight_layout(pad=1.25)
     st.pyplot(fig, width="stretch", clear_figure=True)
     plt.close(fig)
@@ -643,7 +643,7 @@ def render_horizontal_bar_chart(series, value_format="count", limit=10, color="#
         st.info("There are no valid values for this chart.")
         return
     fig, ax = plt.subplots(figsize=(9, max(3.0, .42 * len(values) + .9)), dpi=120)
-    fig.patch.set_facecolor("#ffffff")
+    fig.patch.set_facecolor("#101d30")
     _style_chart_axis(ax)
     bars = ax.barh([str(x) for x in values.index], values.to_numpy(),
                    color=color, height=.58, edgecolor="none")
@@ -652,7 +652,7 @@ def render_horizontal_bar_chart(series, value_format="count", limit=10, color="#
         ax.annotate(f"{value:,.1f}{suffix}" if value_format == "percent" else f"{value:,.0f}",
                     (bar.get_width(), bar.get_y() + bar.get_height()/2),
                     xytext=(5, 0), textcoords="offset points", va="center",
-                    color="#334155", fontsize=8)
+                    color="#dce8f2", fontsize=8)
     ax.set_xlabel("Share / variation (%)" if value_format == "percent" else
                   ("Properties" if value_format == "count" else "Sample nightly price · NPR"), fontsize=8)
     ax.margins(x=.18)
@@ -672,20 +672,20 @@ def render_donut_chart(series, center_label="LISTINGS"):
     palette = ["#59c8f2", "#42d6c3", "#82aaff", "#8b9cf6",
                "#54b6a9", "#6e9fc8", "#a2c7dc", "#6d8298"]
     fig, ax = plt.subplots(figsize=(6.2, 4.1), dpi=120)
-    fig.patch.set_facecolor("#ffffff")
-    ax.set_facecolor("#ffffff")
+    fig.patch.set_facecolor("#101d30")
+    ax.set_facecolor("#101d30")
     wedges, _, _ = ax.pie(
         values.values, startangle=90, counterclock=False,
         colors=palette[:len(values)], autopct=lambda pct: f"{pct:.0f}%" if pct >= 5 else "",
         pctdistance=.78, wedgeprops={"width": .34, "edgecolor": "#ffffff", "linewidth": 2},
-        textprops={"color": "#334155", "fontsize": 8},
+        textprops={"color": "#f2f7fc", "fontsize": 8},
     )
     ax.text(0, .06, f"{int(values.sum()):,}", ha="center", va="center",
-            color="#172b4d", fontsize=18, fontweight="bold")
+            color="#f5f9ff", fontsize=18, fontweight="bold")
     ax.text(0, -.19, center_label, ha="center", va="center",
-            color="#64748b", fontsize=7, fontweight="bold")
+            color="#91a8bd", fontsize=7, fontweight="bold")
     ax.legend(wedges, [str(x) for x in values.index], loc="center left",
-              bbox_to_anchor=(.88, .5), frameon=False, labelcolor="#475569", fontsize=8)
+              bbox_to_anchor=(.88, .5), frameon=False, labelcolor="#c3d2df", fontsize=8)
     fig.tight_layout(pad=1.1)
     st.pyplot(fig, width="stretch", clear_figure=True)
     plt.close(fig)
@@ -702,15 +702,15 @@ def render_price_distribution(prices):
         2, 1, figsize=(10, 4.8), dpi=120,
         gridspec_kw={"height_ratios": [3, 1]},
     )
-    fig.patch.set_facecolor("#ffffff")
+    fig.patch.set_facecolor("#101d30")
     for ax in (hist_ax, box_ax):
         _style_chart_axis(ax)
     hist_ax.hist(values, bins=min(18, max(5, int(np.sqrt(len(values))))),
-                 color="#59c8f2", edgecolor="#ffffff", alpha=.9)
+                 color="#59c8f2", edgecolor="#101d30", alpha=.9)
     hist_ax.axvline(values.median(), color="#42d6c3", linewidth=2,
                     linestyle="--", label=f"Median · NPR {values.median():,.0f}")
     hist_ax.set_ylabel("Observations", fontsize=8)
-    hist_ax.legend(frameon=False, labelcolor="#475569", fontsize=8)
+    hist_ax.legend(frameon=False, labelcolor="#c3d2df", fontsize=8)
     box_ax.boxplot(values, orientation="horizontal", patch_artist=True,
                    boxprops={"facecolor": "#17617a", "edgecolor": "#59c8f2"},
                    medianprops={"color": "#42d6c3", "linewidth": 2},
@@ -2534,7 +2534,7 @@ elif page == "Model Evaluation":
             return
 
         fig, ax = plt.subplots(figsize=(8.2, max(2.8, .48 * len(values) + .85)), dpi=120)
-        fig.patch.set_facecolor("#ffffff")
+        fig.patch.set_facecolor("#101d30")
         _style_chart_axis(ax)
         bars = ax.barh(
             [str(label) for label in values.index],
@@ -2558,12 +2558,12 @@ elif page == "Model Evaluation":
                 textcoords="offset points",
                 ha="left" if value >= 0 else "right",
                 va="center",
-                color="#334155",
+                color="#dce8f2",
                 fontsize=8,
             )
         ax.axvline(0, color="#8298ad", linewidth=.8, alpha=.65)
         ax.set_xlabel(axis_label, fontsize=8)
-        ax.set_title(title, color="#172b4d", loc="left", fontsize=10, pad=11, fontweight="bold")
+        ax.set_title(title, color="#edf4fb", loc="left", fontsize=10, pad=11, fontweight="bold")
         ax.margins(x=.2)
         fig.tight_layout(pad=1.2)
         st.pyplot(fig, width="stretch", clear_figure=True)
@@ -2582,9 +2582,9 @@ elif page == "Model Evaluation":
         )
         palette = ["#59c8f2", "#42d6c3", "#82aaff"]
         fig, ax = plt.subplots(figsize=(8.5, 3.7), dpi=120)
-        fig.patch.set_facecolor("#ffffff")
+        fig.patch.set_facecolor("#101d30")
         _style_chart_axis(ax)
-        ax.grid(axis="y", color="#e2e8f0", alpha=.48, linewidth=.8)
+        ax.grid(axis="y", color="#34475d", alpha=.48, linewidth=.8)
         ax.grid(axis="x", visible=False)
 
         for index, column in enumerate(available):
@@ -2600,10 +2600,10 @@ elif page == "Model Evaluation":
                 label=label,
             )
 
-        ax.set_title(title, color="#172b4d", loc="left", fontsize=10, pad=11, fontweight="bold")
+        ax.set_title(title, color="#edf4fb", loc="left", fontsize=10, pad=11, fontweight="bold")
         ax.set_xlabel("Validation fold", fontsize=8)
         ax.set_ylabel(axis_label, fontsize=8)
-        ax.legend(frameon=False, labelcolor="#475569", fontsize=8)
+        ax.legend(frameon=False, labelcolor="#c3d2df", fontsize=8)
         fig.tight_layout(pad=1.2)
         st.pyplot(fig, width="stretch", clear_figure=True)
         plt.close(fig)
@@ -3050,8 +3050,8 @@ elif page == "Model Evaluation":
                         valid_xy = pd.DataFrame({"actual": x, "predicted": y}).dropna()
                         if not valid_xy.empty:
                             fig, ax = plt.subplots(figsize=(7.2, 4.2), dpi=120)
-                            fig.patch.set_facecolor("#ffffff")
-                            ax.set_facecolor("#ffffff")
+                            fig.patch.set_facecolor("#101d30")
+                            ax.set_facecolor("#101d30")
                             ax.scatter(
                                 valid_xy["actual"], valid_xy["predicted"],
                                 s=25, alpha=.78, color="#59c8f2",
@@ -3062,14 +3062,14 @@ elif page == "Model Evaluation":
                             ax.plot([low, high], [low, high], color="#42d6c3", linewidth=1.7, linestyle="--", label="Perfect prediction")
                             ax.set_xlim(left=low)
                             ax.set_ylim(bottom=low)
-                            ax.set_xlabel("Actual target price · NPR", color="#64748b", fontsize=8)
-                            ax.set_ylabel("Predicted price · NPR", color="#64748b", fontsize=8)
-                            ax.set_title("Actual vs predicted", color="#172b4d", loc="left", fontsize=10, pad=11, fontweight="bold")
-                            ax.tick_params(colors="#64748b", labelsize=8)
+                            ax.set_xlabel("Actual target price · NPR", color="#91a8bd", fontsize=8)
+                            ax.set_ylabel("Predicted price · NPR", color="#91a8bd", fontsize=8)
+                            ax.set_title("Actual vs predicted", color="#edf4fb", loc="left", fontsize=10, pad=11, fontweight="bold")
+                            ax.tick_params(colors="#b8c9d9", labelsize=8)
                             for spine in ax.spines.values():
                                 spine.set_visible(False)
-                            ax.grid(color="#e2e8f0", alpha=.48, linewidth=.8)
-                            ax.legend(frameon=False, labelcolor="#475569", fontsize=8)
+                            ax.grid(color="#34475d", alpha=.48, linewidth=.8)
+                            ax.legend(frameon=False, labelcolor="#c3d2df", fontsize=8)
                             fig.tight_layout(pad=1.2)
                             st.pyplot(fig, width="stretch", clear_figure=True)
                             plt.close(fig)
