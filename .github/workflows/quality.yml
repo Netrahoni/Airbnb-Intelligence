@@ -42,5 +42,8 @@ jobs:
       - name: Run recommendation tests
         run: python tests/test_recommendations.py
 
+      - name: Run isolated quality test suite
+        run: python -m unittest discover -s tests -p "test_*.py" -v
+
       - name: Check dependency consistency
         run: python -m pip check
