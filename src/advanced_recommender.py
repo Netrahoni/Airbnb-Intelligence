@@ -47,7 +47,7 @@ class AdvancedPropertyRecommender:
 
             self.properties = self.properties[published].copy()
 
-        self.properties.reset_index(drop=True, inplace=True)
+        self.properties = self.properties.reset_index(drop=True)
 
         if self.properties.empty:
             raise ValueError("No published properties available.")
